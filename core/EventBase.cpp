@@ -1,16 +1,13 @@
 #include "EventBase.h"
+#include "log.h" 
 
 #ifdef WIN32
 #else
-//#  define LG(format, args...) do {printf("%lu ", pthread_self ()); printf(format"\n", ##args);} while(0) 
-//#  define LG(format, ...) printf(format"\n", ##__VA_ARGS__)
 #  include <fcntl.h>
 #  include <signal.h>
 #  include <sstream>
 #endif
 
-#include "log.h" 
-#define LG writeLog
 
 #define MAX_ERROR_COUNT 32
 #define TIMER_LOG_THRESHOLD (3 * 60 * 1000) // in miliseconds
@@ -65,7 +62,7 @@ int GEventBase::init_socket()
     if (err != 0) {
         /* Tell the user that we could not find a usable */
         /* Winsock DLL.                                  */
-        LG("WSAStartup failed with error: %d", err);
+        writeLog("WSAStartup failed with error: %d", err);
         return -1;
     }
 
@@ -78,12 +75,12 @@ int GEventBase::init_socket()
     if (LOBYTE(wsaData.wVersion) != 2 || HIBYTE(wsaData.wVersion) != 2) {
         /* Tell the user that we could not find a usable */
         /* WinSock DLL.                                  */
-        LG("Could not find a usable version of Winsock.dll");
+        writeLog("Could not find a usable version of Winsock.dll");
         WSACleanup();
         return -1;
     }
     else
-        LG("The Winsock 2.2 dll was found okay");
+        writeLog("The Winsock 2.2 dll was found okay");
 
     return 0;
 }
@@ -93,7 +90,7 @@ bool GEventBase::issue_accept()
     SOCKET acceptor = WSASocket(AF_INET, SOCK_STREAM, IPPROTO_TCP, 0, 0, WSA_FLAG_OVERLAPPED);
     if (INVALID_SOCKET == acceptor)
     {
-        LG("create acceptor socket failed, errno %d", WSAGetLastError());
+        writeLog("create acceptor socket failed, errno %d", WSAGetLastError());
         return false; 
     }
 
@@ -106,19 +103,19 @@ bool GEventBase::issue_accept()
 
     if (ret)
     {
-        LG("AcceptEx successed immediately, fd = %d, do nothing to wait iocp callbacks", acceptor);
+        writeLog("AcceptEx successed immediately, fd = %d, do nothing to wait iocp callbacks", acceptor);
         //ret = do_accept(gpid);
     }
     else if (WSAGetLastError() != WSA_IO_PENDING)
     {
-        LG("accept asynchronizely failed, errno %d", WSAGetLastError());
+        writeLog("accept asynchronizely failed, errno %d", WSAGetLastError());
         closesocket(acceptor);
         delete gpid;
         return false;
     }
     else
     {
-        LG("issue next accept ok"); 
+        writeLog("issue next accept ok"); 
         ret = true;
     }
 
@@ -134,7 +131,7 @@ bool GEventBase::issue_read(GEV_PER_HANDLE_DATA *gphd)
     {
         if (WSAGetLastError() != WSA_IO_PENDING)
         {
-            LG("issue next read on socket failed, errno %d", WSAGetLastError());
+            writeLog("issue next read on socket failed, errno %d", WSAGetLastError());
             delete gpid;
             // leave gphd handled by upper layer.
             //delete gphd; 
@@ -142,14 +139,14 @@ bool GEventBase::issue_read(GEV_PER_HANDLE_DATA *gphd)
         }
 
 #  ifdef GEVENT_DUMP
-        LG("issue next read on %d ok", gphd->so);
+        writeLog("issue next read on %d ok", gphd->so);
 #  endif
     }
     else
     {
 #  ifdef GEVENT_DUMP
         // immediately recevied ?
-        LG("recevie completed immediately after issue read, do nothing to wait iocp callbacks");
+        writeLog("recevie completed immediately after issue read, do nothing to wait iocp callbacks");
 #  endif
         //if (gpid->bytes == 0)
         //{
@@ -185,7 +182,7 @@ static void CALLBACK timeout_proc(LPVOID param, BOOLEAN unused)
     // do notify
     if (!base->post_timer(gptd))
     {
-        LG("post timer notify failed, timer %p, errno %d", gptd, GetLastError());
+        writeLog("post timer notify failed, timer %p, errno %d", gptd, GetLastError());
         if (gptd->period_msec == 0)
             // non-periodically timer, destroy
             delete gptd;
@@ -194,7 +191,7 @@ static void CALLBACK timeout_proc(LPVOID param, BOOLEAN unused)
     // prevent too frequency logs, 
     // only log once timer or periodical timer that equal or more than 3 minutes.
     else if (gptd->period_msec == 0 || gptd->period_msec >= TIMER_LOG_THRESHOLD)
-        LG("timer %p timeout, post notify..", gptd);
+        writeLog("timer %p timeout, post notify..", gptd);
 #  endif
 }
 
@@ -205,20 +202,20 @@ static void setnonblocking (int fd)
     int opts = fcntl (fd, F_GETFL); 
     if (opts < 0)
     {
-        LG("get sock %d flag failed, errno %d", fd, errno); 
+        writeLog("get sock %d flag failed, errno %d", fd, errno); 
         return; 
     }
 
     opts |= O_NONBLOCK; 
     if (fcntl (fd, F_SETFL, opts) < 0)
-        LG("set sock %d flag failed, flag 0x%08x, errno %d", fd, opts, errno); 
+        writeLog("set sock %d flag failed, flag 0x%08x, errno %d", fd, opts, errno); 
 }
 
 static void setreuseaddr (int fd)
 {
     int opt = 1;  
     if (setsockopt (fd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof (opt)) < 0)
-        LG("setsockopt %d failed, errno %d", fd, errno); 
+        writeLog("setsockopt %d failed, errno %d", fd, errno); 
 }
 
 static conn_key_t get_key_from_fd (int fd, bool verbose)
@@ -231,23 +228,23 @@ static conn_key_t get_key_from_fd (int fd, bool verbose)
     locallen = remotelen = sizeof(SOCKADDR_IN);
     if (getsockname(fd, (sockaddr *)&local, &locallen) == SOCKET_ERROR)
     {
-        LG("get socket local address failed, errno %d", WSAGetLastError());
+        writeLog("get socket local address failed, errno %d", WSAGetLastError());
         memset(&local, 0, sizeof(local));
         locallen = 0;
         // not fatal
     }
     else if (verbose)
-        LG("socket local address %s:%d", inet_ntoa(local.sin_addr), ntohs(local.sin_port));
+        writeLog("socket local address %s:%d", inet_ntoa(local.sin_addr), ntohs(local.sin_port));
 
     if (getpeername(fd, (sockaddr *)&remote, &remotelen) == SOCKET_ERROR)
     {
-        LG("get socket remote address failed, errno %d", WSAGetLastError());
+        writeLog("get socket remote address failed, errno %d", WSAGetLastError());
         memset(&remote, 0, sizeof(remote));
         remotelen = 0;
         // not fatal
     }
     else if (verbose)
-        LG("socket remote address %s:%d", inet_ntoa(remote.sin_addr), ntohs(remote.sin_port));
+        writeLog("socket remote address %s:%d", inet_ntoa(remote.sin_addr), ntohs(remote.sin_port));
 
     return conn_key_t (fd, ntohs(local.sin_port), ntohs(remote.sin_port)); 
 }
@@ -262,22 +259,22 @@ bool GEventBase::init_pipe()
     // create self connected pipe and add into epoll to do notify
     if (pipe (m_pp) < 0)
     {
-        LG("create pipe failed, errno %d", errno); 
+        writeLog("create pipe failed, errno %d", errno); 
         return false; 
     }
     else 
-        LG("create pipe, in %d, out %d", m_pp[0], m_pp[1]); 
+        writeLog("create pipe, in %d, out %d", m_pp[0], m_pp[1]); 
 
     struct epoll_event ev; 
     ev.events = EPOLLIN; // no EPOLLET
     ev.data.fd = m_pp[0]; 
     if (epoll_ctl (m_ep, EPOLL_CTL_ADD, m_pp[0], &ev) < 0)
     {
-        LG("add notify pipe into epoll failed, errno %d", errno); 
+        writeLog("add notify pipe into epoll failed, errno %d", errno); 
         return false; 
     }
     else 
-        LG("add notify pipe into epoll ok"); 
+        writeLog("add notify pipe into epoll ok"); 
 
     return true; 
 }
@@ -310,7 +307,7 @@ bool GEventBase::post_notify(char ch, void *ptr)
     int ret = write (m_pp[1], buf, n); 
     if (ret <= 0)
     {
-        LG("send notify to epoll failed, ret %d, errno %d", ret, errno);
+        writeLog("send notify to epoll failed, ret %d, errno %d", ret, errno);
         return false; 
     }
 
@@ -355,7 +352,7 @@ GEventHandler* GEventBase::find_by_fd(int fd, conn_key_t &key, bool erase)
 
 void sig_timer (int sig, siginfo_t *si, void *uc)
 {
-    LG("%d caught", sig); 
+    writeLog("%d caught", sig); 
     GEV_PER_TIMER_DATA *gptd = (GEV_PER_TIMER_DATA *)si->si_value.sival_ptr; 
     if (gptd == NULL)
         return; 
@@ -366,7 +363,7 @@ void sig_timer (int sig, siginfo_t *si, void *uc)
 
     if (!base->post_timer (gptd))
     {
-        LG("post timer notify failed, timer %p, errno %d", gptd, GetLastError());
+        writeLog("post timer notify failed, timer %p, errno %d", gptd, GetLastError());
         if (gptd->period_msec == 0)
             // non-periodically timer, destroy
             delete gptd;
@@ -375,7 +372,7 @@ void sig_timer (int sig, siginfo_t *si, void *uc)
     // prevent too frequency logs, 
     // only log once timer or periodical timer that equal or more than 3 minutes.
     else if (gptd->period_msec == 0 || gptd->period_msec >= TIMER_LOG_THRESHOLD)
-        LG("timer %p timeout, post notify..", gptd);
+        writeLog("timer %p timeout, post notify..", gptd);
 #  endif
 }
 
@@ -389,40 +386,28 @@ void GEventBase::sig_proc()
     sigaddset (&mask, m_tsig); 
     sigaddset (&mask, SIGINT); 
     
-    LG("signal thread running"); 
+    writeLog("signal thread running"); 
     while (m_running) {
         signo = sigwaitinfo (&mask, &si); 
         if (signo < 0) { 
-            LG ("sigwaitinfo failed, errno %d", errno); 
+            writeLog ("sigwaitinfo failed, errno %d", errno); 
             break; 
         }
 
         if (signo == m_tsig)
         {
             // time out signal
-            LG ("wait timer signal %d", m_tsig); 
+            writeLog ("wait timer signal %d", m_tsig); 
             sig_timer (signo, &si, NULL); 
             continue; 
         }
         else if (signo == SIGINT)
-            LG ("quit detected"); 
+            writeLog ("quit detected"); 
         else
-            LG ("unexpected signal %d\n", signo); 
-
-#  if 0
-        switch (signo) { 
-            case SIGINT:
-            case SIGTERM:
-                LG ("quit detected, signal %d", signo); 
-                break; 
-            default:
-                LG ("unexpected signal %d", signo); 
-                break; 
-        }
-#  endif
+            writeLog ("unexpected signal %d\n", signo); 
     }
 
-    LG("signal thread exiting"); 
+    writeLog("signal thread exiting"); 
 }
 
 pthread_t get_std_thread_id (std::thread *pthr)
@@ -437,7 +422,7 @@ pthread_t get_std_thread_id (std::thread *pthr)
 
 bool GEventBase::on_accept(GEV_PER_HANDLE_DATA *gphd)
 {
-    //LG("accept a client %d", gphd->so);
+    //writeLog("accept a client %d", gphd->so);
     GEventHandler *h = create_handler ();
     h->reset(gphd, nullptr, this);
 
@@ -483,7 +468,7 @@ bool GEventBase::init(int thr_num, int blksize
         thr_num = max ((int)si.dwNumberOfProcessors, -thr_num);  
 #else
         int ncore = sysconf(_SC_NPROCESSORS_ONLN); 
-        LG("ncore %d", ncore); 
+        writeLog("ncore %d", ncore); 
         thr_num = std::max (ncore, -thr_num); 
 #endif
     }
@@ -494,14 +479,14 @@ bool GEventBase::init(int thr_num, int blksize
     m_iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, thr_num);
     if (m_iocp == NULL)
     {
-        LG("create io completion port failed, errno %d", GetLastError()); 
+        writeLog("create io completion port failed, errno %d", GetLastError()); 
         return false; 
     }
 
     m_timerque = CreateTimerQueue(); 
     if (m_timerque == NULL)
     {
-        LG("create timer queue failed, errno %d", GetLastError()); 
+        writeLog("create timer queue failed, errno %d", GetLastError()); 
         //return false; 
         // not fatal as we can use default timer queue...
     }
@@ -510,11 +495,11 @@ bool GEventBase::init(int thr_num, int blksize
     m_ep = epoll_create (1/*just a hint*/); 
     if (m_ep < 0)
     {
-        LG("create epoll instance failed, errno %d", errno); 
+        writeLog("create epoll instance failed, errno %d", errno); 
         return false; 
     }
     else 
-        LG("create epoll fd %d", m_ep); 
+        writeLog("create epoll fd %d", m_ep); 
 
     if (!init_pipe())
         return false; 
@@ -526,11 +511,11 @@ bool GEventBase::init(int thr_num, int blksize
     sigemptyset (&act.sa_mask); 
     if (sigaction (timer_sig, &act, NULL) < 0)
     {
-        LG("install sig %d for timer failed, errno %d", timer_sig, errno); 
+        writeLog("install sig %d for timer failed, errno %d", timer_sig, errno); 
         return false; 
     }
     else
-        LG("install sig %d for timer ok", timer_sig); 
+        writeLog("install sig %d for timer ok", timer_sig); 
 
     m_tsig = timer_sig; 
 
@@ -540,11 +525,11 @@ bool GEventBase::init(int thr_num, int blksize
     sigemptyset (&act.sa_mask); 
     if (sigaction (SIGPIPE, &act, NULL) < 0)
     {
-        LG("ignore SIGPIPE failed, errno %d", errno); 
+        writeLog("ignore SIGPIPE failed, errno %d", errno); 
         return false; 
     }
     else
-        LG("ignore SIGPIPE ok"); 
+        writeLog("ignore SIGPIPE ok"); 
 
 #  ifdef HAS_SIGTHR
     sigset_t mask; 
@@ -553,7 +538,7 @@ bool GEventBase::init(int thr_num, int blksize
     sigaddset(&mask, m_tsig); 
     if (pthread_sigmask (SIG_BLOCK, &mask, NULL) != 0)
     {
-        LG("block all signal for work thread failed, errno %d", errno); 
+        writeLog("block all signal for work thread failed, errno %d", errno); 
         return false; 
     }
 
@@ -568,7 +553,7 @@ bool GEventBase::init(int thr_num, int blksize
         m_grp.add_thread(thr);
     }
 
-    LG("start %d threads to run event loop", thr_num); 
+    writeLog("start %d threads to run event loop", thr_num); 
     return true; 
 }
 
@@ -585,20 +570,20 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
 #endif
         if (m_listener == INVALID_SOCKET)
         {
-            LG("create listener socket failed, errno %d", WSAGetLastError());
+            writeLog("create listener socket failed, errno %d", WSAGetLastError());
             break; 
         }
 
         // Associate SOCKET with IOCP  
-        LG("create listener %d", m_listener); 
+        writeLog("create listener %d", m_listener); 
 #ifdef WIN32
         if (CreateIoCompletionPort((HANDLE)m_listener, m_iocp, 0, 0) == NULL)
         {
-            LG("associate listener to iocp failed, errno %d", GetLastError());
+            writeLog("associate listener to iocp failed, errno %d", GetLastError());
             break; 
         }
 
-        LG("associate listener to iocp ok"); 
+        writeLog("associate listener to iocp ok"); 
 #endif
 
         SOCKADDR_IN addr;
@@ -607,7 +592,7 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
         addr.sin_port = htons(port);
         if (::bind(m_listener, (SOCKADDR*)&addr, sizeof(SOCKADDR)) == SOCKET_ERROR)
         {
-            LG("bind listener to local port %d failed, errno %d", port, WSAGetLastError()); 
+            writeLog("bind listener to local port %d failed, errno %d", port, WSAGetLastError()); 
             break; 
         }
 
@@ -618,7 +603,7 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
 
         if (::listen(m_listener, backup) == SOCKET_ERROR)
         {
-            LG("start listen on port %d with backup %d failed, errno %d", port, backup, WSAGetLastError()); 
+            writeLog("start listen on port %d with backup %d failed, errno %d", port, backup, WSAGetLastError()); 
             break;
         }
 
@@ -634,7 +619,7 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
         if (WSAIoctl(m_listener, SIO_GET_EXTENSION_FUNCTION_POINTER, &guidAcceptEx, sizeof(guidAcceptEx), &m_acceptex,
             sizeof(m_acceptex), &bytes, NULL, NULL) == SOCKET_ERROR)
         {
-            LG("get function ptr for AcceptEx failed, errno %d", WSAGetLastError());
+            writeLog("get function ptr for AcceptEx failed, errno %d", WSAGetLastError());
             break;
         }
 
@@ -642,7 +627,7 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
             sizeof(guidGetAcceptExSockAddrs), &m_getacceptexsockaddrs, sizeof(m_getacceptexsockaddrs),
             &bytes, NULL, NULL) == SOCKET_ERROR)
         {
-            LG("get function ptr for GetAcceptExSockAddrs failed, errno %d", WSAGetLastError());
+            writeLog("get function ptr for GetAcceptExSockAddrs failed, errno %d", WSAGetLastError());
             // not fatal
             m_getacceptexsockaddrs = nullptr;
         }
@@ -655,11 +640,11 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
 
         if (n == 0)
         {
-            LG("no acceptor prepared, fatal error"); 
+            writeLog("no acceptor prepared, fatal error"); 
             break;
         }
 
-        LG("prepare %d acceptors for listener", n); 
+        writeLog("prepare %d acceptors for listener", n); 
 #else
         struct epoll_event ev; 
         ev.events = EPOLLIN; 
@@ -669,11 +654,11 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
         ev.data.fd = m_listener; 
         if (epoll_ctl (m_ep, EPOLL_CTL_ADD, m_listener, &ev) < 0)
         {
-            LG("epoll ctl %d failed, errno %d", m_listener, errno); 
+            writeLog("epoll ctl %d failed, errno %d", m_listener, errno); 
             break; 
         }
 
-        LG("associate listener to epoll ok"); 
+        writeLog("associate listener to epoll ok"); 
 #endif
 
         return true; 
@@ -707,7 +692,7 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
         SOCKET connector = WSASocket(AF_INET, SOCK_STREAM, 0, NULL, 0, WSA_FLAG_OVERLAPPED);
         if (connector == INVALID_SOCKET)
         {
-            LG("create socket to do connect failed, errno %d", WSAGetLastError());
+            writeLog("create socket to do connect failed, errno %d", WSAGetLastError());
             return NULL;
         }
 
@@ -716,7 +701,7 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
         {
             if (WSAGetLastError() != WSAEWOULDBLOCK)
             {
-                LG("ansychronous connect to server failed, errno %d", WSAGetLastError());
+                writeLog("ansychronous connect to server failed, errno %d", WSAGetLastError());
                 return NULL;
             }
         }
@@ -724,14 +709,14 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
         SOCKET fd = socket(AF_INET, SOCK_STREAM, 0);
         if (fd == INVALID_SOCKET)
         {
-            LG("create socket failed, errno %d", WSAGetLastError());
+            writeLog("create socket failed, errno %d", WSAGetLastError());
             break;
         }
 
         ret = ::connect(fd, (const struct sockaddr *)&server_addr, sizeof(server_addr));
         if (ret == SOCKET_ERROR)
         {
-            LG("connect to server failed, errno %d", WSAGetLastError());
+            writeLog("connect to server failed, errno %d", WSAGetLastError());
             break;
         }
 #endif
@@ -741,23 +726,23 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
         locallen = remotelen = sizeof(SOCKADDR_IN);
         if (getsockname(fd, (sockaddr *)&local, &locallen) == SOCKET_ERROR)
         {
-            LG("get connector local address failed, errno %d", WSAGetLastError());
+            writeLog("get connector local address failed, errno %d", WSAGetLastError());
             //memset(&local, 0, sizeof(local));
             locallen = 0;
             // not fatal
         }
         else
-            LG("connector local address %s:%d", inet_ntoa(local.sin_addr), ntohs(local.sin_port));
+            writeLog("connector local address %s:%d", inet_ntoa(local.sin_addr), ntohs(local.sin_port));
 
         if (getpeername(fd, (sockaddr *)&remote, &remotelen) == SOCKET_ERROR)
         {
-            LG("get connector remote address failed, errno %d", WSAGetLastError());
+            writeLog("get connector remote address failed, errno %d", WSAGetLastError());
             //memset(&remote, 0, sizeof(remote));
             remotelen = 0;
             // not fatal
         }
         else
-            LG("connector remote address %s:%d", inet_ntoa(remote.sin_addr), ntohs(remote.sin_port));
+            writeLog("connector remote address %s:%d", inet_ntoa(remote.sin_addr), ntohs(remote.sin_port));
 
         gphd = new GEV_PER_HANDLE_DATA(fd, locallen > 0 ? &local : 0, remotelen > 0 ? &remote : 0);
 
@@ -770,11 +755,11 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
 
         if (CreateIoCompletionPort((HANDLE)fd, m_iocp, (ULONG_PTR)gphd, 0) == NULL)
         {
-            LG("associate newly connected socket to iocp failed, errno %d", GetLastError());
+            writeLog("associate newly connected socket to iocp failed, errno %d", GetLastError());
             break;
         }
 
-        LG("bind newly connected socket %d to iocp ok", fd);
+        writeLog("bind newly connected socket %d to iocp ok", fd);
         // add lock before issue_read to make sure on_read use the handler after we add it!
         std::lock_guard<std::mutex> guard(m_mutex);
         if (!issue_read(gphd))
@@ -792,11 +777,11 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
         ev.data.fd = fd; 
         if (epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &ev) < 0)
         {
-            LG("epoll ctl %d failed, errno %d", fd, errno); 
+            writeLog("epoll ctl %d failed, errno %d", fd, errno); 
             break; 
         }
 
-        LG("bind newly connected socket %d to epoll ok", fd);
+        writeLog("bind newly connected socket %d to epoll ok", fd);
         std::lock_guard<std::mutex> guard(m_mutex);
 #endif 
 
@@ -817,7 +802,7 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
         auto res = m_map.insert(std::make_pair(key, h));
         if (!res.second)
         {
-            LG("insert fd (%d.%d.%d) failed, old fd still in the pill (%d.%d.%d), try replace it ...", key.fd, key.lport, key.rport, res.first->first.fd, res.first->first.lport, res.first->first.rport); 
+            writeLog("insert fd (%d.%d.%d) failed, old fd still in the pill (%d.%d.%d), try replace it ...", key.fd, key.lport, key.rport, res.first->first.fd, res.first->first.lport, res.first->first.rport); 
             GEventHandler *oldh = res.first->second; 
             if (oldh != h)
             {
@@ -861,19 +846,19 @@ bool GEventBase::do_accept(GEV_PER_IO_DATA *gpid)
 
         if (remote || local)
         {
-            LG("accept a client %d", gpid->so);
+            writeLog("accept a client %d", gpid->so);
             if (remote)
-                LG("    remote addr %s:%d", inet_ntoa(remote->sin_addr), ntohs(remote->sin_port));
+                writeLog("    remote addr %s:%d", inet_ntoa(remote->sin_addr), ntohs(remote->sin_port));
             if (local)
-                LG("    local addr %s:%d", inet_ntoa(local->sin_addr), ntohs(local->sin_port)); 
+                writeLog("    local addr %s:%d", inet_ntoa(local->sin_addr), ntohs(local->sin_port)); 
         }
         else
-            LG("accept a client %d, address can not got", gpid->so);
+            writeLog("accept a client %d, address can not got", gpid->so);
 
         // copy socket settings for AcceptEx (accept does not need to do this)
         if (setsockopt(gpid->so, SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT, (char*)&m_listener, sizeof(m_listener)) == SOCKET_ERROR)
         {
-            LG("let new accepted socket inherit listen socket failed, some setting on listen socket may not copy to new connection, warning..");
+            writeLog("let new accepted socket inherit listen socket failed, some setting on listen socket may not copy to new connection, warning..");
             // note fatal
         }
 
@@ -881,11 +866,11 @@ bool GEventBase::do_accept(GEV_PER_IO_DATA *gpid)
         gphd = new GEV_PER_HANDLE_DATA(gpid->so, local, remote);
         if (CreateIoCompletionPort((HANDLE)gpid->so, m_iocp, (ULONG_PTR)gphd, 0) == NULL)
         {
-            LG("associate newly accepted socket to iocp failed, errno %d", GetLastError());
+            writeLog("associate newly accepted socket to iocp failed, errno %d", GetLastError());
             break; 
         }
 
-        LG("bind newly accepted socket %d to iocp ok", gpid->so); 
+        writeLog("bind newly accepted socket %d to iocp ok", gpid->so); 
         // insert handler into map before issue any read, 
         // to avoid read callback can NOT find handler error !
         if (!on_accept(gphd))
@@ -925,19 +910,19 @@ bool GEventBase::do_accept(int listener)
         if (fd < 0)
         {
             if (errno != EAGAIN)
-                LG("accept failed, turn %d, errno %d", accept_cnt + 1, errno); 
+                writeLog("accept failed, turn %d, errno %d", accept_cnt + 1, errno); 
 
             break; 
         }
 
-        LG("accept a client %d", fd);
-        LG("    remote addr %s:%d", inet_ntoa(remote.sin_addr), ntohs(remote.sin_port));
+        writeLog("accept a client %d", fd);
+        writeLog("    remote addr %s:%d", inet_ntoa(remote.sin_addr), ntohs(remote.sin_port));
 
         addr_len = sizeof(SOCKADDR_IN);
         ret = getsockname (fd, (struct sockaddr *)&local, &addr_len);
         if (ret == 0)
         {
-            LG("    local addr %s:%d", inet_ntoa(local.sin_addr), ntohs(local.sin_port)); 
+            writeLog("    local addr %s:%d", inet_ntoa(local.sin_addr), ntohs(local.sin_port)); 
         }
 
         setnonblocking (fd); 
@@ -954,11 +939,11 @@ bool GEventBase::do_accept(int listener)
         std::lock_guard<std::mutex> guard(m_mutex);
         if (epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &ev) < 0)
         {
-            LG("epoll ctl %d failed, errno %d", fd, errno); 
+            writeLog("epoll ctl %d failed, errno %d", fd, errno); 
             break; 
         }
 
-        LG("associate fd to epoll ok"); 
+        writeLog("associate fd to epoll ok"); 
         if (!on_accept(gphd))
             break;
 
@@ -969,7 +954,7 @@ bool GEventBase::do_accept(int listener)
     if (gphd)
         delete gphd;
 
-    LG("total accepted %d client", accept_cnt); 
+    writeLog("total accepted %d client", accept_cnt); 
     return accept_cnt > 0 ? true : false; 
 }
 #endif
@@ -981,21 +966,21 @@ bool GEventBase::do_recv(GEV_PER_HANDLE_DATA *gphd, GEV_PER_IO_DATA *gpid)
     {
         if (gpid == NULL)
         {
-            LG("invalid data per io, ignore read complete event");
+            writeLog("invalid data per io, ignore read complete event");
             break; 
         }
 
 #  ifdef GEVENT_DUMP
-        LG("read %d on socket %d", gpid->bytes, gpid->so);
+        writeLog("read %d on socket %d", gpid->bytes, gpid->so);
 #  endif
         if (gphd == NULL)
         {
-            LG("invalid data per handle, using fd %d from data per IO", gpid->so);
+            writeLog("invalid data per handle, using fd %d from data per IO", gpid->so);
             // not fatal
         }
         else if (gpid->so != gphd->so)
         {
-            LG("per handle fd %d != per io fd %d, using last one", gphd->so, gpid->so);
+            writeLog("per handle fd %d != per io fd %d, using last one", gphd->so, gpid->so);
             gphd->so = gpid->so;
         }
 
@@ -1010,7 +995,7 @@ bool GEventBase::do_recv(GEV_PER_HANDLE_DATA *gphd, GEV_PER_IO_DATA *gpid)
 
         if (h == NULL)
         {
-            LG("can not find handler for socket %d on read", gphd->so); 
+            writeLog("can not find handler for socket %d on read", gphd->so); 
             return false; 
         }
 
@@ -1043,16 +1028,16 @@ bool GEventBase::do_recv(conn_key_t key)
     GEventHandler *h = find_by_key (key, false); 
     if (h == NULL)
     {
-        LG("can not find handler for socket (%d.%d.%d) on read, try find by fd", key.fd, key.lport, key.rport); 
+        writeLog("can not find handler for socket (%d.%d.%d) on read, try find by fd", key.fd, key.lport, key.rport); 
         // will update key, too 
         h = find_by_fd (key.fd, key, false); 
         if (h == NULL)
         {
-            LG("can not find handler"); 
+            writeLog("can not find handler"); 
             return false; 
         }
 
-        LG("find a handler with fd (%d.%d.%d)", key.fd, key.lport, key.rport); 
+        writeLog("find a handler with fd (%d.%d.%d)", key.fd, key.lport, key.rport); 
     }
 
     int ret = 0; 
@@ -1065,19 +1050,19 @@ bool GEventBase::do_recv(conn_key_t key)
         if (ret < 0)
         {
             if (errno != EAGAIN)
-                LG("read %d failed, ret %d, errno %d", key.fd, ret, errno); 
+                writeLog("read %d failed, ret %d, errno %d", key.fd, ret, errno); 
 
             break;
         }
         else if (ret == 0)
         {
             // no more data
-            LG("connection break detected, fd %d", key.fd); 
+            writeLog("connection break detected, fd %d", key.fd); 
             break;
         }
 
 #  ifdef GEVENT_DUMP
-        LG("read %d on socket %d", ret, key.fd);
+        writeLog("read %d on socket %d", ret, key.fd);
 #  endif
 
         gpid.len = ret; 
@@ -1107,7 +1092,7 @@ bool GEventBase::do_recv(conn_key_t key)
 #ifdef WIN32
 void GEventBase::do_error(GEV_PER_HANDLE_DATA *gphd)
 {
-    LG("got error %d on socket %d", WSAGetLastError (), gphd->so); 
+    writeLog("got error %d on socket %d", WSAGetLastError (), gphd->so); 
     GEventHandler *h = NULL;
 
     {
@@ -1122,7 +1107,7 @@ void GEventBase::do_error(GEV_PER_HANDLE_DATA *gphd)
 
     if (h == NULL)
     {
-        LG("can not find handler for socket %d on error", gphd->so);
+        writeLog("can not find handler for socket %d on error", gphd->so);
         return;
     }
 
@@ -1135,20 +1120,20 @@ void GEventBase::do_error(GEV_PER_HANDLE_DATA *gphd)
 
 void GEventBase::do_error(conn_key_t key)
 {
-    LG("got error on socket (%d.%d.%d)", key.fd, key.lport, key.rport); 
+    writeLog("got error on socket (%d.%d.%d)", key.fd, key.lport, key.rport); 
     GEventHandler *h = find_by_key (key, true); 
     if (h == NULL)
     {
-        LG("can not find handler for socket (%d.%d.%d) on error, try find by fd", key.fd, key.lport, key.rport); 
+        writeLog("can not find handler for socket (%d.%d.%d) on error, try find by fd", key.fd, key.lport, key.rport); 
         h = find_by_fd (key.fd, key, true); 
         if (h == NULL)
         {
-            LG("can not find handler"); 
+            writeLog("can not find handler"); 
             return; 
         }
 
         key = h->gphd ()->key (); 
-        LG("find a handler with fd (%d.%d.%d)", key.fd, key.lport, key.rport); 
+        writeLog("find a handler with fd (%d.%d.%d)", key.fd, key.lport, key.rport); 
     }
 
     on_error(h); 
@@ -1163,7 +1148,7 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
     int ret = 0; 
     if (due_msec == 0 && period_msec == 0)
     {
-        LG("both timeout can not be zero!"); 
+        writeLog("both timeout can not be zero!"); 
         return nullptr;  
     }
 
@@ -1175,12 +1160,12 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
     ret = CreateTimerQueueTimer(&gptd->timer, m_timerque, timeout_proc, gptd, due_msec, period_msec, WT_EXECUTEINTIMERTHREAD);
     if (!ret)
     {
-        LG("create timer queue timer failed, errno %d", GetLastError()); 
+        writeLog("create timer queue timer failed, errno %d", GetLastError()); 
         delete gptd; 
         return nullptr; 
     }
 
-    LG("create timer %p", gptd); 
+    writeLog("create timer %p", gptd); 
     GEventHandler *h; 
     if (exist_handler == NULL)
         h = create_handler ();
@@ -1206,14 +1191,14 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
     ret = timer_create (CLOCK_MONOTONIC, &sev, &timer); 
     if (ret < 0)
     {
-        LG("create timer failed, errno %d", errno); 
+        writeLog("create timer failed, errno %d", errno); 
         delete gptd; 
         return nullptr; 
     }
 
 
     gptd->timer = timer; 
-    LG("create timer %p", gptd); 
+    writeLog("create timer %p", gptd); 
 
     GEventHandler *h; 
     if (exist_handler == NULL)
@@ -1233,7 +1218,7 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
     ret = timer_settime (timer, 0, &its, NULL); 
     if (ret < 0)
     {
-        LG("start timer %p failed, errno %d", gptd, errno); 
+        writeLog("start timer %p failed, errno %d", gptd, errno); 
         delete gptd; 
         return nullptr; 
     }
@@ -1256,7 +1241,7 @@ bool GEventBase::cancel_timer(void* tid)
         if (it != m_tmap.end())
         {
             h = it->second;
-            //LG("cancel timer %p", tid); 
+            //writeLog("cancel timer %p", tid); 
             // set cancelled flag in lock guard to avoid thread competition
             h->close(false); 
             // erase it later on timeout to avoid crash
@@ -1266,20 +1251,11 @@ bool GEventBase::cancel_timer(void* tid)
 
     if (h == NULL)
     {
-        LG("can not find handler for timer %p", tid);
+        writeLog("can not find handler for timer %p", tid);
         return false;
     }
 
-    LG("cancel timer %p", tid); 
-    //GEV_PER_TIMER_DATA *gptd = h->gptd (); 
-    // no handler delete to avoid crash 
-    // when another thread dispatch timer event on this handler
-    // h->close (); 
-    //if (!h->reuse())
-    //    delete h; 
-
-    // will be deleted later in map erase.
-    //delete gptd; 
+    writeLog("cancel timer %p", tid); 
     return true; 
 }
 
@@ -1287,7 +1263,7 @@ bool GEventBase::on_timeout(GEV_PER_TIMER_DATA *gptd)
 {
     bool erase = false; 
     GEventHandler *h = NULL;
-    //LG("%p timeout", gptd);
+    //writeLog("%p timeout", gptd);
 
     {
         std::lock_guard<std::mutex> guard(m_tlock);
@@ -1306,7 +1282,7 @@ bool GEventBase::on_timeout(GEV_PER_TIMER_DATA *gptd)
 
     if (h == NULL)
     {
-        LG("can not find handler for timer %p", gptd);
+        writeLog("can not find handler for timer %p", gptd);
         return false;
     }
 
@@ -1343,7 +1319,7 @@ bool GEventBase::do_timeout(GEV_PER_TIMER_DATA *gptd)
 {
     if (gptd == nullptr)
     {
-        LG("dynamic down cast failed? skip timeout event"); 
+        writeLog("dynamic down cast failed? skip timeout event"); 
         return false; 
     }
     
@@ -1351,7 +1327,7 @@ bool GEventBase::do_timeout(GEV_PER_TIMER_DATA *gptd)
     // prevent too frequency logs, 
     // only log once timer or periodical timer that equal or more than 3 minutes.
     if (gptd->period_msec == 0 || gptd->period_msec >= TIMER_LOG_THRESHOLD)
-        LG("time out, due %.0f, period %.0f", gptd->due_msec / 1000.0, gptd->period_msec / 1000.0);
+        writeLog("time out, due %.0f, period %.0f", gptd->due_msec / 1000.0, gptd->period_msec / 1000.0);
 #endif
 
     on_timeout(gptd); 
@@ -1360,7 +1336,7 @@ bool GEventBase::do_timeout(GEV_PER_TIMER_DATA *gptd)
 
 void GEventBase::run()
 {
-    LG("loop running");
+    writeLog("loop running");
     int ret = false; 
 #ifdef WIN32
     int error_count = 0; 
@@ -1377,16 +1353,16 @@ void GEventBase::run()
         {
             ret = GetLastError (); 
             gpid = (GEV_PER_IO_DATA*)CONTAINING_RECORD(ol, GEV_PER_IO_DATA, ol);
-            LG("get queued completion status failed, errno %d, gpid.so %d, gphd.so %d", ret, ol ? gpid->so : 0, gphd ? gphd->so : 0);
+            writeLog("get queued completion status failed, errno %d, gpid.so %d, gphd.so %d", ret, ol ? gpid->so : 0, gphd ? gphd->so : 0);
             if (ret == ERROR_INVALID_HANDLE /*|| ret == ERROR_INVALID_FUNCTION*/)
             {
-                LG("fatal error, quiting.."); 
+                writeLog("fatal error, quiting.."); 
                 break;
             }
 
             if (!m_running)
             {
-                LG("service quiting on error %d...", ret); 
+                writeLog("service quiting on error %d...", ret); 
                 // post event back into completion queue to pumping it later.
                 //PostQueuedCompletionStatus(m_iocp, bytes, (ULONG_PTR)gphd, ol); 
                 break; 
@@ -1399,7 +1375,7 @@ void GEventBase::run()
             if (ol && gphd)
             {
                 //gpid = (GEV_PER_IO_DATA*)CONTAINING_RECORD(ol, GEV_PER_IO_DATA, ol);
-                //LG("error detected on %d (%d per io), dispatching on_error...", gphd->so, gpid->so); 
+                //writeLog("error detected on %d (%d per io), dispatching on_error...", gphd->so, gpid->so); 
                 if (gphd->so == gpid->so)
                     do_error(gphd);
                 else
@@ -1412,7 +1388,7 @@ void GEventBase::run()
             // avoid run into dead loop
             if (++error_count > MAX_ERROR_COUNT)
             {
-                LG("retry %d times, reach max error count %d, quiting..", error_count, MAX_ERROR_COUNT); 
+                writeLog("retry %d times, reach max error count %d, quiting..", error_count, MAX_ERROR_COUNT); 
                 break; 
             }
 
@@ -1421,20 +1397,20 @@ void GEventBase::run()
 
         //if (key == GEV_KEY_EXIT)
         //{
-        //    LG("got exit notify, quiting..."); 
+        //    writeLog("got exit notify, quiting..."); 
         //    break; 
         //}
 
         // on end, we post null overlapped pointers
         if (ol == NULL)
         {
-            LG("no overlapped param provided, quiting..."); 
+            writeLog("no overlapped param provided, quiting..."); 
             break; 
         }
 
         if (!m_running)
         {
-            LG("service quiting...");
+            writeLog("service quiting...");
             // post event back into completion queue to pumping it later.
             //PostQueuedCompletionStatus(m_iocp, bytes, (ULONG_PTR)gphd, ol);
 
@@ -1446,7 +1422,7 @@ void GEventBase::run()
 		// reset
         error_count = 0; 
         gpid = (GEV_PER_IO_DATA*)CONTAINING_RECORD(ol, GEV_PER_IO_DATA, ol);
-        //LG("got io event, handle %p, io %p", gphd, gpid); 
+        //writeLog("got io event, handle %p, io %p", gphd, gpid); 
         // always need to do this
         gpid->bytes = bytes;
         switch (gpid->op)
@@ -1469,7 +1445,7 @@ void GEventBase::run()
             {
                 //if (gpid->wsa.len != bytes)
                 //{
-                //    LG("length not updated, %d != %d", gpid->wsa.len, bytes); 
+                //    writeLog("length not updated, %d != %d", gpid->wsa.len, bytes); 
                 //    gpid->wsa.len = bytes; 
                 //}
 
@@ -1477,7 +1453,7 @@ void GEventBase::run()
             }
             break; 
         default:
-            LG("unknown operation %d when iocp completed, ignore", gpid->op); 
+            writeLog("unknown operation %d when iocp completed, ignore", gpid->op); 
             break; 
         }
     }
@@ -1489,13 +1465,13 @@ void GEventBase::run()
         std::unique_lock<std::mutex> guard(m_lock); 
         if (m_leader != pthread_self ())
         {
-            LG("became leader"); 
+            writeLog("became leader"); 
             m_leader = pthread_self (); 
         }
 
         if (!m_running)
         {
-            LG("service quiting...");
+            writeLog("service quiting...");
             break;
         }
 
@@ -1506,16 +1482,16 @@ void GEventBase::run()
         //guard.unlock (); 
         if (ret < 0)
         {
-            LG("epoll_wait failed with %d", errno); 
+            writeLog("epoll_wait failed with %d", errno); 
             continue; 
         }
 
 
         // always 1 or 0 events
-        //LG("%d events detected", ret); 
+        //writeLog("%d events detected", ret); 
         if (ret == 0)
         {
-            LG("should never timeout !"); 
+            writeLog("should never timeout !"); 
             //do_timeout (nullptr); 
             continue; 
         }
@@ -1529,11 +1505,11 @@ void GEventBase::run()
         ret = epoll_ctl (m_ep, EPOLL_CTL_DEL, fd, &eps); 
         if (ret < 0)
         {
-            LG("remove %d from epoll failed, errno %d", fd, errno); 
+            writeLog("remove %d from epoll failed, errno %d", fd, errno); 
         }
 #    ifdef GEVENT_DUMP
         else 
-            LG("del %d from epoll temporary", fd); 
+            writeLog("del %d from epoll temporary", fd); 
 #    endif
 #  endif
 
@@ -1547,7 +1523,7 @@ void GEventBase::run()
                 do_accept (fd); 
             }
             else 
-                LG("unexpect events 0x%08x on listener", eps.events); 
+                writeLog("unexpect events 0x%08x on listener", eps.events); 
         }
         else if (fd == m_pp[0])
         {
@@ -1559,7 +1535,7 @@ void GEventBase::run()
                 char ch = 0; 
                 void *ptr = nullptr;   
                 ret = read (m_pp[0], &ch, 1); 
-                LG("got notify %d: '%c'", ret, ch); 
+                writeLog("got notify %d: '%c'", ret, ch); 
                 if (ret != 1)
                     reinit = true; 
                 else 
@@ -1574,7 +1550,7 @@ void GEventBase::run()
                             if (ret != sizeof (ptr))
                             {
                                 reinit = true; 
-                                LG("read timer pointer failed on pipe"); 
+                                writeLog("read timer pointer failed on pipe"); 
                             }
                             else 
                             {
@@ -1583,17 +1559,17 @@ void GEventBase::run()
                                 eps.data.fd = fd; 
                                 ret = epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &eps); 
                                 if (ret < 0)
-                                    LG("re-add %d to epoll failed, errno %d, fatal error", fd, errno); 
+                                    writeLog("re-add %d to epoll failed, errno %d, fatal error", fd, errno); 
 #    ifdef GEVENT_DUMP
                                 else 
-                                    LG("re-add %d to epoll ok", fd); 
+                                    writeLog("re-add %d to epoll ok", fd); 
 #    endif
                                 readd = false; 
                                 do_timeout ((GEV_PER_TIMER_DATA *)ptr); 
                             }
                             break; 
                         default:
-                            LG("unknown pipe type"); 
+                            writeLog("unknown pipe type"); 
                             break; 
                     }
                 }
@@ -1603,11 +1579,11 @@ void GEventBase::run()
                 reinit = true; 
 
             if (eps.events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
-                LG("unexpect events 0x%08x on pipe", eps.events); 
+                writeLog("unexpect events 0x%08x on pipe", eps.events); 
 
             if (reinit)
             {
-                LG("pipe break detected, start reinit"); 
+                writeLog("pipe break detected, start reinit"); 
                 close_pipe (); 
                 init_pipe (); 
                 readd = false;
@@ -1633,7 +1609,7 @@ void GEventBase::run()
 
             // to see any other flag left?
             if (eps.events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
-                LG("unexpect events flag 0x%08x, fd = %d", eps.events, fd); 
+                writeLog("unexpect events flag 0x%08x, fd = %d", eps.events, fd); 
         }
 
 #  ifndef HAS_ET
@@ -1643,17 +1619,17 @@ void GEventBase::run()
             eps.data.fd = fd; 
             ret = epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &eps); 
             if (ret < 0)
-                LG("re-add %d to epoll failed, errno %d, fatal error", fd, errno); 
+                writeLog("re-add %d to epoll failed, errno %d, fatal error", fd, errno); 
 #    ifdef GEVENT_DUMP
             else 
-                LG("re-add %d to epoll ok", fd); 
+                writeLog("re-add %d to epoll ok", fd); 
 #    endif
         }
 #  endif
     }
 #endif
 
-    LG("loop prepare to exit"); 
+    writeLog("loop prepare to exit"); 
 }
 
 void GEventBase::exit(int extra_notify)
@@ -1669,20 +1645,20 @@ void GEventBase::exit(int extra_notify)
         if (m_thrnum != m_grp.size())
         {
             // maybe some thread exit halfway
-            LG("actual thread num %d != expected %d, using previous one", m_grp.size(), m_thrnum); 
+            writeLog("actual thread num %d != expected %d, using previous one", m_grp.size(), m_thrnum); 
             m_thrnum = m_grp.size(); 
         }
 
         for (int i = 0; i < m_thrnum + extra_notify; ++i)
         {
             if (!post_completion(0, 0, NULL))
-                LG("post notify status to iocp failed, errno %d", GetLastError());
+                writeLog("post notify status to iocp failed, errno %d", GetLastError());
         }
 
-        LG("notify %d thread (%d extra) to exit..", m_thrnum, extra_notify);
+        writeLog("notify %d thread (%d extra) to exit..", m_thrnum, extra_notify);
 
         m_grp.join_all();
-        LG("join all working thread");
+        writeLog("join all working thread");
     }
 #  else
     // let we see what error returned from GetQueuedCompletionPort when we close iocp directly...
@@ -1693,7 +1669,7 @@ void GEventBase::exit(int extra_notify)
     {
         BOOL ret = DeleteTimerQueue(m_timerque);
         m_timerque = NULL;
-        LG("delete timer queue return %d", ret);
+        writeLog("delete timer queue return %d", ret);
     }
 
 #else // WIN32
@@ -1704,7 +1680,7 @@ void GEventBase::exit(int extra_notify)
         if (m_thrnum != m_grp.size())
         {
             // maybe some thread exit halfway
-            LG("actual thread num %d != expected %d, using previous one", m_grp.size(), m_thrnum); 
+            writeLog("actual thread num %d != expected %d, using previous one", m_grp.size(), m_thrnum); 
             m_thrnum = m_grp.size(); 
         }
 
@@ -1712,7 +1688,7 @@ void GEventBase::exit(int extra_notify)
         for (int i=0; i<m_thrnum + extra_notify; ++ i)
             post_notify ('e'/* means exit */);
 
-        LG("notify %d thread (%d extra) to exit..", m_thrnum, extra_notify);
+        writeLog("notify %d thread (%d extra) to exit..", m_thrnum, extra_notify);
     }
 
 #  ifdef HAS_SIGTHR
@@ -1720,7 +1696,7 @@ void GEventBase::exit(int extra_notify)
     {
         pthread_t tid = get_std_thread_id (m_sigthr); 
         pthread_kill (tid, SIGINT); 
-        LG ("notify signal thread to exit by killing %llu a SIGINT", tid); 
+        writeLog ("notify signal thread to exit by killing %llu a SIGINT", tid); 
     }
 #  endif
 #endif
@@ -1729,14 +1705,14 @@ void GEventBase::exit(int extra_notify)
     {
         closesocket(m_listener);
         m_listener = INVALID_SOCKET;
-        LG("shutdown listening..");
+        writeLog("shutdown listening..");
     }
 }
 
 void GEventBase::cleanup()
 {
     std::unique_lock <std::mutex> guard(m_mutex);
-    LG("%d socket handlers total", m_map.size());
+    writeLog("%d socket handlers total", m_map.size());
     for (auto it = m_map.begin(); it != m_map.end();)
     {
         it->second->cleanup(true);
@@ -1746,13 +1722,13 @@ void GEventBase::cleanup()
             delete it->second;
         }
 
-        //LG("destroy handler %p", it->second);
+        //writeLog("destroy handler %p", it->second);
         it = m_map.erase(it);
     }
 
     guard.unlock (); 
     std::lock_guard<std::mutex> lock(m_tlock);
-    LG("%d timer handlers total", m_tmap.size());
+    writeLog("%d timer handlers total", m_tmap.size());
     for (auto it = m_tmap.begin(); it != m_tmap.end();)
     {
         it->second->cleanup(true);
@@ -1760,7 +1736,7 @@ void GEventBase::cleanup()
         if (!it->second->reuse())
             delete it->second;
 
-        //LG("destroy handler %p", it->second);
+        //writeLog("destroy handler %p", it->second);
         it = m_tmap.erase(it);
     }
 }
@@ -1782,29 +1758,29 @@ void GEventBase::fini()
         {
             if (!GetQueuedCompletionStatus(m_iocp, &bytes, (PULONG_PTR)&gphd, &ol, 0) && ol == NULL)
             {
-                LG("no more event, quiting...");
+                writeLog("no more event, quiting...");
                 break;
             }
 
             //if (ol == NULL)
             //{
-            //    LG("pumping empty notify, ignoring..");
+            //    writeLog("pumping empty notify, ignoring..");
             //    continue; 
             //}
 
             gpid = (GEV_PER_IO_DATA*)CONTAINING_RECORD(ol, GEV_PER_IO_DATA, ol);
 #  if 0
-            LG("pump and discard io event on fd %d, op %d, length %d, errno %d", gpid->so, gpid->op, bytes, GetLastError ()); 
+            writeLog("pump and discard io event on fd %d, op %d, length %d, errno %d", gpid->so, gpid->op, bytes, GetLastError ()); 
             if (gpid->op == OP_ACCEPT)
             {
                 // ~GEV_PER_IO_DATA does not close the socket, so...
-                LG("destroying socket %d for accepting", gpid->so); 
+                writeLog("destroying socket %d for accepting", gpid->so); 
                 closesocket(gpid->so);
             }
             else if (gphd)
             {
                 // avoid crash (gphd is deleted during cleanup)
-                LG("leave gphd %p", gphd); 
+                writeLog("leave gphd %p", gphd); 
             }
 
             delete gpid; 
@@ -1817,7 +1793,7 @@ void GEventBase::fini()
             //    gphds.insert(gphd);
 #  else
             // just discard them on terminal (it is not worth to do cleaup with crash risk)
-            LG("pump and discard io event %p, length %d, errno %d", gpid, bytes, GetLastError ()); 
+            writeLog("pump and discard io event %p, length %d, errno %d", gpid, bytes, GetLastError ()); 
 #  endif
         }
 
@@ -1829,7 +1805,7 @@ void GEventBase::fini()
 
     // call exit first!
     m_grp.join_all();
-    LG("join all working thread");
+    writeLog("join all working thread");
 
 #  ifdef HAS_SIGTHR
     if (m_sigthr)

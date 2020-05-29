@@ -1,16 +1,13 @@
 #include "EventBaseAR.h"
+#include "log.h" 
 
 #ifdef WIN32
 #else
-//#  define LG printf
-//#  define LG(format, args...) do {printf("%lu ", pthread_self ()); printf(format"\n", ##args);} while(0) 
 #  include <fcntl.h>
 #  include <signal.h>
 #  include <sstream>
 #endif
 
-#include "log.h" 
-#define LG writeLog
 
 GEventBaseWithAutoReconnect::GEventBaseWithAutoReconnect(int reconn_min, int reconn_max)
     : m_port(0)
@@ -19,7 +16,6 @@ GEventBaseWithAutoReconnect::GEventBaseWithAutoReconnect(int reconn_min, int rec
     , m_reconn_min(reconn_min)
     , m_reconn_max(reconn_max)
     , m_reconn_curr(m_reconn_min)
-    //, m_thr(nullptr)
 {
     m_htimer = create_handler (); 
 }
@@ -37,7 +33,7 @@ GEventHandler* GEventBaseWithAutoReconnect::connector()
 
 void GEventBaseWithAutoReconnect::on_connect_break()
 {
-    LG("connection break detected");
+    writeLog("connection break detected");
     // don't clear m_app to avoid crash when other thread hold this pointer and using...
     //m_app = nullptr;
 }
@@ -45,7 +41,7 @@ void GEventBaseWithAutoReconnect::on_connect_break()
 bool GEventBaseWithAutoReconnect::on_connected(GEventHandler *app)
 {
     // sub class should do this if don't call base ...
-    LG("reconnected, reinit..");
+    writeLog("reconnected, reinit..");
     // 0. assign to null
     // 1. self assign 
     m_app = app; 
@@ -61,7 +57,7 @@ bool GEventBaseWithAutoReconnect::do_connect(unsigned short port, void *arg)
         GEventHandler *app = connect(port, m_app);
         if (app == nullptr)
         {
-            LG("connect to server failed, port %d, errno %d", port, WSAGetLastError());
+            writeLog("connect to server failed, port %d, errno %d", port, WSAGetLastError());
             // re-connect even for first in!!
             do_reconnect(arg);
             return false;
@@ -69,14 +65,14 @@ bool GEventBaseWithAutoReconnect::do_connect(unsigned short port, void *arg)
         else
         {
             app->arg(arg); 
-            LG("(re)connect to server ok");
+            writeLog("(re)connect to server ok");
             m_reconn_curr = m_reconn_min; // reset timeout
             if (!on_connected(app))
                 return false;
         }
     }
     else
-        LG("connection keeps well, ignore reconnect timer!");
+        writeLog("connection keeps well, ignore reconnect timer!");
 
     return true;
 }
@@ -94,14 +90,14 @@ void GEventBaseWithAutoReconnect::do_reconnect(void *arg)
     if (m_timer)
     {
         //int ret = cancel_timer(m_timer);
-        LG("warning, old timer %p still existing", m_timer);
+        writeLog("warning, old timer %p still existing", m_timer);
     }
 
     m_timer = timeout(conntime * 1000, 0, arg, m_htimer);
     if (m_timer == nullptr)
-        LG("start timer to do reconnect failed");
+        writeLog("start timer to do reconnect failed");
     else
-        LG("start timer %d seconds later to do connect...", conntime);
+        writeLog("start timer %d seconds later to do connect...", conntime);
 
     // necessary if no.
     //do_loop();
@@ -134,7 +130,7 @@ bool GEventBaseWithAutoReconnect::on_timeout(GEV_PER_TIMER_DATA *gptd)
     if (m_timer == gptd)
     {
         // then try reconnect and setup new timer if failed.
-        LG("timeout for reconnect %d, timer %p cleared", m_port, m_timer);
+        writeLog("timeout for reconnect %d, timer %p cleared", m_port, m_timer);
         // will auto delete one shot timer, so here just clearing..
         m_timer = nullptr; 
         do_connect(m_port, arg);

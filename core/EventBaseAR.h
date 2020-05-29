@@ -34,6 +34,5 @@ protected:
     int m_reconn_min; 
     int m_reconn_max; 
     int m_reconn_curr;
-    //std::thread *m_thr;
 };
 

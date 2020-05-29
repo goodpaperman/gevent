@@ -13,7 +13,9 @@ void openLog (char const* filename)
         return; 
 
     g_log = fopen (filename, "w+"); 
+#ifndef WIN32
     openlog (filename, LOG_PID, LOG_USER); 
+#endif
 }
 
 void writeLog(const char *fmt, ...)
@@ -29,7 +31,12 @@ void writeLog(const char *fmt, ...)
     vsnprintf(buf, LOG_BUF_SIZE - 1, fmt, ap);
     va_end(ap);
 
+#ifdef WIN32
+    OutputDebugStringA (buf); 
+#else
     syslog (LOG_INFO, buf, strlen (buf)); 
+#endif
+
     if (g_log)
     {
         fputs (buf, g_log); 
@@ -46,6 +53,8 @@ void closeLog ()
         g_log = NULL; 
     }
 
+#ifndef WIN32
     closelog (); 
+#endif
 }
 
