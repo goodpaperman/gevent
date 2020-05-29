@@ -59,10 +59,12 @@ int main (int argc, char *argv[])
     g_logger.initLog ("test", "1.0", "epoll_svc"); 
 #endif
 
-    unsigned short port = atoi (argv[1]); 
-#ifdef HAS_ALLSIG
+    unsigned short port = atoi (argv[1]);
+
+#ifndef WIN32
+#  ifdef HAS_ALLSIG
     install_all_signal (); 
-#else
+#  else
     struct sigaction act; 
     act.sa_handler = sig_int; 
     sigemptyset(&act.sa_mask);   
@@ -74,6 +76,7 @@ int main (int argc, char *argv[])
     }
     else
         printf ("install SIGINT ok\n"); 
+#  endif
 #endif
 
     // to test small message block

@@ -2,8 +2,13 @@
 #include "log.h"
 #include <stdio.h> 
 #include <stdarg.h> 
-#include <syslog.h>
 #include <memory.h>
+#ifdef WIN32
+#include <windows.h> // for OutputDebugString
+#else
+#include <syslog.h>
+#endif
+
 #define LOG_BUF_SIZE 1024
 
 FILE* g_log = NULL; 

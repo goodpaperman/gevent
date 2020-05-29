@@ -2,8 +2,9 @@
 #include <signal.h>
 #include <fcntl.h>
 #include <errno.h>
-#include <unistd.h>
 #include <string.h>
+// this demo only support linux
+#include <unistd.h>
 #include <sys/epoll.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>

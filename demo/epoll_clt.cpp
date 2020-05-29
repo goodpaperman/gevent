@@ -113,7 +113,11 @@ void test_timer (unsigned short port, int period_msec, int times)
 #ifdef TEST_CONN
 void test_conn (unsigned short port, int per_read, int times)
 {
+#  ifdef WIN32
+    srand (GetCurrentProcessId()); 
+#  else
     srand (getpid ()); 
+#  endif
     int n = 0, elapse = 0; 
     clt_handler *eh = nullptr; 
 
@@ -126,8 +130,13 @@ void test_conn (unsigned short port, int per_read, int times)
         printf ("connect ok\n"); 
 
         do_read (eh, per_read); 
+#  ifdef WIN32
+        elapse = rand() % 1000; 
+        Sleep(elapse); 
+#  else
         elapse = rand () % 1000000; 
         usleep (elapse); 
+#  endif
 
 #if 0
         // on error, eh will be deleted automatically, so use with care
@@ -172,6 +181,7 @@ int main (int argc, char *argv[])
 
     unsigned short port = atoi (argv[1]); 
 
+#ifndef WIN32
     //signal (SIGINT, sig_int); 
     struct sigaction act; 
     act.sa_handler = sig_int; 
@@ -183,6 +193,7 @@ int main (int argc, char *argv[])
         printf ("install SIGINT failed, errno %d\n", errno); 
         return -1; 
     }
+#endif
 
     if (g_base.init (2) < 0)
         return -1; 
