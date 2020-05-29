@@ -9,13 +9,8 @@
 #  include <sstream>
 #endif
 
-#ifdef USE_SDK_LOG
-#  include "interface/gdplog.h" 
-#  define LG LOG
-#else 
-#  include "log.h" 
-#  define LG writeInfoLog
-#endif 
+#include "log.h" 
+#define LG writeLog
 
 #define MAX_ERROR_COUNT 32
 #define TIMER_LOG_THRESHOLD (3 * 60 * 1000) // in miliseconds

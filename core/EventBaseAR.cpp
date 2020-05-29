@@ -9,13 +9,8 @@
 #  include <sstream>
 #endif
 
-#ifdef USE_SDK_LOG
-#  include "interface/gdplog.h" 
-#  define LG LOG
-#else 
-#  include "log.h" 
-#  define LG writeInfoLog
-#endif 
+#include "log.h" 
+#define LG writeLog
 
 GEventBaseWithAutoReconnect::GEventBaseWithAutoReconnect(int reconn_min, int reconn_max)
     : m_port(0)

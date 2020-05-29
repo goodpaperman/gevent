@@ -4,13 +4,8 @@
 #else
 #endif
 
-#ifdef USE_SDK_LOG
-#  include "interface/gdplog.h" 
-#  define LG LOG
-#else 
-#  include "log.h" 
-#  define LG writeInfoLog
-#endif 
+#include "log.h" 
+#define LG writeLog
 
 #ifndef WIN32
 conn_key_t::conn_key_t (int f, unsigned short l, unsigned short r)
