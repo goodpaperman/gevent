@@ -19,7 +19,7 @@ ENDIF ()
 # may pollute epoll_svc target, using target_compile_definitions
 #add_definitions(-D TEST_TIMER)
 add_executable (epoll_clt epoll_clt.cpp clt_handler.cpp ../core/EventBase.cpp ../core/EventBaseAR.cpp ../core/EventHandler.cpp ../core/log.cpp)
-target_compile_definitions(epoll_clt PUBLIC -D TEST_CONN)
+target_compile_definitions(epoll_clt PUBLIC -D TEST_READ)
 IF (WIN32)
 target_link_libraries(epoll_clt jsoncpp ws2_32)
 ELSE ()
