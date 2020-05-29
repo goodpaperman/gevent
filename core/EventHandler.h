@@ -22,7 +22,7 @@
 
 
 class GEventHandler; 
-struct GDP_PER_TIMER_DATA; 
+struct GEV_PER_TIMER_DATA; 
 class IEventBase
 {
 public:
@@ -34,12 +34,12 @@ public:
 
     virtual void* timeout(int due_msec, int period_msec, void *arg, GEventHandler *exist_handler) = 0; 
     virtual bool cancel_timer(void* tid) = 0; 
-    virtual bool post_timer(GDP_PER_TIMER_DATA *gptd) = 0; 
+    virtual bool post_timer(GEV_PER_TIMER_DATA *gptd) = 0; 
 };
 
 
 #ifdef WIN32
-enum GDP_IOCP_OP
+enum GEV_IOCP_OP
 {
     OP_TIMEOUT = 1, 
     OP_ACCEPT,
@@ -60,7 +60,7 @@ struct conn_key_t
 #endif
 
 
-struct GDP_PER_HANDLE_DATA
+struct GEV_PER_HANDLE_DATA
 {
     SOCKET so;
     SOCKADDR_IN laddr;
@@ -70,15 +70,15 @@ struct GDP_PER_HANDLE_DATA
     conn_key_t key () const; 
 #endif
 
-    GDP_PER_HANDLE_DATA(SOCKET s, SOCKADDR_IN *l, SOCKADDR_IN *r); 
-    virtual ~GDP_PER_HANDLE_DATA(); 
+    GEV_PER_HANDLE_DATA(SOCKET s, SOCKADDR_IN *l, SOCKADDR_IN *r); 
+    virtual ~GEV_PER_HANDLE_DATA(); 
 };
 
-struct GDP_PER_IO_DATA
+struct GEV_PER_IO_DATA
 {
     SOCKET so;
 #ifdef WIN32
-    GDP_IOCP_OP op;
+    GEV_IOCP_OP op;
     OVERLAPPED ol;
     WSABUF wsa;         // wsa.len is buffer length
     DWORD bytes;        // after compeleted, bytes trasnfered
@@ -87,17 +87,17 @@ struct GDP_PER_IO_DATA
     int len; 
 #endif
 
-    GDP_PER_IO_DATA(
+    GEV_PER_IO_DATA(
 #ifdef WIN32
-            GDP_IOCP_OP o, 
+            GEV_IOCP_OP o, 
 #endif
             SOCKET s, int l); 
-    virtual ~GDP_PER_IO_DATA(); 
+    virtual ~GEV_PER_IO_DATA(); 
 };
 
-struct GDP_PER_TIMER_DATA
+struct GEV_PER_TIMER_DATA
 #ifdef WIN32
-       : public GDP_PER_IO_DATA
+       : public GEV_PER_IO_DATA
 #endif
 {
     IEventBase *base; 
@@ -112,14 +112,14 @@ struct GDP_PER_TIMER_DATA
     timer_t timer; 
 #endif
 
-    GDP_PER_TIMER_DATA(IEventBase *base, int due, int period, void *arg
+    GEV_PER_TIMER_DATA(IEventBase *base, int due, int period, void *arg
 #ifdef WIN32
             , HANDLE tq);
 #else
             , timer_t tid); 
 #endif
 
-    virtual ~GDP_PER_TIMER_DATA(); 
+    virtual ~GEV_PER_TIMER_DATA(); 
     void cancel (); 
 };
 
@@ -129,8 +129,8 @@ public:
     GEventHandler();
     virtual ~GEventHandler();
 
-    GDP_PER_HANDLE_DATA* gphd(); 
-    GDP_PER_TIMER_DATA* gptd(); 
+    GEV_PER_HANDLE_DATA* gphd(); 
+    GEV_PER_TIMER_DATA* gptd(); 
     bool connected();
     void disconnect(); 
     void clear(); 
@@ -142,17 +142,17 @@ public:
     virtual bool reuse();
     virtual bool auto_reconnect();
     virtual void arg(void *param) = 0;
-    virtual void reset(GDP_PER_HANDLE_DATA *gphd, GDP_PER_TIMER_DATA *gptd, IEventBase *base);
-    virtual bool on_read(GDP_PER_IO_DATA *gpid) = 0;
-    virtual void on_error(GDP_PER_HANDLE_DATA *gphd); 
+    virtual void reset(GEV_PER_HANDLE_DATA *gphd, GEV_PER_TIMER_DATA *gptd, IEventBase *base);
+    virtual bool on_read(GEV_PER_IO_DATA *gpid) = 0;
+    virtual void on_error(GEV_PER_HANDLE_DATA *gphd); 
     // note when on_timeout called, handler's base may cleared by cancel_timer, use gptd->base instead if it is not null.
-    virtual bool on_timeout(GDP_PER_TIMER_DATA *gptd) = 0; 
+    virtual bool on_timeout(GEV_PER_TIMER_DATA *gptd) = 0; 
     virtual void cleanup(bool terminal);
     void close(bool terminal);
 
 protected:
-    GDP_PER_HANDLE_DATA *m_gphd = nullptr; 
-    GDP_PER_TIMER_DATA *m_gptd = nullptr; 
+    GEV_PER_HANDLE_DATA *m_gphd = nullptr; 
+    GEV_PER_TIMER_DATA *m_gptd = nullptr; 
     IEventBase *m_base = nullptr;
     // us so instead of m_gphd, 
     // as the later one may destroyed during using..
@@ -165,10 +165,10 @@ class GJsonEventHandler : public GEventHandler
 public:
     //virtual void on_read();
     virtual void arg(void *param);
-    virtual void reset(GDP_PER_HANDLE_DATA *gphd, GDP_PER_TIMER_DATA *gptd, IEventBase *base);
-    virtual bool on_read(GDP_PER_IO_DATA *gpid);
+    virtual void reset(GEV_PER_HANDLE_DATA *gphd, GEV_PER_TIMER_DATA *gptd, IEventBase *base);
+    virtual bool on_read(GEV_PER_IO_DATA *gpid);
     virtual void on_read_msg(Json::Value const& root) = 0;
-    virtual bool on_timeout(GDP_PER_TIMER_DATA *gptd);
+    virtual bool on_timeout(GEV_PER_TIMER_DATA *gptd);
     virtual void cleanup(bool terminal);
 
     //virtual void on_event(short type);

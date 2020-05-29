@@ -9,7 +9,7 @@
 #include "thread_group.hpp"
 
 //#define HAS_ET
-#define GDP_MAX_BUF_SIZE 65536
+#define GEV_MAX_BUF_SIZE 65536
 
 class GEventBase : public IEventBase
 {
@@ -22,14 +22,14 @@ public:
 #else
     virtual int epfd () const; 
 #endif
-    virtual bool post_timer(GDP_PER_TIMER_DATA *gptd); 
+    virtual bool post_timer(GEV_PER_TIMER_DATA *gptd); 
     virtual GEventHandler* create_handler() = 0; 
 
     // thr_num : 
     //  =0 - no default thread pool, user provide thread and call run
     //  <0 - use max(|thr_num|, processer_num)
     //  >0 - use thr_num
-    bool init(int thr_num = -8, int blksize = GDP_MAX_BUF_SIZE
+    bool init(int thr_num = -8, int blksize = GEV_MAX_BUF_SIZE
 #ifndef WIN32
               , int timer_sig = SIGUSR1
 #endif
@@ -54,13 +54,13 @@ public:
 
 protected:
 #ifdef WIN32
-    bool do_accept(GDP_PER_IO_DATA *gpid); 
-    bool do_recv(GDP_PER_HANDLE_DATA *gphd, GDP_PER_IO_DATA *gpid); 
-    void do_error(GDP_PER_HANDLE_DATA *gphd); 
+    bool do_accept(GEV_PER_IO_DATA *gpid); 
+    bool do_recv(GEV_PER_HANDLE_DATA *gphd, GEV_PER_IO_DATA *gpid); 
+    void do_error(GEV_PER_HANDLE_DATA *gphd); 
 
     int init_socket();
     bool issue_accept(); 
-    bool issue_read(GDP_PER_HANDLE_DATA *gphd);
+    bool issue_read(GEV_PER_HANDLE_DATA *gphd);
     bool post_completion(DWORD bytes, ULONG_PTR key, LPOVERLAPPED ol); 
 
 #else
@@ -81,18 +81,18 @@ protected:
 #  endif
 #endif
 
-    bool do_timeout(GDP_PER_TIMER_DATA *gptd); 
+    bool do_timeout(GEV_PER_TIMER_DATA *gptd); 
 
-    virtual bool on_accept(GDP_PER_HANDLE_DATA *gphd);
-    virtual bool on_read(GEventHandler *h, GDP_PER_IO_DATA *gpid); 
+    virtual bool on_accept(GEV_PER_HANDLE_DATA *gphd);
+    virtual bool on_read(GEventHandler *h, GEV_PER_IO_DATA *gpid); 
     virtual void on_error(GEventHandler *h);
-	virtual bool on_timeout (GDP_PER_TIMER_DATA *gptd); 
+	virtual bool on_timeout (GEV_PER_TIMER_DATA *gptd); 
     
 
 protected:
     volatile bool m_running = false;
     int m_thrnum = 0; 
-    int m_blksize = GDP_MAX_BUF_SIZE; 
+    int m_blksize = GEV_MAX_BUF_SIZE; 
     std::thread_group m_grp; 
     SOCKET m_listener = INVALID_SOCKET;
 
@@ -100,7 +100,7 @@ protected:
     std::mutex m_tlock; // protect m_tmap
     // timer_t may conflict when new timer created after old timer closed
     //std::map <timer_t, GEventHandler *> m_tmap; 
-    std::map <GDP_PER_TIMER_DATA*, GEventHandler *> m_tmap; 
+    std::map <GEV_PER_TIMER_DATA*, GEventHandler *> m_tmap; 
 
 #ifdef WIN32
     LPFN_ACCEPTEX m_acceptex = nullptr; 
@@ -108,7 +108,7 @@ protected:
     HANDLE m_iocp = NULL; 
     HANDLE m_timerque = NULL; 
 
-    std::map<GDP_PER_HANDLE_DATA*, GEventHandler*> m_map; 
+    std::map<GEV_PER_HANDLE_DATA*, GEventHandler*> m_map; 
 #else
     int m_ep = -1; 
     int m_pp[2]; 

@@ -2,7 +2,7 @@
 
 #ifdef TEST_TIMER
 extern void do_read (clt_handler *, int); 
-bool clt_handler::on_timeout (GDP_PER_TIMER_DATA *gptd)
+bool clt_handler::on_timeout (GEV_PER_TIMER_DATA *gptd)
 {
     printf ("time out ! id %p, due %d, period %d\n", gptd, gptd->due_msec, gptd->period_msec); 
     do_read ((clt_handler *)gptd->user_arg, 1); 

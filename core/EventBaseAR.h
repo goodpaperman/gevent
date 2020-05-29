@@ -4,14 +4,13 @@
 #include "EventBase.h"
 #include <thread>
 
-//#define GDP_RECONNECT_TIMER_ID 171
-#define GDP_RECONNECT_TIMEOUT 2 // seconds
-#define GDP_MAX_RECONNECT_TIMEOUT 256 // seconds
+#define GEV_RECONNECT_TIMEOUT 2 // seconds
+#define GEV_MAX_RECONNECT_TIMEOUT 256 // seconds
 
 class GEventBaseWithAutoReconnect : public GEventBase
 {
 public:
-    GEventBaseWithAutoReconnect(int reconn_min = GDP_RECONNECT_TIMEOUT, int reconn_max = GDP_MAX_RECONNECT_TIMEOUT);
+    GEventBaseWithAutoReconnect(int reconn_min = GEV_RECONNECT_TIMEOUT, int reconn_max = GEV_MAX_RECONNECT_TIMEOUT);
     ~GEventBaseWithAutoReconnect();
 
     bool do_connect(unsigned short port, void *arg);
@@ -19,7 +18,7 @@ public:
 
 protected:
     virtual void on_error(GEventHandler *h);
-    virtual bool on_timeout(GDP_PER_TIMER_DATA *gptd);
+    virtual bool on_timeout(GEV_PER_TIMER_DATA *gptd);
 
     virtual void on_connect_break(); 
     virtual bool on_connected(GEventHandler *app);

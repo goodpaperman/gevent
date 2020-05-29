@@ -1,9 +1,4 @@
 #include "EventHandler.h"
-
-#ifdef WIN32
-#else
-#endif
-
 #include "log.h" 
 #define LG writeLog
 
@@ -35,13 +30,13 @@ bool conn_key_t::operator< (struct conn_key_t const& rhs) const
     return false; 
 }
 
-conn_key_t GDP_PER_HANDLE_DATA::key () const
+conn_key_t GEV_PER_HANDLE_DATA::key () const
 {
     return conn_key_t(so, ntohs(laddr.sin_port), ntohs(raddr.sin_port)); 
 }
 #endif
 
-GDP_PER_HANDLE_DATA::GDP_PER_HANDLE_DATA(SOCKET s, SOCKADDR_IN *l, SOCKADDR_IN *r)
+GEV_PER_HANDLE_DATA::GEV_PER_HANDLE_DATA(SOCKET s, SOCKADDR_IN *l, SOCKADDR_IN *r)
 {
     so = s;
     if (l)
@@ -57,7 +52,7 @@ GDP_PER_HANDLE_DATA::GDP_PER_HANDLE_DATA(SOCKET s, SOCKADDR_IN *l, SOCKADDR_IN *
     //LG("gphd %p ctor", this); 
 }
 
-GDP_PER_HANDLE_DATA::~GDP_PER_HANDLE_DATA()
+GEV_PER_HANDLE_DATA::~GEV_PER_HANDLE_DATA()
 {
     //LG("gphd %p dctor", this); 
     if (so != INVALID_SOCKET)
@@ -67,9 +62,9 @@ GDP_PER_HANDLE_DATA::~GDP_PER_HANDLE_DATA()
     }
 }
 
-GDP_PER_IO_DATA::GDP_PER_IO_DATA(
+GEV_PER_IO_DATA::GEV_PER_IO_DATA(
 #ifdef WIN32
-        GDP_IOCP_OP o, 
+        GEV_IOCP_OP o, 
 #endif
         SOCKET s, int l)
 {
@@ -87,7 +82,7 @@ GDP_PER_IO_DATA::GDP_PER_IO_DATA(
     //LG("gpid %p ctor", this);
 }
 
-GDP_PER_IO_DATA::~GDP_PER_IO_DATA()
+GEV_PER_IO_DATA::~GEV_PER_IO_DATA()
 {
     //LG("gpid %p dctor", this);
 #ifdef WIN32
@@ -98,12 +93,12 @@ GDP_PER_IO_DATA::~GDP_PER_IO_DATA()
 }
 
 #ifdef WIN32
-GDP_PER_TIMER_DATA::GDP_PER_TIMER_DATA(IEventBase *b, int due, int period, void *arg, HANDLE t)
-    : GDP_PER_IO_DATA(OP_TIMEOUT, INVALID_SOCKET, 0)
+GEV_PER_TIMER_DATA::GEV_PER_TIMER_DATA(IEventBase *b, int due, int period, void *arg, HANDLE t)
+    : GEV_PER_IO_DATA(OP_TIMEOUT, INVALID_SOCKET, 0)
     , timerque(t)
     , timer(NULL)
 #else
-GDP_PER_TIMER_DATA::GDP_PER_TIMER_DATA(IEventBase *b, int due, int period, void *arg, timer_t tid)
+GEV_PER_TIMER_DATA::GEV_PER_TIMER_DATA(IEventBase *b, int due, int period, void *arg, timer_t tid)
     : timer(tid)
 #endif
     , base(b)
@@ -115,13 +110,13 @@ GDP_PER_TIMER_DATA::GDP_PER_TIMER_DATA(IEventBase *b, int due, int period, void 
     //LG("gptd %p ctor", this);
 }
 
-GDP_PER_TIMER_DATA::~GDP_PER_TIMER_DATA()
+GEV_PER_TIMER_DATA::~GEV_PER_TIMER_DATA()
 {
     //LG("gptd %p dctor", this);
     cancel (); 
 }
 
-void GDP_PER_TIMER_DATA::cancel ()
+void GEV_PER_TIMER_DATA::cancel ()
 {
     if (cancelled)
     {
@@ -174,12 +169,12 @@ GEventHandler::~GEventHandler()
     LG("destroy handler %p", this);
 }
 
-GDP_PER_HANDLE_DATA* GEventHandler::gphd()
+GEV_PER_HANDLE_DATA* GEventHandler::gphd()
 {
     return m_gphd; 
 }
 
-GDP_PER_TIMER_DATA* GEventHandler::gptd()
+GEV_PER_TIMER_DATA* GEventHandler::gptd()
 {
     return m_gptd; 
 }
@@ -240,7 +235,7 @@ bool GEventHandler::auto_reconnect()
     return false; 
 }
 
-void GEventHandler::reset(GDP_PER_HANDLE_DATA *gphd, GDP_PER_TIMER_DATA *gptd, IEventBase *base)
+void GEventHandler::reset(GEV_PER_HANDLE_DATA *gphd, GEV_PER_TIMER_DATA *gptd, IEventBase *base)
 {
     m_gphd = gphd; 
     m_gptd = gptd; 
@@ -328,7 +323,7 @@ int GEventHandler::send(std::string const& str)
     return this->send(str.c_str(), str.length());
 }
 
-void GEventHandler::on_error(GDP_PER_HANDLE_DATA *gphd)
+void GEventHandler::on_error(GEV_PER_HANDLE_DATA *gphd)
 {
     cleanup(false);
 }
@@ -346,14 +341,14 @@ void GJsonEventHandler::arg(void *param)
 }
 
 
-void GJsonEventHandler::reset(GDP_PER_HANDLE_DATA *gphd, GDP_PER_TIMER_DATA *gptd, IEventBase *base)
+void GJsonEventHandler::reset(GEV_PER_HANDLE_DATA *gphd, GEV_PER_TIMER_DATA *gptd, IEventBase *base)
 {
     GEventHandler::reset(gphd, gptd, base); 
     LG("reset stub: %s", m_stub.c_str()); 
     m_stub.clear(); 
 }
 
-bool GJsonEventHandler::on_read(GDP_PER_IO_DATA *gpid)
+bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
 {
     int ret = 0;
 #ifdef IOCP_DUMP
@@ -436,7 +431,7 @@ void GJsonEventHandler::cleanup(bool terminal)
 #endif
 }
 
-bool GJsonEventHandler::on_timeout(GDP_PER_TIMER_DATA *gptd)
+bool GJsonEventHandler::on_timeout(GEV_PER_TIMER_DATA *gptd)
 {
     //LG("event %d for timer %p, id = %d", type, m_ev, m_id);
     return true; 

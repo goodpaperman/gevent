@@ -3,7 +3,7 @@
 #ifdef TEST_TIMER
 extern GMyEventBase g_base; 
 extern void* g_t1, *g_t2; 
-bool svc_handler::on_timeout (GDP_PER_TIMER_DATA *gptd)
+bool svc_handler::on_timeout (GEV_PER_TIMER_DATA *gptd)
 {
     printf ("time out: id %p, due %d, period %d\n", gptd, gptd->due_msec, gptd->period_msec); 
     IEventBase *base = gptd->base; 

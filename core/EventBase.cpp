@@ -38,7 +38,7 @@ GEventHandler* GEventBase::create_handler()
     return nullptr;
 }
 
-bool GEventBase::post_timer(GDP_PER_TIMER_DATA *gptd)
+bool GEventBase::post_timer(GEV_PER_TIMER_DATA *gptd)
 {
 #ifdef WIN32
     return post_completion (0, 0, &gptd->ol); 
@@ -100,7 +100,7 @@ bool GEventBase::issue_accept()
     DWORD bytes = 0;
     // api needs 16 bytes extra space
     int addr_len = sizeof(SOCKADDR_IN) + 16;
-    GDP_PER_IO_DATA *gpid = new GDP_PER_IO_DATA(OP_ACCEPT, acceptor, 2 * addr_len);
+    GEV_PER_IO_DATA *gpid = new GEV_PER_IO_DATA(OP_ACCEPT, acceptor, 2 * addr_len);
     bool ret = (*m_acceptex)(m_listener, acceptor, gpid->wsa.buf, 0/*gpid->wsa.len*/, // just receive addresses 
         addr_len, addr_len, &bytes, &gpid->ol);
 
@@ -125,10 +125,10 @@ bool GEventBase::issue_accept()
     return ret; 
 }
 
-bool GEventBase::issue_read(GDP_PER_HANDLE_DATA *gphd)
+bool GEventBase::issue_read(GEV_PER_HANDLE_DATA *gphd)
 {
     DWORD flags = 0; 
-    GDP_PER_IO_DATA* gpid = new GDP_PER_IO_DATA(OP_RECV, gphd->so, m_blksize);
+    GEV_PER_IO_DATA* gpid = new GEV_PER_IO_DATA(OP_RECV, gphd->so, m_blksize);
     int ret = WSARecv(gpid->so, &gpid->wsa, 1, &gpid->bytes, &flags, &gpid->ol, NULL); 
     if (ret == SOCKET_ERROR)
     {
@@ -174,7 +174,7 @@ bool GEventBase::post_completion(DWORD bytes, ULONG_PTR key, LPOVERLAPPED ol)
 
 static void CALLBACK timeout_proc(LPVOID param, BOOLEAN unused)
 {
-    GDP_PER_TIMER_DATA *gptd = (GDP_PER_TIMER_DATA *)param; 
+    GEV_PER_TIMER_DATA *gptd = (GEV_PER_TIMER_DATA *)param; 
     if (gptd == NULL)
         return; 
 
@@ -356,7 +356,7 @@ GEventHandler* GEventBase::find_by_fd(int fd, conn_key_t &key, bool erase)
 void sig_timer (int sig, siginfo_t *si, void *uc)
 {
     LG("%d caught", sig); 
-    GDP_PER_TIMER_DATA *gptd = (GDP_PER_TIMER_DATA *)si->si_value.sival_ptr; 
+    GEV_PER_TIMER_DATA *gptd = (GEV_PER_TIMER_DATA *)si->si_value.sival_ptr; 
     if (gptd == NULL)
         return; 
 
@@ -435,7 +435,7 @@ pthread_t get_std_thread_id (std::thread *pthr)
 
 #endif
 
-bool GEventBase::on_accept(GDP_PER_HANDLE_DATA *gphd)
+bool GEventBase::on_accept(GEV_PER_HANDLE_DATA *gphd)
 {
     //LG("accept a client %d", gphd->so);
     GEventHandler *h = create_handler ();
@@ -453,7 +453,7 @@ bool GEventBase::on_accept(GDP_PER_HANDLE_DATA *gphd)
 }
 
 
-bool GEventBase::on_read(GEventHandler *h, GDP_PER_IO_DATA *gpid)
+bool GEventBase::on_read(GEventHandler *h, GEV_PER_IO_DATA *gpid)
 {
     return h->on_read(gpid); 
 }
@@ -692,7 +692,7 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
 GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_handler)
 {
     int ret = 0;
-    GDP_PER_HANDLE_DATA* gphd = nullptr;
+    GEV_PER_HANDLE_DATA* gphd = nullptr;
     struct sockaddr_in server_addr;
     memset(&server_addr, 0, sizeof(server_addr));
 
@@ -759,7 +759,7 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
         else
             LG("connector remote address %s:%d", inet_ntoa(remote.sin_addr), ntohs(remote.sin_port));
 
-        gphd = new GDP_PER_HANDLE_DATA(fd, locallen > 0 ? &local : 0, remotelen > 0 ? &remote : 0);
+        gphd = new GEV_PER_HANDLE_DATA(fd, locallen > 0 ? &local : 0, remotelen > 0 ? &remote : 0);
 
 #ifdef WIN32
 #  if 0
@@ -847,9 +847,9 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
 
 
 #ifdef WIN32
-bool GEventBase::do_accept(GDP_PER_IO_DATA *gpid)
+bool GEventBase::do_accept(GEV_PER_IO_DATA *gpid)
 {
-    GDP_PER_HANDLE_DATA* gphd = nullptr; 
+    GEV_PER_HANDLE_DATA* gphd = nullptr; 
 
     do
     {
@@ -878,7 +878,7 @@ bool GEventBase::do_accept(GDP_PER_IO_DATA *gpid)
         }
 
         issue_accept(); // ignore error; 
-        gphd = new GDP_PER_HANDLE_DATA(gpid->so, local, remote);
+        gphd = new GEV_PER_HANDLE_DATA(gpid->so, local, remote);
         if (CreateIoCompletionPort((HANDLE)gpid->so, m_iocp, (ULONG_PTR)gphd, 0) == NULL)
         {
             LG("associate newly accepted socket to iocp failed, errno %d", GetLastError());
@@ -913,7 +913,7 @@ bool GEventBase::do_accept(int listener)
 {
     int ret = 0; 
     int accept_cnt = 0; 
-    GDP_PER_HANDLE_DATA* gphd = nullptr; 
+    GEV_PER_HANDLE_DATA* gphd = nullptr; 
 
     while(1)
     {
@@ -941,7 +941,7 @@ bool GEventBase::do_accept(int listener)
         }
 
         setnonblocking (fd); 
-        gphd = new GDP_PER_HANDLE_DATA(fd, ret == 0 ? &local : 0, &remote);
+        gphd = new GEV_PER_HANDLE_DATA(fd, ret == 0 ? &local : 0, &remote);
 
         struct epoll_event ev; 
         ev.events = EPOLLIN; 
@@ -975,7 +975,7 @@ bool GEventBase::do_accept(int listener)
 #endif
 
 #ifdef WIN32
-bool GEventBase::do_recv(GDP_PER_HANDLE_DATA *gphd, GDP_PER_IO_DATA *gpid)
+bool GEventBase::do_recv(GEV_PER_HANDLE_DATA *gphd, GEV_PER_IO_DATA *gpid)
 {
     do
     {
@@ -1060,7 +1060,7 @@ bool GEventBase::do_recv(conn_key_t key)
     while (1)
     {
         // do the dirty work
-        GDP_PER_IO_DATA gpid(key.fd, m_blksize);
+        GEV_PER_IO_DATA gpid(key.fd, m_blksize);
         ret = read (key.fd, gpid.buf, gpid.len); 
         if (ret < 0)
         {
@@ -1105,7 +1105,7 @@ bool GEventBase::do_recv(conn_key_t key)
 #endif
 
 #ifdef WIN32
-void GEventBase::do_error(GDP_PER_HANDLE_DATA *gphd)
+void GEventBase::do_error(GEV_PER_HANDLE_DATA *gphd)
 {
     LG("got error %d on socket %d", WSAGetLastError (), gphd->so); 
     GEventHandler *h = NULL;
@@ -1168,7 +1168,7 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
     }
 
 #ifdef WIN32
-    GDP_PER_TIMER_DATA *gptd = new GDP_PER_TIMER_DATA(this, due_msec, period_msec, arg, m_timerque);
+    GEV_PER_TIMER_DATA *gptd = new GEV_PER_TIMER_DATA(this, due_msec, period_msec, arg, m_timerque);
     // may lost timer event ?
     std::lock_guard<std::mutex> guard(m_tlock);
     // use WT_EXECUTEINTIMERTHREAD to tell system we don't want other thread to be created..
@@ -1196,7 +1196,7 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
 
 #else // WIN32
 
-    GDP_PER_TIMER_DATA *gptd = new GDP_PER_TIMER_DATA(this, due_msec, period_msec, arg, NULL); 
+    GEV_PER_TIMER_DATA *gptd = new GEV_PER_TIMER_DATA(this, due_msec, period_msec, arg, NULL); 
 
     timer_t timer = NULL; 
     struct sigevent sev; 
@@ -1252,7 +1252,7 @@ bool GEventBase::cancel_timer(void* tid)
     GEventHandler *h = NULL;
     {
         std::lock_guard<std::mutex> guard(m_tlock);
-        auto it = m_tmap.find((GDP_PER_TIMER_DATA *)tid);
+        auto it = m_tmap.find((GEV_PER_TIMER_DATA *)tid);
         if (it != m_tmap.end())
         {
             h = it->second;
@@ -1271,7 +1271,7 @@ bool GEventBase::cancel_timer(void* tid)
     }
 
     LG("cancel timer %p", tid); 
-    //GDP_PER_TIMER_DATA *gptd = h->gptd (); 
+    //GEV_PER_TIMER_DATA *gptd = h->gptd (); 
     // no handler delete to avoid crash 
     // when another thread dispatch timer event on this handler
     // h->close (); 
@@ -1283,7 +1283,7 @@ bool GEventBase::cancel_timer(void* tid)
     return true; 
 }
 
-bool GEventBase::on_timeout(GDP_PER_TIMER_DATA *gptd)
+bool GEventBase::on_timeout(GEV_PER_TIMER_DATA *gptd)
 {
     bool erase = false; 
     GEventHandler *h = NULL;
@@ -1339,7 +1339,7 @@ bool GEventBase::on_timeout(GDP_PER_TIMER_DATA *gptd)
     return ret; 
 }
 
-bool GEventBase::do_timeout(GDP_PER_TIMER_DATA *gptd)
+bool GEventBase::do_timeout(GEV_PER_TIMER_DATA *gptd)
 {
     if (gptd == nullptr)
     {
@@ -1366,8 +1366,8 @@ void GEventBase::run()
     int error_count = 0; 
     DWORD bytes = 0; 
     OVERLAPPED *ol = NULL; 
-    GDP_PER_HANDLE_DATA *gphd = NULL; 
-    GDP_PER_IO_DATA *gpid = NULL; 
+    GEV_PER_HANDLE_DATA *gphd = NULL; 
+    GEV_PER_IO_DATA *gpid = NULL; 
     while (1)
     {
         // clear pointers
@@ -1376,7 +1376,7 @@ void GEventBase::run()
         if (!GetQueuedCompletionStatus(m_iocp, &bytes, (PULONG_PTR)&gphd, &ol, INFINITE))
         {
             ret = GetLastError (); 
-            gpid = (GDP_PER_IO_DATA*)CONTAINING_RECORD(ol, GDP_PER_IO_DATA, ol);
+            gpid = (GEV_PER_IO_DATA*)CONTAINING_RECORD(ol, GEV_PER_IO_DATA, ol);
             LG("get queued completion status failed, errno %d, gpid.so %d, gphd.so %d", ret, ol ? gpid->so : 0, gphd ? gphd->so : 0);
             if (ret == ERROR_INVALID_HANDLE /*|| ret == ERROR_INVALID_FUNCTION*/)
             {
@@ -1398,7 +1398,7 @@ void GEventBase::run()
 
             if (ol && gphd)
             {
-                //gpid = (GDP_PER_IO_DATA*)CONTAINING_RECORD(ol, GDP_PER_IO_DATA, ol);
+                //gpid = (GEV_PER_IO_DATA*)CONTAINING_RECORD(ol, GEV_PER_IO_DATA, ol);
                 //LG("error detected on %d (%d per io), dispatching on_error...", gphd->so, gpid->so); 
                 if (gphd->so == gpid->so)
                     do_error(gphd);
@@ -1419,7 +1419,7 @@ void GEventBase::run()
             continue; 
         }
 
-        //if (key == GDP_KEY_EXIT)
+        //if (key == GEV_KEY_EXIT)
         //{
         //    LG("got exit notify, quiting..."); 
         //    break; 
@@ -1445,14 +1445,14 @@ void GEventBase::run()
 
 		// reset
         error_count = 0; 
-        gpid = (GDP_PER_IO_DATA*)CONTAINING_RECORD(ol, GDP_PER_IO_DATA, ol);
+        gpid = (GEV_PER_IO_DATA*)CONTAINING_RECORD(ol, GEV_PER_IO_DATA, ol);
         //LG("got io event, handle %p, io %p", gphd, gpid); 
         // always need to do this
         gpid->bytes = bytes;
         switch (gpid->op)
         {
         case OP_TIMEOUT:
-            ret = do_timeout(dynamic_cast<GDP_PER_TIMER_DATA *>(gpid)); 
+            ret = do_timeout(dynamic_cast<GEV_PER_TIMER_DATA *>(gpid)); 
             break; 
         case OP_ACCEPT:
             ret = do_accept(gpid); 
@@ -1589,7 +1589,7 @@ void GEventBase::run()
                                     LG("re-add %d to epoll ok", fd); 
 #    endif
                                 readd = false; 
-                                do_timeout ((GDP_PER_TIMER_DATA *)ptr); 
+                                do_timeout ((GEV_PER_TIMER_DATA *)ptr); 
                             }
                             break; 
                         default:
@@ -1773,11 +1773,11 @@ void GEventBase::fini()
         // pump left events
         DWORD bytes = 0;
         OVERLAPPED *ol = NULL;
-        GDP_PER_HANDLE_DATA *gphd = NULL;
-        GDP_PER_IO_DATA *gpid = NULL;
+        GEV_PER_HANDLE_DATA *gphd = NULL;
+        GEV_PER_IO_DATA *gpid = NULL;
 
         // unduplicated
-        //std::set <GDP_PER_HANDLE_DATA *> gphds; 
+        //std::set <GEV_PER_HANDLE_DATA *> gphds; 
         while (true)
         {
             if (!GetQueuedCompletionStatus(m_iocp, &bytes, (PULONG_PTR)&gphd, &ol, 0) && ol == NULL)
@@ -1792,12 +1792,12 @@ void GEventBase::fini()
             //    continue; 
             //}
 
-            gpid = (GDP_PER_IO_DATA*)CONTAINING_RECORD(ol, GDP_PER_IO_DATA, ol);
+            gpid = (GEV_PER_IO_DATA*)CONTAINING_RECORD(ol, GEV_PER_IO_DATA, ol);
 #  if 0
             LG("pump and discard io event on fd %d, op %d, length %d, errno %d", gpid->so, gpid->op, bytes, GetLastError ()); 
             if (gpid->op == OP_ACCEPT)
             {
-                // ~GDP_PER_IO_DATA does not close the socket, so...
+                // ~GEV_PER_IO_DATA does not close the socket, so...
                 LG("destroying socket %d for accepting", gpid->so); 
                 closesocket(gpid->so);
             }

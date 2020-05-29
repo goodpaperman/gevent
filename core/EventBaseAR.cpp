@@ -124,7 +124,7 @@ void GEventBaseWithAutoReconnect::on_error(GEventHandler *h)
     }
 }
 
-bool GEventBaseWithAutoReconnect::on_timeout(GDP_PER_TIMER_DATA *gptd)
+bool GEventBaseWithAutoReconnect::on_timeout(GEV_PER_TIMER_DATA *gptd)
 {
     // note gptd will deleted during on_timeout, so here need to remember it !
     //timer_t timer = gptd->timer; 
