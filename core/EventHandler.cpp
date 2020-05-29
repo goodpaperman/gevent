@@ -351,7 +351,7 @@ void GJsonEventHandler::reset(GEV_PER_HANDLE_DATA *gphd, GEV_PER_TIMER_DATA *gpt
 bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
 {
     int ret = 0;
-#ifdef IOCP_DUMP
+#ifdef GEVENT_DUMP
     if (!m_stub.empty())
     {
         LG("using stub: %s", m_stub.c_str());
@@ -362,11 +362,11 @@ bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
     m_stub.append(gpid->wsa.buf, gpid->bytes); 
 #else
 #  ifdef HAS_ET
-#    ifdef IOCP_DUMP
+#    ifdef GEVENT_DUMP
     LG("queue for lock, len %d", gpid->len); 
 #    endif
     std::unique_lock <std::mutex> guard (m_mutex); 
-#    ifdef IOCP_DUMP
+#    ifdef GEVENT_DUMP
     LG("enter lock"); 
 #    endif
 #  endif
@@ -386,7 +386,7 @@ bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
         if (pos != std::string::npos)
         {
             part = m_stub.substr(0, pos + 1);
-#ifdef IOCP_DUMP
+#ifdef GEVENT_DUMP
             LG("multi-part message detected, split..");
             //LOG("multi-part message detected, split..");
 #endif
@@ -407,7 +407,7 @@ bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
         else
             m_stub.clear();
 
-#ifdef IOCP_DUMP
+#ifdef GEVENT_DUMP
         LG("recv [%d]: %s", part.size(), part.c_str());
         //LOG("recv [%d]: %s", part.size(), part.c_str()); 
 #endif
@@ -420,11 +420,11 @@ bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
 void GJsonEventHandler::cleanup(bool terminal)
 {
 #ifdef HAS_ET
-#  ifdef IOCP_DUMP
+#  ifdef GEVENT_DUMP
     LG("queue for lock, reset"); 
 #  endif
     std::unique_lock <std::mutex> guard (m_mutex); 
-#  ifdef IOCP_DUMP
+#  ifdef GEVENT_DUMP
     LG("enter lock"); 
 #  endif
     m_stub.clear (); 

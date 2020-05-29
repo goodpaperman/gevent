@@ -7,7 +7,7 @@ link_directories(${PROJECT_SOURCE_DIR}/../lib)
 #link_libraries(jsoncpp.a)
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/../bin)
 
-#add_definitions(-D IOCP_DUMP)
+#add_definitions(-D GEVENT_DUMP)
 add_executable (epoll_svc epoll_svc.cpp svc_handler.cpp ../core/EventBase.cpp ../core/EventHandler.cpp ../core/log.cpp)
 #target_compile_definitions(epoll_svc PUBLIC)
 target_link_libraries(epoll_svc jsoncpp.a rt)

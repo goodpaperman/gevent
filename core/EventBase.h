@@ -8,7 +8,6 @@
 #include <condition_variable>
 #include "thread_group.hpp"
 
-//#define HAS_ET
 #define GEV_MAX_BUF_SIZE 65536
 
 class GEventBase : public IEventBase

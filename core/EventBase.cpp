@@ -141,13 +141,13 @@ bool GEventBase::issue_read(GEV_PER_HANDLE_DATA *gphd)
             return false;
         }
 
-#  ifdef IOCP_DUMP
+#  ifdef GEVENT_DUMP
         LG("issue next read on %d ok", gphd->so);
 #  endif
     }
     else
     {
-#  ifdef IOCP_DUMP
+#  ifdef GEVENT_DUMP
         // immediately recevied ?
         LG("recevie completed immediately after issue read, do nothing to wait iocp callbacks");
 #  endif
@@ -190,7 +190,7 @@ static void CALLBACK timeout_proc(LPVOID param, BOOLEAN unused)
             // non-periodically timer, destroy
             delete gptd;
     }
-#  ifdef IOCP_DUMP
+#  ifdef GEVENT_DUMP
     // prevent too frequency logs, 
     // only log once timer or periodical timer that equal or more than 3 minutes.
     else if (gptd->period_msec == 0 || gptd->period_msec >= TIMER_LOG_THRESHOLD)
@@ -371,7 +371,7 @@ void sig_timer (int sig, siginfo_t *si, void *uc)
             // non-periodically timer, destroy
             delete gptd;
     }
-#  ifdef IOCP_DUMP
+#  ifdef GEVENT_DUMP
     // prevent too frequency logs, 
     // only log once timer or periodical timer that equal or more than 3 minutes.
     else if (gptd->period_msec == 0 || gptd->period_msec >= TIMER_LOG_THRESHOLD)
@@ -985,7 +985,7 @@ bool GEventBase::do_recv(GEV_PER_HANDLE_DATA *gphd, GEV_PER_IO_DATA *gpid)
             break; 
         }
 
-#  ifdef IOCP_DUMP
+#  ifdef GEVENT_DUMP
         LG("read %d on socket %d", gpid->bytes, gpid->so);
 #  endif
         if (gphd == NULL)
@@ -1076,7 +1076,7 @@ bool GEventBase::do_recv(conn_key_t key)
             break;
         }
 
-#  ifdef IOCP_DUMP
+#  ifdef GEVENT_DUMP
         LG("read %d on socket %d", ret, key.fd);
 #  endif
 
@@ -1347,7 +1347,7 @@ bool GEventBase::do_timeout(GEV_PER_TIMER_DATA *gptd)
         return false; 
     }
     
-#ifdef IOCP_DUMP
+#ifdef GEVENT_DUMP
     // prevent too frequency logs, 
     // only log once timer or periodical timer that equal or more than 3 minutes.
     if (gptd->period_msec == 0 || gptd->period_msec >= TIMER_LOG_THRESHOLD)
@@ -1531,7 +1531,7 @@ void GEventBase::run()
         {
             LG("remove %d from epoll failed, errno %d", fd, errno); 
         }
-#    ifdef IOCP_DUMP
+#    ifdef GEVENT_DUMP
         else 
             LG("del %d from epoll temporary", fd); 
 #    endif
@@ -1584,7 +1584,7 @@ void GEventBase::run()
                                 ret = epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &eps); 
                                 if (ret < 0)
                                     LG("re-add %d to epoll failed, errno %d, fatal error", fd, errno); 
-#    ifdef IOCP_DUMP
+#    ifdef GEVENT_DUMP
                                 else 
                                     LG("re-add %d to epoll ok", fd); 
 #    endif
@@ -1644,7 +1644,7 @@ void GEventBase::run()
             ret = epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &eps); 
             if (ret < 0)
                 LG("re-add %d to epoll failed, errno %d, fatal error", fd, errno); 
-#    ifdef IOCP_DUMP
+#    ifdef GEVENT_DUMP
             else 
                 LG("re-add %d to epoll ok", fd); 
 #    endif
