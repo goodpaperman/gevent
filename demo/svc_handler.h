@@ -13,7 +13,7 @@ class svc_handler : public GJsonEventHandler
 public:
     virtual ~svc_handler () {}
 #ifdef TEST_TIMER
-    virtual bool on_timeout (GDP_PER_TIMER_DATA *gptd); 
+    virtual bool on_timeout (GEV_PER_TIMER_DATA *gptd); 
 #endif
     virtual void on_read_msg (Json::Value const& val); 
 };
