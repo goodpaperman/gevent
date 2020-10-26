@@ -3,6 +3,16 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
+
+#ifdef WIN32
+
+int main(int argc, char *argv[])
+{
+    printf("this demo support linux only\n"); 
+    return -1; 
+}
+
+#else
 // this demo only support linux
 #include <unistd.h>
 #include <sys/epoll.h>
@@ -269,3 +279,5 @@ int main (int argc, char *argv[])
     LG ("fini ok"); 
     return 0; 
 }
+
+#endif

@@ -35,7 +35,7 @@ public:
               ); 
 
     bool listen(unsigned short port, unsigned short backup = 10);
-    GEventHandler* connect(unsigned short port, GEventHandler* exist_handler = NULL); 
+    GEventHandler* connect(unsigned short port, char const* host = "127.0.0.1", GEventHandler* exist_handler = NULL);
     // PARAM
     // due_msec: first timeout milliseconds
     // period_msec: later periodically milliseconds
@@ -50,6 +50,10 @@ public:
     void run(); 
     void exit(int extra_notify = 0); 
     void cleanup(); 
+
+    void disconnect(); 
+    int broadcast(std::string const& msg); 
+    int foreach(std::function<int(GEventHandler *h, void *arg)> func, void *arg);
 
 protected:
 #ifdef WIN32
@@ -86,6 +90,9 @@ protected:
     virtual bool on_read(GEventHandler *h, GEV_PER_IO_DATA *gpid); 
     virtual void on_error(GEventHandler *h);
 	virtual bool on_timeout (GEV_PER_TIMER_DATA *gptd); 
+    // whether this handler should be processed in foreach, 
+    // true - process; false - skip 
+    virtual bool filter_handler(GEventHandler *h); 
     
 
 protected:
@@ -95,7 +102,7 @@ protected:
     std::thread_group m_grp; 
     SOCKET m_listener = INVALID_SOCKET;
 
-    std::mutex m_mutex;  // protect m_map
+    std::recursive_mutex m_mutex;  // protect m_map
     std::mutex m_tlock; // protect m_tmap
     // timer_t may conflict when new timer created after old timer closed
     //std::map <timer_t, GEventHandler *> m_tmap; 

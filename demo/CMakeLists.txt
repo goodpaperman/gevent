@@ -1,7 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 project(epoll_svc)
 include_directories(../core ../include)
+IF (NOT WIN32)
 set(CMAKE_CXX_FLAGS "-std=c++11 -pthread -g -Wall ${CMAKE_CXX_FLAGS}")
+ENDIF ()
 link_directories(${PROJECT_SOURCE_DIR}/../lib)
 # -lrt for timer support
 #link_libraries(jsoncpp)

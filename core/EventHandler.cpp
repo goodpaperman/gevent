@@ -263,8 +263,28 @@ void GEventHandler::disconnect()
         if (fd == -1)
             fd = m_gphd->so; 
 
-        m_gphd->so = INVALID_SOCKET; 
+        // keep m_so to ensure the handler can be destroyed later in iocp callbacks.
+        //m_gphd->so = INVALID_SOCKET; 
     }
+
+#if 0 // to prevent connection break event eaten by myself !
+#  ifndef WIN32
+    if (m_base && fd != -1)
+    {
+        int epfd = m_base->epfd(); 
+        struct epoll_event ev; 
+        ev.events = EPOLLIN; 
+        ev.data.fd = fd; 
+        int ret = epoll_ctl (epfd, EPOLL_CTL_DEL, fd, &ev); 
+        if (ret < 0)
+        {
+            LG ("del %d from epoll failed, errno %d", fd, errno); 
+        }
+        else 
+            LG("del %d from epoll before disconnect", fd); 
+    }
+#  endif
+#endif
 }
 
 void GEventHandler::clear()
@@ -274,12 +294,69 @@ void GEventHandler::clear()
         m_gphd->so = INVALID_SOCKET; 
 }
 
+bool GEventHandler::has_preread() const
+{
+    return false;
+}
+
+bool GEventHandler::has_prewrite() const
+{
+    return false; 
+}
+
+std::string GEventHandler::pre_read(char const* buf, int len)
+{
+    return std::string(buf, len); 
+}
+
+std::string GEventHandler::pre_write(char const* buf, int len)
+{
+    return std::string(buf, len); 
+}
+
+int GEventHandler::send(std::string const& msg)
+{
+    if (m_so == INVALID_SOCKET)
+        return SOCKET_ERROR;
+
+    //return ::send(m_so, buf, len, 0);
+
+    if (has_prewrite())
+    {
+        std::string str = pre_write(msg.c_str(), msg.size());
+        return send_raw(str.c_str(), str.size());
+    }
+    else
+        return send_raw(msg.c_str(), msg.size()); 
+}
+
 int GEventHandler::send(char const* buf, int len)
 {
     if (m_so == INVALID_SOCKET)
         return SOCKET_ERROR;
 
     //return ::send(m_so, buf, len, 0);
+
+    if (has_prewrite())
+    {
+        std::string msg = pre_write(buf, len);
+        return send_raw(msg.c_str(), msg.size());
+    }
+    else
+        return send_raw(buf, len); 
+}
+
+
+int GEventHandler::send_raw(std::string const& str)
+{
+    return this->send_raw(str.c_str(), str.length());
+}
+
+int GEventHandler::send_raw(char const* buf, int len)
+{
+    if (m_so == INVALID_SOCKET)
+        return SOCKET_ERROR;
+
     int left = len, ret = 0; 
     char const* ptr = buf; 
     while (ptr < buf + len)
@@ -296,11 +373,6 @@ int GEventHandler::send(char const* buf, int len)
     }
 
     return left == 0 ? len : -1; 
-}
-
-int GEventHandler::send(std::string const& str)
-{
-    return this->send(str.c_str(), str.length());
 }
 
 void GEventHandler::on_error(GEV_PER_HANDLE_DATA *gphd)
@@ -324,8 +396,11 @@ void GJsonEventHandler::arg(void *param)
 void GJsonEventHandler::reset(GEV_PER_HANDLE_DATA *gphd, GEV_PER_TIMER_DATA *gptd, IEventBase *base)
 {
     GEventHandler::reset(gphd, gptd, base); 
-    writeLog("reset stub: %s", m_stub.c_str()); 
-    m_stub.clear(); 
+    if (!m_stub.empty())
+    {
+        writeLog("reset stub: %s", m_stub.c_str());
+        m_stub.clear();
+    }
 }
 
 bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
@@ -339,7 +414,14 @@ bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
 #endif
 
 #ifdef WIN32
-    m_stub.append(gpid->wsa.buf, gpid->bytes); 
+    if (has_preread())
+    {
+        std::string msg = pre_read(gpid->wsa.buf, gpid->bytes);
+        m_stub.append(msg);
+    }
+    else
+        m_stub.append(gpid->wsa.buf, gpid->bytes);
+
 #else
 #  ifdef HAS_ET
 #    ifdef GEVENT_DUMP
@@ -351,7 +433,14 @@ bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
 #    endif
 #  endif
 
-    m_stub.append (gpid->buf, gpid->len); 
+    if (has_preread ())
+    {
+        std::string msg = pre_read(gpid->buf, gpid->len);
+        m_stub.append (msg); 
+    }
+    else 
+        m_stub.append(gpid->buf, gpid->len); 
+
 #endif
 
     //writeLog("recv from socket %d, length %d", bufferevent_getfd(m_bev), data.length());

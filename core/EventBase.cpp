@@ -6,6 +6,7 @@
 #  include <fcntl.h>
 #  include <signal.h>
 #  include <sstream>
+#  include <netdb.h>
 #endif
 
 
@@ -317,7 +318,7 @@ bool GEventBase::post_notify(char ch, void *ptr)
 GEventHandler* GEventBase::find_by_key(conn_key_t key, bool erase)
 {
     GEventHandler *h = nullptr;
-    std::lock_guard<std::mutex> guard(m_mutex); 
+    std::lock_guard<std::recursive_mutex> guard(m_mutex); 
     auto it = m_map.find(key); 
     if (it != m_map.end())
     {
@@ -332,7 +333,7 @@ GEventHandler* GEventBase::find_by_key(conn_key_t key, bool erase)
 GEventHandler* GEventBase::find_by_fd(int fd, conn_key_t &key, bool erase)
 {
     GEventHandler *h = nullptr;
-    std::lock_guard<std::mutex> guard(m_mutex); 
+    std::lock_guard<std::recursive_mutex> guard(m_mutex); 
     for (auto it = m_map.begin (); it != m_map.end (); ++ it)
     {
         if (it->first.fd == fd)
@@ -405,6 +406,18 @@ void GEventBase::sig_proc()
             writeLog ("quit detected"); 
         else
             writeLog ("unexpected signal %d\n", signo); 
+
+#  if 0
+        switch (signo) { 
+            case SIGINT:
+            case SIGTERM:
+                LG ("quit detected, signal %d", signo); 
+                break; 
+            default:
+                LG ("unexpected signal %d", signo); 
+                break; 
+        }
+#  endif
     }
 
     writeLog("signal thread exiting"); 
@@ -427,7 +440,7 @@ bool GEventBase::on_accept(GEV_PER_HANDLE_DATA *gphd)
     h->reset(gphd, nullptr, this);
 
 #ifdef WIN32
-    std::lock_guard<std::mutex> guard(m_mutex);
+    std::lock_guard<std::recursive_mutex> guard(m_mutex);
     //m_map.insert(std::make_pair(gphd, h));
     m_map[gphd] = h; 
 #else
@@ -674,7 +687,7 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
 }
 
 
-GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_handler)
+GEventHandler* GEventBase::connect(unsigned short port, char const* host /* "127.0.0.1" */, GEventHandler *exist_handler /* nullptr */)
 {
     int ret = 0;
     GEV_PER_HANDLE_DATA* gphd = nullptr;
@@ -683,7 +696,16 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
 
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(port);
-    server_addr.sin_addr.s_addr = inet_addr("127.0.0.1"); //INADDR_ANY;
+
+    hostent *he = gethostbyname(host); 
+    if (he)
+    {
+        writeLog("get addr %s for host %s", inet_ntoa(*(struct in_addr*) he->h_addr_list[0]), host);
+        server_addr.sin_addr.s_addr = ((struct in_addr*)he->h_addr_list[0])->s_addr;
+    }
+    else
+        // do a try by inet_addr
+        server_addr.sin_addr.s_addr = inet_addr(host); //INADDR_ANY;
 
 
     do
@@ -761,7 +783,7 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
 
         writeLog("bind newly connected socket %d to iocp ok", fd);
         // add lock before issue_read to make sure on_read use the handler after we add it!
-        std::lock_guard<std::mutex> guard(m_mutex);
+        std::lock_guard<std::recursive_mutex> guard(m_mutex);
         if (!issue_read(gphd))
             break;
 
@@ -782,7 +804,7 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
         }
 
         writeLog("bind newly connected socket %d to epoll ok", fd);
-        std::lock_guard<std::mutex> guard(m_mutex);
+        std::lock_guard<std::recursive_mutex> guard(m_mutex);
 #endif 
 
         GEventHandler *h = nullptr; 
@@ -794,7 +816,7 @@ GEventHandler* GEventBase::connect(unsigned short port, GEventHandler *exist_han
         h->reset(gphd, nullptr, this);
 
 #ifdef WIN32
-        //std::lock_guard<std::mutex> guard(m_mutex);
+        //std::lock_guard<std::recursive_mutex> guard(m_mutex);
         //m_map.insert(std::make_pair(gphd, h));
         m_map[gphd] = h; 
 #else
@@ -846,11 +868,14 @@ bool GEventBase::do_accept(GEV_PER_IO_DATA *gpid)
 
         if (remote || local)
         {
-            writeLog("accept a client %d", gpid->so);
+            char buf[512] = { 0 }; 
+            sprintf(buf, "accept a client %d, ", gpid->so);
             if (remote)
-                writeLog("    remote addr %s:%d", inet_ntoa(remote->sin_addr), ntohs(remote->sin_port));
+                sprintf(buf + strlen(buf), "remote addr %s:%d, ", inet_ntoa(remote->sin_addr), ntohs(remote->sin_port));
             if (local)
-                writeLog("    local addr %s:%d", inet_ntoa(local->sin_addr), ntohs(local->sin_port)); 
+                sprintf(buf + strlen(buf), "local addr %s:%d.", inet_ntoa(local->sin_addr), ntohs(local->sin_port)); 
+
+            writeLog("%s", buf); 
         }
         else
             writeLog("accept a client %d, address can not got", gpid->so);
@@ -936,7 +961,7 @@ bool GEventBase::do_accept(int listener)
         ev.data.fd = fd; 
         // add lock before fd added into epoll to prevent 
         // io event arrives earlier than we insert handler into map
-        std::lock_guard<std::mutex> guard(m_mutex);
+        std::lock_guard<std::recursive_mutex> guard(m_mutex);
         if (epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &ev) < 0)
         {
             writeLog("epoll ctl %d failed, errno %d", fd, errno); 
@@ -987,7 +1012,7 @@ bool GEventBase::do_recv(GEV_PER_HANDLE_DATA *gphd, GEV_PER_IO_DATA *gpid)
         GEventHandler *h = NULL;
 
         {
-            std::lock_guard<std::mutex> guard(m_mutex); 
+            std::lock_guard<std::recursive_mutex> guard(m_mutex); 
             auto it = m_map.find(gphd); 
             if (it != m_map.end())
                 h = it->second; 
@@ -1096,7 +1121,7 @@ void GEventBase::do_error(GEV_PER_HANDLE_DATA *gphd)
     GEventHandler *h = NULL;
 
     {
-        std::lock_guard<std::mutex> guard(m_mutex);
+        std::lock_guard<std::recursive_mutex> guard(m_mutex);
         auto it = m_map.find(gphd);
         if (it != m_map.end())
         {
@@ -1338,6 +1363,7 @@ void GEventBase::run()
 {
     writeLog("loop running");
     int ret = false; 
+    srand(time(0)); // for thread who using random
 #ifdef WIN32
     int error_count = 0; 
     DWORD bytes = 0; 
@@ -1711,7 +1737,7 @@ void GEventBase::exit(int extra_notify)
 
 void GEventBase::cleanup()
 {
-    std::unique_lock <std::mutex> guard(m_mutex);
+    std::unique_lock <std::recursive_mutex> guard(m_mutex);
     writeLog("%d socket handlers total", m_map.size());
     for (auto it = m_map.begin(); it != m_map.end();)
     {
@@ -1739,6 +1765,73 @@ void GEventBase::cleanup()
         //writeLog("destroy handler %p", it->second);
         it = m_tmap.erase(it);
     }
+}
+
+bool GEventBase::filter_handler(GEventHandler *h)
+{
+    return false; 
+}
+
+int GEventBase::foreach(std::function<int(GEventHandler *h, void *arg)> func, void *arg)
+{
+    int ret = 0, cnt = 0, tmp = 0, total = 0;
+    std::unique_lock <std::recursive_mutex> guard(m_mutex);
+    total = m_map.size(); 
+    for (auto it = m_map.begin(); it != m_map.end();)
+    {
+        if (filter_handler(it->second))
+        {
+            ++it; 
+            continue; 
+        }
+
+        tmp = func (it->second, arg);
+        ret += tmp > 0 ? tmp : 0; 
+        cnt += tmp > 0 ? 1 : 0; 
+
+        if (tmp < 0)
+        {
+            // < 0 means connection break
+            GEventHandler *h = it->second; 
+            it = m_map.erase(it);
+            writeLog("remove handler with fd %d while loop", h->fd()); 
+            // note here we don't want to do other things just cleanup the handler and delete it, 
+            // so call GEventBase::on_error instead of virtual on_error, 
+            // to avoid derived class re-write on_erorr get called
+            // and do something we don't want to...
+            GEventBase::on_error(h);
+        }
+        else
+            ++ it; 
+    }
+
+    writeLog("foreach handlers %d (%d, %d): %d", total, m_map.size (), cnt, ret);
+    return ret; 
+}
+
+static int do_broadcast(GEventHandler *h, void *arg)
+{
+    int ret = h->send(*(std::string const*)arg); 
+    if (ret <= 0)
+        writeLog("broadcast send %d failed", h->fd()); 
+
+    return ret; 
+}
+
+int GEventBase::broadcast(std::string const& msg)
+{
+    return foreach(do_broadcast, (void *)&msg); 
+}
+
+static int do_disconnect(GEventHandler *h, void *arg)
+{
+    h->disconnect(); 
+    return 1; 
+}
+
+void GEventBase::disconnect()
+{
+    foreach(do_disconnect, nullptr); 
 }
 
 void GEventBase::fini()

@@ -9,13 +9,15 @@
 #endif
 
 
-GEventBaseWithAutoReconnect::GEventBaseWithAutoReconnect(int reconn_min, int reconn_max)
+GEventBaseWithAutoReconnect::GEventBaseWithAutoReconnect(int reconn_min, int reconn_max, int retry_max)
     : m_port(0)
     , m_app(nullptr)
     , m_timer(nullptr)
     , m_reconn_min(reconn_min)
     , m_reconn_max(reconn_max)
     , m_reconn_curr(m_reconn_min)
+    , m_retry_max(retry_max)
+    , m_retry_curr(0)
 {
     m_htimer = create_handler (); 
 }
@@ -29,6 +31,12 @@ GEventBaseWithAutoReconnect::~GEventBaseWithAutoReconnect()
 GEventHandler* GEventBaseWithAutoReconnect::connector()
 {
     return m_app; 
+}
+
+
+bool GEventBaseWithAutoReconnect::filter_handler(GEventHandler *h)
+{
+    return m_app && m_app == h; 
 }
 
 void GEventBaseWithAutoReconnect::on_connect_break()
@@ -45,19 +53,28 @@ bool GEventBaseWithAutoReconnect::on_connected(GEventHandler *app)
     // 0. assign to null
     // 1. self assign 
     m_app = app; 
+    m_retry_curr = 0;
+    m_reconn_curr = m_reconn_min; // reset timeout
     //m_app->arg(arg); 
     return true; 
 }
 
-bool GEventBaseWithAutoReconnect::do_connect(unsigned short port, void *arg)
+void GEventBaseWithAutoReconnect::on_retry_max(void *arg)
+{
+    m_retry_curr = 0;
+    m_reconn_curr = m_reconn_min; // reset timeout
+}
+
+bool GEventBaseWithAutoReconnect::do_connect(unsigned short port, char const* host /* "127.0.0.1" */, void *arg /* nullptr */)
 {
     m_port = port;
+    m_host = host; 
     if (!m_app || !m_app->connected())
     {
-        GEventHandler *app = connect(port, m_app);
+        GEventHandler *app = connect(port, host, m_app);
         if (app == nullptr)
         {
-            writeLog("connect to server failed, port %d, errno %d", port, WSAGetLastError());
+            writeLog("connect to server failed, port %d, host %s, errno %d", port, host, WSAGetLastError());
             // re-connect even for first in!!
             do_reconnect(arg);
             return false;
@@ -66,7 +83,6 @@ bool GEventBaseWithAutoReconnect::do_connect(unsigned short port, void *arg)
         {
             app->arg(arg); 
             writeLog("(re)connect to server ok");
-            m_reconn_curr = m_reconn_min; // reset timeout
             if (!on_connected(app))
                 return false;
         }
@@ -127,13 +143,20 @@ bool GEventBaseWithAutoReconnect::on_timeout(GEV_PER_TIMER_DATA *gptd)
     void *arg = gptd->user_arg; 
     // first call HANLDER::on_timeout and clean one shot timer.
     GEventBase::on_timeout(gptd);
-    if (m_timer == gptd)
+    if (m_timer != nullptr && m_timer == gptd)
     {
         // then try reconnect and setup new timer if failed.
-        writeLog("timeout for reconnect %d, timer %p cleared", m_port, m_timer);
+        ++m_retry_curr;
+        writeLog("timeout for reconnect %d, timer %p cleared, retry %d times", m_port, m_timer, m_retry_curr);
         // will auto delete one shot timer, so here just clearing..
         m_timer = nullptr; 
-        do_connect(m_port, arg);
+        if (m_retry_max > 0 && m_retry_curr >= m_retry_max)
+        {
+            writeLog("reach retry max, stop retrying...");
+            on_retry_max(arg); 
+        }
+        else
+            do_connect(m_port, m_host.c_str(), arg);
     }
 
     return true; 

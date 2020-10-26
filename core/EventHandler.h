@@ -136,6 +136,8 @@ public:
     void clear(); 
     SOCKET fd(); 
 
+    int send_raw(char const* buf, int len);
+    int send_raw(std::string const& str); 
     int send(char const* buf, int len);
     int send(std::string const& str);
     
@@ -151,6 +153,16 @@ public:
     void close(bool terminal);
 
 protected:
+    // think like this:
+    // on_read (pre_read (msg)); 
+    // send (pre_write (msg)); 
+    //
+    // to give user a chance to modify input before send/handle msg.
+    virtual bool has_preread() const; 
+    virtual bool has_prewrite() const; 
+    virtual std::string pre_read (char const* buf, int len); 
+    virtual std::string pre_write (char const* buf, int len); 
+
     GEV_PER_HANDLE_DATA *m_gphd = nullptr; 
     GEV_PER_TIMER_DATA *m_gptd = nullptr; 
     IEventBase *m_base = nullptr;
