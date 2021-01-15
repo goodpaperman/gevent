@@ -5,13 +5,13 @@
 #include <thread>
 
 #define GEV_RECONNECT_TIMEOUT 2 // seconds
-#define GEV_MAX_RECONNECT_TIMEOUT 256 // seconds
+#define GEV_RECONNECT_TIMEOUT_MAX 256 // seconds
 #define GEV_RECONNECT_TRY_MAX -1 // infinite retry
 
 class GEventBaseWithAutoReconnect : public GEventBase
 {
 public:
-    GEventBaseWithAutoReconnect(int reconn_min = GEV_RECONNECT_TIMEOUT, int reconn_max = GEV_MAX_RECONNECT_TIMEOUT, int max_retry = GEV_RECONNECT_TRY_MAX);
+    GEventBaseWithAutoReconnect(int reconn_min = GEV_RECONNECT_TIMEOUT, int reconn_max = GEV_RECONNECT_TIMEOUT_MAX, int max_retry = GEV_RECONNECT_TRY_MAX);
     ~GEventBaseWithAutoReconnect();
 
     GEventHandler* connector(); 

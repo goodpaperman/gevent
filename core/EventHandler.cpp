@@ -445,7 +445,7 @@ bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
 
     //writeLog("recv from socket %d, length %d", bufferevent_getfd(m_bev), data.length());
     Json::Value root;
-    Json::Reader reader;
+    Json::Reader reader(Json::Features::strictMode());
     while (!m_stub.empty())
     {
         size_t pos = 0;

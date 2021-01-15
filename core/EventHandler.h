@@ -1,5 +1,4 @@
 #pragma once
-#include "platform.h"
 
 #ifdef WIN32
 // must ensure <winsock2.h> precedes <widnows.h> included, to prevent winsock2.h conflict with winsock.h
@@ -19,6 +18,7 @@
 
 #include <mutex>
 #include "jsoncpp/json.h"
+#include "platform.h"
 
 
 class GEventHandler; 
@@ -163,6 +163,7 @@ protected:
     virtual std::string pre_read (char const* buf, int len); 
     virtual std::string pre_write (char const* buf, int len); 
 
+protected:
     GEV_PER_HANDLE_DATA *m_gphd = nullptr; 
     GEV_PER_TIMER_DATA *m_gptd = nullptr; 
     IEventBase *m_base = nullptr;

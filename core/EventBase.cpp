@@ -1405,8 +1405,13 @@ void GEventBase::run()
                 if (gphd->so == gpid->so)
                     do_error(gphd);
                 else
+                {
+                    writeLog("skip delete of %p to avoid crash, amazing, maybe we have close and destroy gphd by handler some where ..", gphd); 
+#if 0 
                     // some error occurs, just recylce the memory, no notify..
-                    delete gphd; 
+                    delete gphd;
+#endif
+                }
 
                 delete gpid; 
             }
@@ -1691,13 +1696,6 @@ void GEventBase::exit(int extra_notify)
     // result is: 6
 #  endif
 
-    if (m_timerque != NULL)
-    {
-        BOOL ret = DeleteTimerQueue(m_timerque);
-        m_timerque = NULL;
-        writeLog("delete timer queue return %d", ret);
-    }
-
 #else // WIN32
 
     if (m_ep != -1)
@@ -1837,6 +1835,14 @@ void GEventBase::disconnect()
 void GEventBase::fini()
 {
 #ifdef WIN32
+    // clear timer in fini not in exit to avoid handler's cleanup failed when deleting each timer by invalid timer queue handle (will crash)
+    if (m_timerque != NULL)
+    {
+        BOOL ret = DeleteTimerQueue(m_timerque);
+        m_timerque = NULL;
+        writeLog("delete timer queue return %d", ret);
+    }
+
     if (m_iocp != NULL)
     {
         // pump left events
