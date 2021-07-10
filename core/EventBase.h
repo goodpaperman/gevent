@@ -10,6 +10,12 @@
 
 #define GEV_MAX_BUF_SIZE 65536
 
+/**
+ * @brief event base, the core of the gevent
+ * 
+ * setup, cleanup, listening, connecting, event looping, thread pool,
+ * handler management and etc.
+ */
 class GEventBase : public IEventBase
 {
 public:
@@ -22,37 +28,129 @@ public:
     virtual int epfd () const; 
 #endif
     virtual bool post_timer(GEV_PER_TIMER_DATA *gptd); 
+
+    /**
+     * @brief return handler for new connection
+     * @return inherit class of GEventHandler
+     *
+     * user must implement this method to provide their own handler classes
+     */
     virtual GEventHandler* create_handler() = 0; 
 
-    // thr_num : 
-    //  =0 - no default thread pool, user provide thread and call run
-    //  <0 - use max(|thr_num|, processer_num)
-    //  >0 - use thr_num
+    /**
+     * @brief initialize event base
+     * @param thr_num
+     *     =0 - no default thread pool, user provide thread and call run
+     *     <0 - use max(|thr_num|, processer_num)
+     *     >0 - use thr_num
+     * @param blksize buffer size for single event
+     * @param timer_sig signal number for timer on linux
+     * @return true - initialize ok; false - failed
+     *
+     * user must call this method before others
+     */
     bool init(int thr_num = -8, int blksize = GEV_MAX_BUF_SIZE
 #ifndef WIN32
               , int timer_sig = SIGUSR1
 #endif
               ); 
 
+    /**
+     * @brief setup local listener for accept new connection
+     * @param port listen port 
+     * @param backup listen queue size
+     * @return true - listen ok; false - failed
+     *
+     * user only call this method when to be a server
+     */
     bool listen(unsigned short port, unsigned short backup = 10);
+
+    /**
+     * @brief setup connection to remote server
+     * @param port listen port
+     * @param host server host
+     * @param exist_handler handler reuse if there a one
+     * @return new handler binding to that connection, nullptr if connection setup failed
+     *
+     * user only call this method when to be a client
+     */
     GEventHandler* connect(unsigned short port, char const* host = "127.0.0.1", GEventHandler* exist_handler = NULL);
-    // PARAM
-    // due_msec: first timeout milliseconds
-    // period_msec: later periodically milliseconds
-    // arg: user provied argument
-    // exist_handler: reuse the timer handler
-    //
-    // RETURN
-    //   NULL: failed
+
+    /**
+     * @brief setup timer for once or periodic
+     * @param due_msec once timer timeout milli-second
+     * @param period_msec periodic timer timeout milli-second
+     * @param arg user special data
+     * @exist_handler handler reuse if there a one
+     * @return timer-id if success; nullptr if failed
+     *
+     * user only call this method when having timer task
+     */
     void* timeout(int due_msec, int period_msec, void *arg, GEventHandler *exist_handler);
+
+    /**
+     * @brief cancel timer
+     * @param tid return value of timeout
+     * @note once timer after timeout will be cancelled automatically
+     */
     bool cancel_timer(void* tid); 
+
+    /**
+     * @brief finish the whole thing
+     * @return none
+     */
     void fini();  
+
+    /**
+     * @brief main entry for event loop
+     * @return none
+     *
+     * after setup, user may call run to block on main, 
+     * or start thread pool to do multi-thread handling,
+     * on that case, run will be called by each thread in pool.
+     */
     void run(); 
+
+    /**
+     * @brief exit event loop
+     * @param extra_notify some thread may call run but not in 
+     *        our thread pool, use this to do exit notify, 
+     *        how many thread runs, how many notification needs.
+     * @return none
+     *
+     * after exit, all thread stopped, but event base status not cleaned
+     */
     void exit(int extra_notify = 0); 
+
+    /**
+     * @brief close all the handle and clean event handler 
+     * @return none
+     */
     void cleanup(); 
 
+    /**
+     * @brief break all the connections in this event base
+     * @return none
+     */
     void disconnect(); 
+
+    /**
+     * @brief notify all the client by sending msg on connections
+     * @param msg things you want to say
+     * @return number connections successfully sent
+     * 
+     * it depends on foreach to traverse handlers
+     */
     int broadcast(std::string const& msg); 
+
+    /**
+     * @brief traverse the handlers and call func for each handler
+     * @param func user defined procedure that applies on each handler
+     * @param arg passing to the procedure 2nd parameter
+     * @return number handlers successfully handled
+     *
+     * handlers user don't want traverse can filtered by filter_handler
+     */
     int foreach(std::function<int(GEventHandler *h, void *arg)> func, void *arg);
 
 protected:
@@ -86,12 +184,40 @@ protected:
 
     bool do_timeout(GEV_PER_TIMER_DATA *gptd); 
 
+    /**
+     * @brief called when accepting a new connection
+     * @param gphd data binding to new connection
+     * @return true - dispatch accept event ok; false - failed
+     */
     virtual bool on_accept(GEV_PER_HANDLE_DATA *gphd);
+
+    /**
+     * @brief called when receiving data on a connection
+     * @param h handler binding to that connection
+     * @param gpid data binding to that action
+     * @return true - dispatch read event ok; false - failed
+     */
     virtual bool on_read(GEventHandler *h, GEV_PER_IO_DATA *gpid); 
+
+    /**
+     * @brief called when detecting error on a conection
+     * @param h handler binding to that connection
+     * @return none
+     */
     virtual void on_error(GEventHandler *h);
+
+    /** 
+     * @brief called when timer due
+     * @param gptd data binding to that timer
+     * @return true - dispatch timer event ok; false - failed
+     */
 	virtual bool on_timeout (GEV_PER_TIMER_DATA *gptd); 
-    // whether this handler should be processed in foreach, 
-    // true - process; false - skip 
+
+    /**
+     * @brief called when for_each traverse handlers
+     * @param h handler will traverse
+     * @return true - allow access; false - skip
+     */
     virtual bool filter_handler(GEventHandler *h); 
     
 
