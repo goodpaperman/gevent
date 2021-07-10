@@ -1,0 +1,261 @@
+.TH "GEventBaseWithAutoReconnect" 3 "Sat Jul 10 2021" "Version 1.0.0" "gevent" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GEventBaseWithAutoReconnect \- event base with auto reconnection support  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EventBaseAR\&.h>\fP
+.PP
+Inherits \fBGEventBase\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGEventBaseWithAutoReconnect\fP (int reconn_min=GEV_RECONNECT_TIMEOUT, int reconn_max=GEV_RECONNECT_TIMEOUT_MAX, int max_retry=GEV_RECONNECT_TRY_MAX)"
+.br
+.ti -1c
+.RI "\fBGEventHandler\fP * \fBconnector\fP ()"
+.br
+.RI "get underline connection handler "
+.ti -1c
+.RI "bool \fBdo_connect\fP (unsigned short port, char const *host='127\&.0\&.0\&.1', void *arg=nullptr)"
+.br
+.RI "issue the active connection "
+.ti -1c
+.RI "virtual bool \fBfilter_handler\fP (\fBGEventHandler\fP *h)"
+.br
+.RI "called when for_each traverse handlers "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBon_error\fP (\fBGEventHandler\fP *h)"
+.br
+.RI "called when detecting error on a conection "
+.ti -1c
+.RI "virtual bool \fBon_timeout\fP (\fBGEV_PER_TIMER_DATA\fP *gptd)"
+.br
+.RI "called when timer due "
+.ti -1c
+.RI "virtual void \fBon_connect_break\fP ()"
+.br
+.RI "called when detecting connection breaks "
+.ti -1c
+.RI "virtual bool \fBon_connected\fP (\fBGEventHandler\fP *app)"
+.br
+.RI "called when connection established "
+.ti -1c
+.RI "virtual void \fBon_retry_max\fP (void *arg)"
+.br
+.RI "called when reconnect retry reach the limit "
+.ti -1c
+.RI "void \fBdo_reconnect\fP (void *arg)"
+.br
+.RI "doing the dirty work for reconnect "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBm_host\fP"
+.br
+.ti -1c
+.RI "unsigned short \fBm_port\fP"
+.br
+.ti -1c
+.RI "\fBGEventHandler\fP * \fBm_app\fP"
+.br
+.ti -1c
+.RI "\fBGEventHandler\fP * \fBm_htimer\fP"
+.br
+.ti -1c
+.RI "void * \fBm_timer\fP"
+.br
+.ti -1c
+.RI "int \fBm_reconn_min\fP"
+.br
+.ti -1c
+.RI "int \fBm_reconn_max\fP"
+.br
+.ti -1c
+.RI "int \fBm_reconn_curr\fP"
+.br
+.ti -1c
+.RI "int \fBm_retry_max\fP"
+.br
+.ti -1c
+.RI "int \fBm_retry_curr\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+event base with auto reconnection support 
+
+
+.PP
+\fBNote\fP
+.RS 4
+only support one auto-reconect connections 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBGEventHandler\fP * GEventBaseWithAutoReconnect::connector ()"
+
+.PP
+get underline connection handler 
+.PP
+\fBReturns\fP
+.RS 4
+the connection handler that support auto reconnect 
+.RE
+.PP
+
+.SS "bool GEventBaseWithAutoReconnect::do_connect (unsigned short port, char const * host = \fC'127\&.0\&.0\&.1'\fP, void * arg = \fCnullptr\fP)"
+
+.PP
+issue the active connection 
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP server port 
+.br
+\fIhost\fP server host 
+.br
+\fIarg\fP user special data 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - connection ok; false - failed 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+only different with connect is the auto-reconnect character 
+.RE
+.PP
+
+.SS "void GEventBaseWithAutoReconnect::do_reconnect (void * arg)\fC [protected]\fP"
+
+.PP
+doing the dirty work for reconnect 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP user special data passed in do_connect 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+reconnect will occur on 2/4/8/16/32/64/128/256/256/\&.\&.\&. seconds each time, these value can be set in constructor, if max_retry set to -1, no limit will reach\&. 
+.RE
+.PP
+
+.SS "bool GEventBaseWithAutoReconnect::filter_handler (\fBGEventHandler\fP * h)\fC [virtual]\fP"
+
+.PP
+called when for_each traverse handlers 
+.PP
+\fBParameters\fP
+.RS 4
+\fIh\fP handler will traverse 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - allow access; false - skip 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBGEventBase\fP\&.
+.SS "void GEventBaseWithAutoReconnect::on_connect_break ()\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+called when detecting connection breaks 
+.PP
+\fBReturns\fP
+.RS 4
+none
+.RE
+.PP
+start the reconnect action at this point 
+.SS "bool GEventBaseWithAutoReconnect::on_connected (\fBGEventHandler\fP * app)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+called when connection established 
+.PP
+\fBParameters\fP
+.RS 4
+\fIapp\fP handler binding to new connection 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - process ok; false - falied
+.RE
+.PP
+do initialize work at this point 
+.SS "void GEventBaseWithAutoReconnect::on_error (\fBGEventHandler\fP * h)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+called when detecting error on a conection 
+.PP
+\fBParameters\fP
+.RS 4
+\fIh\fP handler binding to that connection 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBGEventBase\fP\&.
+.SS "void GEventBaseWithAutoReconnect::on_retry_max (void * arg)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+called when reconnect retry reach the limit 
+.PP
+\fBParameters\fP
+.RS 4
+\fIarg\fP user special data passed in do_connect 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.SS "bool GEventBaseWithAutoReconnect::on_timeout (\fBGEV_PER_TIMER_DATA\fP * gptd)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+called when timer due 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgptd\fP data binding to that timer 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - dispatch timer event ok; false - failed 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBGEventBase\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for gevent from the source code\&.

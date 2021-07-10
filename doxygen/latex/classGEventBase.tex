@@ -1,0 +1,650 @@
+\hypertarget{classGEventBase}{}\doxysection{G\+Event\+Base Class Reference}
+\label{classGEventBase}\index{GEventBase@{GEventBase}}
+
+
+event base, the core of the gevent  
+
+
+
+
+{\ttfamily \#include $<$Event\+Base.\+h$>$}
+
+
+
+Inheritance diagram for G\+Event\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classGEventBase__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Event\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classGEventBase__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGEventBase_a0baba69a566a41eb59e5ce6cdeee9b14}\label{classGEventBase_a0baba69a566a41eb59e5ce6cdeee9b14}} 
+virtual int \mbox{\hyperlink{classGEventBase_a0baba69a566a41eb59e5ce6cdeee9b14}{epfd}} () const
+\begin{DoxyCompactList}\small\item\em get underline event poll fd on linux \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGEventBase_ab5f27fdd5b2c6fec43967ab2e4e6bfe4}{post\+\_\+timer}} (\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$gptd)
+\item 
+virtual \mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$ \mbox{\hyperlink{classGEventBase_a285c05603d8692bb1989db2c2c37b031}{create\+\_\+handler}} ()=0
+\begin{DoxyCompactList}\small\item\em return handler for new connection \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGEventBase_a5c19bf200113c019aec30a33d3d6754b}{init}} (int thr\+\_\+num=-\/8, int blksize=G\+E\+V\+\_\+\+M\+A\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE, int timer\+\_\+sig=S\+I\+G\+U\+S\+R1)
+\begin{DoxyCompactList}\small\item\em initialize event base \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGEventBase_a18a82761737ea23b9c831bdd26c51e08}{listen}} (unsigned short port, unsigned short backup=10)
+\begin{DoxyCompactList}\small\item\em setup local listener for accept new connection \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$ \mbox{\hyperlink{classGEventBase_aa1d227594c9269194d625584aac2c16e}{connect}} (unsigned short port, char const $\ast$host=\char`\"{}127.\+0.\+0.\+1\char`\"{}, \mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$exist\+\_\+handler=N\+U\+LL)
+\begin{DoxyCompactList}\small\item\em setup connection to remote server \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{classGEventBase_a3bf6f4e3c08abe252c98b8681de7bb0d}{timeout}} (int due\+\_\+msec, int period\+\_\+msec, void $\ast$arg, \mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$exist\+\_\+handler)
+\begin{DoxyCompactList}\small\item\em setup timer for once or periodic \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGEventBase_ade0710420c3a7407ab49f5cdf336e371}{cancel\+\_\+timer}} (void $\ast$tid)
+\begin{DoxyCompactList}\small\item\em cancel timer \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGEventBase_a0900657164c5bfcc184e88f404062375}{fini}} ()
+\begin{DoxyCompactList}\small\item\em finish the whole thing \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGEventBase_a667e415dc4420462806fbccf16141e98}{run}} ()
+\begin{DoxyCompactList}\small\item\em main entry for event loop \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGEventBase_ab6d23beb6bb7130e0e8b7369b89e454a}{exit}} (int extra\+\_\+notify=0)
+\begin{DoxyCompactList}\small\item\em exit event loop \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGEventBase_a949a238fc42065ee7fb44371f0528e4e}{cleanup}} ()
+\begin{DoxyCompactList}\small\item\em close all the handle and clean event handler \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGEventBase_a3aea5336d563b238e678f67cdd82377d}{disconnect}} ()
+\begin{DoxyCompactList}\small\item\em break all the connections in this event base \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGEventBase_af8b83f71f4f071204fe93ae4a2c1a5b4}{broadcast}} (std\+::string const \&msg)
+\begin{DoxyCompactList}\small\item\em notify all the client by sending msg on connections \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGEventBase_a605008413706770a7efd53638b2e16ff}{foreach}} (std\+::function$<$ int(\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$h, void $\ast$arg)$>$ func, void $\ast$arg)
+\begin{DoxyCompactList}\small\item\em traverse the handlers and call func for each handler \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGEventBase_a970b0374dae46f1b0da6b1f7da04e446}\label{classGEventBase_a970b0374dae46f1b0da6b1f7da04e446}} 
+bool {\bfseries do\+\_\+accept} (int fd)
+\item 
+\mbox{\Hypertarget{classGEventBase_a34f1c3420c99d37946acfe0000af9f8a}\label{classGEventBase_a34f1c3420c99d37946acfe0000af9f8a}} 
+bool {\bfseries do\+\_\+recv} (\mbox{\hyperlink{structconn__key__t}{conn\+\_\+key\+\_\+t}} key)
+\item 
+\mbox{\Hypertarget{classGEventBase_ab0fa0bedeacdeeb6ac13859352df683a}\label{classGEventBase_ab0fa0bedeacdeeb6ac13859352df683a}} 
+void {\bfseries do\+\_\+error} (\mbox{\hyperlink{structconn__key__t}{conn\+\_\+key\+\_\+t}} key)
+\item 
+\mbox{\Hypertarget{classGEventBase_a0edcfefc09a2fb0ffbb9f40e7fbdbd72}\label{classGEventBase_a0edcfefc09a2fb0ffbb9f40e7fbdbd72}} 
+bool {\bfseries init\+\_\+pipe} ()
+\item 
+\mbox{\Hypertarget{classGEventBase_a88e048ca808322306326fa2aeeb8afbb}\label{classGEventBase_a88e048ca808322306326fa2aeeb8afbb}} 
+void {\bfseries close\+\_\+pipe} ()
+\item 
+\mbox{\Hypertarget{classGEventBase_af14b827e37f2910d08654207cd1f6e4a}\label{classGEventBase_af14b827e37f2910d08654207cd1f6e4a}} 
+bool {\bfseries post\+\_\+notify} (char ch, void $\ast$ptr=nullptr)
+\item 
+\mbox{\Hypertarget{classGEventBase_a6b68416cea73a56913e6c234f85ad622}\label{classGEventBase_a6b68416cea73a56913e6c234f85ad622}} 
+void {\bfseries promote\+\_\+leader} (std\+::unique\+\_\+lock$<$ std\+::mutex $>$ \&guard)
+\item 
+\mbox{\Hypertarget{classGEventBase_a59905273764415213b8cbdb50d309229}\label{classGEventBase_a59905273764415213b8cbdb50d309229}} 
+\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$ {\bfseries find\+\_\+by\+\_\+key} (\mbox{\hyperlink{structconn__key__t}{conn\+\_\+key\+\_\+t}} key, bool erase)
+\item 
+\mbox{\Hypertarget{classGEventBase_af843a8cba1d10f73cd32184cf6724531}\label{classGEventBase_af843a8cba1d10f73cd32184cf6724531}} 
+\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$ {\bfseries find\+\_\+by\+\_\+fd} (int fd, \mbox{\hyperlink{structconn__key__t}{conn\+\_\+key\+\_\+t}} \&key, bool erase)
+\item 
+\mbox{\Hypertarget{classGEventBase_a0cf2d5e1488bf62e063e579883174a19}\label{classGEventBase_a0cf2d5e1488bf62e063e579883174a19}} 
+bool {\bfseries do\+\_\+timeout} (\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$gptd)
+\item 
+virtual bool \mbox{\hyperlink{classGEventBase_a1c5f8a4be6a4b4b3590cd237c4e416ab}{on\+\_\+accept}} (\mbox{\hyperlink{structGEV__PER__HANDLE__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+TA}} $\ast$gphd)
+\begin{DoxyCompactList}\small\item\em called when accepting a new connection \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGEventBase_ad403372b21795bdd88be375292871149}{on\+\_\+read}} (\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$h, \mbox{\hyperlink{structGEV__PER__IO__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+I\+O\+\_\+\+D\+A\+TA}} $\ast$gpid)
+\begin{DoxyCompactList}\small\item\em called when receiving data on a connection \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGEventBase_a8f2a4a09cea4a67fbb883758b904b432}{on\+\_\+error}} (\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$h)
+\begin{DoxyCompactList}\small\item\em called when detecting error on a conection \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGEventBase_aada8cffd3ccb8a5048cc8726182ec218}{on\+\_\+timeout}} (\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$gptd)
+\begin{DoxyCompactList}\small\item\em called when timer due \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGEventBase_ae63c2bebfc257d7ce4a3cbb816641543}{filter\+\_\+handler}} (\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$h)
+\begin{DoxyCompactList}\small\item\em called when for\+\_\+each traverse handlers \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGEventBase_accf30faf48021d2be49881cb887fa4a2}\label{classGEventBase_accf30faf48021d2be49881cb887fa4a2}} 
+volatile bool {\bfseries m\+\_\+running} = false
+\item 
+\mbox{\Hypertarget{classGEventBase_a8b9788367a099e19d369bfc95816b58e}\label{classGEventBase_a8b9788367a099e19d369bfc95816b58e}} 
+int {\bfseries m\+\_\+thrnum} = 0
+\item 
+\mbox{\Hypertarget{classGEventBase_ab2684d077b44441b05942987b0268480}\label{classGEventBase_ab2684d077b44441b05942987b0268480}} 
+int {\bfseries m\+\_\+blksize} = G\+E\+V\+\_\+\+M\+A\+X\+\_\+\+B\+U\+F\+\_\+\+S\+I\+ZE
+\item 
+\mbox{\Hypertarget{classGEventBase_a21cf5837454d6876fc017c19a720ae19}\label{classGEventBase_a21cf5837454d6876fc017c19a720ae19}} 
+std\+::thread\+\_\+group {\bfseries m\+\_\+grp}
+\item 
+\mbox{\Hypertarget{classGEventBase_ac77788532e99aa586193d6efad38f7d4}\label{classGEventBase_ac77788532e99aa586193d6efad38f7d4}} 
+S\+O\+C\+K\+ET {\bfseries m\+\_\+listener} = I\+N\+V\+A\+L\+I\+D\+\_\+\+S\+O\+C\+K\+ET
+\item 
+\mbox{\Hypertarget{classGEventBase_a18f63706210e522041a0b716a8f0af59}\label{classGEventBase_a18f63706210e522041a0b716a8f0af59}} 
+std\+::recursive\+\_\+mutex {\bfseries m\+\_\+mutex}
+\item 
+\mbox{\Hypertarget{classGEventBase_aefb71ed3d21c7a8c517da298354119b5}\label{classGEventBase_aefb71ed3d21c7a8c517da298354119b5}} 
+std\+::mutex {\bfseries m\+\_\+tlock}
+\item 
+\mbox{\Hypertarget{classGEventBase_ab195b4211e38a6b8a8e91f79de728a4d}\label{classGEventBase_ab195b4211e38a6b8a8e91f79de728a4d}} 
+std\+::map$<$ \mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$, \mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$ $>$ {\bfseries m\+\_\+tmap}
+\item 
+\mbox{\Hypertarget{classGEventBase_aa86cb4c9e659a8130cd062441ddecc6a}\label{classGEventBase_aa86cb4c9e659a8130cd062441ddecc6a}} 
+int {\bfseries m\+\_\+ep} = -\/1
+\item 
+\mbox{\Hypertarget{classGEventBase_a19ddf85963208390b35b6ac2a0e3dd5b}\label{classGEventBase_a19ddf85963208390b35b6ac2a0e3dd5b}} 
+int {\bfseries m\+\_\+pp} \mbox{[}2\mbox{]}
+\item 
+\mbox{\Hypertarget{classGEventBase_a4acc848f0931dabbe3a6546be3a99cea}\label{classGEventBase_a4acc848f0931dabbe3a6546be3a99cea}} 
+int {\bfseries m\+\_\+tsig} = 0
+\item 
+\mbox{\Hypertarget{classGEventBase_ab82d7eb23da4ff4f1e5b5d92cd9c557e}\label{classGEventBase_ab82d7eb23da4ff4f1e5b5d92cd9c557e}} 
+std\+::mutex {\bfseries m\+\_\+lock}
+\item 
+\mbox{\Hypertarget{classGEventBase_aaabb2c8491d8942793288e9e0ce4d429}\label{classGEventBase_aaabb2c8491d8942793288e9e0ce4d429}} 
+pthread\+\_\+t {\bfseries m\+\_\+leader} = -\/1
+\item 
+\mbox{\Hypertarget{classGEventBase_a4e3f682827ea0ad61503155521b62882}\label{classGEventBase_a4e3f682827ea0ad61503155521b62882}} 
+std\+::map$<$ \mbox{\hyperlink{structconn__key__t}{conn\+\_\+key\+\_\+t}}, \mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$ $>$ {\bfseries m\+\_\+map}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+event base, the core of the gevent 
+
+setup, cleanup, listening, connecting, event looping, thread pool, handler management and etc. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGEventBase_af8b83f71f4f071204fe93ae4a2c1a5b4}\label{classGEventBase_af8b83f71f4f071204fe93ae4a2c1a5b4}} 
+\index{GEventBase@{GEventBase}!broadcast@{broadcast}}
+\index{broadcast@{broadcast}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{broadcast()}{broadcast()}}
+{\footnotesize\ttfamily int G\+Event\+Base\+::broadcast (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{msg }\end{DoxyParamCaption})}
+
+
+
+notify all the client by sending msg on connections 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & things you want to say \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number connections successfully sent
+\end{DoxyReturn}
+it depends on foreach to traverse handlers \mbox{\Hypertarget{classGEventBase_ade0710420c3a7407ab49f5cdf336e371}\label{classGEventBase_ade0710420c3a7407ab49f5cdf336e371}} 
+\index{GEventBase@{GEventBase}!cancel\_timer@{cancel\_timer}}
+\index{cancel\_timer@{cancel\_timer}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{cancel\_timer()}{cancel\_timer()}}
+{\footnotesize\ttfamily bool G\+Event\+Base\+::cancel\+\_\+timer (\begin{DoxyParamCaption}\item[{void $\ast$}]{tid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+cancel timer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em tid} & return value of timeout \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+once timer after timeout will be cancelled automatically 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classIEventBase_ab8417c1f3f63361c4d269e21ecd2cc75}{I\+Event\+Base}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_ade0710420c3a7407ab49f5cdf336e371_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_a949a238fc42065ee7fb44371f0528e4e}\label{classGEventBase_a949a238fc42065ee7fb44371f0528e4e}} 
+\index{GEventBase@{GEventBase}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily void G\+Event\+Base\+::cleanup (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+close all the handle and clean event handler 
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGEventBase_aa1d227594c9269194d625584aac2c16e}\label{classGEventBase_aa1d227594c9269194d625584aac2c16e}} 
+\index{GEventBase@{GEventBase}!connect@{connect}}
+\index{connect@{connect}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{connect()}{connect()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$ G\+Event\+Base\+::connect (\begin{DoxyParamCaption}\item[{unsigned short}]{port,  }\item[{char const $\ast$}]{host = {\ttfamily \char`\"{}127.0.0.1\char`\"{}},  }\item[{\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$}]{exist\+\_\+handler = {\ttfamily NULL} }\end{DoxyParamCaption})}
+
+
+
+setup connection to remote server 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & listen port \\
+\hline
+{\em host} & server host \\
+\hline
+{\em exist\+\_\+handler} & handler reuse if there a one \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+new handler binding to that connection, nullptr if connection setup failed
+\end{DoxyReturn}
+user only call this method when to be a client Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_aa1d227594c9269194d625584aac2c16e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_aa1d227594c9269194d625584aac2c16e_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_a285c05603d8692bb1989db2c2c37b031}\label{classGEventBase_a285c05603d8692bb1989db2c2c37b031}} 
+\index{GEventBase@{GEventBase}!create\_handler@{create\_handler}}
+\index{create\_handler@{create\_handler}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{create\_handler()}{create\_handler()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$ G\+Event\+Base\+::create\+\_\+handler (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+return handler for new connection 
+
+\begin{DoxyReturn}{Returns}
+inherit class of \mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}}
+\end{DoxyReturn}
+user must implement this method to provide their own handler classes Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_a285c05603d8692bb1989db2c2c37b031_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_a3aea5336d563b238e678f67cdd82377d}\label{classGEventBase_a3aea5336d563b238e678f67cdd82377d}} 
+\index{GEventBase@{GEventBase}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily void G\+Event\+Base\+::disconnect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+break all the connections in this event base 
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGEventBase_ab6d23beb6bb7130e0e8b7369b89e454a}\label{classGEventBase_ab6d23beb6bb7130e0e8b7369b89e454a}} 
+\index{GEventBase@{GEventBase}!exit@{exit}}
+\index{exit@{exit}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{exit()}{exit()}}
+{\footnotesize\ttfamily void G\+Event\+Base\+::exit (\begin{DoxyParamCaption}\item[{int}]{extra\+\_\+notify = {\ttfamily 0} }\end{DoxyParamCaption})}
+
+
+
+exit event loop 
+
+
+\begin{DoxyParams}{Parameters}
+{\em extra\+\_\+notify} & some thread may call run but not in our thread pool, use this to do exit notify, how many thread runs, how many notification needs. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+after exit, all thread stopped, but event base status not cleaned \mbox{\Hypertarget{classGEventBase_ae63c2bebfc257d7ce4a3cbb816641543}\label{classGEventBase_ae63c2bebfc257d7ce4a3cbb816641543}} 
+\index{GEventBase@{GEventBase}!filter\_handler@{filter\_handler}}
+\index{filter\_handler@{filter\_handler}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{filter\_handler()}{filter\_handler()}}
+{\footnotesize\ttfamily bool G\+Event\+Base\+::filter\+\_\+handler (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+called when for\+\_\+each traverse handlers 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & handler will traverse \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true -\/ allow access; false -\/ skip 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classGEventBaseWithAutoReconnect_a34de0d604e0efcded0789e468d8e13bd}{G\+Event\+Base\+With\+Auto\+Reconnect}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{classGEventBase_ae63c2bebfc257d7ce4a3cbb816641543_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_a0900657164c5bfcc184e88f404062375}\label{classGEventBase_a0900657164c5bfcc184e88f404062375}} 
+\index{GEventBase@{GEventBase}!fini@{fini}}
+\index{fini@{fini}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{fini()}{fini()}}
+{\footnotesize\ttfamily void G\+Event\+Base\+::fini (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+finish the whole thing 
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classGEventBase_a605008413706770a7efd53638b2e16ff}\label{classGEventBase_a605008413706770a7efd53638b2e16ff}} 
+\index{GEventBase@{GEventBase}!foreach@{foreach}}
+\index{foreach@{foreach}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{foreach()}{foreach()}}
+{\footnotesize\ttfamily int G\+Event\+Base\+::foreach (\begin{DoxyParamCaption}\item[{std\+::function$<$ int(\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$h, void $\ast$arg)$>$}]{func,  }\item[{void $\ast$}]{arg }\end{DoxyParamCaption})}
+
+
+
+traverse the handlers and call func for each handler 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & user defined procedure that applies on each handler \\
+\hline
+{\em arg} & passing to the procedure 2nd parameter \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number handlers successfully handled
+\end{DoxyReturn}
+handlers user don\textquotesingle{}t want traverse can filtered by filter\+\_\+handler Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_a605008413706770a7efd53638b2e16ff_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_a5c19bf200113c019aec30a33d3d6754b}\label{classGEventBase_a5c19bf200113c019aec30a33d3d6754b}} 
+\index{GEventBase@{GEventBase}!init@{init}}
+\index{init@{init}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{init()}{init()}}
+{\footnotesize\ttfamily bool G\+Event\+Base\+::init (\begin{DoxyParamCaption}\item[{int}]{thr\+\_\+num = {\ttfamily -\/8},  }\item[{int}]{blksize = {\ttfamily GEV\+\_\+MAX\+\_\+BUF\+\_\+SIZE},  }\item[{int}]{timer\+\_\+sig = {\ttfamily SIGUSR1} }\end{DoxyParamCaption})}
+
+
+
+initialize event base 
+
+
+\begin{DoxyParams}{Parameters}
+{\em thr\+\_\+num} & =0 -\/ no default thread pool, user provide thread and call run $<$0 -\/ use max($\vert$thr\+\_\+num$\vert$, processer\+\_\+num) $>$0 -\/ use thr\+\_\+num \\
+\hline
+{\em blksize} & buffer size for single event \\
+\hline
+{\em timer\+\_\+sig} & signal number for timer on linux \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true -\/ initialize ok; false -\/ failed
+\end{DoxyReturn}
+user must call this method before others Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{classGEventBase_a5c19bf200113c019aec30a33d3d6754b_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_a18a82761737ea23b9c831bdd26c51e08}\label{classGEventBase_a18a82761737ea23b9c831bdd26c51e08}} 
+\index{GEventBase@{GEventBase}!listen@{listen}}
+\index{listen@{listen}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{listen()}{listen()}}
+{\footnotesize\ttfamily bool G\+Event\+Base\+::listen (\begin{DoxyParamCaption}\item[{unsigned short}]{port,  }\item[{unsigned short}]{backup = {\ttfamily 10} }\end{DoxyParamCaption})}
+
+
+
+setup local listener for accept new connection 
+
+
+\begin{DoxyParams}{Parameters}
+{\em port} & listen port \\
+\hline
+{\em backup} & listen queue size \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true -\/ listen ok; false -\/ failed
+\end{DoxyReturn}
+user only call this method when to be a server \mbox{\Hypertarget{classGEventBase_a1c5f8a4be6a4b4b3590cd237c4e416ab}\label{classGEventBase_a1c5f8a4be6a4b4b3590cd237c4e416ab}} 
+\index{GEventBase@{GEventBase}!on\_accept@{on\_accept}}
+\index{on\_accept@{on\_accept}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{on\_accept()}{on\_accept()}}
+{\footnotesize\ttfamily bool G\+Event\+Base\+::on\+\_\+accept (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__HANDLE__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+TA}} $\ast$}]{gphd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+called when accepting a new connection 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gphd} & data binding to new connection \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true -\/ dispatch accept event ok; false -\/ failed 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_a1c5f8a4be6a4b4b3590cd237c4e416ab_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_a8f2a4a09cea4a67fbb883758b904b432}\label{classGEventBase_a8f2a4a09cea4a67fbb883758b904b432}} 
+\index{GEventBase@{GEventBase}!on\_error@{on\_error}}
+\index{on\_error@{on\_error}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{on\_error()}{on\_error()}}
+{\footnotesize\ttfamily void G\+Event\+Base\+::on\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+called when detecting error on a conection 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & handler binding to that connection \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classGEventBaseWithAutoReconnect_a4b3565ff0ea0443ec27e0ae5ed193e65}{G\+Event\+Base\+With\+Auto\+Reconnect}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_a8f2a4a09cea4a67fbb883758b904b432_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_a8f2a4a09cea4a67fbb883758b904b432_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_ad403372b21795bdd88be375292871149}\label{classGEventBase_ad403372b21795bdd88be375292871149}} 
+\index{GEventBase@{GEventBase}!on\_read@{on\_read}}
+\index{on\_read@{on\_read}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{on\_read()}{on\_read()}}
+{\footnotesize\ttfamily bool G\+Event\+Base\+::on\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$}]{h,  }\item[{\mbox{\hyperlink{structGEV__PER__IO__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+I\+O\+\_\+\+D\+A\+TA}} $\ast$}]{gpid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+called when receiving data on a connection 
+
+
+\begin{DoxyParams}{Parameters}
+{\em h} & handler binding to that connection \\
+\hline
+{\em gpid} & data binding to that action \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true -\/ dispatch read event ok; false -\/ failed 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_ad403372b21795bdd88be375292871149_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_aada8cffd3ccb8a5048cc8726182ec218}\label{classGEventBase_aada8cffd3ccb8a5048cc8726182ec218}} 
+\index{GEventBase@{GEventBase}!on\_timeout@{on\_timeout}}
+\index{on\_timeout@{on\_timeout}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{on\_timeout()}{on\_timeout()}}
+{\footnotesize\ttfamily bool G\+Event\+Base\+::on\+\_\+timeout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$}]{gptd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+called when timer due 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gptd} & data binding to that timer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true -\/ dispatch timer event ok; false -\/ failed 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classGEventBaseWithAutoReconnect_a6ac1b22f7a2e62e4f71edae8261baf7e}{G\+Event\+Base\+With\+Auto\+Reconnect}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_aada8cffd3ccb8a5048cc8726182ec218_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_aada8cffd3ccb8a5048cc8726182ec218_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_ab5f27fdd5b2c6fec43967ab2e4e6bfe4}\label{classGEventBase_ab5f27fdd5b2c6fec43967ab2e4e6bfe4}} 
+\index{GEventBase@{GEventBase}!post\_timer@{post\_timer}}
+\index{post\_timer@{post\_timer}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{post\_timer()}{post\_timer()}}
+{\footnotesize\ttfamily bool G\+Event\+Base\+::post\+\_\+timer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$}]{gptd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em gptd} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classIEventBase_ae3a6fcde4bf11f96b2a7d51c63981679}{I\+Event\+Base}}.
+
+\mbox{\Hypertarget{classGEventBase_a667e415dc4420462806fbccf16141e98}\label{classGEventBase_a667e415dc4420462806fbccf16141e98}} 
+\index{GEventBase@{GEventBase}!run@{run}}
+\index{run@{run}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{run()}{run()}}
+{\footnotesize\ttfamily void G\+Event\+Base\+::run (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+main entry for event loop 
+
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+after setup, user may call run to block on main, or start thread pool to do multi-\/thread handling, on that case, run will be called by each thread in pool. Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{classGEventBase_a667e415dc4420462806fbccf16141e98_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventBase_a3bf6f4e3c08abe252c98b8681de7bb0d}\label{classGEventBase_a3bf6f4e3c08abe252c98b8681de7bb0d}} 
+\index{GEventBase@{GEventBase}!timeout@{timeout}}
+\index{timeout@{timeout}!GEventBase@{GEventBase}}
+\doxysubsubsection{\texorpdfstring{timeout()}{timeout()}}
+{\footnotesize\ttfamily void $\ast$ G\+Event\+Base\+::timeout (\begin{DoxyParamCaption}\item[{int}]{due\+\_\+msec,  }\item[{int}]{period\+\_\+msec,  }\item[{void $\ast$}]{arg,  }\item[{\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$}]{exist\+\_\+handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+setup timer for once or periodic 
+
+
+\begin{DoxyParams}{Parameters}
+{\em due\+\_\+msec} & once timer timeout milli-\/second \\
+\hline
+{\em period\+\_\+msec} & periodic timer timeout milli-\/second \\
+\hline
+{\em arg} & user special data @exist\+\_\+handler handler reuse if there a one \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+timer-\/id if success; nullptr if failed
+\end{DoxyReturn}
+user only call this method when having timer task 
+
+Implements \mbox{\hyperlink{classIEventBase_a346ec5b87f68a6b460d58b20add6a134}{I\+Event\+Base}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_a3bf6f4e3c08abe252c98b8681de7bb0d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventBase_a3bf6f4e3c08abe252c98b8681de7bb0d_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/yunh/code/gevent/core/Event\+Base.\+h\item 
+/home/yunh/code/gevent/core/Event\+Base.\+cpp\end{DoxyCompactItemize}

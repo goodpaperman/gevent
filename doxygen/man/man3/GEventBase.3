@@ -1,0 +1,495 @@
+.TH "GEventBase" 3 "Sat Jul 10 2021" "Version 1.0.0" "gevent" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GEventBase \- event base, the core of the gevent  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EventBase\&.h>\fP
+.PP
+Inherits \fBIEventBase\fP\&.
+.PP
+Inherited by \fBGEventBaseWithAutoReconnect\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual int \fBepfd\fP () const"
+.br
+.RI "get underline event poll fd on linux "
+.ti -1c
+.RI "virtual bool \fBpost_timer\fP (\fBGEV_PER_TIMER_DATA\fP *gptd)"
+.br
+.ti -1c
+.RI "virtual \fBGEventHandler\fP * \fBcreate_handler\fP ()=0"
+.br
+.RI "return handler for new connection "
+.ti -1c
+.RI "bool \fBinit\fP (int thr_num=\-8, int blksize=GEV_MAX_BUF_SIZE, int timer_sig=SIGUSR1)"
+.br
+.RI "initialize event base "
+.ti -1c
+.RI "bool \fBlisten\fP (unsigned short port, unsigned short backup=10)"
+.br
+.RI "setup local listener for accept new connection "
+.ti -1c
+.RI "\fBGEventHandler\fP * \fBconnect\fP (unsigned short port, char const *host='127\&.0\&.0\&.1', \fBGEventHandler\fP *exist_handler=NULL)"
+.br
+.RI "setup connection to remote server "
+.ti -1c
+.RI "void * \fBtimeout\fP (int due_msec, int period_msec, void *arg, \fBGEventHandler\fP *exist_handler)"
+.br
+.RI "setup timer for once or periodic "
+.ti -1c
+.RI "bool \fBcancel_timer\fP (void *tid)"
+.br
+.RI "cancel timer "
+.ti -1c
+.RI "void \fBfini\fP ()"
+.br
+.RI "finish the whole thing "
+.ti -1c
+.RI "void \fBrun\fP ()"
+.br
+.RI "main entry for event loop "
+.ti -1c
+.RI "void \fBexit\fP (int extra_notify=0)"
+.br
+.RI "exit event loop "
+.ti -1c
+.RI "void \fBcleanup\fP ()"
+.br
+.RI "close all the handle and clean event handler "
+.ti -1c
+.RI "void \fBdisconnect\fP ()"
+.br
+.RI "break all the connections in this event base "
+.ti -1c
+.RI "int \fBbroadcast\fP (std::string const &msg)"
+.br
+.RI "notify all the client by sending msg on connections "
+.ti -1c
+.RI "int \fBforeach\fP (std::function< int(\fBGEventHandler\fP *h, void *arg)> func, void *arg)"
+.br
+.RI "traverse the handlers and call func for each handler "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "bool \fBdo_accept\fP (int fd)"
+.br
+.ti -1c
+.RI "bool \fBdo_recv\fP (\fBconn_key_t\fP key)"
+.br
+.ti -1c
+.RI "void \fBdo_error\fP (\fBconn_key_t\fP key)"
+.br
+.ti -1c
+.RI "bool \fBinit_pipe\fP ()"
+.br
+.ti -1c
+.RI "void \fBclose_pipe\fP ()"
+.br
+.ti -1c
+.RI "bool \fBpost_notify\fP (char ch, void *ptr=nullptr)"
+.br
+.ti -1c
+.RI "void \fBpromote_leader\fP (std::unique_lock< std::mutex > &guard)"
+.br
+.ti -1c
+.RI "\fBGEventHandler\fP * \fBfind_by_key\fP (\fBconn_key_t\fP key, bool erase)"
+.br
+.ti -1c
+.RI "\fBGEventHandler\fP * \fBfind_by_fd\fP (int fd, \fBconn_key_t\fP &key, bool erase)"
+.br
+.ti -1c
+.RI "bool \fBdo_timeout\fP (\fBGEV_PER_TIMER_DATA\fP *gptd)"
+.br
+.ti -1c
+.RI "virtual bool \fBon_accept\fP (\fBGEV_PER_HANDLE_DATA\fP *gphd)"
+.br
+.RI "called when accepting a new connection "
+.ti -1c
+.RI "virtual bool \fBon_read\fP (\fBGEventHandler\fP *h, \fBGEV_PER_IO_DATA\fP *gpid)"
+.br
+.RI "called when receiving data on a connection "
+.ti -1c
+.RI "virtual void \fBon_error\fP (\fBGEventHandler\fP *h)"
+.br
+.RI "called when detecting error on a conection "
+.ti -1c
+.RI "virtual bool \fBon_timeout\fP (\fBGEV_PER_TIMER_DATA\fP *gptd)"
+.br
+.RI "called when timer due "
+.ti -1c
+.RI "virtual bool \fBfilter_handler\fP (\fBGEventHandler\fP *h)"
+.br
+.RI "called when for_each traverse handlers "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "volatile bool \fBm_running\fP = false"
+.br
+.ti -1c
+.RI "int \fBm_thrnum\fP = 0"
+.br
+.ti -1c
+.RI "int \fBm_blksize\fP = GEV_MAX_BUF_SIZE"
+.br
+.ti -1c
+.RI "std::thread_group \fBm_grp\fP"
+.br
+.ti -1c
+.RI "SOCKET \fBm_listener\fP = INVALID_SOCKET"
+.br
+.ti -1c
+.RI "std::recursive_mutex \fBm_mutex\fP"
+.br
+.ti -1c
+.RI "std::mutex \fBm_tlock\fP"
+.br
+.ti -1c
+.RI "std::map< \fBGEV_PER_TIMER_DATA\fP *, \fBGEventHandler\fP * > \fBm_tmap\fP"
+.br
+.ti -1c
+.RI "int \fBm_ep\fP = \-1"
+.br
+.ti -1c
+.RI "int \fBm_pp\fP [2]"
+.br
+.ti -1c
+.RI "int \fBm_tsig\fP = 0"
+.br
+.ti -1c
+.RI "std::mutex \fBm_lock\fP"
+.br
+.ti -1c
+.RI "pthread_t \fBm_leader\fP = \-1"
+.br
+.ti -1c
+.RI "std::map< \fBconn_key_t\fP, \fBGEventHandler\fP * > \fBm_map\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+event base, the core of the gevent 
+
+setup, cleanup, listening, connecting, event looping, thread pool, handler management and etc\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "int GEventBase::broadcast (std::string const & msg)"
+
+.PP
+notify all the client by sending msg on connections 
+.PP
+\fBParameters\fP
+.RS 4
+\fImsg\fP things you want to say 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+number connections successfully sent
+.RE
+.PP
+it depends on foreach to traverse handlers 
+.SS "bool GEventBase::cancel_timer (void * tid)\fC [virtual]\fP"
+
+.PP
+cancel timer 
+.PP
+\fBParameters\fP
+.RS 4
+\fItid\fP return value of timeout 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+once timer after timeout will be cancelled automatically 
+.RE
+.PP
+
+.PP
+Implements \fBIEventBase\fP\&.
+.SS "void GEventBase::cleanup ()"
+
+.PP
+close all the handle and clean event handler 
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.SS "\fBGEventHandler\fP * GEventBase::connect (unsigned short port, char const * host = \fC'127\&.0\&.0\&.1'\fP, \fBGEventHandler\fP * exist_handler = \fCNULL\fP)"
+
+.PP
+setup connection to remote server 
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP listen port 
+.br
+\fIhost\fP server host 
+.br
+\fIexist_handler\fP handler reuse if there a one 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+new handler binding to that connection, nullptr if connection setup failed
+.RE
+.PP
+user only call this method when to be a client 
+.SS "\fBGEventHandler\fP * GEventBase::create_handler ()\fC [pure virtual]\fP"
+
+.PP
+return handler for new connection 
+.PP
+\fBReturns\fP
+.RS 4
+inherit class of \fBGEventHandler\fP
+.RE
+.PP
+user must implement this method to provide their own handler classes 
+.SS "void GEventBase::disconnect ()"
+
+.PP
+break all the connections in this event base 
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.SS "void GEventBase::exit (int extra_notify = \fC0\fP)"
+
+.PP
+exit event loop 
+.PP
+\fBParameters\fP
+.RS 4
+\fIextra_notify\fP some thread may call run but not in our thread pool, use this to do exit notify, how many thread runs, how many notification needs\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none
+.RE
+.PP
+after exit, all thread stopped, but event base status not cleaned 
+.SS "bool GEventBase::filter_handler (\fBGEventHandler\fP * h)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+called when for_each traverse handlers 
+.PP
+\fBParameters\fP
+.RS 4
+\fIh\fP handler will traverse 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - allow access; false - skip 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBGEventBaseWithAutoReconnect\fP\&.
+.SS "void GEventBase::fini ()"
+
+.PP
+finish the whole thing 
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.SS "int GEventBase::foreach (std::function< int(\fBGEventHandler\fP *h, void *arg)> func, void * arg)"
+
+.PP
+traverse the handlers and call func for each handler 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfunc\fP user defined procedure that applies on each handler 
+.br
+\fIarg\fP passing to the procedure 2nd parameter 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+number handlers successfully handled
+.RE
+.PP
+handlers user don't want traverse can filtered by filter_handler 
+.SS "bool GEventBase::init (int thr_num = \fC\-8\fP, int blksize = \fCGEV_MAX_BUF_SIZE\fP, int timer_sig = \fCSIGUSR1\fP)"
+
+.PP
+initialize event base 
+.PP
+\fBParameters\fP
+.RS 4
+\fIthr_num\fP =0 - no default thread pool, user provide thread and call run <0 - use max(|thr_num|, processer_num) >0 - use thr_num 
+.br
+\fIblksize\fP buffer size for single event 
+.br
+\fItimer_sig\fP signal number for timer on linux 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - initialize ok; false - failed
+.RE
+.PP
+user must call this method before others 
+.SS "bool GEventBase::listen (unsigned short port, unsigned short backup = \fC10\fP)"
+
+.PP
+setup local listener for accept new connection 
+.PP
+\fBParameters\fP
+.RS 4
+\fIport\fP listen port 
+.br
+\fIbackup\fP listen queue size 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - listen ok; false - failed
+.RE
+.PP
+user only call this method when to be a server 
+.SS "bool GEventBase::on_accept (\fBGEV_PER_HANDLE_DATA\fP * gphd)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+called when accepting a new connection 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgphd\fP data binding to new connection 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - dispatch accept event ok; false - failed 
+.RE
+.PP
+
+.SS "void GEventBase::on_error (\fBGEventHandler\fP * h)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+called when detecting error on a conection 
+.PP
+\fBParameters\fP
+.RS 4
+\fIh\fP handler binding to that connection 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBGEventBaseWithAutoReconnect\fP\&.
+.SS "bool GEventBase::on_read (\fBGEventHandler\fP * h, \fBGEV_PER_IO_DATA\fP * gpid)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+called when receiving data on a connection 
+.PP
+\fBParameters\fP
+.RS 4
+\fIh\fP handler binding to that connection 
+.br
+\fIgpid\fP data binding to that action 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - dispatch read event ok; false - failed 
+.RE
+.PP
+
+.SS "bool GEventBase::on_timeout (\fBGEV_PER_TIMER_DATA\fP * gptd)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+called when timer due 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgptd\fP data binding to that timer 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - dispatch timer event ok; false - failed 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBGEventBaseWithAutoReconnect\fP\&.
+.SS "bool GEventBase::post_timer (\fBGEV_PER_TIMER_DATA\fP * gptd)\fC [virtual]\fP"
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIgptd\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implements \fBIEventBase\fP\&.
+.SS "void GEventBase::run ()"
+
+.PP
+main entry for event loop 
+.PP
+\fBReturns\fP
+.RS 4
+none
+.RE
+.PP
+after setup, user may call run to block on main, or start thread pool to do multi-thread handling, on that case, run will be called by each thread in pool\&. 
+.SS "void * GEventBase::timeout (int due_msec, int period_msec, void * arg, \fBGEventHandler\fP * exist_handler)\fC [virtual]\fP"
+
+.PP
+setup timer for once or periodic 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdue_msec\fP once timer timeout milli-second 
+.br
+\fIperiod_msec\fP periodic timer timeout milli-second 
+.br
+\fIarg\fP user special data @exist_handler handler reuse if there a one 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+timer-id if success; nullptr if failed
+.RE
+.PP
+user only call this method when having timer task 
+.PP
+Implements \fBIEventBase\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for gevent from the source code\&.

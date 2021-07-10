@@ -1,0 +1,7 @@
+<map id="GEventBase::timeout" name="GEventBase::timeout">
+<area shape="rect" id="node1" title="setup timer for once or periodic" alt="" coords="5,42,165,69"/>
+<area shape="rect" id="node2" href="$classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="219,5,369,47"/>
+<area shape="rect" id="node3" href="$classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="213,71,375,98"/>
+<area shape="rect" id="node4" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="423,46,583,73"/>
+<area shape="rect" id="node5" href="$classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="424,97,581,123"/>
+</map>

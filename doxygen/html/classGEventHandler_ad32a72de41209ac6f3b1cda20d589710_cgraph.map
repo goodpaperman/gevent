@@ -1,0 +1,5 @@
+<map id="GEventHandler::disconnect" name="GEventHandler::disconnect">
+<area shape="rect" id="node1" title="break the connection" alt="" coords="5,31,204,57"/>
+<area shape="rect" id="node2" href="$classIEventBase.html#a93f708600d53de5ca399463d5c46af42" title="get underline event poll fd on linux" alt="" coords="257,5,389,32"/>
+<area shape="rect" id="node3" href="$classGEventHandler.html#a13394ee93e54599e5e6d74ed32890d05" title="return underline connection file descriptor" alt="" coords="252,56,393,83"/>
+</map>

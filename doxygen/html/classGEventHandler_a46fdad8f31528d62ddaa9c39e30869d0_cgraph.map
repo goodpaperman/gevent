@@ -1,0 +1,5 @@
+<map id="GEventHandler::reset" name="GEventHandler::reset">
+<area shape="rect" id="node1" title="reset inner data status to initial" alt="" coords="5,31,167,57"/>
+<area shape="rect" id="node2" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="215,5,375,32"/>
+<area shape="rect" id="node3" href="$classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="216,56,373,83"/>
+</map>

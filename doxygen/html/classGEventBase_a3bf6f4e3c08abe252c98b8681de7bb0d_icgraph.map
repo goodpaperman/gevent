@@ -1,0 +1,7 @@
+<map id="GEventBase::timeout" name="GEventBase::timeout">
+<area shape="rect" id="node1" title="setup timer for once or periodic" alt="" coords="837,46,997,73"/>
+<area shape="rect" id="node2" href="$classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="560,39,789,80"/>
+<area shape="rect" id="node3" href="$classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
+<area shape="rect" id="node5" href="$classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="283,71,512,112"/>
+<area shape="rect" id="node4" href="$classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+</map>

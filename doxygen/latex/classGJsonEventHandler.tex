@@ -1,0 +1,206 @@
+\hypertarget{classGJsonEventHandler}{}\doxysection{G\+Json\+Event\+Handler Class Reference}
+\label{classGJsonEventHandler}\index{GJsonEventHandler@{GJsonEventHandler}}
+
+
+a common handler to process json protocol.  
+
+
+
+
+{\ttfamily \#include $<$Event\+Handler.\+h$>$}
+
+
+
+Inheritance diagram for G\+Json\+Event\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classGJsonEventHandler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Json\+Event\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGJsonEventHandler__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classGJsonEventHandler_a3da03eea54e3da70b6d63901abcc8793}{arg}} (void $\ast$param)
+\begin{DoxyCompactList}\small\item\em remember user provide data in handler \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGJsonEventHandler_ad48e6db8922e62be151b88c46e0580aa}{reset}} (\mbox{\hyperlink{structGEV__PER__HANDLE__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+TA}} $\ast$\mbox{\hyperlink{classGEventHandler_aacf4ca9d8f01ec42078e5bfc71f6f481}{gphd}}, \mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$\mbox{\hyperlink{classGEventHandler_a2ebca4f4917ed8448d7445f5db213ec0}{gptd}}, \mbox{\hyperlink{classIEventBase}{I\+Event\+Base}} $\ast$base)
+\begin{DoxyCompactList}\small\item\em reset inner data status to initial \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGJsonEventHandler_ab9a48d231da261af272029539041333c}{on\+\_\+read}} (\mbox{\hyperlink{structGEV__PER__IO__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+I\+O\+\_\+\+D\+A\+TA}} $\ast$gpid)
+\begin{DoxyCompactList}\small\item\em connection has data arriving \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGJsonEventHandler_adb69755e593d6c93a1f276c459fe9a54}\label{classGJsonEventHandler_adb69755e593d6c93a1f276c459fe9a54}} 
+virtual void {\bfseries on\+\_\+read\+\_\+msg} (Json\+::\+Value const \&root)=0
+\item 
+virtual bool \mbox{\hyperlink{classGJsonEventHandler_ad23534c42ea2a79de450205bc322ccda}{on\+\_\+timeout}} (\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$\mbox{\hyperlink{classGEventHandler_a2ebca4f4917ed8448d7445f5db213ec0}{gptd}})
+\begin{DoxyCompactList}\small\item\em timer has due \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGJsonEventHandler_ab1e6c90b6bd50df406e1933001c810f9}{cleanup}} (bool terminal)
+\begin{DoxyCompactList}\small\item\em shut down underline facilities \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGJsonEventHandler_ae17459acedd20ea8ce959e6525ffab10}\label{classGJsonEventHandler_ae17459acedd20ea8ce959e6525ffab10}} 
+std\+::string {\bfseries m\+\_\+stub}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+a common handler to process json protocol. 
+
+\begin{DoxyRefDesc}{Todo}
+\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]just a sample how to use gevent, should move outside of core \end{DoxyRefDesc}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGJsonEventHandler_a3da03eea54e3da70b6d63901abcc8793}\label{classGJsonEventHandler_a3da03eea54e3da70b6d63901abcc8793}} 
+\index{GJsonEventHandler@{GJsonEventHandler}!arg@{arg}}
+\index{arg@{arg}!GJsonEventHandler@{GJsonEventHandler}}
+\doxysubsubsection{\texorpdfstring{arg()}{arg()}}
+{\footnotesize\ttfamily void G\+Json\+Event\+Handler\+::arg (\begin{DoxyParamCaption}\item[{void $\ast$}]{param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+remember user provide data in handler 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & user provided data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+user special data will useful to distinguish different handlers, especially for timer 
+
+Implements \mbox{\hyperlink{classGEventHandler_a462e1f2488d935220f2ec876e5361962}{G\+Event\+Handler}}.
+
+\mbox{\Hypertarget{classGJsonEventHandler_ab1e6c90b6bd50df406e1933001c810f9}\label{classGJsonEventHandler_ab1e6c90b6bd50df406e1933001c810f9}} 
+\index{GJsonEventHandler@{GJsonEventHandler}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!GJsonEventHandler@{GJsonEventHandler}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily void G\+Json\+Event\+Handler\+::cleanup (\begin{DoxyParamCaption}\item[{bool}]{terminal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+shut down underline facilities 
+
+
+\begin{DoxyParams}{Parameters}
+{\em terminal} & are we going to die ? \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classGEventHandler_a5ef79153519c6c98a2e00d3f193ad07d}{G\+Event\+Handler}}.
+
+\mbox{\Hypertarget{classGJsonEventHandler_ab9a48d231da261af272029539041333c}\label{classGJsonEventHandler_ab9a48d231da261af272029539041333c}} 
+\index{GJsonEventHandler@{GJsonEventHandler}!on\_read@{on\_read}}
+\index{on\_read@{on\_read}!GJsonEventHandler@{GJsonEventHandler}}
+\doxysubsubsection{\texorpdfstring{on\_read()}{on\_read()}}
+{\footnotesize\ttfamily bool G\+Json\+Event\+Handler\+::on\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__IO__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+I\+O\+\_\+\+D\+A\+TA}} $\ast$}]{gpid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+connection has data arriving 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpid} & data binding to former read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true -\/ handle ok; false -\/ handle fail 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+user must implement this method to handle data on connection 
+\end{DoxyNote}
+
+
+Implements \mbox{\hyperlink{classGEventHandler_a425ff88197f72dab091072cb4737d68f}{G\+Event\+Handler}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGJsonEventHandler_ab9a48d231da261af272029539041333c_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGJsonEventHandler_ad23534c42ea2a79de450205bc322ccda}\label{classGJsonEventHandler_ad23534c42ea2a79de450205bc322ccda}} 
+\index{GJsonEventHandler@{GJsonEventHandler}!on\_timeout@{on\_timeout}}
+\index{on\_timeout@{on\_timeout}!GJsonEventHandler@{GJsonEventHandler}}
+\doxysubsubsection{\texorpdfstring{on\_timeout()}{on\_timeout()}}
+{\footnotesize\ttfamily bool G\+Json\+Event\+Handler\+::on\+\_\+timeout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$}]{gptd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+timer has due 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gptd} & data binding to this timer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true -\/ handle ok; false -\/ handle fail 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+when on\+\_\+timeout called, handler\textquotesingle{}s base may cleared by cancel\+\_\+timer, use gptd-\/$>$base instead if it is not null.
+\end{DoxyNote}
+user must implement this method to receive timer notify 
+
+Implements \mbox{\hyperlink{classGEventHandler_a75f04e2b25bf9234793949a3f367445a}{G\+Event\+Handler}}.
+
+\mbox{\Hypertarget{classGJsonEventHandler_ad48e6db8922e62be151b88c46e0580aa}\label{classGJsonEventHandler_ad48e6db8922e62be151b88c46e0580aa}} 
+\index{GJsonEventHandler@{GJsonEventHandler}!reset@{reset}}
+\index{reset@{reset}!GJsonEventHandler@{GJsonEventHandler}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void G\+Json\+Event\+Handler\+::reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__HANDLE__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+TA}} $\ast$}]{gphd,  }\item[{\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$}]{gptd,  }\item[{\mbox{\hyperlink{classIEventBase}{I\+Event\+Base}} $\ast$}]{base }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+reset inner data status to initial 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gphd} & new data per handler \\
+\hline
+{\em gptd} & new data per timer \\
+\hline
+{\em base} & new Event\+Base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+Reimplemented from \mbox{\hyperlink{classGEventHandler_a46fdad8f31528d62ddaa9c39e30869d0}{G\+Event\+Handler}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGJsonEventHandler_ad48e6db8922e62be151b88c46e0580aa_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/yunh/code/gevent/core/Event\+Handler.\+h\item 
+/home/yunh/code/gevent/core/Event\+Handler.\+cpp\end{DoxyCompactItemize}

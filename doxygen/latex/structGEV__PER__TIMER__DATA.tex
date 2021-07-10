@@ -1,0 +1,116 @@
+\hypertarget{structGEV__PER__TIMER__DATA}{}\doxysection{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA Struct Reference}
+\label{structGEV__PER__TIMER__DATA}\index{GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}}
+
+
+data that binding to one timer  
+
+
+
+
+{\ttfamily \#include $<$Event\+Handler.\+h$>$}
+
+
+
+Collaboration diagram for G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{structGEV__PER__TIMER__DATA__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structGEV__PER__TIMER__DATA_ae339614151d5b91523f96561305009a5}\label{structGEV__PER__TIMER__DATA_ae339614151d5b91523f96561305009a5}} 
+{\bfseries G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA} (\mbox{\hyperlink{classIEventBase}{I\+Event\+Base}} $\ast$\mbox{\hyperlink{structGEV__PER__TIMER__DATA_af95141b0ba8c355fb450a7c22efe964e}{base}}, int due, int period, void $\ast$arg, timer\+\_\+t tid)
+\item 
+void \mbox{\hyperlink{structGEV__PER__TIMER__DATA_abf317f88b49d4c87728bcc1dbcf1722d}{cancel}} ()
+\begin{DoxyCompactList}\small\item\em cancel this timer \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classIEventBase}{I\+Event\+Base}} $\ast$ \mbox{\hyperlink{structGEV__PER__TIMER__DATA_af95141b0ba8c355fb450a7c22efe964e}{base}}
+\item 
+int \mbox{\hyperlink{structGEV__PER__TIMER__DATA_a3287db5c53f808d18942fc7b8d26e22f}{due\+\_\+msec}}
+\item 
+int \mbox{\hyperlink{structGEV__PER__TIMER__DATA_a6965cec74882962cbc0f2a30138ae427}{period\+\_\+msec}}
+\item 
+void $\ast$ \mbox{\hyperlink{structGEV__PER__TIMER__DATA_a584308ffb347c00353b668cae0ac953f}{user\+\_\+arg}}
+\item 
+bool \mbox{\hyperlink{structGEV__PER__TIMER__DATA_af0ad6757cba27a3650a774b4557acbb0}{cancelled}}
+\item 
+timer\+\_\+t \mbox{\hyperlink{structGEV__PER__TIMER__DATA_a4a5d5769f86a1fc92b796a8d93ba0cec}{timer}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+data that binding to one timer 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{structGEV__PER__TIMER__DATA_abf317f88b49d4c87728bcc1dbcf1722d}\label{structGEV__PER__TIMER__DATA_abf317f88b49d4c87728bcc1dbcf1722d}} 
+\index{GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}!cancel@{cancel}}
+\index{cancel@{cancel}!GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}}
+\doxysubsubsection{\texorpdfstring{cancel()}{cancel()}}
+{\footnotesize\ttfamily void G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+T\+A\+::cancel (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+cancel this timer 
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{structGEV__PER__TIMER__DATA_abf317f88b49d4c87728bcc1dbcf1722d_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structGEV__PER__TIMER__DATA_af95141b0ba8c355fb450a7c22efe964e}\label{structGEV__PER__TIMER__DATA_af95141b0ba8c355fb450a7c22efe964e}} 
+\index{GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}!base@{base}}
+\index{base@{base}!GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}}
+\doxysubsubsection{\texorpdfstring{base}{base}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classIEventBase}{I\+Event\+Base}}$\ast$ G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+T\+A\+::base}
+
+Event\+Base this timer belongs to \mbox{\Hypertarget{structGEV__PER__TIMER__DATA_af0ad6757cba27a3650a774b4557acbb0}\label{structGEV__PER__TIMER__DATA_af0ad6757cba27a3650a774b4557acbb0}} 
+\index{GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}!cancelled@{cancelled}}
+\index{cancelled@{cancelled}!GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}}
+\doxysubsubsection{\texorpdfstring{cancelled}{cancelled}}
+{\footnotesize\ttfamily bool G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+T\+A\+::cancelled}
+
+if cancelled \mbox{\Hypertarget{structGEV__PER__TIMER__DATA_a3287db5c53f808d18942fc7b8d26e22f}\label{structGEV__PER__TIMER__DATA_a3287db5c53f808d18942fc7b8d26e22f}} 
+\index{GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}!due\_msec@{due\_msec}}
+\index{due\_msec@{due\_msec}!GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}}
+\doxysubsubsection{\texorpdfstring{due\_msec}{due\_msec}}
+{\footnotesize\ttfamily int G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+T\+A\+::due\+\_\+msec}
+
+first due time in milli-\/second \mbox{\Hypertarget{structGEV__PER__TIMER__DATA_a6965cec74882962cbc0f2a30138ae427}\label{structGEV__PER__TIMER__DATA_a6965cec74882962cbc0f2a30138ae427}} 
+\index{GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}!period\_msec@{period\_msec}}
+\index{period\_msec@{period\_msec}!GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}}
+\doxysubsubsection{\texorpdfstring{period\_msec}{period\_msec}}
+{\footnotesize\ttfamily int G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+T\+A\+::period\+\_\+msec}
+
+later due time in milli-\/second \mbox{\Hypertarget{structGEV__PER__TIMER__DATA_a4a5d5769f86a1fc92b796a8d93ba0cec}\label{structGEV__PER__TIMER__DATA_a4a5d5769f86a1fc92b796a8d93ba0cec}} 
+\index{GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}!timer@{timer}}
+\index{timer@{timer}!GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}}
+\doxysubsubsection{\texorpdfstring{timer}{timer}}
+{\footnotesize\ttfamily timer\+\_\+t G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+T\+A\+::timer}
+
+timer handler on linux \mbox{\Hypertarget{structGEV__PER__TIMER__DATA_a584308ffb347c00353b668cae0ac953f}\label{structGEV__PER__TIMER__DATA_a584308ffb347c00353b668cae0ac953f}} 
+\index{GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}!user\_arg@{user\_arg}}
+\index{user\_arg@{user\_arg}!GEV\_PER\_TIMER\_DATA@{GEV\_PER\_TIMER\_DATA}}
+\doxysubsubsection{\texorpdfstring{user\_arg}{user\_arg}}
+{\footnotesize\ttfamily void$\ast$ G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+T\+A\+::user\+\_\+arg}
+
+user special data binding to this timer 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/yunh/code/gevent/core/Event\+Handler.\+h\item 
+/home/yunh/code/gevent/core/Event\+Handler.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="GJsonEventHandler" name="GJsonEventHandler">
+<area shape="rect" id="node1" title="a common handler to process json protocol." alt="" coords="10,380,157,531"/>
+<area shape="rect" id="node2" href="$classGEventHandler.html" title="event handler binding to a connection user would better inherit it&#39;s own handler from this,..." alt="" coords="5,5,161,332"/>
+</map>

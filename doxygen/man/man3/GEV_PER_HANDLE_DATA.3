@@ -1,0 +1,50 @@
+.TH "GEV_PER_HANDLE_DATA" 3 "Sat Jul 10 2021" "Version 1.0.0" "gevent" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GEV_PER_HANDLE_DATA \- data that binding to handler, or a connection  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EventHandler\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBconn_key_t\fP \fBkey\fP () const"
+.br
+.RI "access key data on win32 "
+.ti -1c
+.RI "\fBGEV_PER_HANDLE_DATA\fP (SOCKET s, SOCKADDR_IN *l, SOCKADDR_IN *r)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "SOCKET \fBso\fP"
+.br
+.ti -1c
+.RI "SOCKADDR_IN \fBladdr\fP"
+.br
+.ti -1c
+.RI "SOCKADDR_IN \fBraddr\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+data that binding to handler, or a connection 
+.SH "Member Data Documentation"
+.PP 
+.SS "SOCKADDR_IN GEV_PER_HANDLE_DATA::laddr"
+local ip address 
+.SS "SOCKADDR_IN GEV_PER_HANDLE_DATA::raddr"
+remote ip address 
+.SS "SOCKET GEV_PER_HANDLE_DATA::so"
+connection file descriptor 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for gevent from the source code\&.

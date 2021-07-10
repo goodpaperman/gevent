@@ -1,0 +1,78 @@
+.TH "GEV_PER_TIMER_DATA" 3 "Sat Jul 10 2021" "Version 1.0.0" "gevent" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GEV_PER_TIMER_DATA \- data that binding to one timer  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EventHandler\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGEV_PER_TIMER_DATA\fP (\fBIEventBase\fP *\fBbase\fP, int due, int period, void *arg, timer_t tid)"
+.br
+.ti -1c
+.RI "void \fBcancel\fP ()"
+.br
+.RI "cancel this timer "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBIEventBase\fP * \fBbase\fP"
+.br
+.ti -1c
+.RI "int \fBdue_msec\fP"
+.br
+.ti -1c
+.RI "int \fBperiod_msec\fP"
+.br
+.ti -1c
+.RI "void * \fBuser_arg\fP"
+.br
+.ti -1c
+.RI "bool \fBcancelled\fP"
+.br
+.ti -1c
+.RI "timer_t \fBtimer\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+data that binding to one timer 
+.SH "Member Function Documentation"
+.PP 
+.SS "void GEV_PER_TIMER_DATA::cancel ()"
+
+.PP
+cancel this timer 
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBIEventBase\fP* GEV_PER_TIMER_DATA::base"
+EventBase this timer belongs to 
+.SS "bool GEV_PER_TIMER_DATA::cancelled"
+if cancelled 
+.SS "int GEV_PER_TIMER_DATA::due_msec"
+first due time in milli-second 
+.SS "int GEV_PER_TIMER_DATA::period_msec"
+later due time in milli-second 
+.SS "timer_t GEV_PER_TIMER_DATA::timer"
+timer handler on linux 
+.SS "void* GEV_PER_TIMER_DATA::user_arg"
+user special data binding to this timer 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for gevent from the source code\&.

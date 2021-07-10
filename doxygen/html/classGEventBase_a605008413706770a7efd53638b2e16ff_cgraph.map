@@ -1,0 +1,12 @@
+<map id="GEventBase::foreach" name="GEventBase::foreach">
+<area shape="rect" id="node1" title="traverse the handlers and call func for each handler" alt="" coords="5,64,164,91"/>
+<area shape="rect" id="node2" href="$classGEventHandler.html#a13394ee93e54599e5e6d74ed32890d05" title="return underline connection file descriptor" alt="" coords="223,5,364,32"/>
+<area shape="rect" id="node3" href="$classGEventBase.html#ae63c2bebfc257d7ce4a3cbb816641543" title="called when for_each traverse handlers" alt="" coords="224,57,363,98"/>
+<area shape="rect" id="node4" href="$classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection" alt="" coords="212,123,375,149"/>
+<area shape="rect" id="node5" href="$classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="433,47,595,73"/>
+<area shape="rect" id="node7" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="434,97,594,124"/>
+<area shape="rect" id="node8" href="$classGEventHandler.html#a3f3e88c7a2dbcf5d866acddbbf034fd7" title="connection has break" alt="" coords="423,148,605,175"/>
+<area shape="rect" id="node10" href="$classGEventHandler.html#a316e1484f5e7eae5babf0a31cf4c8662" title="tell EventBase whether enable reuse" alt="" coords="432,199,596,225"/>
+<area shape="rect" id="node6" href="$structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d" title="cancel this timer" alt="" coords="657,39,828,81"/>
+<area shape="rect" id="node9" href="$classGEventHandler.html#a5ef79153519c6c98a2e00d3f193ad07d" title="shut down underline facilities" alt="" coords="653,148,832,175"/>
+</map>

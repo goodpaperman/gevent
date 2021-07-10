@@ -1,0 +1,74 @@
+\hypertarget{structconn__key__t}{}\doxysection{conn\+\_\+key\+\_\+t Struct Reference}
+\label{structconn__key__t}\index{conn\_key\_t@{conn\_key\_t}}
+
+
+key information for a connection  
+
+
+
+
+{\ttfamily \#include $<$Event\+Handler.\+h$>$}
+
+
+
+Collaboration diagram for conn\+\_\+key\+\_\+t\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{structconn__key__t__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structconn__key__t_a28ce7d7bd22c74da49e7f8ceee11f54c}\label{structconn__key__t_a28ce7d7bd22c74da49e7f8ceee11f54c}} 
+{\bfseries conn\+\_\+key\+\_\+t} (int f, unsigned short l, unsigned short r)
+\item 
+\mbox{\Hypertarget{structconn__key__t_aa8a36f7f45e06bd757c6f8bc6ca14cec}\label{structconn__key__t_aa8a36f7f45e06bd757c6f8bc6ca14cec}} 
+bool {\bfseries operator$<$} (struct \mbox{\hyperlink{structconn__key__t}{conn\+\_\+key\+\_\+t}} const \&rhs) const
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structconn__key__t_a99fb2b0633c054274ee2ea4f762fc431}{fd}}
+\item 
+unsigned short \mbox{\hyperlink{structconn__key__t_a5e7bb8248a080fcea7232e218eab7ff2}{lport}}
+\item 
+unsigned short \mbox{\hyperlink{structconn__key__t_a82ea58ea7949e8daa7213b4b8218a6d7}{rport}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+key information for a connection 
+
+\begin{DoxyNote}{Note}
+the purpose of this key is to distinguish different connections with same fd ! (when connection break and re-\/established soon, fd may not change but port will change) 
+\end{DoxyNote}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structconn__key__t_a99fb2b0633c054274ee2ea4f762fc431}\label{structconn__key__t_a99fb2b0633c054274ee2ea4f762fc431}} 
+\index{conn\_key\_t@{conn\_key\_t}!fd@{fd}}
+\index{fd@{fd}!conn\_key\_t@{conn\_key\_t}}
+\doxysubsubsection{\texorpdfstring{fd}{fd}}
+{\footnotesize\ttfamily int conn\+\_\+key\+\_\+t\+::fd}
+
+connection file descriptor \mbox{\Hypertarget{structconn__key__t_a5e7bb8248a080fcea7232e218eab7ff2}\label{structconn__key__t_a5e7bb8248a080fcea7232e218eab7ff2}} 
+\index{conn\_key\_t@{conn\_key\_t}!lport@{lport}}
+\index{lport@{lport}!conn\_key\_t@{conn\_key\_t}}
+\doxysubsubsection{\texorpdfstring{lport}{lport}}
+{\footnotesize\ttfamily unsigned short conn\+\_\+key\+\_\+t\+::lport}
+
+local port \mbox{\Hypertarget{structconn__key__t_a82ea58ea7949e8daa7213b4b8218a6d7}\label{structconn__key__t_a82ea58ea7949e8daa7213b4b8218a6d7}} 
+\index{conn\_key\_t@{conn\_key\_t}!rport@{rport}}
+\index{rport@{rport}!conn\_key\_t@{conn\_key\_t}}
+\doxysubsubsection{\texorpdfstring{rport}{rport}}
+{\footnotesize\ttfamily unsigned short conn\+\_\+key\+\_\+t\+::rport}
+
+remote port 
+
+The documentation for this struct was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/yunh/code/gevent/core/Event\+Handler.\+h\item 
+/home/yunh/code/gevent/core/Event\+Handler.\+cpp\end{DoxyCompactItemize}

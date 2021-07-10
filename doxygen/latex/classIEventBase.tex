@@ -1,0 +1,117 @@
+\hypertarget{classIEventBase}{}\doxysection{I\+Event\+Base Class Reference}
+\label{classIEventBase}\index{IEventBase@{IEventBase}}
+
+
+abstract interface for all Event\+Base  
+
+
+
+
+{\ttfamily \#include $<$Event\+Handler.\+h$>$}
+
+
+
+Inheritance diagram for I\+Event\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{classIEventBase__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for I\+Event\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=178pt]{classIEventBase__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classIEventBase_a93f708600d53de5ca399463d5c46af42}\label{classIEventBase_a93f708600d53de5ca399463d5c46af42}} 
+virtual int \mbox{\hyperlink{classIEventBase_a93f708600d53de5ca399463d5c46af42}{epfd}} () const =0
+\begin{DoxyCompactList}\small\item\em get underline event poll fd on linux \end{DoxyCompactList}\item 
+virtual void $\ast$ \mbox{\hyperlink{classIEventBase_a346ec5b87f68a6b460d58b20add6a134}{timeout}} (int due\+\_\+msec, int period\+\_\+msec, void $\ast$arg, \mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$exist\+\_\+handler)=0
+\begin{DoxyCompactList}\small\item\em setup timer \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classIEventBase_ab8417c1f3f63361c4d269e21ecd2cc75}{cancel\+\_\+timer}} (void $\ast$tid)=0
+\begin{DoxyCompactList}\small\item\em cancel existing timer @tid timer-\/id that @fun timeout returns \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classIEventBase_ae3a6fcde4bf11f96b2a7d51c63981679}{post\+\_\+timer}} (\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$gptd)=0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+abstract interface for all Event\+Base 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classIEventBase_ab8417c1f3f63361c4d269e21ecd2cc75}\label{classIEventBase_ab8417c1f3f63361c4d269e21ecd2cc75}} 
+\index{IEventBase@{IEventBase}!cancel\_timer@{cancel\_timer}}
+\index{cancel\_timer@{cancel\_timer}!IEventBase@{IEventBase}}
+\doxysubsubsection{\texorpdfstring{cancel\_timer()}{cancel\_timer()}}
+{\footnotesize\ttfamily virtual bool I\+Event\+Base\+::cancel\+\_\+timer (\begin{DoxyParamCaption}\item[{void $\ast$}]{tid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+cancel existing timer @tid timer-\/id that @fun timeout returns 
+
+\begin{DoxyReturn}{Returns}
+true for success; false for failure 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classGEventBase_ade0710420c3a7407ab49f5cdf336e371}{G\+Event\+Base}}.
+
+\mbox{\Hypertarget{classIEventBase_ae3a6fcde4bf11f96b2a7d51c63981679}\label{classIEventBase_ae3a6fcde4bf11f96b2a7d51c63981679}} 
+\index{IEventBase@{IEventBase}!post\_timer@{post\_timer}}
+\index{post\_timer@{post\_timer}!IEventBase@{IEventBase}}
+\doxysubsubsection{\texorpdfstring{post\_timer()}{post\_timer()}}
+{\footnotesize\ttfamily virtual bool I\+Event\+Base\+::post\+\_\+timer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$}]{gptd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+\begin{DoxyParams}{Parameters}
+{\em gptd} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classGEventBase_ab5f27fdd5b2c6fec43967ab2e4e6bfe4}{G\+Event\+Base}}.
+
+\mbox{\Hypertarget{classIEventBase_a346ec5b87f68a6b460d58b20add6a134}\label{classIEventBase_a346ec5b87f68a6b460d58b20add6a134}} 
+\index{IEventBase@{IEventBase}!timeout@{timeout}}
+\index{timeout@{timeout}!IEventBase@{IEventBase}}
+\doxysubsubsection{\texorpdfstring{timeout()}{timeout()}}
+{\footnotesize\ttfamily virtual void$\ast$ I\+Event\+Base\+::timeout (\begin{DoxyParamCaption}\item[{int}]{due\+\_\+msec,  }\item[{int}]{period\+\_\+msec,  }\item[{void $\ast$}]{arg,  }\item[{\mbox{\hyperlink{classGEventHandler}{G\+Event\+Handler}} $\ast$}]{exist\+\_\+handler }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+setup timer 
+
+
+\begin{DoxyParams}{Parameters}
+{\em due\+\_\+msec} & millisecond for first timeout \\
+\hline
+{\em period\+\_\+msec} & millisecond for later timeout \\
+\hline
+{\em arg} & user special key \\
+\hline
+{\em exist\+\_\+handler} & re-\/use existing handler that user provided \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+timer-\/id, nullptr if failed, later user can use this to cancel timer 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classGEventBase_a3bf6f4e3c08abe252c98b8681de7bb0d}{G\+Event\+Base}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+/home/yunh/code/gevent/core/Event\+Handler.\+h\end{DoxyCompactItemize}

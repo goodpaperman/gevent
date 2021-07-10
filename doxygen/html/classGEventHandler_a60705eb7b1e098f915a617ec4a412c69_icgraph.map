@@ -1,0 +1,5 @@
+<map id="GEventHandler::send_raw" name="GEventHandler::send_raw">
+<area shape="rect" id="node1" title="send data without prewrite handling" alt="" coords="244,31,435,57"/>
+<area shape="rect" id="node2" href="$classGEventHandler.html#aaeadc9fd25d92f4c97f5429f4e4fc955" title="send string with prewrite handling" alt="" coords="21,5,180,32"/>
+<area shape="rect" id="node3" href="$classGEventHandler.html#a65daab22633c1d21c52976a2b6f77fb7" title="send string without prewrite handling" alt="" coords="5,56,196,83"/>
+</map>

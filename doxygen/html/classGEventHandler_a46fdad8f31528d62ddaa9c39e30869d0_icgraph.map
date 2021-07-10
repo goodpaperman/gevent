@@ -1,0 +1,11 @@
+<map id="GEventHandler::reset" name="GEventHandler::reset">
+<area shape="rect" id="node1" title="reset inner data status to initial" alt="" coords="1060,72,1221,99"/>
+<area shape="rect" id="node2" href="$classGEventBase.html#aa1d227594c9269194d625584aac2c16e" title="setup connection to remote server" alt="" coords="595,5,755,32"/>
+<area shape="rect" id="node5" href="$classGEventBase.html#a1c5f8a4be6a4b4b3590cd237c4e416ab" title="called when accepting a new connection" alt="" coords="837,43,1012,69"/>
+<area shape="rect" id="node6" href="$classGJsonEventHandler.html#ad48e6db8922e62be151b88c46e0580aa" title="reset inner data status to initial" alt="" coords="847,94,1002,135"/>
+<area shape="rect" id="node7" href="$classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="845,160,1005,187"/>
+<area shape="rect" id="node3" href="$classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,11,512,53"/>
+<area shape="rect" id="node4" href="$classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,11,235,53"/>
+<area shape="rect" id="node8" href="$classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="560,102,789,143"/>
+<area shape="rect" id="node9" href="$classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="283,102,512,143"/>
+</map>

@@ -1,0 +1,170 @@
+.TH "GJsonEventHandler" 3 "Sat Jul 10 2021" "Version 1.0.0" "gevent" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GJsonEventHandler \- a common handler to process json protocol\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EventHandler\&.h>\fP
+.PP
+Inherits \fBGEventHandler\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual void \fBarg\fP (void *param)"
+.br
+.RI "remember user provide data in handler "
+.ti -1c
+.RI "virtual void \fBreset\fP (\fBGEV_PER_HANDLE_DATA\fP *\fBgphd\fP, \fBGEV_PER_TIMER_DATA\fP *\fBgptd\fP, \fBIEventBase\fP *base)"
+.br
+.RI "reset inner data status to initial "
+.ti -1c
+.RI "virtual bool \fBon_read\fP (\fBGEV_PER_IO_DATA\fP *gpid)"
+.br
+.RI "connection has data arriving "
+.ti -1c
+.RI "virtual void \fBon_read_msg\fP (Json::Value const &root)=0"
+.br
+.ti -1c
+.RI "virtual bool \fBon_timeout\fP (\fBGEV_PER_TIMER_DATA\fP *\fBgptd\fP)"
+.br
+.RI "timer has due "
+.ti -1c
+.RI "virtual void \fBcleanup\fP (bool terminal)"
+.br
+.RI "shut down underline facilities "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBm_stub\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+.SH "Detailed Description"
+.PP 
+a common handler to process json protocol\&. 
+
+
+.PP
+\fBTodo\fP
+.RS 4
+just a sample how to use gevent, should move outside of core 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "void GJsonEventHandler::arg (void * param)\fC [virtual]\fP"
+
+.PP
+remember user provide data in handler 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparam\fP user provided data 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none
+.RE
+.PP
+user special data will useful to distinguish different handlers, especially for timer 
+.PP
+Implements \fBGEventHandler\fP\&.
+.SS "void GJsonEventHandler::cleanup (bool terminal)\fC [virtual]\fP"
+
+.PP
+shut down underline facilities 
+.PP
+\fBParameters\fP
+.RS 4
+\fIterminal\fP are we going to die ? 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBGEventHandler\fP\&.
+.SS "bool GJsonEventHandler::on_read (\fBGEV_PER_IO_DATA\fP * gpid)\fC [virtual]\fP"
+
+.PP
+connection has data arriving 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgpid\fP data binding to former read 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - handle ok; false - handle fail 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+user must implement this method to handle data on connection 
+.RE
+.PP
+
+.PP
+Implements \fBGEventHandler\fP\&.
+.SS "bool GJsonEventHandler::on_timeout (\fBGEV_PER_TIMER_DATA\fP * gptd)\fC [virtual]\fP"
+
+.PP
+timer has due 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgptd\fP data binding to this timer 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - handle ok; false - handle fail 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+when on_timeout called, handler's base may cleared by cancel_timer, use gptd->base instead if it is not null\&.
+.RE
+.PP
+user must implement this method to receive timer notify 
+.PP
+Implements \fBGEventHandler\fP\&.
+.SS "void GJsonEventHandler::reset (\fBGEV_PER_HANDLE_DATA\fP * gphd, \fBGEV_PER_TIMER_DATA\fP * gptd, \fBIEventBase\fP * base)\fC [virtual]\fP"
+
+.PP
+reset inner data status to initial 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgphd\fP new data per handler 
+.br
+\fIgptd\fP new data per timer 
+.br
+\fIbase\fP new EventBase 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.PP
+Reimplemented from \fBGEventHandler\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for gevent from the source code\&.

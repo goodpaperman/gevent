@@ -1,0 +1,4 @@
+<map id="GEventHandler::on_read" name="GEventHandler::on_read">
+<area shape="rect" id="node1" title="connection has data arriving" alt="" coords="215,5,395,32"/>
+<area shape="rect" id="node2" href="$classGEventBase.html#ad403372b21795bdd88be375292871149" title="called when receiving data on a connection" alt="" coords="5,5,167,32"/>
+</map>

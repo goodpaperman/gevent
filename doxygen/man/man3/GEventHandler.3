@@ -1,0 +1,502 @@
+.TH "GEventHandler" 3 "Sat Jul 10 2021" "Version 1.0.0" "gevent" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GEventHandler \- event handler binding to a connection user would better inherit it's own handler from this, and handle business in callbacks  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EventHandler\&.h>\fP
+.PP
+Inherited by \fBGJsonEventHandler\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGEV_PER_HANDLE_DATA\fP * \fBgphd\fP ()"
+.br
+.RI "return data that binding to event handler "
+.ti -1c
+.RI "\fBGEV_PER_TIMER_DATA\fP * \fBgptd\fP ()"
+.br
+.RI "return data that binding to timer handler "
+.ti -1c
+.RI "bool \fBconnected\fP ()"
+.br
+.RI "tell if we are connected "
+.ti -1c
+.RI "void \fBdisconnect\fP ()"
+.br
+.RI "break the connection "
+.ti -1c
+.RI "void \fBclear\fP ()"
+.br
+.RI "clear data status inside "
+.ti -1c
+.RI "SOCKET \fBfd\fP ()"
+.br
+.RI "return underline connection file descriptor "
+.ti -1c
+.RI "int \fBsend_raw\fP (char const *buf, int len)"
+.br
+.RI "send data without prewrite handling "
+.ti -1c
+.RI "int \fBsend_raw\fP (std::string const &str)"
+.br
+.RI "send string without prewrite handling "
+.ti -1c
+.RI "int \fBsend\fP (char const *buf, int len)"
+.br
+.RI "send data with prewrite handling "
+.ti -1c
+.RI "int \fBsend\fP (std::string const &str)"
+.br
+.RI "send string with prewrite handling "
+.ti -1c
+.RI "virtual bool \fBreuse\fP ()"
+.br
+.RI "tell EventBase whether enable reuse "
+.ti -1c
+.RI "virtual bool \fBauto_reconnect\fP ()"
+.br
+.RI "tell EventBase whether enable reconnect "
+.ti -1c
+.RI "virtual void \fBarg\fP (void *param)=0"
+.br
+.RI "remember user provide data in handler "
+.ti -1c
+.RI "virtual void \fBreset\fP (\fBGEV_PER_HANDLE_DATA\fP *\fBgphd\fP, \fBGEV_PER_TIMER_DATA\fP *\fBgptd\fP, \fBIEventBase\fP *base)"
+.br
+.RI "reset inner data status to initial "
+.ti -1c
+.RI "virtual bool \fBon_read\fP (\fBGEV_PER_IO_DATA\fP *gpid)=0"
+.br
+.RI "connection has data arriving "
+.ti -1c
+.RI "virtual void \fBon_error\fP (\fBGEV_PER_HANDLE_DATA\fP *\fBgphd\fP)"
+.br
+.RI "connection has break "
+.ti -1c
+.RI "virtual bool \fBon_timeout\fP (\fBGEV_PER_TIMER_DATA\fP *\fBgptd\fP)=0"
+.br
+.RI "timer has due "
+.ti -1c
+.RI "virtual void \fBcleanup\fP (bool terminal)"
+.br
+.RI "shut down underline facilities "
+.ti -1c
+.RI "void \fBclose\fP (bool terminal)"
+.br
+.RI "shut down socket connection "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual bool \fBhas_preread\fP () const"
+.br
+.RI "tell framework whether enable pre-read mechanism "
+.ti -1c
+.RI "virtual bool \fBhas_prewrite\fP () const"
+.br
+.RI "tell framework whether enable pre-write mechanism "
+.ti -1c
+.RI "virtual std::string \fBpre_read\fP (char const *buf, int len)"
+.br
+.RI "pre-read callbacks "
+.ti -1c
+.RI "virtual std::string \fBpre_write\fP (char const *buf, int len)"
+.br
+.RI "pre-write callbacks "
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBGEV_PER_HANDLE_DATA\fP * \fBm_gphd\fP = nullptr"
+.br
+.ti -1c
+.RI "\fBGEV_PER_TIMER_DATA\fP * \fBm_gptd\fP = nullptr"
+.br
+.ti -1c
+.RI "\fBIEventBase\fP * \fBm_base\fP = nullptr"
+.br
+.ti -1c
+.RI "SOCKET \fBm_so\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+event handler binding to a connection user would better inherit it's own handler from this, and handle business in callbacks 
+
+to do some callbacks 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual void GEventHandler::arg (void * param)\fC [pure virtual]\fP"
+
+.PP
+remember user provide data in handler 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparam\fP user provided data 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none
+.RE
+.PP
+user special data will useful to distinguish different handlers, especially for timer 
+.PP
+Implemented in \fBGJsonEventHandler\fP\&.
+.SS "bool GEventHandler::auto_reconnect ()\fC [virtual]\fP"
+
+.PP
+tell EventBase whether enable reconnect 
+.PP
+\fBReturns\fP
+.RS 4
+true - will reconnect; false - not
+.RE
+.PP
+when auto-reconnect is enabled, framework will try to re-establish the ative connection when detecting conenction break 
+.SS "void GEventHandler::cleanup (bool terminal)\fC [virtual]\fP"
+
+.PP
+shut down underline facilities 
+.PP
+\fBParameters\fP
+.RS 4
+\fIterminal\fP are we going to die ? 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBGJsonEventHandler\fP\&.
+.SS "void GEventHandler::clear ()"
+
+.PP
+clear data status inside 
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.SS "void GEventHandler::close (bool terminal)"
+
+.PP
+shut down socket connection 
+.PP
+\fBParameters\fP
+.RS 4
+\fIterminal\fP are we going to die ? 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.SS "bool GEventHandler::connected ()"
+
+.PP
+tell if we are connected 
+.PP
+\fBReturns\fP
+.RS 4
+true - connected; false - no 
+.RE
+.PP
+
+.SS "void GEventHandler::disconnect ()"
+
+.PP
+break the connection 
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.SS "SOCKET GEventHandler::fd ()"
+
+.PP
+return underline connection file descriptor 
+.PP
+\fBReturns\fP
+.RS 4
+connection 
+.RE
+.PP
+
+.SS "bool GEventHandler::has_preread () const\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+tell framework whether enable pre-read mechanism 
+.PP
+\fBReturns\fP
+.RS 4
+true - enable; false - not
+.RE
+.PP
+if pre read mechanism enabled, before each on_read called, pre_read will called first to give user a chance to prepare raw data
+.PP
+\fBthink like this:\fP
+.RS 4
+
+.PP
+.nf
+    on_read (pre_read (msg)); 
+send (pre_write (msg)); 
+
+.fi
+.PP
+ 
+.RE
+.PP
+
+.SS "bool GEventHandler::has_prewrite () const\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+tell framework whether enable pre-write mechanism 
+.PP
+\fBReturns\fP
+.RS 4
+true - enable; false - not
+.RE
+.PP
+if pre write mechanism enabled, after each send called, pre_write will called first to give user a chance to prepare raw data
+.PP
+\fBthink like this:\fP
+.RS 4
+
+.PP
+.nf
+send (pre_write (msg)); 
+
+.fi
+.PP
+ 
+.RE
+.PP
+
+.SS "void GEventHandler::on_error (\fBGEV_PER_HANDLE_DATA\fP * gphd)\fC [virtual]\fP"
+
+.PP
+connection has break 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgphd\fP data binding to this handler 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+user can implement this method to detect connection status 
+.RE
+.PP
+
+.SS "virtual bool GEventHandler::on_read (\fBGEV_PER_IO_DATA\fP * gpid)\fC [pure virtual]\fP"
+
+.PP
+connection has data arriving 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgpid\fP data binding to former read 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - handle ok; false - handle fail 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+user must implement this method to handle data on connection 
+.RE
+.PP
+
+.PP
+Implemented in \fBGJsonEventHandler\fP\&.
+.SS "virtual bool GEventHandler::on_timeout (\fBGEV_PER_TIMER_DATA\fP * gptd)\fC [pure virtual]\fP"
+
+.PP
+timer has due 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgptd\fP data binding to this timer 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+true - handle ok; false - handle fail 
+.RE
+.PP
+\fBNote\fP
+.RS 4
+when on_timeout called, handler's base may cleared by cancel_timer, use gptd->base instead if it is not null\&.
+.RE
+.PP
+user must implement this method to receive timer notify 
+.PP
+Implemented in \fBGJsonEventHandler\fP\&.
+.SS "std::string GEventHandler::pre_read (char const * buf, int len)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+pre-read callbacks 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP data will pass to on_read 
+.br
+\fIlen\fP data length will pass to on_read 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+handled data after pre_read
+.RE
+.PP
+this callback only takes effect when has_preread return true, 
+.SS "std::string GEventHandler::pre_write (char const * buf, int len)\fC [protected]\fP, \fC [virtual]\fP"
+
+.PP
+pre-write callbacks 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP data will pass to send 
+.br
+\fIlen\fP data length will pass to send 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+handled data after pre_write
+.RE
+.PP
+this callback only takes effect when has_prewrite return true, 
+.SS "void GEventHandler::reset (\fBGEV_PER_HANDLE_DATA\fP * gphd, \fBGEV_PER_TIMER_DATA\fP * gptd, \fBIEventBase\fP * base)\fC [virtual]\fP"
+
+.PP
+reset inner data status to initial 
+.PP
+\fBParameters\fP
+.RS 4
+\fIgphd\fP new data per handler 
+.br
+\fIgptd\fP new data per timer 
+.br
+\fIbase\fP new EventBase 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+none 
+.RE
+.PP
+
+.PP
+Reimplemented in \fBGJsonEventHandler\fP\&.
+.SS "bool GEventHandler::reuse ()\fC [virtual]\fP"
+
+.PP
+tell EventBase whether enable reuse 
+.PP
+\fBReturns\fP
+.RS 4
+true - will reuse; false - not when reuse is enabled, framework won't delete handler object soon after connection is closed, it is user's responsibility to free the memory 
+.RE
+.PP
+
+.SS "int GEventHandler::send (char const * buf, int len)"
+
+.PP
+send data with prewrite handling 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP data prepare to write 
+.br
+\fIlen\fP data length 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+> 0 - success; -1 failed 
+.RE
+.PP
+
+.SS "int GEventHandler::send (std::string const & str)"
+
+.PP
+send string with prewrite handling 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP string prepare to write 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+> 0 - success; -1 failed 
+.RE
+.PP
+
+.SS "int GEventHandler::send_raw (char const * buf, int len)"
+
+.PP
+send data without prewrite handling 
+.PP
+\fBParameters\fP
+.RS 4
+\fIbuf\fP data prepare to write 
+.br
+\fIlen\fP data length 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+> 0 - success; -1 failed 
+.RE
+.PP
+
+.SS "int GEventHandler::send_raw (std::string const & str)"
+
+.PP
+send string without prewrite handling 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstr\fP string prepare to write 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+> 0 - success; -1 failed 
+.RE
+.PP
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for gevent from the source code\&.

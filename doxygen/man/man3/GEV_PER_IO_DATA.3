@@ -1,0 +1,46 @@
+.TH "GEV_PER_IO_DATA" 3 "Sat Jul 10 2021" "Version 1.0.0" "gevent" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+GEV_PER_IO_DATA \- data that binding to one action, timer/accept/recv\&.\&.\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EventHandler\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBGEV_PER_IO_DATA\fP (SOCKET s, int l)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "SOCKET \fBso\fP"
+.br
+.ti -1c
+.RI "char * \fBbuf\fP"
+.br
+.ti -1c
+.RI "int \fBlen\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+data that binding to one action, timer/accept/recv\&.\&.\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "char* GEV_PER_IO_DATA::buf"
+data buffer prepared for receiving for linux 
+.SS "int GEV_PER_IO_DATA::len"
+bytes transferred after read completed on linux 
+.SS "SOCKET GEV_PER_IO_DATA::so"
+connection file descriptor 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for gevent from the source code\&.

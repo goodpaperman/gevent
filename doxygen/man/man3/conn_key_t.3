@@ -1,0 +1,58 @@
+.TH "conn_key_t" 3 "Sat Jul 10 2021" "Version 1.0.0" "gevent" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+conn_key_t \- key information for a connection  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EventHandler\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBconn_key_t\fP (int f, unsigned short l, unsigned short r)"
+.br
+.ti -1c
+.RI "bool \fBoperator<\fP (struct \fBconn_key_t\fP const &rhs) const"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBfd\fP"
+.br
+.ti -1c
+.RI "unsigned short \fBlport\fP"
+.br
+.ti -1c
+.RI "unsigned short \fBrport\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+key information for a connection 
+
+
+.PP
+\fBNote\fP
+.RS 4
+the purpose of this key is to distinguish different connections with same fd ! (when connection break and re-established soon, fd may not change but port will change) 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "int conn_key_t::fd"
+connection file descriptor 
+.SS "unsigned short conn_key_t::lport"
+local port 
+.SS "unsigned short conn_key_t::rport"
+remote port 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for gevent from the source code\&.

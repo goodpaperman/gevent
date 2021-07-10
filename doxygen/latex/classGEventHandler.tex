@@ -1,0 +1,712 @@
+\hypertarget{classGEventHandler}{}\doxysection{G\+Event\+Handler Class Reference}
+\label{classGEventHandler}\index{GEventHandler@{GEventHandler}}
+
+
+event handler binding to a connection user would better inherit it\textquotesingle{}s own handler from this, and handle business in callbacks  
+
+
+
+
+{\ttfamily \#include $<$Event\+Handler.\+h$>$}
+
+
+
+Inheritance diagram for G\+Event\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{classGEventHandler__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for G\+Event\+Handler\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGEventHandler_aacf4ca9d8f01ec42078e5bfc71f6f481}\label{classGEventHandler_aacf4ca9d8f01ec42078e5bfc71f6f481}} 
+\mbox{\hyperlink{structGEV__PER__HANDLE__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+TA}} $\ast$ \mbox{\hyperlink{classGEventHandler_aacf4ca9d8f01ec42078e5bfc71f6f481}{gphd}} ()
+\begin{DoxyCompactList}\small\item\em return data that binding to event handler \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classGEventHandler_a2ebca4f4917ed8448d7445f5db213ec0}\label{classGEventHandler_a2ebca4f4917ed8448d7445f5db213ec0}} 
+\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$ \mbox{\hyperlink{classGEventHandler_a2ebca4f4917ed8448d7445f5db213ec0}{gptd}} ()
+\begin{DoxyCompactList}\small\item\em return data that binding to timer handler \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGEventHandler_aa46b1b1a237b0d3b45ac9ded13bd2f62}{connected}} ()
+\begin{DoxyCompactList}\small\item\em tell if we are connected \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGEventHandler_ad32a72de41209ac6f3b1cda20d589710}{disconnect}} ()
+\begin{DoxyCompactList}\small\item\em break the connection \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGEventHandler_acadb5910375db04086305562ca5912b1}{clear}} ()
+\begin{DoxyCompactList}\small\item\em clear data status inside \end{DoxyCompactList}\item 
+S\+O\+C\+K\+ET \mbox{\hyperlink{classGEventHandler_a13394ee93e54599e5e6d74ed32890d05}{fd}} ()
+\begin{DoxyCompactList}\small\item\em return underline connection file descriptor \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGEventHandler_a60705eb7b1e098f915a617ec4a412c69}{send\+\_\+raw}} (char const $\ast$buf, int len)
+\begin{DoxyCompactList}\small\item\em send data without prewrite handling \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGEventHandler_a65daab22633c1d21c52976a2b6f77fb7}{send\+\_\+raw}} (std\+::string const \&str)
+\begin{DoxyCompactList}\small\item\em send string without prewrite handling \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGEventHandler_ab54ba39d033eb14702a75b09f6204f91}{send}} (char const $\ast$buf, int len)
+\begin{DoxyCompactList}\small\item\em send data with prewrite handling \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classGEventHandler_aaeadc9fd25d92f4c97f5429f4e4fc955}{send}} (std\+::string const \&str)
+\begin{DoxyCompactList}\small\item\em send string with prewrite handling \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGEventHandler_a316e1484f5e7eae5babf0a31cf4c8662}{reuse}} ()
+\begin{DoxyCompactList}\small\item\em tell Event\+Base whether enable reuse \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGEventHandler_adbde5d19f12e8ed35da6b929ed457636}{auto\+\_\+reconnect}} ()
+\begin{DoxyCompactList}\small\item\em tell Event\+Base whether enable reconnect \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGEventHandler_a462e1f2488d935220f2ec876e5361962}{arg}} (void $\ast$param)=0
+\begin{DoxyCompactList}\small\item\em remember user provide data in handler \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGEventHandler_a46fdad8f31528d62ddaa9c39e30869d0}{reset}} (\mbox{\hyperlink{structGEV__PER__HANDLE__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+TA}} $\ast$\mbox{\hyperlink{classGEventHandler_aacf4ca9d8f01ec42078e5bfc71f6f481}{gphd}}, \mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$\mbox{\hyperlink{classGEventHandler_a2ebca4f4917ed8448d7445f5db213ec0}{gptd}}, \mbox{\hyperlink{classIEventBase}{I\+Event\+Base}} $\ast$base)
+\begin{DoxyCompactList}\small\item\em reset inner data status to initial \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGEventHandler_a425ff88197f72dab091072cb4737d68f}{on\+\_\+read}} (\mbox{\hyperlink{structGEV__PER__IO__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+I\+O\+\_\+\+D\+A\+TA}} $\ast$gpid)=0
+\begin{DoxyCompactList}\small\item\em connection has data arriving \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGEventHandler_a3f3e88c7a2dbcf5d866acddbbf034fd7}{on\+\_\+error}} (\mbox{\hyperlink{structGEV__PER__HANDLE__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+TA}} $\ast$\mbox{\hyperlink{classGEventHandler_aacf4ca9d8f01ec42078e5bfc71f6f481}{gphd}})
+\begin{DoxyCompactList}\small\item\em connection has break \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGEventHandler_a75f04e2b25bf9234793949a3f367445a}{on\+\_\+timeout}} (\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$\mbox{\hyperlink{classGEventHandler_a2ebca4f4917ed8448d7445f5db213ec0}{gptd}})=0
+\begin{DoxyCompactList}\small\item\em timer has due \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classGEventHandler_a5ef79153519c6c98a2e00d3f193ad07d}{cleanup}} (bool terminal)
+\begin{DoxyCompactList}\small\item\em shut down underline facilities \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGEventHandler_a1cb354fe801eb4dec03a407299bf6b06}{close}} (bool terminal)
+\begin{DoxyCompactList}\small\item\em shut down socket connection \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{classGEventHandler_a2fef525ce68774fbffa2bd591cce2cbc}{has\+\_\+preread}} () const
+\begin{DoxyCompactList}\small\item\em tell framework whether enable pre-\/read mechanism \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{classGEventHandler_a7b85b58fb8ad7553f853763e6b3b5b2a}{has\+\_\+prewrite}} () const
+\begin{DoxyCompactList}\small\item\em tell framework whether enable pre-\/write mechanism \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classGEventHandler_ad28ff16d092359ec82a93be86a621452}{pre\+\_\+read}} (char const $\ast$buf, int len)
+\begin{DoxyCompactList}\small\item\em pre-\/read callbacks \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{classGEventHandler_a86c7010d3863fc37ff256e56c3a6073d}{pre\+\_\+write}} (char const $\ast$buf, int len)
+\begin{DoxyCompactList}\small\item\em pre-\/write callbacks \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGEventHandler_a88c3b5fc1a37415eaa87b3edfe2dee3e}\label{classGEventHandler_a88c3b5fc1a37415eaa87b3edfe2dee3e}} 
+\mbox{\hyperlink{structGEV__PER__HANDLE__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+TA}} $\ast$ {\bfseries m\+\_\+gphd} = nullptr
+\item 
+\mbox{\Hypertarget{classGEventHandler_aecb93c84cafbd857700dd0defe809aec}\label{classGEventHandler_aecb93c84cafbd857700dd0defe809aec}} 
+\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$ {\bfseries m\+\_\+gptd} = nullptr
+\item 
+\mbox{\Hypertarget{classGEventHandler_a3b5e0795c291158869d0e67c985ee055}\label{classGEventHandler_a3b5e0795c291158869d0e67c985ee055}} 
+\mbox{\hyperlink{classIEventBase}{I\+Event\+Base}} $\ast$ {\bfseries m\+\_\+base} = nullptr
+\item 
+\mbox{\Hypertarget{classGEventHandler_a2093adee43de607cd33bd03244a50013}\label{classGEventHandler_a2093adee43de607cd33bd03244a50013}} 
+S\+O\+C\+K\+ET {\bfseries m\+\_\+so}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+event handler binding to a connection user would better inherit it\textquotesingle{}s own handler from this, and handle business in callbacks 
+
+to do some callbacks 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGEventHandler_a462e1f2488d935220f2ec876e5361962}\label{classGEventHandler_a462e1f2488d935220f2ec876e5361962}} 
+\index{GEventHandler@{GEventHandler}!arg@{arg}}
+\index{arg@{arg}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{arg()}{arg()}}
+{\footnotesize\ttfamily virtual void G\+Event\+Handler\+::arg (\begin{DoxyParamCaption}\item[{void $\ast$}]{param }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+remember user provide data in handler 
+
+
+\begin{DoxyParams}{Parameters}
+{\em param} & user provided data \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none
+\end{DoxyReturn}
+user special data will useful to distinguish different handlers, especially for timer 
+
+Implemented in \mbox{\hyperlink{classGJsonEventHandler_a3da03eea54e3da70b6d63901abcc8793}{G\+Json\+Event\+Handler}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a462e1f2488d935220f2ec876e5361962_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_adbde5d19f12e8ed35da6b929ed457636}\label{classGEventHandler_adbde5d19f12e8ed35da6b929ed457636}} 
+\index{GEventHandler@{GEventHandler}!auto\_reconnect@{auto\_reconnect}}
+\index{auto\_reconnect@{auto\_reconnect}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{auto\_reconnect()}{auto\_reconnect()}}
+{\footnotesize\ttfamily bool G\+Event\+Handler\+::auto\+\_\+reconnect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+tell Event\+Base whether enable reconnect 
+
+\begin{DoxyReturn}{Returns}
+true -\/ will reconnect; false -\/ not
+\end{DoxyReturn}
+when auto-\/reconnect is enabled, framework will try to re-\/establish the ative connection when detecting conenction break \mbox{\Hypertarget{classGEventHandler_a5ef79153519c6c98a2e00d3f193ad07d}\label{classGEventHandler_a5ef79153519c6c98a2e00d3f193ad07d}} 
+\index{GEventHandler@{GEventHandler}!cleanup@{cleanup}}
+\index{cleanup@{cleanup}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{cleanup()}{cleanup()}}
+{\footnotesize\ttfamily void G\+Event\+Handler\+::cleanup (\begin{DoxyParamCaption}\item[{bool}]{terminal }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+shut down underline facilities 
+
+
+\begin{DoxyParams}{Parameters}
+{\em terminal} & are we going to die ? \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classGJsonEventHandler_ab1e6c90b6bd50df406e1933001c810f9}{G\+Json\+Event\+Handler}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a5ef79153519c6c98a2e00d3f193ad07d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_acadb5910375db04086305562ca5912b1}\label{classGEventHandler_acadb5910375db04086305562ca5912b1}} 
+\index{GEventHandler@{GEventHandler}!clear@{clear}}
+\index{clear@{clear}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void G\+Event\+Handler\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+clear data status inside 
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_acadb5910375db04086305562ca5912b1_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a1cb354fe801eb4dec03a407299bf6b06}\label{classGEventHandler_a1cb354fe801eb4dec03a407299bf6b06}} 
+\index{GEventHandler@{GEventHandler}!close@{close}}
+\index{close@{close}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily void G\+Event\+Handler\+::close (\begin{DoxyParamCaption}\item[{bool}]{terminal }\end{DoxyParamCaption})}
+
+
+
+shut down socket connection 
+
+
+\begin{DoxyParams}{Parameters}
+{\em terminal} & are we going to die ? \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a1cb354fe801eb4dec03a407299bf6b06_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a1cb354fe801eb4dec03a407299bf6b06_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_aa46b1b1a237b0d3b45ac9ded13bd2f62}\label{classGEventHandler_aa46b1b1a237b0d3b45ac9ded13bd2f62}} 
+\index{GEventHandler@{GEventHandler}!connected@{connected}}
+\index{connected@{connected}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{connected()}{connected()}}
+{\footnotesize\ttfamily bool G\+Event\+Handler\+::connected (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+tell if we are connected 
+
+\begin{DoxyReturn}{Returns}
+true -\/ connected; false -\/ no 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_aa46b1b1a237b0d3b45ac9ded13bd2f62_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_ad32a72de41209ac6f3b1cda20d589710}\label{classGEventHandler_ad32a72de41209ac6f3b1cda20d589710}} 
+\index{GEventHandler@{GEventHandler}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{disconnect()}{disconnect()}}
+{\footnotesize\ttfamily void G\+Event\+Handler\+::disconnect (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+break the connection 
+
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_ad32a72de41209ac6f3b1cda20d589710_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a13394ee93e54599e5e6d74ed32890d05}\label{classGEventHandler_a13394ee93e54599e5e6d74ed32890d05}} 
+\index{GEventHandler@{GEventHandler}!fd@{fd}}
+\index{fd@{fd}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{fd()}{fd()}}
+{\footnotesize\ttfamily S\+O\+C\+K\+ET G\+Event\+Handler\+::fd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+return underline connection file descriptor 
+
+\begin{DoxyReturn}{Returns}
+connection 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a13394ee93e54599e5e6d74ed32890d05_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a2fef525ce68774fbffa2bd591cce2cbc}\label{classGEventHandler_a2fef525ce68774fbffa2bd591cce2cbc}} 
+\index{GEventHandler@{GEventHandler}!has\_preread@{has\_preread}}
+\index{has\_preread@{has\_preread}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{has\_preread()}{has\_preread()}}
+{\footnotesize\ttfamily bool G\+Event\+Handler\+::has\+\_\+preread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+tell framework whether enable pre-\/read mechanism 
+
+\begin{DoxyReturn}{Returns}
+true -\/ enable; false -\/ not
+\end{DoxyReturn}
+if pre read mechanism enabled, before each on\+\_\+read called, pre\+\_\+read will called first to give user a chance to prepare raw data
+
+\begin{DoxyParagraph}{think like this\+:}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{    \mbox{\hyperlink{classGEventHandler_a425ff88197f72dab091072cb4737d68f}{on\_read}} (\mbox{\hyperlink{classGEventHandler_ad28ff16d092359ec82a93be86a621452}{pre\_read}} (msg)); }
+\DoxyCodeLine{\mbox{\hyperlink{classGEventHandler_ab54ba39d033eb14702a75b09f6204f91}{send}} (\mbox{\hyperlink{classGEventHandler_a86c7010d3863fc37ff256e56c3a6073d}{pre\_write}} (msg)); }
+\end{DoxyCode}
+ 
+\end{DoxyParagraph}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=345pt]{classGEventHandler_a2fef525ce68774fbffa2bd591cce2cbc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a7b85b58fb8ad7553f853763e6b3b5b2a}\label{classGEventHandler_a7b85b58fb8ad7553f853763e6b3b5b2a}} 
+\index{GEventHandler@{GEventHandler}!has\_prewrite@{has\_prewrite}}
+\index{has\_prewrite@{has\_prewrite}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{has\_prewrite()}{has\_prewrite()}}
+{\footnotesize\ttfamily bool G\+Event\+Handler\+::has\+\_\+prewrite (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+tell framework whether enable pre-\/write mechanism 
+
+\begin{DoxyReturn}{Returns}
+true -\/ enable; false -\/ not
+\end{DoxyReturn}
+if pre write mechanism enabled, after each send called, pre\+\_\+write will called first to give user a chance to prepare raw data
+
+\begin{DoxyParagraph}{think like this\+:}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classGEventHandler_ab54ba39d033eb14702a75b09f6204f91}{send}} (\mbox{\hyperlink{classGEventHandler_a86c7010d3863fc37ff256e56c3a6073d}{pre\_write}} (msg)); }
+\end{DoxyCode}
+ 
+\end{DoxyParagraph}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=348pt]{classGEventHandler_a7b85b58fb8ad7553f853763e6b3b5b2a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a3f3e88c7a2dbcf5d866acddbbf034fd7}\label{classGEventHandler_a3f3e88c7a2dbcf5d866acddbbf034fd7}} 
+\index{GEventHandler@{GEventHandler}!on\_error@{on\_error}}
+\index{on\_error@{on\_error}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{on\_error()}{on\_error()}}
+{\footnotesize\ttfamily void G\+Event\+Handler\+::on\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__HANDLE__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+TA}} $\ast$}]{gphd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+connection has break 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gphd} & data binding to this handler \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+user can implement this method to detect connection status 
+\end{DoxyNote}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a3f3e88c7a2dbcf5d866acddbbf034fd7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a3f3e88c7a2dbcf5d866acddbbf034fd7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a425ff88197f72dab091072cb4737d68f}\label{classGEventHandler_a425ff88197f72dab091072cb4737d68f}} 
+\index{GEventHandler@{GEventHandler}!on\_read@{on\_read}}
+\index{on\_read@{on\_read}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{on\_read()}{on\_read()}}
+{\footnotesize\ttfamily virtual bool G\+Event\+Handler\+::on\+\_\+read (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__IO__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+I\+O\+\_\+\+D\+A\+TA}} $\ast$}]{gpid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+connection has data arriving 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gpid} & data binding to former read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true -\/ handle ok; false -\/ handle fail 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+user must implement this method to handle data on connection 
+\end{DoxyNote}
+
+
+Implemented in \mbox{\hyperlink{classGJsonEventHandler_ab9a48d231da261af272029539041333c}{G\+Json\+Event\+Handler}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a425ff88197f72dab091072cb4737d68f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a75f04e2b25bf9234793949a3f367445a}\label{classGEventHandler_a75f04e2b25bf9234793949a3f367445a}} 
+\index{GEventHandler@{GEventHandler}!on\_timeout@{on\_timeout}}
+\index{on\_timeout@{on\_timeout}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{on\_timeout()}{on\_timeout()}}
+{\footnotesize\ttfamily virtual bool G\+Event\+Handler\+::on\+\_\+timeout (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$}]{gptd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+timer has due 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gptd} & data binding to this timer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true -\/ handle ok; false -\/ handle fail 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+when on\+\_\+timeout called, handler\textquotesingle{}s base may cleared by cancel\+\_\+timer, use gptd-\/$>$base instead if it is not null.
+\end{DoxyNote}
+user must implement this method to receive timer notify 
+
+Implemented in \mbox{\hyperlink{classGJsonEventHandler_ad23534c42ea2a79de450205bc322ccda}{G\+Json\+Event\+Handler}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a75f04e2b25bf9234793949a3f367445a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_ad28ff16d092359ec82a93be86a621452}\label{classGEventHandler_ad28ff16d092359ec82a93be86a621452}} 
+\index{GEventHandler@{GEventHandler}!pre\_read@{pre\_read}}
+\index{pre\_read@{pre\_read}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{pre\_read()}{pre\_read()}}
+{\footnotesize\ttfamily std\+::string G\+Event\+Handler\+::pre\+\_\+read (\begin{DoxyParamCaption}\item[{char const $\ast$}]{buf,  }\item[{int}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+pre-\/read callbacks 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & data will pass to on\+\_\+read \\
+\hline
+{\em len} & data length will pass to on\+\_\+read \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+handled data after pre\+\_\+read
+\end{DoxyReturn}
+this callback only takes effect when has\+\_\+preread return true, Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_ad28ff16d092359ec82a93be86a621452_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a86c7010d3863fc37ff256e56c3a6073d}\label{classGEventHandler_a86c7010d3863fc37ff256e56c3a6073d}} 
+\index{GEventHandler@{GEventHandler}!pre\_write@{pre\_write}}
+\index{pre\_write@{pre\_write}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{pre\_write()}{pre\_write()}}
+{\footnotesize\ttfamily std\+::string G\+Event\+Handler\+::pre\+\_\+write (\begin{DoxyParamCaption}\item[{char const $\ast$}]{buf,  }\item[{int}]{len }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+pre-\/write callbacks 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & data will pass to send \\
+\hline
+{\em len} & data length will pass to send \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+handled data after pre\+\_\+write
+\end{DoxyReturn}
+this callback only takes effect when has\+\_\+prewrite return true, Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=347pt]{classGEventHandler_a86c7010d3863fc37ff256e56c3a6073d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a46fdad8f31528d62ddaa9c39e30869d0}\label{classGEventHandler_a46fdad8f31528d62ddaa9c39e30869d0}} 
+\index{GEventHandler@{GEventHandler}!reset@{reset}}
+\index{reset@{reset}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily void G\+Event\+Handler\+::reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structGEV__PER__HANDLE__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+H\+A\+N\+D\+L\+E\+\_\+\+D\+A\+TA}} $\ast$}]{gphd,  }\item[{\mbox{\hyperlink{structGEV__PER__TIMER__DATA}{G\+E\+V\+\_\+\+P\+E\+R\+\_\+\+T\+I\+M\+E\+R\+\_\+\+D\+A\+TA}} $\ast$}]{gptd,  }\item[{\mbox{\hyperlink{classIEventBase}{I\+Event\+Base}} $\ast$}]{base }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+reset inner data status to initial 
+
+
+\begin{DoxyParams}{Parameters}
+{\em gphd} & new data per handler \\
+\hline
+{\em gptd} & new data per timer \\
+\hline
+{\em base} & new Event\+Base \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+none 
+\end{DoxyReturn}
+
+
+Reimplemented in \mbox{\hyperlink{classGJsonEventHandler_ad48e6db8922e62be151b88c46e0580aa}{G\+Json\+Event\+Handler}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a46fdad8f31528d62ddaa9c39e30869d0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a46fdad8f31528d62ddaa9c39e30869d0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a316e1484f5e7eae5babf0a31cf4c8662}\label{classGEventHandler_a316e1484f5e7eae5babf0a31cf4c8662}} 
+\index{GEventHandler@{GEventHandler}!reuse@{reuse}}
+\index{reuse@{reuse}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{reuse()}{reuse()}}
+{\footnotesize\ttfamily bool G\+Event\+Handler\+::reuse (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+tell Event\+Base whether enable reuse 
+
+\begin{DoxyReturn}{Returns}
+true -\/ will reuse; false -\/ not when reuse is enabled, framework won\textquotesingle{}t delete handler object soon after connection is closed, it is user\textquotesingle{}s responsibility to free the memory 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a316e1484f5e7eae5babf0a31cf4c8662_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_ab54ba39d033eb14702a75b09f6204f91}\label{classGEventHandler_ab54ba39d033eb14702a75b09f6204f91}} 
+\index{GEventHandler@{GEventHandler}!send@{send}}
+\index{send@{send}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int G\+Event\+Handler\+::send (\begin{DoxyParamCaption}\item[{char const $\ast$}]{buf,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+send data with prewrite handling 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & data prepare to write \\
+\hline
+{\em len} & data length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$ 0 -\/ success; -\/1 failed 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_ab54ba39d033eb14702a75b09f6204f91_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_ab54ba39d033eb14702a75b09f6204f91_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_aaeadc9fd25d92f4c97f5429f4e4fc955}\label{classGEventHandler_aaeadc9fd25d92f4c97f5429f4e4fc955}} 
+\index{GEventHandler@{GEventHandler}!send@{send}}
+\index{send@{send}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{send()}{send()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int G\+Event\+Handler\+::send (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{str }\end{DoxyParamCaption})}
+
+
+
+send string with prewrite handling 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & string prepare to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$ 0 -\/ success; -\/1 failed 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_aaeadc9fd25d92f4c97f5429f4e4fc955_cgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a60705eb7b1e098f915a617ec4a412c69}\label{classGEventHandler_a60705eb7b1e098f915a617ec4a412c69}} 
+\index{GEventHandler@{GEventHandler}!send\_raw@{send\_raw}}
+\index{send\_raw@{send\_raw}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{send\_raw()}{send\_raw()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily int G\+Event\+Handler\+::send\+\_\+raw (\begin{DoxyParamCaption}\item[{char const $\ast$}]{buf,  }\item[{int}]{len }\end{DoxyParamCaption})}
+
+
+
+send data without prewrite handling 
+
+
+\begin{DoxyParams}{Parameters}
+{\em buf} & data prepare to write \\
+\hline
+{\em len} & data length \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$ 0 -\/ success; -\/1 failed 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a60705eb7b1e098f915a617ec4a412c69_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a60705eb7b1e098f915a617ec4a412c69_icgraph}
+\end{center}
+\end{figure}
+\mbox{\Hypertarget{classGEventHandler_a65daab22633c1d21c52976a2b6f77fb7}\label{classGEventHandler_a65daab22633c1d21c52976a2b6f77fb7}} 
+\index{GEventHandler@{GEventHandler}!send\_raw@{send\_raw}}
+\index{send\_raw@{send\_raw}!GEventHandler@{GEventHandler}}
+\doxysubsubsection{\texorpdfstring{send\_raw()}{send\_raw()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily int G\+Event\+Handler\+::send\+\_\+raw (\begin{DoxyParamCaption}\item[{std\+::string const \&}]{str }\end{DoxyParamCaption})}
+
+
+
+send string without prewrite handling 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & string prepare to write \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+$>$ 0 -\/ success; -\/1 failed 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classGEventHandler_a65daab22633c1d21c52976a2b6f77fb7_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+/home/yunh/code/gevent/core/Event\+Handler.\+h\item 
+/home/yunh/code/gevent/core/Event\+Handler.\+cpp\end{DoxyCompactItemize}

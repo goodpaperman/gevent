@@ -1,0 +1,7 @@
+<map id="GEventHandler::send_raw" name="GEventHandler::send_raw">
+<area shape="rect" id="node1" title="send string without prewrite handling" alt="" coords="5,46,196,73"/>
+<area shape="rect" id="node2" href="$classGEventHandler.html#a60705eb7b1e098f915a617ec4a412c69" title="send data without prewrite handling" alt="" coords="244,46,435,73"/>
+<area shape="rect" id="node3" href="$classGEventHandler.html#ab54ba39d033eb14702a75b09f6204f91" title="send data with prewrite handling" alt="" coords="483,46,641,73"/>
+<area shape="rect" id="node4" href="$classGEventHandler.html#a7b85b58fb8ad7553f853763e6b3b5b2a" title="tell framework whether enable pre&#45;write mechanism" alt="" coords="689,5,840,47"/>
+<area shape="rect" id="node5" href="$classGEventHandler.html#a86c7010d3863fc37ff256e56c3a6073d" title="pre&#45;write callbacks" alt="" coords="690,71,839,112"/>
+</map>

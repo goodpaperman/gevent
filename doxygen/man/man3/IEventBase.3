@@ -1,0 +1,93 @@
+.TH "IEventBase" 3 "Sat Jul 10 2021" "Version 1.0.0" "gevent" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+IEventBase \- abstract interface for all EventBase  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <EventHandler\&.h>\fP
+.PP
+Inherited by \fBGEventBase\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "virtual int \fBepfd\fP () const =0"
+.br
+.RI "get underline event poll fd on linux "
+.ti -1c
+.RI "virtual void * \fBtimeout\fP (int due_msec, int period_msec, void *arg, \fBGEventHandler\fP *exist_handler)=0"
+.br
+.RI "setup timer "
+.ti -1c
+.RI "virtual bool \fBcancel_timer\fP (void *tid)=0"
+.br
+.RI "cancel existing timer @tid timer-id that @fun timeout returns "
+.ti -1c
+.RI "virtual bool \fBpost_timer\fP (\fBGEV_PER_TIMER_DATA\fP *gptd)=0"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+abstract interface for all EventBase 
+.SH "Member Function Documentation"
+.PP 
+.SS "virtual bool IEventBase::cancel_timer (void * tid)\fC [pure virtual]\fP"
+
+.PP
+cancel existing timer @tid timer-id that @fun timeout returns 
+.PP
+\fBReturns\fP
+.RS 4
+true for success; false for failure 
+.RE
+.PP
+
+.PP
+Implemented in \fBGEventBase\fP\&.
+.SS "virtual bool IEventBase::post_timer (\fBGEV_PER_TIMER_DATA\fP * gptd)\fC [pure virtual]\fP"
+
+.PP
+\fBParameters\fP
+.RS 4
+\fIgptd\fP 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+.RE
+.PP
+
+.PP
+Implemented in \fBGEventBase\fP\&.
+.SS "virtual void* IEventBase::timeout (int due_msec, int period_msec, void * arg, \fBGEventHandler\fP * exist_handler)\fC [pure virtual]\fP"
+
+.PP
+setup timer 
+.PP
+\fBParameters\fP
+.RS 4
+\fIdue_msec\fP millisecond for first timeout 
+.br
+\fIperiod_msec\fP millisecond for later timeout 
+.br
+\fIarg\fP user special key 
+.br
+\fIexist_handler\fP re-use existing handler that user provided 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+timer-id, nullptr if failed, later user can use this to cancel timer 
+.RE
+.PP
+
+.PP
+Implemented in \fBGEventBase\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for gevent from the source code\&.
