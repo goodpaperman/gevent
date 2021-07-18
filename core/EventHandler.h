@@ -45,21 +45,24 @@ public:
      * @param period_msec millisecond for later timeout
      * @param arg user special key
      * @param exist_handler re-use existing handler that user provided
-     * @return timer-id, nullptr if failed, later user can use this to cancel timer
+     * @retval timer-id, later user can use this to cancel timer
+     * @retval nullptr if failed
      */
     virtual void* timeout(int due_msec, int period_msec, void *arg, GEventHandler *exist_handler) = 0; 
 
     /** 
      * @brief cancel existing timer
      * @param tid timer-id that timeout returns
-     * @return true for success; false for failure
+     * @retval true - success
+     * @retval false - failure
      */
     virtual bool cancel_timer(void* tid) = 0; 
 
     /**
      * @brief when timer due in underline system timer facility, notify event engine to do timer callbacks
      * @param gptd data binding to due timer
-     * @return true: notify ok; false: not
+     * @retval true - notify ok
+     * @retval false - notify failed
      */
     virtual bool post_timer(GEV_PER_TIMER_DATA *gptd) = 0; 
 };
@@ -181,7 +184,8 @@ public:
 
     /**
      * @brief tell if we are connected
-     * @return true - connected; false - no
+     * @retval true - connected
+     * @retval false - not
      */
     bool connected();
 
@@ -201,14 +205,16 @@ public:
      * @brief send data without prewrite handling
      * @param buf data prepare to write
      * @param len data length
-     * @return > 0 - success; -1 failed
+     * @retval >0 - success
+     * @retval -1 - failed
      */
     int send_raw(char const* buf, int len);
 
     /**
      * @brief send string without prewrite handling
      * @param str string prepare to write
-     * @return > 0 - success; -1 failed
+     * @retval >0 - success
+     * @retval -1 - failed
      */
     int send_raw(std::string const& str); 
 
@@ -216,20 +222,23 @@ public:
      * @brief send data with prewrite handling
      * @param buf data prepare to write
      * @param len data length
-     * @return > 0 - success; -1 failed
+     * @retval >0 - success
+     * @retval -1 - failed
      */
     int send(char const* buf, int len);
 
     /**
      * @brief send string with prewrite handling
      * @param str string prepare to write
-     * @return > 0 - success; -1 failed
+     * @retval >0 - success
+     * @retval -1 - failed
      */
     int send(std::string const& str);
     
     /**
      * @brief tell EventBase whether enable reuse
-     * @return true - will reuse; false - not
+     * @retval true - will reuse
+     * @retval false - no reuse
      *
      * when reuse is enabled, framework won't delete handler object soon
      * after connection is closed, it is user's responsibility to 
@@ -239,7 +248,8 @@ public:
 
     /**
      * @brief tell EventBase whether enable reconnect
-     * @return true - will reconnect; false - not
+     * @retval true - will reconnect
+     * @retval false - no reconnect
      *
      * when auto-reconnect is enabled, framework will try to 
      * re-establish the ative connection when detecting
@@ -267,7 +277,8 @@ public:
      * @brief connection has data arriving 
      * @param gpid data binding to former read
      * @note user must implement this method to handle data on connection
-     * @return true - handle ok; false - handle fail
+     * @retval true - handle ok
+     * @retval false - handle fail
      */
     virtual bool on_read(GEV_PER_IO_DATA *gpid) = 0;
 
@@ -281,7 +292,8 @@ public:
     /**
      * @brief timer has due
      * @param gptd data binding to this timer
-     * @return true - handle ok; false - handle fail
+     * @retval true - handle ok
+     * @retval false - handle fail
      * @note when on_timeout called, handler's base may cleared by cancel_timer, 
      * use gptd->base instead if it is not null.
      * user must implement this method to receive timer notify
@@ -303,7 +315,8 @@ public:
 protected:
     /**
      * @brief tell framework whether enable pre-read mechanism
-     * @return true - enable; false - not
+     * @retval true - enable
+     * @retval false - disable
      * 
      * if pre read mechanism enabled, 
      * before each on_read called, 
@@ -319,7 +332,8 @@ protected:
 
     /**
      * @brief tell framework whether enable pre-write mechanism
-     * @return true - enable; false - not
+     * @retval true - enable
+     * @retval false - disable
      * 
      * if pre write mechanism enabled, 
      * after each send called, 

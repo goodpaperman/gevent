@@ -48,7 +48,8 @@ public:
      * - >0 - use thr_num
      * @param blksize buffer size for single event
      * @param timer_sig signal number for timer on linux
-     * @return true - initialize ok; false - failed
+     * @retval true - initialize ok
+     * @retval false - failed
      * @note user must call this method before others
      */
     bool init(int thr_num = -8, int blksize = GEV_MAX_BUF_SIZE
@@ -61,7 +62,8 @@ public:
      * @brief setup local listener for accept new connection
      * @param port listen port 
      * @param backup listen queue size
-     * @return true - listen ok; false - failed
+     * @retval true - listen ok
+     * @retval false - failed
      * @note user only call this method when to be a server
      */
     bool listen(unsigned short port, unsigned short backup = 10);
@@ -82,7 +84,8 @@ public:
      * @param period_msec periodic timer timeout milli-second
      * @param arg user special data
      * @exist_handler handler reuse if there a one
-     * @return timer-id if success; nullptr if failed
+     * @retval timer-id if success
+     * @retval nullptr if failed
      * @note user only call this method when having timer task
      */
     void* timeout(int due_msec, int period_msec, void *arg, GEventHandler *exist_handler);
@@ -111,7 +114,6 @@ public:
      * @param extra_notify some thread may call run but not in \n
      *        our thread pool, use this to do exit notify, \n
      *        how many thread runs, how many notification needs.
-     * @return none
      * @note after exit, all thread stopped, but event base status not cleaned
      */
     void exit(int extra_notify = 0); 
@@ -143,7 +145,8 @@ protected:
     /**
      * @brief called when accepting a new connection
      * @param gphd data binding to new connection
-     * @return true - dispatch accept event ok; false - failed
+     * @retval true - dispatch accept event ok
+     * @retval false - failed
      */
     virtual bool on_accept(GEV_PER_HANDLE_DATA *gphd);
 
@@ -151,7 +154,8 @@ protected:
      * @brief called when receiving data on a connection
      * @param h handler binding to that connection
      * @param gpid data binding to that action
-     * @return true - dispatch read event ok; false - failed
+     * @retval true - dispatch read event ok
+     * @retval false - failed
      */
     virtual bool on_read(GEventHandler *h, GEV_PER_IO_DATA *gpid); 
 
@@ -164,14 +168,16 @@ protected:
     /** 
      * @brief called when timer due
      * @param gptd data binding to that timer
-     * @return true - dispatch timer event ok; false - failed
+     * @retval true - dispatch timer event ok
+     * @retval false - failed
      */
 	virtual bool on_timeout (GEV_PER_TIMER_DATA *gptd); 
 
     /**
      * @brief called when for_each traverse handlers
      * @param h handler will traverse
-     * @return true - allow access; false - skip
+     * @retval true - allow access
+     * @retval false - skip
      */
     virtual bool filter_handler(GEventHandler *h); 
 

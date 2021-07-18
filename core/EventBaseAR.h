@@ -35,7 +35,8 @@ public:
      * @param port server port
      * @param host server host
      * @param arg user special data
-     * @return true - connection ok; false - failed
+     * @retval true - connection ok
+     * @retval false - failed
      * @note only different with connect is the auto-reconnect character
      */
     bool do_connect(unsigned short port, char const* host = "127.0.0.1", void *arg = nullptr);
@@ -60,7 +61,8 @@ protected:
     /**
      * @brief called when connection established
      * @param app handler binding to new connection
-     * @return true - process ok; false - falied
+     * @retval true - process ok
+     * @retval false - falied
      * 
      * do initialize work at this point
      */
