@@ -1,7 +1,9 @@
 #pragma once
 
 /**
- * @brief utility log functions
+ * @file log facilities
+ * @brief log utility functions
+ *
  * output log to file
  */
 

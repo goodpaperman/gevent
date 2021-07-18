@@ -26,21 +26,16 @@ struct GEV_PER_TIMER_DATA;
 /**
  * @class IEventBase
  * @brief abstract interface for all EventBase
- *
- * @class GEventHandler use this to do some callbacks
+ * @note GEventHandler use this to do some callbacks
  */
 class IEventBase
 {
 public:
 #ifdef WIN32
-    /** 
-     * @brief get underline IOCP handler on win32 
-     */
+    /** @brief get underline IOCP handler on win32 */
     virtual HANDLE iocp () const = 0; 
 #else
-    /** 
-     * @brief get underline event poll fd on linux
-     */
+    /** @brief get underline event poll fd on linux */
     virtual int epfd () const = 0; 
 #endif
 
@@ -56,15 +51,15 @@ public:
 
     /** 
      * @brief cancel existing timer
-     * @tid timer-id that @fun timeout returns
+     * @param tid timer-id that timeout returns
      * @return true for success; false for failure
      */
     virtual bool cancel_timer(void* tid) = 0; 
 
     /**
-     * @brief 
-     * @param gptd
-     * @return 
+     * @brief when timer due in underline system timer facility, notify event engine to do timer callbacks
+     * @param gptd data binding to due timer
+     * @return true: notify ok; false: not
      */
     virtual bool post_timer(GEV_PER_TIMER_DATA *gptd) = 0; 
 };
@@ -98,9 +93,7 @@ struct conn_key_t
 }; 
 #endif
 
-/**
- * @brief data that binding to handler, or a connection
- */
+/** @brief data that binding to handler, or a connection */
 struct GEV_PER_HANDLE_DATA
 {
     SOCKET so;            /**< connection file descriptor */
@@ -108,9 +101,7 @@ struct GEV_PER_HANDLE_DATA
     SOCKADDR_IN raddr;    /**< remote ip address */
 
 #ifndef WIN32
-    /**
-     * @brief access key data on win32
-     */
+    /** @brief access key data on win32 */
     conn_key_t key () const; 
 #endif
 
@@ -118,9 +109,7 @@ struct GEV_PER_HANDLE_DATA
     virtual ~GEV_PER_HANDLE_DATA(); 
 };
 
-/**
- * @brief data that binding to one action, timer/accept/recv...
- */
+/** @brief data that binding to one action, timer/accept/recv... */
 struct GEV_PER_IO_DATA
 {
     SOCKET so;          /**< connection file descriptor */
@@ -142,9 +131,7 @@ struct GEV_PER_IO_DATA
     virtual ~GEV_PER_IO_DATA(); 
 };
 
-/**
- * @brief data that binding to one timer
- */
+/** @brief data that binding to one timer */
 struct GEV_PER_TIMER_DATA
 #ifdef WIN32
        : public GEV_PER_IO_DATA
@@ -170,15 +157,13 @@ struct GEV_PER_TIMER_DATA
 #endif
 
     virtual ~GEV_PER_TIMER_DATA(); 
-    /**
-     * @brief cancel this timer 
-     * @return none
-     */
+    /** @brief cancel this timer */
     void cancel (); 
 };
 
 /**
  * @brief event handler binding to a connection
+ *
  * user would better inherit it's own handler from this, 
  * and handle business in callbacks
  */
@@ -188,14 +173,10 @@ public:
     GEventHandler();
     virtual ~GEventHandler();
 
-    /**
-     * @brief return data that binding to event handler
-     */
+    /** @brief return data that binding to event handler */
     GEV_PER_HANDLE_DATA* gphd(); 
 
-    /**
-     * @brief return data that binding to timer handler
-     */
+    /** @brief return data that binding to timer handler */
     GEV_PER_TIMER_DATA* gptd(); 
 
     /**
@@ -204,16 +185,10 @@ public:
      */
     bool connected();
 
-    /**
-     * @brief break the connection
-     * @return none
-     */
+    /** @brief break the connection */
     void disconnect(); 
 
-    /**
-     * @brief clear data status inside
-     * @return none
-     */
+    /** @brief clear data status inside */
     void clear(); 
 
     /**
@@ -255,6 +230,7 @@ public:
     /**
      * @brief tell EventBase whether enable reuse
      * @return true - will reuse; false - not
+     *
      * when reuse is enabled, framework won't delete handler object soon
      * after connection is closed, it is user's responsibility to 
      * free the memory
@@ -274,9 +250,7 @@ public:
     /**
      * @brief remember user provide data in handler
      * @param param user provided data
-     * @return none
-     *
-     * user special data will useful to distinguish different handlers,
+     * @note user special data will useful to distinguish different handlers,
      * especially for timer
      */
     virtual void arg(void *param) = 0;
@@ -286,22 +260,20 @@ public:
      * @param gphd new data per handler
      * @param gptd new data per timer
      * @param base new EventBase
-     * @return none
      */
     virtual void reset(GEV_PER_HANDLE_DATA *gphd, GEV_PER_TIMER_DATA *gptd, IEventBase *base);
 
     /**
      * @brief connection has data arriving 
      * @param gpid data binding to former read
-     * @return true - handle ok; false - handle fail
      * @note user must implement this method to handle data on connection
+     * @return true - handle ok; false - handle fail
      */
     virtual bool on_read(GEV_PER_IO_DATA *gpid) = 0;
 
     /**
      * @brief connection has break
      * @param gphd data binding to this handler
-     * @return none
      * @note user can implement this method to detect connection status
      */
     virtual void on_error(GEV_PER_HANDLE_DATA *gphd); 
@@ -310,8 +282,8 @@ public:
      * @brief timer has due
      * @param gptd data binding to this timer
      * @return true - handle ok; false - handle fail
-     * @note when on_timeout called, handler's base may cleared by cancel_timer, use gptd->base instead if it is not null.
-     *
+     * @note when on_timeout called, handler's base may cleared by cancel_timer, 
+     * use gptd->base instead if it is not null.
      * user must implement this method to receive timer notify
      */
     virtual bool on_timeout(GEV_PER_TIMER_DATA *gptd) = 0; 
@@ -319,14 +291,12 @@ public:
     /**
      * @brief shut down underline facilities
      * @param terminal are we going to die ?
-     * @return none
      */
     virtual void cleanup(bool terminal);
 
     /**
      * @brief shut down socket connection
      * @param terminal are we going to die ?
-     * @return none
      */
     void close(bool terminal);
 
@@ -343,7 +313,6 @@ protected:
      * @par think like this:
      * @code
      *     on_read (pre_read (msg)); 
-     * send (pre_write (msg)); 
      * @endcode
      */
     virtual bool has_preread() const; 
@@ -385,12 +354,12 @@ protected:
     virtual std::string pre_write (char const* buf, int len); 
 
 protected:
-    GEV_PER_HANDLE_DATA *m_gphd = nullptr; 
-    GEV_PER_TIMER_DATA *m_gptd = nullptr; 
-    IEventBase *m_base = nullptr;
+    GEV_PER_HANDLE_DATA *m_gphd = nullptr;     /**< data binding to this connection */
+    GEV_PER_TIMER_DATA *m_gptd = nullptr;      /**< data binding to this timer */
+    IEventBase *m_base = nullptr;              /**< corresponding GEventBase */
     // us so instead of m_gphd, 
     // as the later one may destroyed during using..
-    SOCKET m_so;
+    SOCKET m_so;                               /**< underline system connection file descriptor */
 };
 
 /**
@@ -401,11 +370,17 @@ class GJsonEventHandler : public GEventHandler
 {
 public:
     //virtual void on_read();
+    /** @see GEventHandler::arg */
     virtual void arg(void *param);
+    /** @see GEventHandler::reset */
     virtual void reset(GEV_PER_HANDLE_DATA *gphd, GEV_PER_TIMER_DATA *gptd, IEventBase *base);
+    /** @see GEventHandler::on_read */
     virtual bool on_read(GEV_PER_IO_DATA *gpid);
+    /** @see GEventHandler::on_read_msg */
     virtual void on_read_msg(Json::Value const& root) = 0;
+    /** @see GEventHandler::on_timeout */
     virtual bool on_timeout(GEV_PER_TIMER_DATA *gptd);
+    /** @see GEventHandler::cleanup */
     virtual void cleanup(bool terminal);
 
     //virtual void on_event(short type);
@@ -413,8 +388,8 @@ public:
 protected:
     // protect m_stub to prevent multi-entry
 #ifdef HAS_ET
-    std::mutex m_mutex; 
+    std::mutex m_mutex;              /**< lock to protect m_stub */
 #endif
 
-    std::string m_stub;
+    std::string m_stub;              /**< things left by last read (part of whole message) */
 };

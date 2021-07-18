@@ -23,31 +23,33 @@ public:
     ~GEventBase();
 
 #ifdef WIN32
+    /** @see IEventBase::iocp */
     virtual HANDLE iocp () const; 
 #else
+    /** @see IEventBase::epfd */
     virtual int epfd () const; 
 #endif
+
+    /** @see IEventBase::post_timer */
     virtual bool post_timer(GEV_PER_TIMER_DATA *gptd); 
 
     /**
      * @brief return handler for new connection
      * @return inherit class of GEventHandler
-     *
-     * user must implement this method to provide their own handler classes
+     * @note user must implement this method to provide their own handler classes
      */
     virtual GEventHandler* create_handler() = 0; 
 
     /**
      * @brief initialize event base
      * @param thr_num
-     *     =0 - no default thread pool, user provide thread and call run
-     *     <0 - use max(|thr_num|, processer_num)
-     *     >0 - use thr_num
+     * - =0 - no default thread pool, user provide thread and call run
+     * - <0 - use max(|thr_num|, processer_num)
+     * - >0 - use thr_num
      * @param blksize buffer size for single event
      * @param timer_sig signal number for timer on linux
      * @return true - initialize ok; false - failed
-     *
-     * user must call this method before others
+     * @note user must call this method before others
      */
     bool init(int thr_num = -8, int blksize = GEV_MAX_BUF_SIZE
 #ifndef WIN32
@@ -60,8 +62,7 @@ public:
      * @param port listen port 
      * @param backup listen queue size
      * @return true - listen ok; false - failed
-     *
-     * user only call this method when to be a server
+     * @note user only call this method when to be a server
      */
     bool listen(unsigned short port, unsigned short backup = 10);
 
@@ -71,8 +72,7 @@ public:
      * @param host server host
      * @param exist_handler handler reuse if there a one
      * @return new handler binding to that connection, nullptr if connection setup failed
-     *
-     * user only call this method when to be a client
+     * @note user only call this method when to be a client
      */
     GEventHandler* connect(unsigned short port, char const* host = "127.0.0.1", GEventHandler* exist_handler = NULL);
 
@@ -83,8 +83,7 @@ public:
      * @param arg user special data
      * @exist_handler handler reuse if there a one
      * @return timer-id if success; nullptr if failed
-     *
-     * user only call this method when having timer task
+     * @note user only call this method when having timer task
      */
     void* timeout(int due_msec, int period_msec, void *arg, GEventHandler *exist_handler);
 
@@ -95,15 +94,11 @@ public:
      */
     bool cancel_timer(void* tid); 
 
-    /**
-     * @brief finish the whole thing
-     * @return none
-     */
+    /** @brief finish the whole thing */
     void fini();  
 
     /**
      * @brief main entry for event loop
-     * @return none
      *
      * after setup, user may call run to block on main, 
      * or start thread pool to do multi-thread handling,
@@ -113,33 +108,25 @@ public:
 
     /**
      * @brief exit event loop
-     * @param extra_notify some thread may call run but not in 
-     *        our thread pool, use this to do exit notify, 
+     * @param extra_notify some thread may call run but not in \n
+     *        our thread pool, use this to do exit notify, \n
      *        how many thread runs, how many notification needs.
      * @return none
-     *
-     * after exit, all thread stopped, but event base status not cleaned
+     * @note after exit, all thread stopped, but event base status not cleaned
      */
     void exit(int extra_notify = 0); 
 
-    /**
-     * @brief close all the handle and clean event handler 
-     * @return none
-     */
+    /** @brief close all the handle and clean event handler */
     void cleanup(); 
 
-    /**
-     * @brief break all the connections in this event base
-     * @return none
-     */
+    /** @brief break all the connections in this event base */
     void disconnect(); 
 
     /**
      * @brief notify all the client by sending msg on connections
      * @param msg things you want to say
      * @return number connections successfully sent
-     * 
-     * it depends on foreach to traverse handlers
+     * @note it depends on foreach to traverse handlers
      */
     int broadcast(std::string const& msg); 
 
@@ -148,12 +135,47 @@ public:
      * @param func user defined procedure that applies on each handler
      * @param arg passing to the procedure 2nd parameter
      * @return number handlers successfully handled
-     *
-     * handlers user don't want traverse can filtered by filter_handler
+     * @note handlers user don't want traverse can filtered by filter_handler
      */
     int foreach(std::function<int(GEventHandler *h, void *arg)> func, void *arg);
 
 protected:
+    /**
+     * @brief called when accepting a new connection
+     * @param gphd data binding to new connection
+     * @return true - dispatch accept event ok; false - failed
+     */
+    virtual bool on_accept(GEV_PER_HANDLE_DATA *gphd);
+
+    /**
+     * @brief called when receiving data on a connection
+     * @param h handler binding to that connection
+     * @param gpid data binding to that action
+     * @return true - dispatch read event ok; false - failed
+     */
+    virtual bool on_read(GEventHandler *h, GEV_PER_IO_DATA *gpid); 
+
+    /**
+     * @brief called when detecting error on a conection
+     * @param h handler binding to that connection
+     */
+    virtual void on_error(GEventHandler *h);
+
+    /** 
+     * @brief called when timer due
+     * @param gptd data binding to that timer
+     * @return true - dispatch timer event ok; false - failed
+     */
+	virtual bool on_timeout (GEV_PER_TIMER_DATA *gptd); 
+
+    /**
+     * @brief called when for_each traverse handlers
+     * @param h handler will traverse
+     * @return true - allow access; false - skip
+     */
+    virtual bool filter_handler(GEventHandler *h); 
+
+private:
 #ifdef WIN32
     bool do_accept(GEV_PER_IO_DATA *gpid); 
     bool do_recv(GEV_PER_HANDLE_DATA *gphd, GEV_PER_IO_DATA *gpid); 
@@ -184,74 +206,36 @@ protected:
 
     bool do_timeout(GEV_PER_TIMER_DATA *gptd); 
 
-    /**
-     * @brief called when accepting a new connection
-     * @param gphd data binding to new connection
-     * @return true - dispatch accept event ok; false - failed
-     */
-    virtual bool on_accept(GEV_PER_HANDLE_DATA *gphd);
-
-    /**
-     * @brief called when receiving data on a connection
-     * @param h handler binding to that connection
-     * @param gpid data binding to that action
-     * @return true - dispatch read event ok; false - failed
-     */
-    virtual bool on_read(GEventHandler *h, GEV_PER_IO_DATA *gpid); 
-
-    /**
-     * @brief called when detecting error on a conection
-     * @param h handler binding to that connection
-     * @return none
-     */
-    virtual void on_error(GEventHandler *h);
-
-    /** 
-     * @brief called when timer due
-     * @param gptd data binding to that timer
-     * @return true - dispatch timer event ok; false - failed
-     */
-	virtual bool on_timeout (GEV_PER_TIMER_DATA *gptd); 
-
-    /**
-     * @brief called when for_each traverse handlers
-     * @param h handler will traverse
-     * @return true - allow access; false - skip
-     */
-    virtual bool filter_handler(GEventHandler *h); 
-    
-
 protected:
-    volatile bool m_running = false;
-    int m_thrnum = 0; 
-    int m_blksize = GEV_MAX_BUF_SIZE; 
-    std::thread_group m_grp; 
-    SOCKET m_listener = INVALID_SOCKET;
+    volatile bool m_running = false;      /**< if loop is running, set false leads all thread exit */
+    int m_thrnum = 0;                     /**< total running thread in pool */
+    int m_blksize = GEV_MAX_BUF_SIZE;     /**< default receiving buffer size */
+    std::thread_group m_grp;              /**< thread group */
+    SOCKET m_listener = INVALID_SOCKET;   /**< listen socket */
 
-    std::recursive_mutex m_mutex;  // protect m_map
-    std::mutex m_tlock; // protect m_tmap
+    std::recursive_mutex m_mutex;         /**< lock to protect m_map */
+    std::mutex m_tlock;                   /**< lock to protect m_tmap */
     // timer_t may conflict when new timer created after old timer closed
     //std::map <timer_t, GEventHandler *> m_tmap; 
-    std::map <GEV_PER_TIMER_DATA*, GEventHandler *> m_tmap; 
+    std::map <GEV_PER_TIMER_DATA*, GEventHandler *> m_tmap;  /**< timer map, key is data address binding to timer, value is timer handler */
 
 #ifdef WIN32
-    LPFN_ACCEPTEX m_acceptex = nullptr; 
-    LPFN_GETACCEPTEXSOCKADDRS m_getacceptexsockaddrs = nullptr; 
-    HANDLE m_iocp = NULL; 
-    HANDLE m_timerque = NULL; 
+    LPFN_ACCEPTEX m_acceptex = nullptr;    /**< address of AcceptEx on win32 */
+    LPFN_GETACCEPTEXSOCKADDRS m_getacceptexsockaddrs = nullptr;  /**< address of GetAcceptExSockAddrs on win32 */
+    HANDLE m_iocp = NULL;                  /**< IO completion port handle on win32 */
+    HANDLE m_timerque = NULL;              /**< timer queue handle on win32 */
 
-    std::map<GEV_PER_HANDLE_DATA*, GEventHandler*> m_map; 
+    std::map<GEV_PER_HANDLE_DATA*, GEventHandler*> m_map;  /**< handler map, key is data address binding to handler, value is event handler */
 #else
-    int m_ep = -1; 
-    int m_pp[2]; 
-    int m_tsig = 0; // signal number for timer
+    int m_ep = -1;                         /**< epoll file descriptor on linux */
+    int m_pp[2];                           /**< self-notify pipe on linux */
+    int m_tsig = 0;                        /**< signal number for timer on linux */
 
-    std::mutex m_lock;   // protect epoll
-    pthread_t m_leader = -1; 
-    std::map<conn_key_t, GEventHandler*> m_map; 
+    std::mutex m_lock;                     /**< lock to protect epoll */
+    pthread_t m_leader = -1;               /**< current leader thread (the one do epoll) */
+    std::map<conn_key_t, GEventHandler*> m_map;  /**< handler map, key is the combine of fd/lport/rport, data is event handler */
 #  ifdef HAS_SIGTHR
-    // special thread only cares about signal
-    std::thread *m_sigthr = nullptr; 
+    std::thread *m_sigthr = nullptr;       /**< thread handling signal only */
 #  endif
 #endif
 };
