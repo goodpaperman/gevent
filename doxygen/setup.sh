@@ -2,6 +2,9 @@
 sudo apt-get install doxygen
 sudo apt-get install graphviz
 
+# to generate documents:
+# doxygen gevent.doxygen
+
 # after generate, insert a line:
 #
 #   MANDATORY_MANPATH			$PWD/man
