@@ -6,6 +6,7 @@
 #include <map>
 #include <mutex> 
 #include <condition_variable>
+#include <functional>
 #include "thread_group.hpp"
 
 #define GEV_MAX_BUF_SIZE 65536
