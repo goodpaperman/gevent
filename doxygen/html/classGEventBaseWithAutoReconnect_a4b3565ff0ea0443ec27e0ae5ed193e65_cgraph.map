@@ -1,16 +1,17 @@
 <map id="GEventBaseWithAutoReconnect::on_error" name="GEventBaseWithAutoReconnect::on_error">
-<area shape="rect" id="node1" title="called when detecting error on a conection" alt="" coords="5,123,235,164"/>
-<area shape="rect" id="node2" href="$classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="283,57,512,99"/>
-<area shape="rect" id="node8" href="$classGEventBaseWithAutoReconnect.html#a9f69b677a4e7e28f11a156486ae4099a" title="called when detecting connection breaks" alt="" coords="283,123,512,164"/>
-<area shape="rect" id="node9" href="$classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection" alt="" coords="316,189,479,215"/>
-<area shape="rect" id="node3" href="$classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="571,65,731,91"/>
-<area shape="rect" id="node4" href="$classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="805,5,955,47"/>
-<area shape="rect" id="node5" href="$classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="799,71,961,98"/>
-<area shape="rect" id="node6" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="1017,122,1177,149"/>
-<area shape="rect" id="node7" href="$classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="1019,71,1176,98"/>
-<area shape="rect" id="node10" href="$classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="570,181,733,207"/>
-<area shape="rect" id="node12" href="$classGEventHandler.html#a3f3e88c7a2dbcf5d866acddbbf034fd7" title="connection has break" alt="" coords="560,231,743,258"/>
-<area shape="rect" id="node14" href="$classGEventHandler.html#a316e1484f5e7eae5babf0a31cf4c8662" title="tell EventBase whether enable reuse" alt="" coords="569,282,733,309"/>
-<area shape="rect" id="node11" href="$structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d" title="cancel this timer" alt="" coords="795,173,965,215"/>
-<area shape="rect" id="node13" href="$classGEventHandler.html#a5ef79153519c6c98a2e00d3f193ad07d" title="shut down underline facilities" alt="" coords="791,239,969,266"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,104,235,145"/>
+<area shape="rect" id="node2" href="$classGEventHandler.html#adbde5d19f12e8ed35da6b929ed457636" title="tell EventBase whether enable reconnect" alt="" coords="319,5,476,47"/>
+<area shape="rect" id="node3" href="$classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="283,71,512,112"/>
+<area shape="rect" id="node9" href="$classGEventBaseWithAutoReconnect.html#a9f69b677a4e7e28f11a156486ae4099a" title="called when detecting connection breaks" alt="" coords="283,136,512,177"/>
+<area shape="rect" id="node10" href="$classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection" alt="" coords="316,202,479,229"/>
+<area shape="rect" id="node4" href="$classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="571,78,731,105"/>
+<area shape="rect" id="node5" href="$classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="805,19,955,60"/>
+<area shape="rect" id="node6" href="$classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="799,85,961,111"/>
+<area shape="rect" id="node7" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="1017,135,1177,162"/>
+<area shape="rect" id="node8" href="$classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="1019,85,1176,111"/>
+<area shape="rect" id="node11" href="$classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="570,194,733,221"/>
+<area shape="rect" id="node13" href="$classGEventHandler.html#a3f3e88c7a2dbcf5d866acddbbf034fd7" title="connection has break" alt="" coords="560,245,743,271"/>
+<area shape="rect" id="node15" href="$classGEventHandler.html#a316e1484f5e7eae5babf0a31cf4c8662" title="tell EventBase whether enable reuse" alt="" coords="569,295,733,322"/>
+<area shape="rect" id="node12" href="$structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d" title="cancel this timer" alt="" coords="795,187,965,228"/>
+<area shape="rect" id="node14" href="$classGEventHandler.html#a5ef79153519c6c98a2e00d3f193ad07d" title="shut down underline facilities" alt="" coords="791,253,969,279"/>
 </map>

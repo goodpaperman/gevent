@@ -1,6 +1,8 @@
 var searchData=
 [
-  ['send_60',['send',['../classGEventHandler.html#ab54ba39d033eb14702a75b09f6204f91',1,'GEventHandler::send(char const *buf, int len)'],['../classGEventHandler.html#aaeadc9fd25d92f4c97f5429f4e4fc955',1,'GEventHandler::send(std::string const &amp;str)']]],
-  ['send_5fraw_61',['send_raw',['../classGEventHandler.html#a60705eb7b1e098f915a617ec4a412c69',1,'GEventHandler::send_raw(char const *buf, int len)'],['../classGEventHandler.html#a65daab22633c1d21c52976a2b6f77fb7',1,'GEventHandler::send_raw(std::string const &amp;str)']]],
-  ['so_62',['so',['../structGEV__PER__HANDLE__DATA.html#a493baf59dad1d56e9d016a00f379aa3e',1,'GEV_PER_HANDLE_DATA::so()'],['../structGEV__PER__IO__DATA.html#abb1266d81b479dd5383eb9fa61e219ef',1,'GEV_PER_IO_DATA::so()']]]
+  ['raddr_85',['raddr',['../structGEV__PER__HANDLE__DATA.html#a092a01d9f70c3471cf189d768b16bdd1',1,'GEV_PER_HANDLE_DATA']]],
+  ['reset_86',['reset',['../classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0',1,'GEventHandler::reset()'],['../classGJsonEventHandler.html#ad48e6db8922e62be151b88c46e0580aa',1,'GJsonEventHandler::reset()']]],
+  ['reuse_87',['reuse',['../classGEventHandler.html#a316e1484f5e7eae5babf0a31cf4c8662',1,'GEventHandler']]],
+  ['rport_88',['rport',['../structconn__key__t.html#a82ea58ea7949e8daa7213b4b8218a6d7',1,'conn_key_t']]],
+  ['run_89',['run',['../classGEventBase.html#a667e415dc4420462806fbccf16141e98',1,'GEventBase']]]
 ];

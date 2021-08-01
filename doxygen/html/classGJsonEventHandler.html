@@ -82,7 +82,7 @@ Inheritance diagram for GJsonEventHandler:</div>
 <div class="center"><img src="classGJsonEventHandler__inherit__graph.png" border="0" usemap="#GJsonEventHandler_inherit__map" alt="Inheritance graph"/></div>
 <map name="GJsonEventHandler_inherit__map" id="GJsonEventHandler_inherit__map">
 <area shape="rect" title="a common handler to process json protocol." alt="" coords="10,380,157,531"/>
-<area shape="rect" href="classGEventHandler.html" title="event handler binding to a connection user would better inherit it&#39;s own handler from this,..." alt="" coords="5,5,161,332"/>
+<area shape="rect" href="classGEventHandler.html" title="event handler binding to a connection" alt="" coords="5,5,161,332"/>
 </map>
 </div>
 <div class="dynheader">
@@ -91,7 +91,7 @@ Collaboration diagram for GJsonEventHandler:</div>
 <div class="center"><img src="classGJsonEventHandler__coll__graph.png" border="0" usemap="#GJsonEventHandler_coll__map" alt="Collaboration graph"/></div>
 <map name="GJsonEventHandler_coll__map" id="GJsonEventHandler_coll__map">
 <area shape="rect" title="a common handler to process json protocol." alt="" coords="405,763,552,913"/>
-<area shape="rect" href="classGEventHandler.html" title="event handler binding to a connection user would better inherit it&#39;s own handler from this,..." alt="" coords="329,417,485,700"/>
+<area shape="rect" href="classGEventHandler.html" title="event handler binding to a connection" alt="" coords="329,417,485,700"/>
 <area shape="rect" href="classIEventBase.html" title="abstract interface for all EventBase" alt="" coords="5,5,136,127"/>
 <area shape="rect" href="structGEV__PER__TIMER__DATA.html" title="data that binding to one timer" alt="" coords="141,189,347,355"/>
 <area shape="rect" href="structGEV__PER__HANDLE__DATA.html" title="data that binding to handler, or a connection" alt="" coords="372,204,591,340"/>
@@ -103,22 +103,16 @@ Collaboration diagram for GJsonEventHandler:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3da03eea54e3da70b6d63901abcc8793"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGJsonEventHandler.html#a3da03eea54e3da70b6d63901abcc8793">arg</a> (void *param)</td></tr>
-<tr class="memdesc:a3da03eea54e3da70b6d63901abcc8793"><td class="mdescLeft">&#160;</td><td class="mdescRight">remember user provide data in handler  <a href="classGJsonEventHandler.html#a3da03eea54e3da70b6d63901abcc8793">More...</a><br /></td></tr>
 <tr class="separator:a3da03eea54e3da70b6d63901abcc8793"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad48e6db8922e62be151b88c46e0580aa"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGJsonEventHandler.html#ad48e6db8922e62be151b88c46e0580aa">reset</a> (<a class="el" href="structGEV__PER__HANDLE__DATA.html">GEV_PER_HANDLE_DATA</a> *<a class="el" href="classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481">gphd</a>, <a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *<a class="el" href="classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0">gptd</a>, <a class="el" href="classIEventBase.html">IEventBase</a> *base)</td></tr>
-<tr class="memdesc:ad48e6db8922e62be151b88c46e0580aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">reset inner data status to initial  <a href="classGJsonEventHandler.html#ad48e6db8922e62be151b88c46e0580aa">More...</a><br /></td></tr>
 <tr class="separator:ad48e6db8922e62be151b88c46e0580aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9a48d231da261af272029539041333c"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGJsonEventHandler.html#ab9a48d231da261af272029539041333c">on_read</a> (<a class="el" href="structGEV__PER__IO__DATA.html">GEV_PER_IO_DATA</a> *gpid)</td></tr>
-<tr class="memdesc:ab9a48d231da261af272029539041333c"><td class="mdescLeft">&#160;</td><td class="mdescRight">connection has data arriving  <a href="classGJsonEventHandler.html#ab9a48d231da261af272029539041333c">More...</a><br /></td></tr>
 <tr class="separator:ab9a48d231da261af272029539041333c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb69755e593d6c93a1f276c459fe9a54"><td class="memItemLeft" align="right" valign="top"><a id="adb69755e593d6c93a1f276c459fe9a54"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>on_read_msg</b> (Json::Value const &amp;root)=0</td></tr>
+<tr class="memitem:adb69755e593d6c93a1f276c459fe9a54"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGJsonEventHandler.html#adb69755e593d6c93a1f276c459fe9a54">on_read_msg</a> (Json::Value const &amp;root)=0</td></tr>
 <tr class="separator:adb69755e593d6c93a1f276c459fe9a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad23534c42ea2a79de450205bc322ccda"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGJsonEventHandler.html#ad23534c42ea2a79de450205bc322ccda">on_timeout</a> (<a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *<a class="el" href="classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0">gptd</a>)</td></tr>
-<tr class="memdesc:ad23534c42ea2a79de450205bc322ccda"><td class="mdescLeft">&#160;</td><td class="mdescRight">timer has due  <a href="classGJsonEventHandler.html#ad23534c42ea2a79de450205bc322ccda">More...</a><br /></td></tr>
 <tr class="separator:ad23534c42ea2a79de450205bc322ccda"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1e6c90b6bd50df406e1933001c810f9"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGJsonEventHandler.html#ab1e6c90b6bd50df406e1933001c810f9">cleanup</a> (bool terminal)</td></tr>
-<tr class="memdesc:ab1e6c90b6bd50df406e1933001c810f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">shut down underline facilities  <a href="classGJsonEventHandler.html#ab1e6c90b6bd50df406e1933001c810f9">More...</a><br /></td></tr>
 <tr class="separator:ab1e6c90b6bd50df406e1933001c810f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classGEventHandler"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classGEventHandler')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classGEventHandler.html">GEventHandler</a></td></tr>
 <tr class="memitem:aacf4ca9d8f01ec42078e5bfc71f6f481 inherit pub_methods_classGEventHandler"><td class="memItemLeft" align="right" valign="top"><a id="aacf4ca9d8f01ec42078e5bfc71f6f481"></a>
@@ -132,11 +126,13 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>on_read_msg</
 <tr class="memitem:aa46b1b1a237b0d3b45ac9ded13bd2f62 inherit pub_methods_classGEventHandler"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#aa46b1b1a237b0d3b45ac9ded13bd2f62">connected</a> ()</td></tr>
 <tr class="memdesc:aa46b1b1a237b0d3b45ac9ded13bd2f62 inherit pub_methods_classGEventHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">tell if we are connected  <a href="classGEventHandler.html#aa46b1b1a237b0d3b45ac9ded13bd2f62">More...</a><br /></td></tr>
 <tr class="separator:aa46b1b1a237b0d3b45ac9ded13bd2f62 inherit pub_methods_classGEventHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad32a72de41209ac6f3b1cda20d589710 inherit pub_methods_classGEventHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#ad32a72de41209ac6f3b1cda20d589710">disconnect</a> ()</td></tr>
-<tr class="memdesc:ad32a72de41209ac6f3b1cda20d589710 inherit pub_methods_classGEventHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">break the connection  <a href="classGEventHandler.html#ad32a72de41209ac6f3b1cda20d589710">More...</a><br /></td></tr>
+<tr class="memitem:ad32a72de41209ac6f3b1cda20d589710 inherit pub_methods_classGEventHandler"><td class="memItemLeft" align="right" valign="top"><a id="ad32a72de41209ac6f3b1cda20d589710"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#ad32a72de41209ac6f3b1cda20d589710">disconnect</a> ()</td></tr>
+<tr class="memdesc:ad32a72de41209ac6f3b1cda20d589710 inherit pub_methods_classGEventHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">break the connection <br /></td></tr>
 <tr class="separator:ad32a72de41209ac6f3b1cda20d589710 inherit pub_methods_classGEventHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acadb5910375db04086305562ca5912b1 inherit pub_methods_classGEventHandler"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#acadb5910375db04086305562ca5912b1">clear</a> ()</td></tr>
-<tr class="memdesc:acadb5910375db04086305562ca5912b1 inherit pub_methods_classGEventHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear data status inside  <a href="classGEventHandler.html#acadb5910375db04086305562ca5912b1">More...</a><br /></td></tr>
+<tr class="memitem:acadb5910375db04086305562ca5912b1 inherit pub_methods_classGEventHandler"><td class="memItemLeft" align="right" valign="top"><a id="acadb5910375db04086305562ca5912b1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#acadb5910375db04086305562ca5912b1">clear</a> ()</td></tr>
+<tr class="memdesc:acadb5910375db04086305562ca5912b1 inherit pub_methods_classGEventHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear data status inside <br /></td></tr>
 <tr class="separator:acadb5910375db04086305562ca5912b1 inherit pub_methods_classGEventHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13394ee93e54599e5e6d74ed32890d05 inherit pub_methods_classGEventHandler"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#a13394ee93e54599e5e6d74ed32890d05">fd</a> ()</td></tr>
 <tr class="memdesc:a13394ee93e54599e5e6d74ed32890d05 inherit pub_methods_classGEventHandler"><td class="mdescLeft">&#160;</td><td class="mdescRight">return underline connection file descriptor  <a href="classGEventHandler.html#a13394ee93e54599e5e6d74ed32890d05">More...</a><br /></td></tr>
@@ -168,21 +164,16 @@ virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>on_read_msg</
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:ae17459acedd20ea8ce959e6525ffab10"><td class="memItemLeft" align="right" valign="top"><a id="ae17459acedd20ea8ce959e6525ffab10"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_stub</b></td></tr>
+<tr class="memitem:ae17459acedd20ea8ce959e6525ffab10"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGJsonEventHandler.html#ae17459acedd20ea8ce959e6525ffab10">m_stub</a></td></tr>
 <tr class="separator:ae17459acedd20ea8ce959e6525ffab10"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classGEventHandler"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classGEventHandler')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classGEventHandler.html">GEventHandler</a></td></tr>
-<tr class="memitem:a88c3b5fc1a37415eaa87b3edfe2dee3e inherit pro_attribs_classGEventHandler"><td class="memItemLeft" align="right" valign="top"><a id="a88c3b5fc1a37415eaa87b3edfe2dee3e"></a>
-<a class="el" href="structGEV__PER__HANDLE__DATA.html">GEV_PER_HANDLE_DATA</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_gphd</b> = nullptr</td></tr>
+<tr class="memitem:a88c3b5fc1a37415eaa87b3edfe2dee3e inherit pro_attribs_classGEventHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGEV__PER__HANDLE__DATA.html">GEV_PER_HANDLE_DATA</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#a88c3b5fc1a37415eaa87b3edfe2dee3e">m_gphd</a> = nullptr</td></tr>
 <tr class="separator:a88c3b5fc1a37415eaa87b3edfe2dee3e inherit pro_attribs_classGEventHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecb93c84cafbd857700dd0defe809aec inherit pro_attribs_classGEventHandler"><td class="memItemLeft" align="right" valign="top"><a id="aecb93c84cafbd857700dd0defe809aec"></a>
-<a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_gptd</b> = nullptr</td></tr>
+<tr class="memitem:aecb93c84cafbd857700dd0defe809aec inherit pro_attribs_classGEventHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#aecb93c84cafbd857700dd0defe809aec">m_gptd</a> = nullptr</td></tr>
 <tr class="separator:aecb93c84cafbd857700dd0defe809aec inherit pro_attribs_classGEventHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b5e0795c291158869d0e67c985ee055 inherit pro_attribs_classGEventHandler"><td class="memItemLeft" align="right" valign="top"><a id="a3b5e0795c291158869d0e67c985ee055"></a>
-<a class="el" href="classIEventBase.html">IEventBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_base</b> = nullptr</td></tr>
+<tr class="memitem:a3b5e0795c291158869d0e67c985ee055 inherit pro_attribs_classGEventHandler"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIEventBase.html">IEventBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#a3b5e0795c291158869d0e67c985ee055">m_base</a> = nullptr</td></tr>
 <tr class="separator:a3b5e0795c291158869d0e67c985ee055 inherit pro_attribs_classGEventHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2093adee43de607cd33bd03244a50013 inherit pro_attribs_classGEventHandler"><td class="memItemLeft" align="right" valign="top"><a id="a2093adee43de607cd33bd03244a50013"></a>
-SOCKET&#160;</td><td class="memItemRight" valign="bottom"><b>m_so</b></td></tr>
+<tr class="memitem:a2093adee43de607cd33bd03244a50013 inherit pro_attribs_classGEventHandler"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#a2093adee43de607cd33bd03244a50013">m_so</a></td></tr>
 <tr class="separator:a2093adee43de607cd33bd03244a50013 inherit pro_attribs_classGEventHandler"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
@@ -228,16 +219,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>remember user provide data in handler </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">param</td><td>user provided data </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
-<p>user special data will useful to distinguish different handlers, especially for timer </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGEventHandler.html#a462e1f2488d935220f2ec876e5361962" title="remember user provide data in handler">GEventHandler::arg</a> </dd></dl>
 
 <p>Implements <a class="el" href="classGEventHandler.html#a462e1f2488d935220f2ec876e5361962">GEventHandler</a>.</p>
 
@@ -266,15 +248,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>shut down underline facilities </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">terminal</td><td>are we going to die ? </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGEventHandler.html#a5ef79153519c6c98a2e00d3f193ad07d" title="shut down underline facilities">GEventHandler::cleanup</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classGEventHandler.html#a5ef79153519c6c98a2e00d3f193ad07d">GEventHandler</a>.</p>
 
@@ -303,16 +277,7 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>connection has data arriving </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">gpid</td><td>data binding to former read </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true - handle ok; false - handle fail </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>user must implement this method to handle data on connection </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGEventHandler.html#a425ff88197f72dab091072cb4737d68f" title="connection has data arriving">GEventHandler::on_read</a> </dd></dl>
 
 <p>Implements <a class="el" href="classGEventHandler.html#a425ff88197f72dab091072cb4737d68f">GEventHandler</a>.</p>
 <div class="dynheader">
@@ -320,9 +285,46 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGJsonEventHandler_ab9a48d231da261af272029539041333c_cgraph.png" border="0" usemap="#classGJsonEventHandler_ab9a48d231da261af272029539041333c_cgraph" alt=""/></div>
 <map name="classGJsonEventHandler_ab9a48d231da261af272029539041333c_cgraph" id="classGJsonEventHandler_ab9a48d231da261af272029539041333c_cgraph">
-<area shape="rect" title="connection has data arriving" alt="" coords="5,35,160,76"/>
+<area shape="rect" title=" " alt="" coords="5,71,160,112"/>
 <area shape="rect" href="classGEventHandler.html#a2fef525ce68774fbffa2bd591cce2cbc" title="tell framework whether enable pre&#45;read mechanism" alt="" coords="225,5,376,47"/>
-<area shape="rect" href="classGEventHandler.html#ad28ff16d092359ec82a93be86a621452" title="pre&#45;read callbacks" alt="" coords="208,71,393,98"/>
+<area shape="rect" href="classGJsonEventHandler.html#adb69755e593d6c93a1f276c459fe9a54" title=" " alt="" coords="223,71,378,112"/>
+<area shape="rect" href="classGEventHandler.html#ad28ff16d092359ec82a93be86a621452" title="pre&#45;read callbacks" alt="" coords="208,137,393,163"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="adb69755e593d6c93a1f276c459fe9a54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb69755e593d6c93a1f276c459fe9a54">&#9670;&nbsp;</a></span>on_read_msg()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void GJsonEventHandler::on_read_msg </td>
+          <td>(</td>
+          <td class="paramtype">Json::Value const &amp;&#160;</td>
+          <td class="paramname"><em>root</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd>GEventHandler::on_read_msg </dd></dl>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGJsonEventHandler_adb69755e593d6c93a1f276c459fe9a54_icgraph.png" border="0" usemap="#classGJsonEventHandler_adb69755e593d6c93a1f276c459fe9a54_icgraph" alt=""/></div>
+<map name="classGJsonEventHandler_adb69755e593d6c93a1f276c459fe9a54_icgraph" id="classGJsonEventHandler_adb69755e593d6c93a1f276c459fe9a54_icgraph">
+<area shape="rect" title=" " alt="" coords="208,5,363,47"/>
+<area shape="rect" href="classGJsonEventHandler.html#ab9a48d231da261af272029539041333c" title=" " alt="" coords="5,5,160,47"/>
 </map>
 </div>
 
@@ -351,17 +353,7 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>timer has due </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">gptd</td><td>data binding to this timer </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true - handle ok; false - handle fail </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>when on_timeout called, handler's base may cleared by cancel_timer, use gptd-&gt;base instead if it is not null.</dd></dl>
-<p>user must implement this method to receive timer notify </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGEventHandler.html#a75f04e2b25bf9234793949a3f367445a" title="timer has due">GEventHandler::on_timeout</a> </dd></dl>
 
 <p>Implements <a class="el" href="classGEventHandler.html#a75f04e2b25bf9234793949a3f367445a">GEventHandler</a>.</p>
 
@@ -406,17 +398,7 @@ Here is the call graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>reset inner data status to initial </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">gphd</td><td>new data per handler </td></tr>
-    <tr><td class="paramname">gptd</td><td>new data per timer </td></tr>
-    <tr><td class="paramname">base</td><td>new EventBase </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial">GEventHandler::reset</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0">GEventHandler</a>.</p>
 <div class="dynheader">
@@ -424,12 +406,36 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGJsonEventHandler_ad48e6db8922e62be151b88c46e0580aa_cgraph.png" border="0" usemap="#classGJsonEventHandler_ad48e6db8922e62be151b88c46e0580aa_cgraph" alt=""/></div>
 <map name="classGJsonEventHandler_ad48e6db8922e62be151b88c46e0580aa_cgraph" id="classGJsonEventHandler_ad48e6db8922e62be151b88c46e0580aa_cgraph">
-<area shape="rect" title="reset inner data status to initial" alt="" coords="5,23,160,65"/>
+<area shape="rect" title=" " alt="" coords="5,23,160,65"/>
 <area shape="rect" href="classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="417,5,577,32"/>
 <area shape="rect" href="classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="419,68,576,95"/>
 <area shape="rect" href="classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="208,31,369,57"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ae17459acedd20ea8ce959e6525ffab10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae17459acedd20ea8ce959e6525ffab10">&#9670;&nbsp;</a></span>m_stub</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GJsonEventHandler::m_stub</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>things left by last read (part of whole message) </p>
 
 </div>
 </div>

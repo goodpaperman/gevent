@@ -1,4 +1,4 @@
 <map id="GEventBaseWithAutoReconnect::on_connect_break" name="GEventBaseWithAutoReconnect::on_connect_break">
 <area shape="rect" id="node1" title="called when detecting connection breaks" alt="" coords="283,5,512,47"/>
-<area shape="rect" id="node2" href="$classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="5,5,235,47"/>
+<area shape="rect" id="node2" href="$classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="5,5,235,47"/>
 </map>

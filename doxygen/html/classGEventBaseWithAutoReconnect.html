@@ -82,8 +82,8 @@ Inheritance diagram for GEventBaseWithAutoReconnect:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventBaseWithAutoReconnect__inherit__graph.png" border="0" usemap="#GEventBaseWithAutoReconnect_inherit__map" alt="Inheritance graph"/></div>
 <map name="GEventBaseWithAutoReconnect_inherit__map" id="GEventBaseWithAutoReconnect_inherit__map">
-<area shape="rect" title="event base with auto reconnection support" alt="" coords="5,857,271,1213"/>
-<area shape="rect" href="classGEventBase.html" title="event base, the core of the gevent" alt="" coords="63,175,213,809"/>
+<area shape="rect" title="event base with auto reconnection support" alt="" coords="5,711,271,1067"/>
+<area shape="rect" href="classGEventBase.html" title="event base, the core of the gevent" alt="" coords="66,175,210,663"/>
 <area shape="rect" href="classIEventBase.html" title="abstract interface for all EventBase" alt="" coords="73,5,203,127"/>
 </map>
 </div>
@@ -92,10 +92,10 @@ Collaboration diagram for GEventBaseWithAutoReconnect:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventBaseWithAutoReconnect__coll__graph.png" border="0" usemap="#GEventBaseWithAutoReconnect_coll__map" alt="Collaboration graph"/></div>
 <map name="GEventBaseWithAutoReconnect_coll__map" id="GEventBaseWithAutoReconnect_coll__map">
-<area shape="rect" title="event base with auto reconnection support" alt="" coords="645,1556,910,1868"/>
-<area shape="rect" href="classGEventBase.html" title="event base, the core of the gevent" alt="" coords="313,932,463,1493"/>
+<area shape="rect" title="event base with auto reconnection support" alt="" coords="645,1409,910,1721"/>
+<area shape="rect" href="classGEventBase.html" title="event base, the core of the gevent" alt="" coords="316,932,460,1347"/>
 <area shape="rect" href="classIEventBase.html" title="abstract interface for all EventBase" alt="" coords="133,5,264,127"/>
-<area shape="rect" href="classGEventHandler.html" title="event handler binding to a connection user would better inherit it&#39;s own handler from this,..." alt="" coords="426,417,582,700"/>
+<area shape="rect" href="classGEventHandler.html" title="event handler binding to a connection" alt="" coords="426,417,582,700"/>
 <area shape="rect" href="structGEV__PER__TIMER__DATA.html" title="data that binding to one timer" alt="" coords="533,189,739,355"/>
 <area shape="rect" title=" " alt="" coords="43,763,210,855"/>
 <area shape="rect" title=" " alt="" coords="533,763,739,855"/>
@@ -103,15 +103,15 @@ Collaboration diagram for GEventBaseWithAutoReconnect:</div>
 <area shape="rect" href="structconn__key__t.html" title="key information for a connection" alt="" coords="67,498,187,619"/>
 <area shape="rect" title="STL class." alt="" coords="234,770,393,847"/>
 <area shape="rect" title="STL class." alt="" coords="417,770,509,847"/>
-<area shape="rect" title="STL class." alt="" coords="827,1174,914,1251"/>
+<area shape="rect" title="STL class." alt="" coords="827,1101,914,1178"/>
 <area shape="rect" title="STL class." alt="" coords="815,763,953,855"/>
 </map>
 </div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a5a39debb31a71399c780bba659801c45"><td class="memItemLeft" align="right" valign="top"><a id="a5a39debb31a71399c780bba659801c45"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GEventBaseWithAutoReconnect</b> (int reconn_min=GEV_RECONNECT_TIMEOUT, int reconn_max=GEV_RECONNECT_TIMEOUT_MAX, int max_retry=GEV_RECONNECT_TRY_MAX)</td></tr>
+<tr class="memitem:a5a39debb31a71399c780bba659801c45"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#a5a39debb31a71399c780bba659801c45">GEventBaseWithAutoReconnect</a> (int reconn_min=GEV_RECONNECT_TIMEOUT, int reconn_max=GEV_RECONNECT_TIMEOUT_MAX, int max_retry=GEV_RECONNECT_TRY_MAX)</td></tr>
+<tr class="memdesc:a5a39debb31a71399c780bba659801c45"><td class="mdescLeft">&#160;</td><td class="mdescRight">constructor to init reconnect parameters  <a href="classGEventBaseWithAutoReconnect.html#a5a39debb31a71399c780bba659801c45">More...</a><br /></td></tr>
 <tr class="separator:a5a39debb31a71399c780bba659801c45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acecb779812c4eae090cd10dd43be4d43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGEventHandler.html">GEventHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#acecb779812c4eae090cd10dd43be4d43">connector</a> ()</td></tr>
 <tr class="memdesc:acecb779812c4eae090cd10dd43be4d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">get underline connection handler  <a href="classGEventBaseWithAutoReconnect.html#acecb779812c4eae090cd10dd43be4d43">More...</a><br /></td></tr>
@@ -120,12 +120,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a662c95e76e3a6ad0c7585aebeb7f0234"><td class="mdescLeft">&#160;</td><td class="mdescRight">issue the active connection  <a href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234">More...</a><br /></td></tr>
 <tr class="separator:a662c95e76e3a6ad0c7585aebeb7f0234"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a34de0d604e0efcded0789e468d8e13bd"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#a34de0d604e0efcded0789e468d8e13bd">filter_handler</a> (<a class="el" href="classGEventHandler.html">GEventHandler</a> *h)</td></tr>
-<tr class="memdesc:a34de0d604e0efcded0789e468d8e13bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when for_each traverse handlers  <a href="classGEventBaseWithAutoReconnect.html#a34de0d604e0efcded0789e468d8e13bd">More...</a><br /></td></tr>
 <tr class="separator:a34de0d604e0efcded0789e468d8e13bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classGEventBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classGEventBase')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classGEventBase.html">GEventBase</a></td></tr>
-<tr class="memitem:a0baba69a566a41eb59e5ce6cdeee9b14 inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a0baba69a566a41eb59e5ce6cdeee9b14"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a0baba69a566a41eb59e5ce6cdeee9b14">epfd</a> () const</td></tr>
-<tr class="memdesc:a0baba69a566a41eb59e5ce6cdeee9b14 inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">get underline event poll fd on linux <br /></td></tr>
+<tr class="memitem:a0baba69a566a41eb59e5ce6cdeee9b14 inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a0baba69a566a41eb59e5ce6cdeee9b14">epfd</a> () const</td></tr>
 <tr class="separator:a0baba69a566a41eb59e5ce6cdeee9b14 inherit pub_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5f27fdd5b2c6fec43967ab2e4e6bfe4 inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ab5f27fdd5b2c6fec43967ab2e4e6bfe4">post_timer</a> (<a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *gptd)</td></tr>
 <tr class="separator:ab5f27fdd5b2c6fec43967ab2e4e6bfe4 inherit pub_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,8 +144,9 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr class="memitem:ade0710420c3a7407ab49f5cdf336e371 inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ade0710420c3a7407ab49f5cdf336e371">cancel_timer</a> (void *tid)</td></tr>
 <tr class="memdesc:ade0710420c3a7407ab49f5cdf336e371 inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">cancel timer  <a href="classGEventBase.html#ade0710420c3a7407ab49f5cdf336e371">More...</a><br /></td></tr>
 <tr class="separator:ade0710420c3a7407ab49f5cdf336e371 inherit pub_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0900657164c5bfcc184e88f404062375 inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a0900657164c5bfcc184e88f404062375">fini</a> ()</td></tr>
-<tr class="memdesc:a0900657164c5bfcc184e88f404062375 inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">finish the whole thing  <a href="classGEventBase.html#a0900657164c5bfcc184e88f404062375">More...</a><br /></td></tr>
+<tr class="memitem:a0900657164c5bfcc184e88f404062375 inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a0900657164c5bfcc184e88f404062375"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a0900657164c5bfcc184e88f404062375">fini</a> ()</td></tr>
+<tr class="memdesc:a0900657164c5bfcc184e88f404062375 inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">finish the whole thing <br /></td></tr>
 <tr class="separator:a0900657164c5bfcc184e88f404062375 inherit pub_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a667e415dc4420462806fbccf16141e98 inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a667e415dc4420462806fbccf16141e98">run</a> ()</td></tr>
 <tr class="memdesc:a667e415dc4420462806fbccf16141e98 inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">main entry for event loop  <a href="classGEventBase.html#a667e415dc4420462806fbccf16141e98">More...</a><br /></td></tr>
@@ -156,11 +154,13 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr class="memitem:ab6d23beb6bb7130e0e8b7369b89e454a inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ab6d23beb6bb7130e0e8b7369b89e454a">exit</a> (int extra_notify=0)</td></tr>
 <tr class="memdesc:ab6d23beb6bb7130e0e8b7369b89e454a inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">exit event loop  <a href="classGEventBase.html#ab6d23beb6bb7130e0e8b7369b89e454a">More...</a><br /></td></tr>
 <tr class="separator:ab6d23beb6bb7130e0e8b7369b89e454a inherit pub_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a949a238fc42065ee7fb44371f0528e4e inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a949a238fc42065ee7fb44371f0528e4e">cleanup</a> ()</td></tr>
-<tr class="memdesc:a949a238fc42065ee7fb44371f0528e4e inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">close all the handle and clean event handler  <a href="classGEventBase.html#a949a238fc42065ee7fb44371f0528e4e">More...</a><br /></td></tr>
+<tr class="memitem:a949a238fc42065ee7fb44371f0528e4e inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a949a238fc42065ee7fb44371f0528e4e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a949a238fc42065ee7fb44371f0528e4e">cleanup</a> ()</td></tr>
+<tr class="memdesc:a949a238fc42065ee7fb44371f0528e4e inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">close all the handle and clean event handler <br /></td></tr>
 <tr class="separator:a949a238fc42065ee7fb44371f0528e4e inherit pub_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3aea5336d563b238e678f67cdd82377d inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a3aea5336d563b238e678f67cdd82377d">disconnect</a> ()</td></tr>
-<tr class="memdesc:a3aea5336d563b238e678f67cdd82377d inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">break all the connections in this event base  <a href="classGEventBase.html#a3aea5336d563b238e678f67cdd82377d">More...</a><br /></td></tr>
+<tr class="memitem:a3aea5336d563b238e678f67cdd82377d inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a3aea5336d563b238e678f67cdd82377d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a3aea5336d563b238e678f67cdd82377d">disconnect</a> ()</td></tr>
+<tr class="memdesc:a3aea5336d563b238e678f67cdd82377d inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">break all the connections in this event base <br /></td></tr>
 <tr class="separator:a3aea5336d563b238e678f67cdd82377d inherit pub_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8b83f71f4f071204fe93ae4a2c1a5b4 inherit pub_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#af8b83f71f4f071204fe93ae4a2c1a5b4">broadcast</a> (std::string const &amp;msg)</td></tr>
 <tr class="memdesc:af8b83f71f4f071204fe93ae4a2c1a5b4 inherit pub_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">notify all the client by sending msg on connections  <a href="classGEventBase.html#af8b83f71f4f071204fe93ae4a2c1a5b4">More...</a><br /></td></tr>
@@ -172,10 +172,8 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
 <tr class="memitem:a4b3565ff0ea0443ec27e0ae5ed193e65"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65">on_error</a> (<a class="el" href="classGEventHandler.html">GEventHandler</a> *h)</td></tr>
-<tr class="memdesc:a4b3565ff0ea0443ec27e0ae5ed193e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when detecting error on a conection  <a href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65">More...</a><br /></td></tr>
 <tr class="separator:a4b3565ff0ea0443ec27e0ae5ed193e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ac1b22f7a2e62e4f71edae8261baf7e"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e">on_timeout</a> (<a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *gptd)</td></tr>
-<tr class="memdesc:a6ac1b22f7a2e62e4f71edae8261baf7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when timer due  <a href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e">More...</a><br /></td></tr>
 <tr class="separator:a6ac1b22f7a2e62e4f71edae8261baf7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9f69b677a4e7e28f11a156486ae4099a"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#a9f69b677a4e7e28f11a156486ae4099a">on_connect_break</a> ()</td></tr>
 <tr class="memdesc:a9f69b677a4e7e28f11a156486ae4099a"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when detecting connection breaks  <a href="classGEventBaseWithAutoReconnect.html#a9f69b677a4e7e28f11a156486ae4099a">More...</a><br /></td></tr>
@@ -190,36 +188,6 @@ Protected Member Functions</h2></td></tr>
 <tr class="memdesc:a704400a5114e7282ebfa30074f195e59"><td class="mdescLeft">&#160;</td><td class="mdescRight">doing the dirty work for reconnect  <a href="classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59">More...</a><br /></td></tr>
 <tr class="separator:a704400a5114e7282ebfa30074f195e59"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_methods_classGEventBase"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classGEventBase')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="classGEventBase.html">GEventBase</a></td></tr>
-<tr class="memitem:a970b0374dae46f1b0da6b1f7da04e446 inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a970b0374dae46f1b0da6b1f7da04e446"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>do_accept</b> (int fd)</td></tr>
-<tr class="separator:a970b0374dae46f1b0da6b1f7da04e446 inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34f1c3420c99d37946acfe0000af9f8a inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a34f1c3420c99d37946acfe0000af9f8a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>do_recv</b> (<a class="el" href="structconn__key__t.html">conn_key_t</a> key)</td></tr>
-<tr class="separator:a34f1c3420c99d37946acfe0000af9f8a inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0fa0bedeacdeeb6ac13859352df683a inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="ab0fa0bedeacdeeb6ac13859352df683a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>do_error</b> (<a class="el" href="structconn__key__t.html">conn_key_t</a> key)</td></tr>
-<tr class="separator:ab0fa0bedeacdeeb6ac13859352df683a inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0edcfefc09a2fb0ffbb9f40e7fbdbd72 inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a0edcfefc09a2fb0ffbb9f40e7fbdbd72"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>init_pipe</b> ()</td></tr>
-<tr class="separator:a0edcfefc09a2fb0ffbb9f40e7fbdbd72 inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88e048ca808322306326fa2aeeb8afbb inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a88e048ca808322306326fa2aeeb8afbb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>close_pipe</b> ()</td></tr>
-<tr class="separator:a88e048ca808322306326fa2aeeb8afbb inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af14b827e37f2910d08654207cd1f6e4a inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="af14b827e37f2910d08654207cd1f6e4a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>post_notify</b> (char ch, void *ptr=nullptr)</td></tr>
-<tr class="separator:af14b827e37f2910d08654207cd1f6e4a inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b68416cea73a56913e6c234f85ad622 inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a6b68416cea73a56913e6c234f85ad622"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>promote_leader</b> (std::unique_lock&lt; std::mutex &gt; &amp;guard)</td></tr>
-<tr class="separator:a6b68416cea73a56913e6c234f85ad622 inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59905273764415213b8cbdb50d309229 inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a59905273764415213b8cbdb50d309229"></a>
-<a class="el" href="classGEventHandler.html">GEventHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>find_by_key</b> (<a class="el" href="structconn__key__t.html">conn_key_t</a> key, bool erase)</td></tr>
-<tr class="separator:a59905273764415213b8cbdb50d309229 inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af843a8cba1d10f73cd32184cf6724531 inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="af843a8cba1d10f73cd32184cf6724531"></a>
-<a class="el" href="classGEventHandler.html">GEventHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>find_by_fd</b> (int fd, <a class="el" href="structconn__key__t.html">conn_key_t</a> &amp;key, bool erase)</td></tr>
-<tr class="separator:af843a8cba1d10f73cd32184cf6724531 inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cf2d5e1488bf62e063e579883174a19 inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a0cf2d5e1488bf62e063e579883174a19"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>do_timeout</b> (<a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *gptd)</td></tr>
-<tr class="separator:a0cf2d5e1488bf62e063e579883174a19 inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c5f8a4be6a4b4b3590cd237c4e416ab inherit pro_methods_classGEventBase"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a1c5f8a4be6a4b4b3590cd237c4e416ab">on_accept</a> (<a class="el" href="structGEV__PER__HANDLE__DATA.html">GEV_PER_HANDLE_DATA</a> *gphd)</td></tr>
 <tr class="memdesc:a1c5f8a4be6a4b4b3590cd237c4e416ab inherit pro_methods_classGEventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when accepting a new connection  <a href="classGEventBase.html#a1c5f8a4be6a4b4b3590cd237c4e416ab">More...</a><br /></td></tr>
 <tr class="separator:a1c5f8a4be6a4b4b3590cd237c4e416ab inherit pro_methods_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -229,84 +197,114 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>do_timeout</b> (<a cl
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a89b51612624c2e62d422c69be156e2e4"><td class="memItemLeft" align="right" valign="top"><a id="a89b51612624c2e62d422c69be156e2e4"></a>
-std::string&#160;</td><td class="memItemRight" valign="bottom"><b>m_host</b></td></tr>
+<tr class="memitem:a89b51612624c2e62d422c69be156e2e4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#a89b51612624c2e62d422c69be156e2e4">m_host</a></td></tr>
 <tr class="separator:a89b51612624c2e62d422c69be156e2e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef942a2bfb1b61dc06eec5c110d5c0ae"><td class="memItemLeft" align="right" valign="top"><a id="aef942a2bfb1b61dc06eec5c110d5c0ae"></a>
-unsigned short&#160;</td><td class="memItemRight" valign="bottom"><b>m_port</b></td></tr>
+<tr class="memitem:aef942a2bfb1b61dc06eec5c110d5c0ae"><td class="memItemLeft" align="right" valign="top">unsigned short&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#aef942a2bfb1b61dc06eec5c110d5c0ae">m_port</a></td></tr>
 <tr class="separator:aef942a2bfb1b61dc06eec5c110d5c0ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd9580a1d5d2498252c7b835006eb453"><td class="memItemLeft" align="right" valign="top"><a id="acd9580a1d5d2498252c7b835006eb453"></a>
-<a class="el" href="classGEventHandler.html">GEventHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_app</b></td></tr>
+<tr class="memitem:acd9580a1d5d2498252c7b835006eb453"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGEventHandler.html">GEventHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#acd9580a1d5d2498252c7b835006eb453">m_app</a></td></tr>
 <tr class="separator:acd9580a1d5d2498252c7b835006eb453"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb4f6bf30c8d6b87334ad4e262c4363f"><td class="memItemLeft" align="right" valign="top"><a id="adb4f6bf30c8d6b87334ad4e262c4363f"></a>
-<a class="el" href="classGEventHandler.html">GEventHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_htimer</b></td></tr>
+<tr class="memitem:adb4f6bf30c8d6b87334ad4e262c4363f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classGEventHandler.html">GEventHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#adb4f6bf30c8d6b87334ad4e262c4363f">m_htimer</a></td></tr>
 <tr class="separator:adb4f6bf30c8d6b87334ad4e262c4363f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8e1cdb374f948ff0e5e7cafddf05686a"><td class="memItemLeft" align="right" valign="top"><a id="a8e1cdb374f948ff0e5e7cafddf05686a"></a>
-void *&#160;</td><td class="memItemRight" valign="bottom"><b>m_timer</b></td></tr>
+<tr class="memitem:a8e1cdb374f948ff0e5e7cafddf05686a"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#a8e1cdb374f948ff0e5e7cafddf05686a">m_timer</a></td></tr>
 <tr class="separator:a8e1cdb374f948ff0e5e7cafddf05686a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa57e2f9393117a64d2702719765db892"><td class="memItemLeft" align="right" valign="top"><a id="aa57e2f9393117a64d2702719765db892"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_reconn_min</b></td></tr>
+<tr class="memitem:aa57e2f9393117a64d2702719765db892"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#aa57e2f9393117a64d2702719765db892">m_reconn_min</a></td></tr>
 <tr class="separator:aa57e2f9393117a64d2702719765db892"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9392da9fea8e15a1b4f99eeeea791ca3"><td class="memItemLeft" align="right" valign="top"><a id="a9392da9fea8e15a1b4f99eeeea791ca3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_reconn_max</b></td></tr>
+<tr class="memitem:a9392da9fea8e15a1b4f99eeeea791ca3"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#a9392da9fea8e15a1b4f99eeeea791ca3">m_reconn_max</a></td></tr>
 <tr class="separator:a9392da9fea8e15a1b4f99eeeea791ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72dc67870f282f76144f24c006e96f92"><td class="memItemLeft" align="right" valign="top"><a id="a72dc67870f282f76144f24c006e96f92"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_reconn_curr</b></td></tr>
+<tr class="memitem:a72dc67870f282f76144f24c006e96f92"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#a72dc67870f282f76144f24c006e96f92">m_reconn_curr</a></td></tr>
 <tr class="separator:a72dc67870f282f76144f24c006e96f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac5b5cdd907376866daf9e6eb55259ed8"><td class="memItemLeft" align="right" valign="top"><a id="ac5b5cdd907376866daf9e6eb55259ed8"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_retry_max</b></td></tr>
+<tr class="memitem:ac5b5cdd907376866daf9e6eb55259ed8"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#ac5b5cdd907376866daf9e6eb55259ed8">m_retry_max</a></td></tr>
 <tr class="separator:ac5b5cdd907376866daf9e6eb55259ed8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d0aeeeb9703a61ced3e9e1e7475e6fa"><td class="memItemLeft" align="right" valign="top"><a id="a2d0aeeeb9703a61ced3e9e1e7475e6fa"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_retry_curr</b></td></tr>
+<tr class="memitem:a2d0aeeeb9703a61ced3e9e1e7475e6fa"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBaseWithAutoReconnect.html#a2d0aeeeb9703a61ced3e9e1e7475e6fa">m_retry_curr</a></td></tr>
 <tr class="separator:a2d0aeeeb9703a61ced3e9e1e7475e6fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pro_attribs_classGEventBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classGEventBase')"><img src="closed.png" alt="-"/>&#160;Protected Attributes inherited from <a class="el" href="classGEventBase.html">GEventBase</a></td></tr>
-<tr class="memitem:accf30faf48021d2be49881cb887fa4a2 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="accf30faf48021d2be49881cb887fa4a2"></a>
-volatile bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_running</b> = false</td></tr>
+<tr class="memitem:accf30faf48021d2be49881cb887fa4a2 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#accf30faf48021d2be49881cb887fa4a2">m_running</a> = false</td></tr>
 <tr class="separator:accf30faf48021d2be49881cb887fa4a2 inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b9788367a099e19d369bfc95816b58e inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a8b9788367a099e19d369bfc95816b58e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_thrnum</b> = 0</td></tr>
+<tr class="memitem:a8b9788367a099e19d369bfc95816b58e inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a8b9788367a099e19d369bfc95816b58e">m_thrnum</a> = 0</td></tr>
 <tr class="separator:a8b9788367a099e19d369bfc95816b58e inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2684d077b44441b05942987b0268480 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="ab2684d077b44441b05942987b0268480"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_blksize</b> = GEV_MAX_BUF_SIZE</td></tr>
+<tr class="memitem:ab2684d077b44441b05942987b0268480 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ab2684d077b44441b05942987b0268480">m_blksize</a> = GEV_MAX_BUF_SIZE</td></tr>
 <tr class="separator:ab2684d077b44441b05942987b0268480 inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21cf5837454d6876fc017c19a720ae19 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a21cf5837454d6876fc017c19a720ae19"></a>
-std::thread_group&#160;</td><td class="memItemRight" valign="bottom"><b>m_grp</b></td></tr>
+<tr class="memitem:a21cf5837454d6876fc017c19a720ae19 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">std::thread_group&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a21cf5837454d6876fc017c19a720ae19">m_grp</a></td></tr>
 <tr class="separator:a21cf5837454d6876fc017c19a720ae19 inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac77788532e99aa586193d6efad38f7d4 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="ac77788532e99aa586193d6efad38f7d4"></a>
-SOCKET&#160;</td><td class="memItemRight" valign="bottom"><b>m_listener</b> = INVALID_SOCKET</td></tr>
+<tr class="memitem:ac77788532e99aa586193d6efad38f7d4 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ac77788532e99aa586193d6efad38f7d4">m_listener</a> = INVALID_SOCKET</td></tr>
 <tr class="separator:ac77788532e99aa586193d6efad38f7d4 inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18f63706210e522041a0b716a8f0af59 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a18f63706210e522041a0b716a8f0af59"></a>
-std::recursive_mutex&#160;</td><td class="memItemRight" valign="bottom"><b>m_mutex</b></td></tr>
+<tr class="memitem:a18f63706210e522041a0b716a8f0af59 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">std::recursive_mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a18f63706210e522041a0b716a8f0af59">m_mutex</a></td></tr>
 <tr class="separator:a18f63706210e522041a0b716a8f0af59 inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefb71ed3d21c7a8c517da298354119b5 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="aefb71ed3d21c7a8c517da298354119b5"></a>
-std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>m_tlock</b></td></tr>
+<tr class="memitem:aefb71ed3d21c7a8c517da298354119b5 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#aefb71ed3d21c7a8c517da298354119b5">m_tlock</a></td></tr>
 <tr class="separator:aefb71ed3d21c7a8c517da298354119b5 inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab195b4211e38a6b8a8e91f79de728a4d inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="ab195b4211e38a6b8a8e91f79de728a4d"></a>
-std::map&lt; <a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *, <a class="el" href="classGEventHandler.html">GEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_tmap</b></td></tr>
+<tr class="memitem:ab195b4211e38a6b8a8e91f79de728a4d inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *, <a class="el" href="classGEventHandler.html">GEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ab195b4211e38a6b8a8e91f79de728a4d">m_tmap</a></td></tr>
 <tr class="separator:ab195b4211e38a6b8a8e91f79de728a4d inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa86cb4c9e659a8130cd062441ddecc6a inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="aa86cb4c9e659a8130cd062441ddecc6a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_ep</b> = -1</td></tr>
+<tr class="memitem:aa86cb4c9e659a8130cd062441ddecc6a inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#aa86cb4c9e659a8130cd062441ddecc6a">m_ep</a> = -1</td></tr>
 <tr class="separator:aa86cb4c9e659a8130cd062441ddecc6a inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19ddf85963208390b35b6ac2a0e3dd5b inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a19ddf85963208390b35b6ac2a0e3dd5b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_pp</b> [2]</td></tr>
+<tr class="memitem:a19ddf85963208390b35b6ac2a0e3dd5b inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a19ddf85963208390b35b6ac2a0e3dd5b">m_pp</a> [2]</td></tr>
 <tr class="separator:a19ddf85963208390b35b6ac2a0e3dd5b inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4acc848f0931dabbe3a6546be3a99cea inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a4acc848f0931dabbe3a6546be3a99cea"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_tsig</b> = 0</td></tr>
+<tr class="memitem:a4acc848f0931dabbe3a6546be3a99cea inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a4acc848f0931dabbe3a6546be3a99cea">m_tsig</a> = 0</td></tr>
 <tr class="separator:a4acc848f0931dabbe3a6546be3a99cea inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab82d7eb23da4ff4f1e5b5d92cd9c557e inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="ab82d7eb23da4ff4f1e5b5d92cd9c557e"></a>
-std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>m_lock</b></td></tr>
+<tr class="memitem:ab82d7eb23da4ff4f1e5b5d92cd9c557e inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ab82d7eb23da4ff4f1e5b5d92cd9c557e">m_lock</a></td></tr>
 <tr class="separator:ab82d7eb23da4ff4f1e5b5d92cd9c557e inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaabb2c8491d8942793288e9e0ce4d429 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="aaabb2c8491d8942793288e9e0ce4d429"></a>
-pthread_t&#160;</td><td class="memItemRight" valign="bottom"><b>m_leader</b> = -1</td></tr>
+<tr class="memitem:aaabb2c8491d8942793288e9e0ce4d429 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#aaabb2c8491d8942793288e9e0ce4d429">m_leader</a> = -1</td></tr>
 <tr class="separator:aaabb2c8491d8942793288e9e0ce4d429 inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e3f682827ea0ad61503155521b62882 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top"><a id="a4e3f682827ea0ad61503155521b62882"></a>
-std::map&lt; <a class="el" href="structconn__key__t.html">conn_key_t</a>, <a class="el" href="classGEventHandler.html">GEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_map</b></td></tr>
+<tr class="memitem:a4e3f682827ea0ad61503155521b62882 inherit pro_attribs_classGEventBase"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="structconn__key__t.html">conn_key_t</a>, <a class="el" href="classGEventHandler.html">GEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a4e3f682827ea0ad61503155521b62882">m_map</a></td></tr>
 <tr class="separator:a4e3f682827ea0ad61503155521b62882 inherit pro_attribs_classGEventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>event base with auto reconnection support </p>
 <dl class="section note"><dt>Note</dt><dd>only support one auto-reconect connections </dd></dl>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a5a39debb31a71399c780bba659801c45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a39debb31a71399c780bba659801c45">&#9670;&nbsp;</a></span>GEventBaseWithAutoReconnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GEventBaseWithAutoReconnect::GEventBaseWithAutoReconnect </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>reconn_min</em> = <code>GEV_RECONNECT_TIMEOUT</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>reconn_max</em> = <code>GEV_RECONNECT_TIMEOUT_MAX</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max_retry</em> = <code>GEV_RECONNECT_TRY_MAX</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>constructor to init reconnect parameters </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">reconn_min</td><td>minimum time interval to do reconnect </td></tr>
+    <tr><td class="paramname">reconn_max</td><td>maximum time interval to do reconnect </td></tr>
+    <tr><td class="paramname">max_retry</td><td>max retry times, -1 for infinite </td></tr>
+  </table>
+  </dd>
+</dl>
+<div class="dynheader">
+Here is the call graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGEventBaseWithAutoReconnect_a5a39debb31a71399c780bba659801c45_cgraph.png" border="0" usemap="#classGEventBaseWithAutoReconnect_a5a39debb31a71399c780bba659801c45_cgraph" alt=""/></div>
+<map name="classGEventBaseWithAutoReconnect_a5a39debb31a71399c780bba659801c45_cgraph" id="classGEventBaseWithAutoReconnect_a5a39debb31a71399c780bba659801c45_cgraph">
+<area shape="rect" title="constructor to init reconnect parameters" alt="" coords="5,5,243,47"/>
+<area shape="rect" href="classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="291,5,441,47"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="acecb779812c4eae090cd10dd43be4d43"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acecb779812c4eae090cd10dd43be4d43">&#9670;&nbsp;</a></span>connector()</h2>
 
@@ -368,7 +366,13 @@ std::map&lt; <a class="el" href="structconn__key__t.html">conn_key_t</a>, <a cla
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - connection ok; false - failed </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- connection ok </td></tr>
+    <tr><td class="paramname">false</td><td>- failed </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="section note"><dt>Note</dt><dd>only different with connect is the auto-reconnect character </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
@@ -399,7 +403,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classGEventBaseWithAutoReconnect_a662c95e76e3a6ad0c7585aebeb7f0234_icgraph.png" border="0" usemap="#classGEventBaseWithAutoReconnect_a662c95e76e3a6ad0c7585aebeb7f0234_icgraph" alt=""/></div>
 <map name="classGEventBaseWithAutoReconnect_a662c95e76e3a6ad0c7585aebeb7f0234_icgraph" id="classGEventBaseWithAutoReconnect_a662c95e76e3a6ad0c7585aebeb7f0234_icgraph">
 <area shape="rect" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
 
@@ -457,8 +461,8 @@ Here is the caller graph for this function:</div>
 <map name="classGEventBaseWithAutoReconnect_a704400a5114e7282ebfa30074f195e59_icgraph" id="classGEventBaseWithAutoReconnect_a704400a5114e7282ebfa30074f195e59_icgraph">
 <area shape="rect" title="doing the dirty work for reconnect" alt="" coords="560,39,789,80"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="283,71,512,112"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="283,71,512,112"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
 
@@ -487,15 +491,7 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>called when for_each traverse handlers </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">h</td><td>handler will traverse </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true - allow access; false - skip </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGEventBase.html#ae63c2bebfc257d7ce4a3cbb816641543" title="called when for_each traverse handlers">GEventBase::filter_handler</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classGEventBase.html#ae63c2bebfc257d7ce4a3cbb816641543">GEventBase</a>.</p>
 
@@ -525,7 +521,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>called when detecting connection breaks </p>
-<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
 <p>start the reconnect action at this point </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -533,7 +528,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classGEventBaseWithAutoReconnect_a9f69b677a4e7e28f11a156486ae4099a_icgraph.png" border="0" usemap="#classGEventBaseWithAutoReconnect_a9f69b677a4e7e28f11a156486ae4099a_icgraph" alt=""/></div>
 <map name="classGEventBaseWithAutoReconnect_a9f69b677a4e7e28f11a156486ae4099a_icgraph" id="classGEventBaseWithAutoReconnect_a9f69b677a4e7e28f11a156486ae4099a_icgraph">
 <area shape="rect" title="called when detecting connection breaks" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
 
@@ -570,7 +565,13 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - process ok; false - falied</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- process ok </td></tr>
+    <tr><td class="paramname">false</td><td>- falied</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>do initialize work at this point </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -579,7 +580,7 @@ Here is the caller graph for this function:</div>
 <map name="classGEventBaseWithAutoReconnect_ac019fb4a6b410726d6635f56fbe3fe62_icgraph" id="classGEventBaseWithAutoReconnect_ac019fb4a6b410726d6635f56fbe3fe62_icgraph">
 <area shape="rect" title="called when connection established" alt="" coords="560,5,789,47"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
 
@@ -608,15 +609,7 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>called when detecting error on a conection </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">h</td><td>handler binding to that connection </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection">GEventBase::on_error</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432">GEventBase</a>.</p>
 <div class="dynheader">
@@ -624,20 +617,21 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventBaseWithAutoReconnect_a4b3565ff0ea0443ec27e0ae5ed193e65_cgraph.png" border="0" usemap="#classGEventBaseWithAutoReconnect_a4b3565ff0ea0443ec27e0ae5ed193e65_cgraph" alt=""/></div>
 <map name="classGEventBaseWithAutoReconnect_a4b3565ff0ea0443ec27e0ae5ed193e65_cgraph" id="classGEventBaseWithAutoReconnect_a4b3565ff0ea0443ec27e0ae5ed193e65_cgraph">
-<area shape="rect" title="called when detecting error on a conection" alt="" coords="5,123,235,164"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="283,57,512,99"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a9f69b677a4e7e28f11a156486ae4099a" title="called when detecting connection breaks" alt="" coords="283,123,512,164"/>
-<area shape="rect" href="classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection" alt="" coords="316,189,479,215"/>
-<area shape="rect" href="classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="571,65,731,91"/>
-<area shape="rect" href="classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="805,5,955,47"/>
-<area shape="rect" href="classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="799,71,961,98"/>
-<area shape="rect" href="classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="1017,122,1177,149"/>
-<area shape="rect" href="classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="1019,71,1176,98"/>
-<area shape="rect" href="classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="570,181,733,207"/>
-<area shape="rect" href="classGEventHandler.html#a3f3e88c7a2dbcf5d866acddbbf034fd7" title="connection has break" alt="" coords="560,231,743,258"/>
-<area shape="rect" href="classGEventHandler.html#a316e1484f5e7eae5babf0a31cf4c8662" title="tell EventBase whether enable reuse" alt="" coords="569,282,733,309"/>
-<area shape="rect" href="structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d" title="cancel this timer" alt="" coords="795,173,965,215"/>
-<area shape="rect" href="classGEventHandler.html#a5ef79153519c6c98a2e00d3f193ad07d" title="shut down underline facilities" alt="" coords="791,239,969,266"/>
+<area shape="rect" title=" " alt="" coords="5,104,235,145"/>
+<area shape="rect" href="classGEventHandler.html#adbde5d19f12e8ed35da6b929ed457636" title="tell EventBase whether enable reconnect" alt="" coords="319,5,476,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="283,71,512,112"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a9f69b677a4e7e28f11a156486ae4099a" title="called when detecting connection breaks" alt="" coords="283,136,512,177"/>
+<area shape="rect" href="classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection" alt="" coords="316,202,479,229"/>
+<area shape="rect" href="classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="571,78,731,105"/>
+<area shape="rect" href="classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="805,19,955,60"/>
+<area shape="rect" href="classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="799,85,961,111"/>
+<area shape="rect" href="classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="1017,135,1177,162"/>
+<area shape="rect" href="classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="1019,85,1176,111"/>
+<area shape="rect" href="classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="570,194,733,221"/>
+<area shape="rect" href="classGEventHandler.html#a3f3e88c7a2dbcf5d866acddbbf034fd7" title="connection has break" alt="" coords="560,245,743,271"/>
+<area shape="rect" href="classGEventHandler.html#a316e1484f5e7eae5babf0a31cf4c8662" title="tell EventBase whether enable reuse" alt="" coords="569,295,733,322"/>
+<area shape="rect" href="structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d" title="cancel this timer" alt="" coords="795,187,965,228"/>
+<area shape="rect" href="classGEventHandler.html#a5ef79153519c6c98a2e00d3f193ad07d" title="shut down underline facilities" alt="" coords="791,253,969,279"/>
 </map>
 </div>
 
@@ -674,14 +668,13 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventBaseWithAutoReconnect_a2b612588e704b8a71758f289dd796098_icgraph.png" border="0" usemap="#classGEventBaseWithAutoReconnect_a2b612588e704b8a71758f289dd796098_icgraph" alt=""/></div>
 <map name="classGEventBaseWithAutoReconnect_a2b612588e704b8a71758f289dd796098_icgraph" id="classGEventBaseWithAutoReconnect_a2b612588e704b8a71758f289dd796098_icgraph">
 <area shape="rect" title="called when reconnect retry reach the limit" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
 
@@ -710,15 +703,7 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>called when timer due </p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">gptd</td><td>data binding to that timer </td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd>true - dispatch timer event ok; false - failed </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218" title="called when timer due">GEventBase::on_timeout</a> </dd></dl>
 
 <p>Reimplemented from <a class="el" href="classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218">GEventBase</a>.</p>
 <div class="dynheader">
@@ -726,7 +711,7 @@ Here is the call graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventBaseWithAutoReconnect_a6ac1b22f7a2e62e4f71edae8261baf7e_cgraph.png" border="0" usemap="#classGEventBaseWithAutoReconnect_a6ac1b22f7a2e62e4f71edae8261baf7e_cgraph" alt=""/></div>
 <map name="classGEventBaseWithAutoReconnect_a6ac1b22f7a2e62e4f71edae8261baf7e_cgraph" id="classGEventBaseWithAutoReconnect_a6ac1b22f7a2e62e4f71edae8261baf7e_cgraph">
-<area shape="rect" title="called when timer due" alt="" coords="5,250,235,291"/>
+<area shape="rect" title=" " alt="" coords="5,250,235,291"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,250,512,291"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a2b612588e704b8a71758f289dd796098" title="called when reconnect retry reach the limit" alt="" coords="283,315,512,357"/>
 <area shape="rect" href="classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218" title="called when timer due" alt="" coords="583,81,766,108"/>
@@ -748,6 +733,237 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classGEventHandler.html#a75f04e2b25bf9234793949a3f367445a" title="timer has due" alt="" coords="837,5,1040,32"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="acd9580a1d5d2498252c7b835006eb453"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd9580a1d5d2498252c7b835006eb453">&#9670;&nbsp;</a></span>m_app</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGEventHandler.html">GEventHandler</a>* GEventBaseWithAutoReconnect::m_app</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>handler for initiative inside connection </p>
+
+</div>
+</div>
+<a id="a89b51612624c2e62d422c69be156e2e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a89b51612624c2e62d422c69be156e2e4">&#9670;&nbsp;</a></span>m_host</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string GEventBaseWithAutoReconnect::m_host</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>host to connect to </p>
+
+</div>
+</div>
+<a id="adb4f6bf30c8d6b87334ad4e262c4363f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb4f6bf30c8d6b87334ad4e262c4363f">&#9670;&nbsp;</a></span>m_htimer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classGEventHandler.html">GEventHandler</a>* GEventBaseWithAutoReconnect::m_htimer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>timer handler for reconnect </p>
+
+</div>
+</div>
+<a id="aef942a2bfb1b61dc06eec5c110d5c0ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef942a2bfb1b61dc06eec5c110d5c0ae">&#9670;&nbsp;</a></span>m_port</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">unsigned short GEventBaseWithAutoReconnect::m_port</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>port to connect to </p>
+
+</div>
+</div>
+<a id="a72dc67870f282f76144f24c006e96f92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a72dc67870f282f76144f24c006e96f92">&#9670;&nbsp;</a></span>m_reconn_curr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GEventBaseWithAutoReconnect::m_reconn_curr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>current time interval for reconnect, start from m_reconn_min, grows max to m_reconn_max </p>
+
+</div>
+</div>
+<a id="a9392da9fea8e15a1b4f99eeeea791ca3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9392da9fea8e15a1b4f99eeeea791ca3">&#9670;&nbsp;</a></span>m_reconn_max</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GEventBaseWithAutoReconnect::m_reconn_max</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>maximum time interval for reconnect </p>
+
+</div>
+</div>
+<a id="aa57e2f9393117a64d2702719765db892"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa57e2f9393117a64d2702719765db892">&#9670;&nbsp;</a></span>m_reconn_min</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GEventBaseWithAutoReconnect::m_reconn_min</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>minimum time interval for reconnect </p>
+
+</div>
+</div>
+<a id="a2d0aeeeb9703a61ced3e9e1e7475e6fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2d0aeeeb9703a61ced3e9e1e7475e6fa">&#9670;&nbsp;</a></span>m_retry_curr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GEventBaseWithAutoReconnect::m_retry_curr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>current retry times </p>
+
+</div>
+</div>
+<a id="ac5b5cdd907376866daf9e6eb55259ed8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5b5cdd907376866daf9e6eb55259ed8">&#9670;&nbsp;</a></span>m_retry_max</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GEventBaseWithAutoReconnect::m_retry_max</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>retry max times for reconnect, -1 unlimited </p>
+
+</div>
+</div>
+<a id="a8e1cdb374f948ff0e5e7cafddf05686a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e1cdb374f948ff0e5e7cafddf05686a">&#9670;&nbsp;</a></span>m_timer</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void* GEventBaseWithAutoReconnect::m_timer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>timer for reconnect </p>
 
 </div>
 </div>

@@ -1,5 +1,5 @@
 <map id="IEventBase" name="IEventBase">
 <area shape="rect" id="node1" title="abstract interface for all EventBase" alt="" coords="73,5,203,127"/>
-<area shape="rect" id="node2" href="$classGEventBase.html" title="event base, the core of the gevent" alt="" coords="63,175,213,809"/>
-<area shape="rect" id="node3" href="$classGEventBaseWithAutoReconnect.html" title="event base with auto reconnection support" alt="" coords="5,857,271,1213"/>
+<area shape="rect" id="node2" href="$classGEventBase.html" title="event base, the core of the gevent" alt="" coords="66,175,210,663"/>
+<area shape="rect" id="node3" href="$classGEventBaseWithAutoReconnect.html" title="event base with auto reconnection support" alt="" coords="5,711,271,1067"/>
 </map>

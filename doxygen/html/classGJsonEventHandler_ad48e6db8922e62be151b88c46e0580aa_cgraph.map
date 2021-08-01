@@ -1,5 +1,5 @@
 <map id="GJsonEventHandler::reset" name="GJsonEventHandler::reset">
-<area shape="rect" id="node1" title="reset inner data status to initial" alt="" coords="5,23,160,65"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,23,160,65"/>
 <area shape="rect" id="node2" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="417,5,577,32"/>
 <area shape="rect" id="node3" href="$classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="419,68,576,95"/>
 <area shape="rect" id="node4" href="$classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="208,31,369,57"/>

@@ -1,5 +1,5 @@
 <map id="GEventBaseWithAutoReconnect::on_timeout" name="GEventBaseWithAutoReconnect::on_timeout">
-<area shape="rect" id="node1" title="called when timer due" alt="" coords="5,250,235,291"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,250,235,291"/>
 <area shape="rect" id="node2" href="$classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,250,512,291"/>
 <area shape="rect" id="node18" href="$classGEventBaseWithAutoReconnect.html#a2b612588e704b8a71758f289dd796098" title="called when reconnect retry reach the limit" alt="" coords="283,315,512,357"/>
 <area shape="rect" id="node19" href="$classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218" title="called when timer due" alt="" coords="583,81,766,108"/>

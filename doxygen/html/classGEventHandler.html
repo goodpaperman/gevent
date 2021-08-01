@@ -73,7 +73,7 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
-<p>event handler binding to a connection user would better inherit it's own handler from this, and handle business in callbacks  
+<p>event handler binding to a connection  
  <a href="classGEventHandler.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="EventHandler_8h_source.html">EventHandler.h</a>&gt;</code></p>
@@ -82,7 +82,7 @@ Inheritance diagram for GEventHandler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventHandler__inherit__graph.png" border="0" usemap="#GEventHandler_inherit__map" alt="Inheritance graph"/></div>
 <map name="GEventHandler_inherit__map" id="GEventHandler_inherit__map">
-<area shape="rect" title="event handler binding to a connection user would better inherit it&#39;s own handler from this,..." alt="" coords="5,5,161,332"/>
+<area shape="rect" title="event handler binding to a connection" alt="" coords="5,5,161,332"/>
 <area shape="rect" href="classGJsonEventHandler.html" title="a common handler to process json protocol." alt="" coords="10,380,157,531"/>
 </map>
 </div>
@@ -91,7 +91,7 @@ Collaboration diagram for GEventHandler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventHandler__coll__graph.png" border="0" usemap="#GEventHandler_coll__map" alt="Collaboration graph"/></div>
 <map name="GEventHandler_coll__map" id="GEventHandler_coll__map">
-<area shape="rect" title="event handler binding to a connection user would better inherit it&#39;s own handler from this,..." alt="" coords="166,417,322,700"/>
+<area shape="rect" title="event handler binding to a connection" alt="" coords="166,417,322,700"/>
 <area shape="rect" href="classIEventBase.html" title="abstract interface for all EventBase" alt="" coords="5,5,136,127"/>
 <area shape="rect" href="structGEV__PER__TIMER__DATA.html" title="data that binding to one timer" alt="" coords="141,189,347,355"/>
 <area shape="rect" href="structGEV__PER__HANDLE__DATA.html" title="data that binding to handler, or a connection" alt="" coords="372,204,591,340"/>
@@ -111,11 +111,13 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aa46b1b1a237b0d3b45ac9ded13bd2f62"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#aa46b1b1a237b0d3b45ac9ded13bd2f62">connected</a> ()</td></tr>
 <tr class="memdesc:aa46b1b1a237b0d3b45ac9ded13bd2f62"><td class="mdescLeft">&#160;</td><td class="mdescRight">tell if we are connected  <a href="classGEventHandler.html#aa46b1b1a237b0d3b45ac9ded13bd2f62">More...</a><br /></td></tr>
 <tr class="separator:aa46b1b1a237b0d3b45ac9ded13bd2f62"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad32a72de41209ac6f3b1cda20d589710"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#ad32a72de41209ac6f3b1cda20d589710">disconnect</a> ()</td></tr>
-<tr class="memdesc:ad32a72de41209ac6f3b1cda20d589710"><td class="mdescLeft">&#160;</td><td class="mdescRight">break the connection  <a href="classGEventHandler.html#ad32a72de41209ac6f3b1cda20d589710">More...</a><br /></td></tr>
+<tr class="memitem:ad32a72de41209ac6f3b1cda20d589710"><td class="memItemLeft" align="right" valign="top"><a id="ad32a72de41209ac6f3b1cda20d589710"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#ad32a72de41209ac6f3b1cda20d589710">disconnect</a> ()</td></tr>
+<tr class="memdesc:ad32a72de41209ac6f3b1cda20d589710"><td class="mdescLeft">&#160;</td><td class="mdescRight">break the connection <br /></td></tr>
 <tr class="separator:ad32a72de41209ac6f3b1cda20d589710"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acadb5910375db04086305562ca5912b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#acadb5910375db04086305562ca5912b1">clear</a> ()</td></tr>
-<tr class="memdesc:acadb5910375db04086305562ca5912b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear data status inside  <a href="classGEventHandler.html#acadb5910375db04086305562ca5912b1">More...</a><br /></td></tr>
+<tr class="memitem:acadb5910375db04086305562ca5912b1"><td class="memItemLeft" align="right" valign="top"><a id="acadb5910375db04086305562ca5912b1"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#acadb5910375db04086305562ca5912b1">clear</a> ()</td></tr>
+<tr class="memdesc:acadb5910375db04086305562ca5912b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">clear data status inside <br /></td></tr>
 <tr class="separator:acadb5910375db04086305562ca5912b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13394ee93e54599e5e6d74ed32890d05"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#a13394ee93e54599e5e6d74ed32890d05">fd</a> ()</td></tr>
 <tr class="memdesc:a13394ee93e54599e5e6d74ed32890d05"><td class="mdescLeft">&#160;</td><td class="mdescRight">return underline connection file descriptor  <a href="classGEventHandler.html#a13394ee93e54599e5e6d74ed32890d05">More...</a><br /></td></tr>
@@ -177,22 +179,18 @@ Protected Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:a88c3b5fc1a37415eaa87b3edfe2dee3e"><td class="memItemLeft" align="right" valign="top"><a id="a88c3b5fc1a37415eaa87b3edfe2dee3e"></a>
-<a class="el" href="structGEV__PER__HANDLE__DATA.html">GEV_PER_HANDLE_DATA</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_gphd</b> = nullptr</td></tr>
+<tr class="memitem:a88c3b5fc1a37415eaa87b3edfe2dee3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGEV__PER__HANDLE__DATA.html">GEV_PER_HANDLE_DATA</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#a88c3b5fc1a37415eaa87b3edfe2dee3e">m_gphd</a> = nullptr</td></tr>
 <tr class="separator:a88c3b5fc1a37415eaa87b3edfe2dee3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecb93c84cafbd857700dd0defe809aec"><td class="memItemLeft" align="right" valign="top"><a id="aecb93c84cafbd857700dd0defe809aec"></a>
-<a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_gptd</b> = nullptr</td></tr>
+<tr class="memitem:aecb93c84cafbd857700dd0defe809aec"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#aecb93c84cafbd857700dd0defe809aec">m_gptd</a> = nullptr</td></tr>
 <tr class="separator:aecb93c84cafbd857700dd0defe809aec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3b5e0795c291158869d0e67c985ee055"><td class="memItemLeft" align="right" valign="top"><a id="a3b5e0795c291158869d0e67c985ee055"></a>
-<a class="el" href="classIEventBase.html">IEventBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>m_base</b> = nullptr</td></tr>
+<tr class="memitem:a3b5e0795c291158869d0e67c985ee055"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIEventBase.html">IEventBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#a3b5e0795c291158869d0e67c985ee055">m_base</a> = nullptr</td></tr>
 <tr class="separator:a3b5e0795c291158869d0e67c985ee055"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2093adee43de607cd33bd03244a50013"><td class="memItemLeft" align="right" valign="top"><a id="a2093adee43de607cd33bd03244a50013"></a>
-SOCKET&#160;</td><td class="memItemRight" valign="bottom"><b>m_so</b></td></tr>
+<tr class="memitem:a2093adee43de607cd33bd03244a50013"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventHandler.html#a2093adee43de607cd33bd03244a50013">m_so</a></td></tr>
 <tr class="separator:a2093adee43de607cd33bd03244a50013"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>event handler binding to a connection user would better inherit it's own handler from this, and handle business in callbacks </p>
-<p>to do some callbacks </p>
+<div class="textblock"><p>event handler binding to a connection </p>
+<p>user would better inherit it's own handler from this, and handle business in callbacks </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a462e1f2488d935220f2ec876e5361962"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a462e1f2488d935220f2ec876e5361962">&#9670;&nbsp;</a></span>arg()</h2>
@@ -225,8 +223,7 @@ SOCKET&#160;</td><td class="memItemRight" valign="bottom"><b>m_so</b></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
-<p>user special data will useful to distinguish different handlers, especially for timer </p>
+<dl class="section note"><dt>Note</dt><dd>user special data will useful to distinguish different handlers, especially for timer </dd></dl>
 
 <p>Implemented in <a class="el" href="classGJsonEventHandler.html#a3da03eea54e3da70b6d63901abcc8793">GJsonEventHandler</a>.</p>
 <div class="dynheader">
@@ -236,7 +233,7 @@ Here is the caller graph for this function:</div>
 <map name="classGEventHandler_a462e1f2488d935220f2ec876e5361962_icgraph" id="classGEventHandler_a462e1f2488d935220f2ec876e5361962_icgraph">
 <area shape="rect" title="remember user provide data in handler" alt="" coords="560,13,709,39"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
 
@@ -266,8 +263,23 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>tell EventBase whether enable reconnect </p>
-<dl class="section return"><dt>Returns</dt><dd>true - will reconnect; false - not</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- will reconnect </td></tr>
+    <tr><td class="paramname">false</td><td>- no reconnect</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>when auto-reconnect is enabled, framework will try to re-establish the ative connection when detecting conenction break </p>
+<div class="dynheader">
+Here is the caller graph for this function:</div>
+<div class="dyncontent">
+<div class="center"><img src="classGEventHandler_adbde5d19f12e8ed35da6b929ed457636_icgraph.png" border="0" usemap="#classGEventHandler_adbde5d19f12e8ed35da6b929ed457636_icgraph" alt=""/></div>
+<map name="classGEventHandler_adbde5d19f12e8ed35da6b929ed457636_icgraph" id="classGEventHandler_adbde5d19f12e8ed35da6b929ed457636_icgraph">
+<area shape="rect" title="tell EventBase whether enable reconnect" alt="" coords="283,5,440,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="5,5,235,47"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -302,7 +314,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classGJsonEventHandler.html#ab1e6c90b6bd50df406e1933001c810f9">GJsonEventHandler</a>.</p>
 <div class="dynheader">
@@ -314,41 +325,10 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="classGEventBase.html#aa1d227594c9269194d625584aac2c16e" title="setup connection to remote server" alt="" coords="571,15,731,42"/>
 <area shape="rect" href="classGEventHandler.html#a3f3e88c7a2dbcf5d866acddbbf034fd7" title="connection has break" alt="" coords="560,67,743,94"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 <area shape="rect" href="classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection" alt="" coords="316,71,479,98"/>
 <area shape="rect" href="classGEventBase.html#a605008413706770a7efd53638b2e16ff" title="traverse the handlers and call func for each handler" alt="" coords="41,71,199,98"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="5,123,235,164"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="acadb5910375db04086305562ca5912b1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acadb5910375db04086305562ca5912b1">&#9670;&nbsp;</a></span>clear()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GEventHandler::clear </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>clear data status inside </p>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
-<div class="dynheader">
-Here is the caller graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classGEventHandler_acadb5910375db04086305562ca5912b1_icgraph.png" border="0" usemap="#classGEventHandler_acadb5910375db04086305562ca5912b1_icgraph" alt=""/></div>
-<map name="classGEventHandler_acadb5910375db04086305562ca5912b1_icgraph" id="classGEventHandler_acadb5910375db04086305562ca5912b1_icgraph">
-<area shape="rect" title="clear data status inside" alt="" coords="768,13,928,39"/>
-<area shape="rect" href="classGEventBase.html#aa1d227594c9269194d625584aac2c16e" title="setup connection to remote server" alt="" coords="560,13,720,39"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="5,123,235,164"/>
 </map>
 </div>
 
@@ -377,7 +357,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -398,9 +377,9 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection" alt="" coords="560,122,723,149"/>
 <area shape="rect" href="classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218" title="called when timer due" alt="" coords="306,210,489,237"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,27,512,68"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,115,235,156"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,115,235,156"/>
 <area shape="rect" href="classGEventBase.html#a605008413706770a7efd53638b2e16ff" title="traverse the handlers and call func for each handler" alt="" coords="318,93,477,119"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="283,144,512,185"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="283,144,512,185"/>
 </map>
 </div>
 
@@ -422,7 +401,13 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>tell if we are connected </p>
-<dl class="section return"><dt>Returns</dt><dd>true - connected; false - no </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- connected </td></tr>
+    <tr><td class="paramname">false</td><td>- not </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -430,37 +415,7 @@ Here is the caller graph for this function:</div>
 <map name="classGEventHandler_aa46b1b1a237b0d3b45ac9ded13bd2f62_icgraph" id="classGEventHandler_aa46b1b1a237b0d3b45ac9ded13bd2f62_icgraph">
 <area shape="rect" title="tell if we are connected" alt="" coords="560,13,755,39"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
-</map>
-</div>
-
-</div>
-</div>
-<a id="ad32a72de41209ac6f3b1cda20d589710"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad32a72de41209ac6f3b1cda20d589710">&#9670;&nbsp;</a></span>disconnect()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GEventHandler::disconnect </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>break the connection </p>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
-<div class="dynheader">
-Here is the call graph for this function:</div>
-<div class="dyncontent">
-<div class="center"><img src="classGEventHandler_ad32a72de41209ac6f3b1cda20d589710_cgraph.png" border="0" usemap="#classGEventHandler_ad32a72de41209ac6f3b1cda20d589710_cgraph" alt=""/></div>
-<map name="classGEventHandler_ad32a72de41209ac6f3b1cda20d589710_cgraph" id="classGEventHandler_ad32a72de41209ac6f3b1cda20d589710_cgraph">
-<area shape="rect" title="break the connection" alt="" coords="5,31,204,57"/>
-<area shape="rect" href="classIEventBase.html#a93f708600d53de5ca399463d5c46af42" title="get underline event poll fd on linux" alt="" coords="257,5,389,32"/>
-<area shape="rect" href="classGEventHandler.html#a13394ee93e54599e5e6d74ed32890d05" title="return underline connection file descriptor" alt="" coords="252,56,393,83"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
 
@@ -520,10 +475,15 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>tell framework whether enable pre-read mechanism </p>
-<dl class="section return"><dt>Returns</dt><dd>true - enable; false - not</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- enable </td></tr>
+    <tr><td class="paramname">false</td><td>- disable</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>if pre read mechanism enabled, before each on_read called, pre_read will called first to give user a chance to prepare raw data</p>
-<dl class="section user"><dt>think like this:</dt><dd><div class="fragment"><div class="line">    <a class="code" href="classGEventHandler.html#a425ff88197f72dab091072cb4737d68f">on_read</a> (<a class="code" href="classGEventHandler.html#ad28ff16d092359ec82a93be86a621452">pre_read</a> (msg)); </div>
-<div class="line"><a class="code" href="classGEventHandler.html#ab54ba39d033eb14702a75b09f6204f91">send</a> (<a class="code" href="classGEventHandler.html#a86c7010d3863fc37ff256e56c3a6073d">pre_write</a> (msg)); </div>
+<dl class="section user"><dt>think like this:</dt><dd><div class="fragment"><div class="line"><a class="code" href="classGEventHandler.html#a425ff88197f72dab091072cb4737d68f">on_read</a> (<a class="code" href="classGEventHandler.html#ad28ff16d092359ec82a93be86a621452">pre_read</a> (msg)); </div>
 </div><!-- fragment --> </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -531,7 +491,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classGEventHandler_a2fef525ce68774fbffa2bd591cce2cbc_icgraph.png" border="0" usemap="#classGEventHandler_a2fef525ce68774fbffa2bd591cce2cbc_icgraph" alt=""/></div>
 <map name="classGEventHandler_a2fef525ce68774fbffa2bd591cce2cbc_icgraph" id="classGEventHandler_a2fef525ce68774fbffa2bd591cce2cbc_icgraph">
 <area shape="rect" title="tell framework whether enable pre&#45;read mechanism" alt="" coords="208,5,359,47"/>
-<area shape="rect" href="classGJsonEventHandler.html#ab9a48d231da261af272029539041333c" title="connection has data arriving" alt="" coords="5,5,160,47"/>
+<area shape="rect" href="classGJsonEventHandler.html#ab9a48d231da261af272029539041333c" title=" " alt="" coords="5,5,160,47"/>
 </map>
 </div>
 
@@ -561,7 +521,13 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>tell framework whether enable pre-write mechanism </p>
-<dl class="section return"><dt>Returns</dt><dd>true - enable; false - not</dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- enable </td></tr>
+    <tr><td class="paramname">false</td><td>- disable</td></tr>
+  </table>
+  </dd>
+</dl>
 <p>if pre write mechanism enabled, after each send called, pre_write will called first to give user a chance to prepare raw data</p>
 <dl class="section user"><dt>think like this:</dt><dd><div class="fragment"><div class="line"><a class="code" href="classGEventHandler.html#ab54ba39d033eb14702a75b09f6204f91">send</a> (<a class="code" href="classGEventHandler.html#a86c7010d3863fc37ff256e56c3a6073d">pre_write</a> (msg)); </div>
 </div><!-- fragment --> </dd></dl>
@@ -608,7 +574,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>user can implement this method to detect connection status </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
@@ -627,7 +592,7 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="connection has break" alt="" coords="493,35,676,61"/>
 <area shape="rect" href="classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection" alt="" coords="283,35,445,61"/>
 <area shape="rect" href="classGEventBase.html#a605008413706770a7efd53638b2e16ff" title="traverse the handlers and call func for each handler" alt="" coords="41,5,199,32"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="5,57,235,98"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="5,57,235,98"/>
 </map>
 </div>
 
@@ -664,8 +629,14 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - handle ok; false - handle fail </dd></dl>
 <dl class="section note"><dt>Note</dt><dd>user must implement this method to handle data on connection </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- handle ok </td></tr>
+    <tr><td class="paramname">false</td><td>- handle fail </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classGJsonEventHandler.html#ab9a48d231da261af272029539041333c">GJsonEventHandler</a>.</p>
 <div class="dynheader">
@@ -711,9 +682,14 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - handle ok; false - handle fail </dd></dl>
-<dl class="section note"><dt>Note</dt><dd>when on_timeout called, handler's base may cleared by cancel_timer, use gptd-&gt;base instead if it is not null.</dd></dl>
-<p>user must implement this method to receive timer notify </p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- handle ok </td></tr>
+    <tr><td class="paramname">false</td><td>- handle fail </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>when on_timeout called, handler's base may cleared by cancel_timer, use gptd-&gt;base instead if it is not null. user must implement this method to receive timer notify </dd></dl>
 
 <p>Implemented in <a class="el" href="classGJsonEventHandler.html#ad23534c42ea2a79de450205bc322ccda">GJsonEventHandler</a>.</p>
 <div class="dynheader">
@@ -723,7 +699,7 @@ Here is the caller graph for this function:</div>
 <map name="classGEventHandler_a75f04e2b25bf9234793949a3f367445a_icgraph" id="classGEventHandler_a75f04e2b25bf9234793949a3f367445a_icgraph">
 <area shape="rect" title="timer has due" alt="" coords="513,13,716,39"/>
 <area shape="rect" href="classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218" title="called when timer due" alt="" coords="283,13,465,39"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
 
@@ -779,7 +755,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classGEventHandler_ad28ff16d092359ec82a93be86a621452_icgraph.png" border="0" usemap="#classGEventHandler_ad28ff16d092359ec82a93be86a621452_icgraph" alt=""/></div>
 <map name="classGEventHandler_ad28ff16d092359ec82a93be86a621452_icgraph" id="classGEventHandler_ad28ff16d092359ec82a93be86a621452_icgraph">
 <area shape="rect" title="pre&#45;read callbacks" alt="" coords="208,13,393,39"/>
-<area shape="rect" href="classGJsonEventHandler.html#ab9a48d231da261af272029539041333c" title="connection has data arriving" alt="" coords="5,5,160,47"/>
+<area shape="rect" href="classGJsonEventHandler.html#ab9a48d231da261af272029539041333c" title=" " alt="" coords="5,5,160,47"/>
 </map>
 </div>
 
@@ -890,7 +866,6 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classGJsonEventHandler.html#ad48e6db8922e62be151b88c46e0580aa">GJsonEventHandler</a>.</p>
 <div class="dynheader">
@@ -911,12 +886,12 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="reset inner data status to initial" alt="" coords="1060,72,1221,99"/>
 <area shape="rect" href="classGEventBase.html#aa1d227594c9269194d625584aac2c16e" title="setup connection to remote server" alt="" coords="595,5,755,32"/>
 <area shape="rect" href="classGEventBase.html#a1c5f8a4be6a4b4b3590cd237c4e416ab" title="called when accepting a new connection" alt="" coords="837,43,1012,69"/>
-<area shape="rect" href="classGJsonEventHandler.html#ad48e6db8922e62be151b88c46e0580aa" title="reset inner data status to initial" alt="" coords="847,94,1002,135"/>
+<area shape="rect" href="classGJsonEventHandler.html#ad48e6db8922e62be151b88c46e0580aa" title=" " alt="" coords="847,94,1002,135"/>
 <area shape="rect" href="classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="845,160,1005,187"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,11,512,53"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,11,235,53"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,11,235,53"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="560,102,789,143"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="283,102,512,143"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="283,102,512,143"/>
 </map>
 </div>
 
@@ -946,7 +921,14 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>tell EventBase whether enable reuse </p>
-<dl class="section return"><dt>Returns</dt><dd>true - will reuse; false - not when reuse is enabled, framework won't delete handler object soon after connection is closed, it is user's responsibility to free the memory </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- will reuse </td></tr>
+    <tr><td class="paramname">false</td><td>- no reuse</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>when reuse is enabled, framework won't delete handler object soon after connection is closed, it is user's responsibility to free the memory </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
@@ -957,9 +939,9 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection" alt="" coords="570,114,733,141"/>
 <area shape="rect" href="classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218" title="called when timer due" alt="" coords="560,169,743,195"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,93,235,135"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,93,235,135"/>
 <area shape="rect" href="classGEventBase.html#a605008413706770a7efd53638b2e16ff" title="traverse the handlers and call func for each handler" alt="" coords="318,71,477,98"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="283,123,512,164"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="283,123,512,164"/>
 </map>
 </div>
 
@@ -999,7 +981,13 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>&gt; 0 - success; -1 failed </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">&gt;0</td><td>- success </td></tr>
+    <tr><td class="paramname">-1</td><td>- failed </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1048,7 +1036,13 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>&gt; 0 - success; -1 failed </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">&gt;0</td><td>- success </td></tr>
+    <tr><td class="paramname">-1</td><td>- failed </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1098,7 +1092,13 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>&gt; 0 - success; -1 failed </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">&gt;0</td><td>- success </td></tr>
+    <tr><td class="paramname">-1</td><td>- failed </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1146,7 +1146,13 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>&gt; 0 - success; -1 failed </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">&gt;0</td><td>- success </td></tr>
+    <tr><td class="paramname">-1</td><td>- failed </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -1159,6 +1165,99 @@ Here is the call graph for this function:</div>
 <area shape="rect" href="classGEventHandler.html#a86c7010d3863fc37ff256e56c3a6073d" title="pre&#45;write callbacks" alt="" coords="690,71,839,112"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a3b5e0795c291158869d0e67c985ee055"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b5e0795c291158869d0e67c985ee055">&#9670;&nbsp;</a></span>m_base</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classIEventBase.html">IEventBase</a>* GEventHandler::m_base = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>corresponding <a class="el" href="classGEventBase.html" title="event base, the core of the gevent">GEventBase</a> </p>
+
+</div>
+</div>
+<a id="a88c3b5fc1a37415eaa87b3edfe2dee3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88c3b5fc1a37415eaa87b3edfe2dee3e">&#9670;&nbsp;</a></span>m_gphd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structGEV__PER__HANDLE__DATA.html">GEV_PER_HANDLE_DATA</a>* GEventHandler::m_gphd = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>data binding to this connection </p>
+
+</div>
+</div>
+<a id="aecb93c84cafbd857700dd0defe809aec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecb93c84cafbd857700dd0defe809aec">&#9670;&nbsp;</a></span>m_gptd</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a>* GEventHandler::m_gptd = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>data binding to this timer </p>
+
+</div>
+</div>
+<a id="a2093adee43de607cd33bd03244a50013"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2093adee43de607cd33bd03244a50013">&#9670;&nbsp;</a></span>m_so</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SOCKET GEventHandler::m_so</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>underline system connection file descriptor </p>
 
 </div>
 </div>

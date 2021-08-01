@@ -1,7 +1,7 @@
 <map id="GEventBase" name="GEventBase">
-<area shape="rect" id="node1" title="event base, the core of the gevent" alt="" coords="282,932,433,1493"/>
+<area shape="rect" id="node1" title="event base, the core of the gevent" alt="" coords="285,932,429,1347"/>
 <area shape="rect" id="node2" href="$classIEventBase.html" title="abstract interface for all EventBase" alt="" coords="81,5,212,127"/>
-<area shape="rect" id="node4" href="$classGEventHandler.html" title="event handler binding to a connection user would better inherit it&#39;s own handler from this,..." alt="" coords="221,417,377,700"/>
+<area shape="rect" id="node4" href="$classGEventHandler.html" title="event handler binding to a connection" alt="" coords="221,417,377,700"/>
 <area shape="rect" id="node6" href="$structGEV__PER__TIMER__DATA.html" title="data that binding to one timer" alt="" coords="43,189,250,355"/>
 <area shape="rect" id="node3" title=" " alt="" coords="274,763,441,855"/>
 <area shape="rect" id="node10" title=" " alt="" coords="43,763,250,855"/>

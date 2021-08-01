@@ -1,4 +1,4 @@
 <map id="GEventBaseWithAutoReconnect::on_retry_max" name="GEventBaseWithAutoReconnect::on_retry_max">
 <area shape="rect" id="node1" title="called when reconnect retry reach the limit" alt="" coords="283,5,512,47"/>
-<area shape="rect" id="node2" href="$classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" id="node2" href="$classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>

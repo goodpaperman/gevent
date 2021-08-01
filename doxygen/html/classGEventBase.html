@@ -82,8 +82,8 @@ Inheritance diagram for GEventBase:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventBase__inherit__graph.png" border="0" usemap="#GEventBase_inherit__map" alt="Inheritance graph"/></div>
 <map name="GEventBase_inherit__map" id="GEventBase_inherit__map">
-<area shape="rect" title="event base, the core of the gevent" alt="" coords="63,175,213,809"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html" title="event base with auto reconnection support" alt="" coords="5,857,271,1213"/>
+<area shape="rect" title="event base, the core of the gevent" alt="" coords="66,175,210,663"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html" title="event base with auto reconnection support" alt="" coords="5,711,271,1067"/>
 <area shape="rect" href="classIEventBase.html" title="abstract interface for all EventBase" alt="" coords="73,5,203,127"/>
 </map>
 </div>
@@ -92,9 +92,9 @@ Collaboration diagram for GEventBase:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventBase__coll__graph.png" border="0" usemap="#GEventBase_coll__map" alt="Collaboration graph"/></div>
 <map name="GEventBase_coll__map" id="GEventBase_coll__map">
-<area shape="rect" title="event base, the core of the gevent" alt="" coords="282,932,433,1493"/>
+<area shape="rect" title="event base, the core of the gevent" alt="" coords="285,932,429,1347"/>
 <area shape="rect" href="classIEventBase.html" title="abstract interface for all EventBase" alt="" coords="81,5,212,127"/>
-<area shape="rect" href="classGEventHandler.html" title="event handler binding to a connection user would better inherit it&#39;s own handler from this,..." alt="" coords="221,417,377,700"/>
+<area shape="rect" href="classGEventHandler.html" title="event handler binding to a connection" alt="" coords="221,417,377,700"/>
 <area shape="rect" href="structGEV__PER__TIMER__DATA.html" title="data that binding to one timer" alt="" coords="43,189,250,355"/>
 <area shape="rect" title=" " alt="" coords="274,763,441,855"/>
 <area shape="rect" title=" " alt="" coords="43,763,250,855"/>
@@ -107,9 +107,7 @@ Collaboration diagram for GEventBase:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a0baba69a566a41eb59e5ce6cdeee9b14"><td class="memItemLeft" align="right" valign="top"><a id="a0baba69a566a41eb59e5ce6cdeee9b14"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a0baba69a566a41eb59e5ce6cdeee9b14">epfd</a> () const</td></tr>
-<tr class="memdesc:a0baba69a566a41eb59e5ce6cdeee9b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">get underline event poll fd on linux <br /></td></tr>
+<tr class="memitem:a0baba69a566a41eb59e5ce6cdeee9b14"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a0baba69a566a41eb59e5ce6cdeee9b14">epfd</a> () const</td></tr>
 <tr class="separator:a0baba69a566a41eb59e5ce6cdeee9b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5f27fdd5b2c6fec43967ab2e4e6bfe4"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ab5f27fdd5b2c6fec43967ab2e4e6bfe4">post_timer</a> (<a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *gptd)</td></tr>
 <tr class="separator:ab5f27fdd5b2c6fec43967ab2e4e6bfe4"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -131,8 +129,9 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr class="memitem:ade0710420c3a7407ab49f5cdf336e371"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ade0710420c3a7407ab49f5cdf336e371">cancel_timer</a> (void *tid)</td></tr>
 <tr class="memdesc:ade0710420c3a7407ab49f5cdf336e371"><td class="mdescLeft">&#160;</td><td class="mdescRight">cancel timer  <a href="classGEventBase.html#ade0710420c3a7407ab49f5cdf336e371">More...</a><br /></td></tr>
 <tr class="separator:ade0710420c3a7407ab49f5cdf336e371"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0900657164c5bfcc184e88f404062375"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a0900657164c5bfcc184e88f404062375">fini</a> ()</td></tr>
-<tr class="memdesc:a0900657164c5bfcc184e88f404062375"><td class="mdescLeft">&#160;</td><td class="mdescRight">finish the whole thing  <a href="classGEventBase.html#a0900657164c5bfcc184e88f404062375">More...</a><br /></td></tr>
+<tr class="memitem:a0900657164c5bfcc184e88f404062375"><td class="memItemLeft" align="right" valign="top"><a id="a0900657164c5bfcc184e88f404062375"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a0900657164c5bfcc184e88f404062375">fini</a> ()</td></tr>
+<tr class="memdesc:a0900657164c5bfcc184e88f404062375"><td class="mdescLeft">&#160;</td><td class="mdescRight">finish the whole thing <br /></td></tr>
 <tr class="separator:a0900657164c5bfcc184e88f404062375"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a667e415dc4420462806fbccf16141e98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a667e415dc4420462806fbccf16141e98">run</a> ()</td></tr>
 <tr class="memdesc:a667e415dc4420462806fbccf16141e98"><td class="mdescLeft">&#160;</td><td class="mdescRight">main entry for event loop  <a href="classGEventBase.html#a667e415dc4420462806fbccf16141e98">More...</a><br /></td></tr>
@@ -140,11 +139,13 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr class="memitem:ab6d23beb6bb7130e0e8b7369b89e454a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ab6d23beb6bb7130e0e8b7369b89e454a">exit</a> (int extra_notify=0)</td></tr>
 <tr class="memdesc:ab6d23beb6bb7130e0e8b7369b89e454a"><td class="mdescLeft">&#160;</td><td class="mdescRight">exit event loop  <a href="classGEventBase.html#ab6d23beb6bb7130e0e8b7369b89e454a">More...</a><br /></td></tr>
 <tr class="separator:ab6d23beb6bb7130e0e8b7369b89e454a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a949a238fc42065ee7fb44371f0528e4e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a949a238fc42065ee7fb44371f0528e4e">cleanup</a> ()</td></tr>
-<tr class="memdesc:a949a238fc42065ee7fb44371f0528e4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">close all the handle and clean event handler  <a href="classGEventBase.html#a949a238fc42065ee7fb44371f0528e4e">More...</a><br /></td></tr>
+<tr class="memitem:a949a238fc42065ee7fb44371f0528e4e"><td class="memItemLeft" align="right" valign="top"><a id="a949a238fc42065ee7fb44371f0528e4e"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a949a238fc42065ee7fb44371f0528e4e">cleanup</a> ()</td></tr>
+<tr class="memdesc:a949a238fc42065ee7fb44371f0528e4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">close all the handle and clean event handler <br /></td></tr>
 <tr class="separator:a949a238fc42065ee7fb44371f0528e4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3aea5336d563b238e678f67cdd82377d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a3aea5336d563b238e678f67cdd82377d">disconnect</a> ()</td></tr>
-<tr class="memdesc:a3aea5336d563b238e678f67cdd82377d"><td class="mdescLeft">&#160;</td><td class="mdescRight">break all the connections in this event base  <a href="classGEventBase.html#a3aea5336d563b238e678f67cdd82377d">More...</a><br /></td></tr>
+<tr class="memitem:a3aea5336d563b238e678f67cdd82377d"><td class="memItemLeft" align="right" valign="top"><a id="a3aea5336d563b238e678f67cdd82377d"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a3aea5336d563b238e678f67cdd82377d">disconnect</a> ()</td></tr>
+<tr class="memdesc:a3aea5336d563b238e678f67cdd82377d"><td class="mdescLeft">&#160;</td><td class="mdescRight">break all the connections in this event base <br /></td></tr>
 <tr class="separator:a3aea5336d563b238e678f67cdd82377d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8b83f71f4f071204fe93ae4a2c1a5b4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#af8b83f71f4f071204fe93ae4a2c1a5b4">broadcast</a> (std::string const &amp;msg)</td></tr>
 <tr class="memdesc:af8b83f71f4f071204fe93ae4a2c1a5b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">notify all the client by sending msg on connections  <a href="classGEventBase.html#af8b83f71f4f071204fe93ae4a2c1a5b4">More...</a><br /></td></tr>
@@ -155,36 +156,6 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
-<tr class="memitem:a970b0374dae46f1b0da6b1f7da04e446"><td class="memItemLeft" align="right" valign="top"><a id="a970b0374dae46f1b0da6b1f7da04e446"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>do_accept</b> (int fd)</td></tr>
-<tr class="separator:a970b0374dae46f1b0da6b1f7da04e446"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a34f1c3420c99d37946acfe0000af9f8a"><td class="memItemLeft" align="right" valign="top"><a id="a34f1c3420c99d37946acfe0000af9f8a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>do_recv</b> (<a class="el" href="structconn__key__t.html">conn_key_t</a> key)</td></tr>
-<tr class="separator:a34f1c3420c99d37946acfe0000af9f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0fa0bedeacdeeb6ac13859352df683a"><td class="memItemLeft" align="right" valign="top"><a id="ab0fa0bedeacdeeb6ac13859352df683a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>do_error</b> (<a class="el" href="structconn__key__t.html">conn_key_t</a> key)</td></tr>
-<tr class="separator:ab0fa0bedeacdeeb6ac13859352df683a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0edcfefc09a2fb0ffbb9f40e7fbdbd72"><td class="memItemLeft" align="right" valign="top"><a id="a0edcfefc09a2fb0ffbb9f40e7fbdbd72"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>init_pipe</b> ()</td></tr>
-<tr class="separator:a0edcfefc09a2fb0ffbb9f40e7fbdbd72"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88e048ca808322306326fa2aeeb8afbb"><td class="memItemLeft" align="right" valign="top"><a id="a88e048ca808322306326fa2aeeb8afbb"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>close_pipe</b> ()</td></tr>
-<tr class="separator:a88e048ca808322306326fa2aeeb8afbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af14b827e37f2910d08654207cd1f6e4a"><td class="memItemLeft" align="right" valign="top"><a id="af14b827e37f2910d08654207cd1f6e4a"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>post_notify</b> (char ch, void *ptr=nullptr)</td></tr>
-<tr class="separator:af14b827e37f2910d08654207cd1f6e4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b68416cea73a56913e6c234f85ad622"><td class="memItemLeft" align="right" valign="top"><a id="a6b68416cea73a56913e6c234f85ad622"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>promote_leader</b> (std::unique_lock&lt; std::mutex &gt; &amp;guard)</td></tr>
-<tr class="separator:a6b68416cea73a56913e6c234f85ad622"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59905273764415213b8cbdb50d309229"><td class="memItemLeft" align="right" valign="top"><a id="a59905273764415213b8cbdb50d309229"></a>
-<a class="el" href="classGEventHandler.html">GEventHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>find_by_key</b> (<a class="el" href="structconn__key__t.html">conn_key_t</a> key, bool erase)</td></tr>
-<tr class="separator:a59905273764415213b8cbdb50d309229"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af843a8cba1d10f73cd32184cf6724531"><td class="memItemLeft" align="right" valign="top"><a id="af843a8cba1d10f73cd32184cf6724531"></a>
-<a class="el" href="classGEventHandler.html">GEventHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>find_by_fd</b> (int fd, <a class="el" href="structconn__key__t.html">conn_key_t</a> &amp;key, bool erase)</td></tr>
-<tr class="separator:af843a8cba1d10f73cd32184cf6724531"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0cf2d5e1488bf62e063e579883174a19"><td class="memItemLeft" align="right" valign="top"><a id="a0cf2d5e1488bf62e063e579883174a19"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>do_timeout</b> (<a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *gptd)</td></tr>
-<tr class="separator:a0cf2d5e1488bf62e063e579883174a19"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c5f8a4be6a4b4b3590cd237c4e416ab"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a1c5f8a4be6a4b4b3590cd237c4e416ab">on_accept</a> (<a class="el" href="structGEV__PER__HANDLE__DATA.html">GEV_PER_HANDLE_DATA</a> *gphd)</td></tr>
 <tr class="memdesc:a1c5f8a4be6a4b4b3590cd237c4e416ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">called when accepting a new connection  <a href="classGEventBase.html#a1c5f8a4be6a4b4b3590cd237c4e416ab">More...</a><br /></td></tr>
 <tr class="separator:a1c5f8a4be6a4b4b3590cd237c4e416ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -203,47 +174,33 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>do_timeout</b> (<a cl
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
-<tr class="memitem:accf30faf48021d2be49881cb887fa4a2"><td class="memItemLeft" align="right" valign="top"><a id="accf30faf48021d2be49881cb887fa4a2"></a>
-volatile bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_running</b> = false</td></tr>
+<tr class="memitem:accf30faf48021d2be49881cb887fa4a2"><td class="memItemLeft" align="right" valign="top">volatile bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#accf30faf48021d2be49881cb887fa4a2">m_running</a> = false</td></tr>
 <tr class="separator:accf30faf48021d2be49881cb887fa4a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b9788367a099e19d369bfc95816b58e"><td class="memItemLeft" align="right" valign="top"><a id="a8b9788367a099e19d369bfc95816b58e"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_thrnum</b> = 0</td></tr>
+<tr class="memitem:a8b9788367a099e19d369bfc95816b58e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a8b9788367a099e19d369bfc95816b58e">m_thrnum</a> = 0</td></tr>
 <tr class="separator:a8b9788367a099e19d369bfc95816b58e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab2684d077b44441b05942987b0268480"><td class="memItemLeft" align="right" valign="top"><a id="ab2684d077b44441b05942987b0268480"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_blksize</b> = GEV_MAX_BUF_SIZE</td></tr>
+<tr class="memitem:ab2684d077b44441b05942987b0268480"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ab2684d077b44441b05942987b0268480">m_blksize</a> = GEV_MAX_BUF_SIZE</td></tr>
 <tr class="separator:ab2684d077b44441b05942987b0268480"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21cf5837454d6876fc017c19a720ae19"><td class="memItemLeft" align="right" valign="top"><a id="a21cf5837454d6876fc017c19a720ae19"></a>
-std::thread_group&#160;</td><td class="memItemRight" valign="bottom"><b>m_grp</b></td></tr>
+<tr class="memitem:a21cf5837454d6876fc017c19a720ae19"><td class="memItemLeft" align="right" valign="top">std::thread_group&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a21cf5837454d6876fc017c19a720ae19">m_grp</a></td></tr>
 <tr class="separator:a21cf5837454d6876fc017c19a720ae19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac77788532e99aa586193d6efad38f7d4"><td class="memItemLeft" align="right" valign="top"><a id="ac77788532e99aa586193d6efad38f7d4"></a>
-SOCKET&#160;</td><td class="memItemRight" valign="bottom"><b>m_listener</b> = INVALID_SOCKET</td></tr>
+<tr class="memitem:ac77788532e99aa586193d6efad38f7d4"><td class="memItemLeft" align="right" valign="top">SOCKET&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ac77788532e99aa586193d6efad38f7d4">m_listener</a> = INVALID_SOCKET</td></tr>
 <tr class="separator:ac77788532e99aa586193d6efad38f7d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a18f63706210e522041a0b716a8f0af59"><td class="memItemLeft" align="right" valign="top"><a id="a18f63706210e522041a0b716a8f0af59"></a>
-std::recursive_mutex&#160;</td><td class="memItemRight" valign="bottom"><b>m_mutex</b></td></tr>
+<tr class="memitem:a18f63706210e522041a0b716a8f0af59"><td class="memItemLeft" align="right" valign="top">std::recursive_mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a18f63706210e522041a0b716a8f0af59">m_mutex</a></td></tr>
 <tr class="separator:a18f63706210e522041a0b716a8f0af59"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefb71ed3d21c7a8c517da298354119b5"><td class="memItemLeft" align="right" valign="top"><a id="aefb71ed3d21c7a8c517da298354119b5"></a>
-std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>m_tlock</b></td></tr>
+<tr class="memitem:aefb71ed3d21c7a8c517da298354119b5"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#aefb71ed3d21c7a8c517da298354119b5">m_tlock</a></td></tr>
 <tr class="separator:aefb71ed3d21c7a8c517da298354119b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab195b4211e38a6b8a8e91f79de728a4d"><td class="memItemLeft" align="right" valign="top"><a id="ab195b4211e38a6b8a8e91f79de728a4d"></a>
-std::map&lt; <a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *, <a class="el" href="classGEventHandler.html">GEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_tmap</b></td></tr>
+<tr class="memitem:ab195b4211e38a6b8a8e91f79de728a4d"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *, <a class="el" href="classGEventHandler.html">GEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ab195b4211e38a6b8a8e91f79de728a4d">m_tmap</a></td></tr>
 <tr class="separator:ab195b4211e38a6b8a8e91f79de728a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa86cb4c9e659a8130cd062441ddecc6a"><td class="memItemLeft" align="right" valign="top"><a id="aa86cb4c9e659a8130cd062441ddecc6a"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_ep</b> = -1</td></tr>
+<tr class="memitem:aa86cb4c9e659a8130cd062441ddecc6a"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#aa86cb4c9e659a8130cd062441ddecc6a">m_ep</a> = -1</td></tr>
 <tr class="separator:aa86cb4c9e659a8130cd062441ddecc6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19ddf85963208390b35b6ac2a0e3dd5b"><td class="memItemLeft" align="right" valign="top"><a id="a19ddf85963208390b35b6ac2a0e3dd5b"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_pp</b> [2]</td></tr>
+<tr class="memitem:a19ddf85963208390b35b6ac2a0e3dd5b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a19ddf85963208390b35b6ac2a0e3dd5b">m_pp</a> [2]</td></tr>
 <tr class="separator:a19ddf85963208390b35b6ac2a0e3dd5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4acc848f0931dabbe3a6546be3a99cea"><td class="memItemLeft" align="right" valign="top"><a id="a4acc848f0931dabbe3a6546be3a99cea"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>m_tsig</b> = 0</td></tr>
+<tr class="memitem:a4acc848f0931dabbe3a6546be3a99cea"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a4acc848f0931dabbe3a6546be3a99cea">m_tsig</a> = 0</td></tr>
 <tr class="separator:a4acc848f0931dabbe3a6546be3a99cea"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab82d7eb23da4ff4f1e5b5d92cd9c557e"><td class="memItemLeft" align="right" valign="top"><a id="ab82d7eb23da4ff4f1e5b5d92cd9c557e"></a>
-std::mutex&#160;</td><td class="memItemRight" valign="bottom"><b>m_lock</b></td></tr>
+<tr class="memitem:ab82d7eb23da4ff4f1e5b5d92cd9c557e"><td class="memItemLeft" align="right" valign="top">std::mutex&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#ab82d7eb23da4ff4f1e5b5d92cd9c557e">m_lock</a></td></tr>
 <tr class="separator:ab82d7eb23da4ff4f1e5b5d92cd9c557e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaabb2c8491d8942793288e9e0ce4d429"><td class="memItemLeft" align="right" valign="top"><a id="aaabb2c8491d8942793288e9e0ce4d429"></a>
-pthread_t&#160;</td><td class="memItemRight" valign="bottom"><b>m_leader</b> = -1</td></tr>
+<tr class="memitem:aaabb2c8491d8942793288e9e0ce4d429"><td class="memItemLeft" align="right" valign="top">pthread_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#aaabb2c8491d8942793288e9e0ce4d429">m_leader</a> = -1</td></tr>
 <tr class="separator:aaabb2c8491d8942793288e9e0ce4d429"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e3f682827ea0ad61503155521b62882"><td class="memItemLeft" align="right" valign="top"><a id="a4e3f682827ea0ad61503155521b62882"></a>
-std::map&lt; <a class="el" href="structconn__key__t.html">conn_key_t</a>, <a class="el" href="classGEventHandler.html">GEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>m_map</b></td></tr>
+<tr class="memitem:a4e3f682827ea0ad61503155521b62882"><td class="memItemLeft" align="right" valign="top">std::map&lt; <a class="el" href="structconn__key__t.html">conn_key_t</a>, <a class="el" href="classGEventHandler.html">GEventHandler</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGEventBase.html#a4e3f682827ea0ad61503155521b62882">m_map</a></td></tr>
 <tr class="separator:a4e3f682827ea0ad61503155521b62882"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -273,8 +230,8 @@ std::map&lt; <a class="el" href="structconn__key__t.html">conn_key_t</a>, <a cla
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>number connections successfully sent</dd></dl>
-<p>it depends on foreach to traverse handlers </p>
+<dl class="section return"><dt>Returns</dt><dd>number connections successfully sent </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>it depends on foreach to traverse handlers </dd></dl>
 
 </div>
 </div>
@@ -325,26 +282,6 @@ Here is the call graph for this function:</div>
 
 </div>
 </div>
-<a id="a949a238fc42065ee7fb44371f0528e4e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a949a238fc42065ee7fb44371f0528e4e">&#9670;&nbsp;</a></span>cleanup()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GEventBase::cleanup </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>close all the handle and clean event handler </p>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
-
-</div>
-</div>
 <a id="aa1d227594c9269194d625584aac2c16e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aa1d227594c9269194d625584aac2c16e">&#9670;&nbsp;</a></span>connect()</h2>
 
@@ -386,8 +323,8 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>new handler binding to that connection, nullptr if connection setup failed</dd></dl>
-<p>user only call this method when to be a client </p>
+<dl class="section return"><dt>Returns</dt><dd>new handler binding to that connection, nullptr if connection setup failed </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>user only call this method when to be a client </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -412,7 +349,7 @@ Here is the caller graph for this function:</div>
 <map name="classGEventBase_aa1d227594c9269194d625584aac2c16e_icgraph" id="classGEventBase_aa1d227594c9269194d625584aac2c16e_icgraph">
 <area shape="rect" title="setup connection to remote server" alt="" coords="560,13,720,39"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
 
@@ -442,43 +379,52 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>return handler for new connection </p>
-<dl class="section return"><dt>Returns</dt><dd>inherit class of <a class="el" href="classGEventHandler.html" title="event handler binding to a connection user would better inherit it&#39;s own handler from this,...">GEventHandler</a></dd></dl>
-<p>user must implement this method to provide their own handler classes </p>
+<dl class="section return"><dt>Returns</dt><dd>inherit class of <a class="el" href="classGEventHandler.html" title="event handler binding to a connection">GEventHandler</a> </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>user must implement this method to provide their own handler classes </dd></dl>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventBase_a285c05603d8692bb1989db2c2c37b031_icgraph.png" border="0" usemap="#classGEventBase_a285c05603d8692bb1989db2c2c37b031_icgraph" alt=""/></div>
 <map name="classGEventBase_a285c05603d8692bb1989db2c2c37b031_icgraph" id="classGEventBase_a285c05603d8692bb1989db2c2c37b031_icgraph">
-<area shape="rect" title="return handler for new connection" alt="" coords="1060,47,1211,88"/>
-<area shape="rect" href="classGEventBase.html#aa1d227594c9269194d625584aac2c16e" title="setup connection to remote server" alt="" coords="595,9,755,35"/>
-<area shape="rect" href="classGEventBase.html#a1c5f8a4be6a4b4b3590cd237c4e416ab" title="called when accepting a new connection" alt="" coords="837,54,1012,81"/>
-<area shape="rect" href="classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="845,105,1005,131"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="560,80,789,121"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="283,80,512,121"/>
+<area shape="rect" title="return handler for new connection" alt="" coords="1123,73,1273,114"/>
+<area shape="rect" href="classGEventBase.html#aa1d227594c9269194d625584aac2c16e" title="setup connection to remote server" alt="" coords="595,5,755,32"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a5a39debb31a71399c780bba659801c45" title="constructor to init reconnect parameters" alt="" coords="837,43,1075,85"/>
+<area shape="rect" href="classGEventBase.html#a1c5f8a4be6a4b4b3590cd237c4e416ab" title="called when accepting a new connection" alt="" coords="869,109,1043,136"/>
+<area shape="rect" href="classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="876,160,1036,187"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,11,512,53"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,11,235,53"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="560,102,789,143"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="283,102,512,143"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a3aea5336d563b238e678f67cdd82377d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3aea5336d563b238e678f67cdd82377d">&#9670;&nbsp;</a></span>disconnect()</h2>
+<a id="a0baba69a566a41eb59e5ce6cdeee9b14"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0baba69a566a41eb59e5ce6cdeee9b14">&#9670;&nbsp;</a></span>epfd()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void GEventBase::disconnect </td>
+          <td class="memname">int GEventBase::epfd </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
-          <td></td>
+          <td> const</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classIEventBase.html#a93f708600d53de5ca399463d5c46af42" title="get underline event poll fd on linux">IEventBase::epfd</a> </dd></dl>
 
-<p>break all the connections in this event base </p>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
+<p>Implements <a class="el" href="classIEventBase.html#a93f708600d53de5ca399463d5c46af42">IEventBase</a>.</p>
 
 </div>
 </div>
@@ -501,12 +447,13 @@ Here is the caller graph for this function:</div>
 <p>exit event loop </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">extra_notify</td><td>some thread may call run but not in our thread pool, use this to do exit notify, how many thread runs, how many notification needs. </td></tr>
+    <tr><td class="paramname">extra_notify</td><td>some thread may call run but not in <br  />
+ our thread pool, use this to do exit notify, <br  />
+ how many thread runs, how many notification needs. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
-<p>after exit, all thread stopped, but event base status not cleaned </p>
+<dl class="section note"><dt>Note</dt><dd>after exit, all thread stopped, but event base status not cleaned </dd></dl>
 
 </div>
 </div>
@@ -541,7 +488,13 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - allow access; false - skip </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- allow access </td></tr>
+    <tr><td class="paramname">false</td><td>- skip </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Reimplemented in <a class="el" href="classGEventBaseWithAutoReconnect.html#a34de0d604e0efcded0789e468d8e13bd">GEventBaseWithAutoReconnect</a>.</p>
 <div class="dynheader">
@@ -553,26 +506,6 @@ Here is the caller graph for this function:</div>
 <area shape="rect" href="classGEventBase.html#a605008413706770a7efd53638b2e16ff" title="traverse the handlers and call func for each handler" alt="" coords="5,13,164,39"/>
 </map>
 </div>
-
-</div>
-</div>
-<a id="a0900657164c5bfcc184e88f404062375"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0900657164c5bfcc184e88f404062375">&#9670;&nbsp;</a></span>fini()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void GEventBase::fini </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>finish the whole thing </p>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 </div>
 </div>
@@ -610,8 +543,8 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>number handlers successfully handled</dd></dl>
-<p>handlers user don't want traverse can filtered by filter_handler </p>
+<dl class="section return"><dt>Returns</dt><dd>number handlers successfully handled </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>handlers user don't want traverse can filtered by filter_handler </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -667,14 +600,25 @@ Here is the call graph for this function:</div>
 <p>initialize event base </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">thr_num</td><td>=0 - no default thread pool, user provide thread and call run &lt;0 - use max(|thr_num|, processer_num) &gt;0 - use thr_num </td></tr>
+    <tr><td class="paramname">thr_num</td><td><ul>
+<li>=0 - no default thread pool, user provide thread and call run</li>
+<li>&lt;0 - use max(|thr_num|, processer_num)</li>
+<li>&gt;0 - use thr_num </li>
+</ul>
+</td></tr>
     <tr><td class="paramname">blksize</td><td>buffer size for single event </td></tr>
     <tr><td class="paramname">timer_sig</td><td>signal number for timer on linux </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - initialize ok; false - failed</dd></dl>
-<p>user must call this method before others </p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- initialize ok </td></tr>
+    <tr><td class="paramname">false</td><td>- failed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>user must call this method before others </dd></dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -721,8 +665,14 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - listen ok; false - failed</dd></dl>
-<p>user only call this method when to be a server </p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- listen ok </td></tr>
+    <tr><td class="paramname">false</td><td>- failed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>user only call this method when to be a server </dd></dl>
 
 </div>
 </div>
@@ -757,7 +707,13 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - dispatch accept event ok; false - failed </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- dispatch accept event ok </td></tr>
+    <tr><td class="paramname">false</td><td>- failed </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -805,7 +761,6 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>none </dd></dl>
 
 <p>Reimplemented in <a class="el" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65">GEventBaseWithAutoReconnect</a>.</p>
 <div class="dynheader">
@@ -829,7 +784,7 @@ Here is the caller graph for this function:</div>
 <map name="classGEventBase_a8f2a4a09cea4a67fbb883758b904b432_icgraph" id="classGEventBase_a8f2a4a09cea4a67fbb883758b904b432_icgraph">
 <area shape="rect" title="called when detecting error on a conection" alt="" coords="283,35,445,61"/>
 <area shape="rect" href="classGEventBase.html#a605008413706770a7efd53638b2e16ff" title="traverse the handlers and call func for each handler" alt="" coords="41,5,199,32"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="5,57,235,98"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="5,57,235,98"/>
 </map>
 </div>
 
@@ -877,7 +832,13 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - dispatch read event ok; false - failed </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- dispatch read event ok </td></tr>
+    <tr><td class="paramname">false</td><td>- failed </td></tr>
+  </table>
+  </dd>
+</dl>
 <div class="dynheader">
 Here is the call graph for this function:</div>
 <div class="dyncontent">
@@ -921,7 +882,13 @@ Here is the call graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true - dispatch timer event ok; false - failed </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- dispatch timer event ok </td></tr>
+    <tr><td class="paramname">false</td><td>- failed </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Reimplemented in <a class="el" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e">GEventBaseWithAutoReconnect</a>.</p>
 <div class="dynheader">
@@ -942,7 +909,7 @@ Here is the caller graph for this function:</div>
 <div class="center"><img src="classGEventBase_aada8cffd3ccb8a5048cc8726182ec218_icgraph.png" border="0" usemap="#classGEventBase_aada8cffd3ccb8a5048cc8726182ec218_icgraph" alt=""/></div>
 <map name="classGEventBase_aada8cffd3ccb8a5048cc8726182ec218_icgraph" id="classGEventBase_aada8cffd3ccb8a5048cc8726182ec218_icgraph">
 <area shape="rect" title="called when timer due" alt="" coords="283,13,465,39"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
 
@@ -971,13 +938,7 @@ Here is the caller graph for this function:</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">gptd</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classIEventBase.html#ae3a6fcde4bf11f96b2a7d51c63981679" title="when timer due in underline system timer facility, notify event engine to do timer callbacks">IEventBase::post_timer</a> </dd></dl>
 
 <p>Implements <a class="el" href="classIEventBase.html#ae3a6fcde4bf11f96b2a7d51c63981679">IEventBase</a>.</p>
 
@@ -999,7 +960,6 @@ Here is the caller graph for this function:</div>
 </div><div class="memdoc">
 
 <p>main entry for event loop </p>
-<dl class="section return"><dt>Returns</dt><dd>none</dd></dl>
 <p>after setup, user may call run to block on main, or start thread pool to do multi-thread handling, on that case, run will be called by each thread in pool. </p>
 <div class="dynheader">
 Here is the caller graph for this function:</div>
@@ -1068,8 +1028,14 @@ Here is the caller graph for this function:</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>timer-id if success; nullptr if failed</dd></dl>
-<p>user only call this method when having timer task </p>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">timer-id</td><td>if success </td></tr>
+    <tr><td class="paramname">nullptr</td><td>if failed </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>user only call this method when having timer task </dd></dl>
 
 <p>Implements <a class="el" href="classIEventBase.html#a346ec5b87f68a6b460d58b20add6a134">IEventBase</a>.</p>
 <div class="dynheader">
@@ -1092,10 +1058,333 @@ Here is the caller graph for this function:</div>
 <area shape="rect" title="setup timer for once or periodic" alt="" coords="837,46,997,73"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="560,39,789,80"/>
 <area shape="rect" href="classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title="called when detecting error on a conection" alt="" coords="283,71,512,112"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="283,71,512,112"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="ab2684d077b44441b05942987b0268480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2684d077b44441b05942987b0268480">&#9670;&nbsp;</a></span>m_blksize</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GEventBase::m_blksize = GEV_MAX_BUF_SIZE</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>default receiving buffer size </p>
+
+</div>
+</div>
+<a id="aa86cb4c9e659a8130cd062441ddecc6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa86cb4c9e659a8130cd062441ddecc6a">&#9670;&nbsp;</a></span>m_ep</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GEventBase::m_ep = -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>epoll file descriptor on linux </p>
+
+</div>
+</div>
+<a id="a21cf5837454d6876fc017c19a720ae19"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21cf5837454d6876fc017c19a720ae19">&#9670;&nbsp;</a></span>m_grp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::thread_group GEventBase::m_grp</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>thread group </p>
+
+</div>
+</div>
+<a id="aaabb2c8491d8942793288e9e0ce4d429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaabb2c8491d8942793288e9e0ce4d429">&#9670;&nbsp;</a></span>m_leader</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">pthread_t GEventBase::m_leader = -1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>current leader thread (the one do epoll) </p>
+
+</div>
+</div>
+<a id="ac77788532e99aa586193d6efad38f7d4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac77788532e99aa586193d6efad38f7d4">&#9670;&nbsp;</a></span>m_listener</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">SOCKET GEventBase::m_listener = INVALID_SOCKET</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>listen socket </p>
+
+</div>
+</div>
+<a id="ab82d7eb23da4ff4f1e5b5d92cd9c557e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab82d7eb23da4ff4f1e5b5d92cd9c557e">&#9670;&nbsp;</a></span>m_lock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex GEventBase::m_lock</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>lock to protect epoll </p>
+
+</div>
+</div>
+<a id="a4e3f682827ea0ad61503155521b62882"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e3f682827ea0ad61503155521b62882">&#9670;&nbsp;</a></span>m_map</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;<a class="el" href="structconn__key__t.html">conn_key_t</a>, <a class="el" href="classGEventHandler.html">GEventHandler</a>*&gt; GEventBase::m_map</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>handler map, key is the combine of fd/lport/rport, data is event handler </p>
+
+</div>
+</div>
+<a id="a18f63706210e522041a0b716a8f0af59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18f63706210e522041a0b716a8f0af59">&#9670;&nbsp;</a></span>m_mutex</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::recursive_mutex GEventBase::m_mutex</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>lock to protect m_map </p>
+
+</div>
+</div>
+<a id="a19ddf85963208390b35b6ac2a0e3dd5b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a19ddf85963208390b35b6ac2a0e3dd5b">&#9670;&nbsp;</a></span>m_pp</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GEventBase::m_pp[2]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>self-notify pipe on linux </p>
+
+</div>
+</div>
+<a id="accf30faf48021d2be49881cb887fa4a2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accf30faf48021d2be49881cb887fa4a2">&#9670;&nbsp;</a></span>m_running</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">volatile bool GEventBase::m_running = false</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>if loop is running, set false leads all thread exit </p>
+
+</div>
+</div>
+<a id="a8b9788367a099e19d369bfc95816b58e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b9788367a099e19d369bfc95816b58e">&#9670;&nbsp;</a></span>m_thrnum</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GEventBase::m_thrnum = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>total running thread in pool </p>
+
+</div>
+</div>
+<a id="aefb71ed3d21c7a8c517da298354119b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefb71ed3d21c7a8c517da298354119b5">&#9670;&nbsp;</a></span>m_tlock</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::mutex GEventBase::m_tlock</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>lock to protect m_tmap </p>
+
+</div>
+</div>
+<a id="ab195b4211e38a6b8a8e91f79de728a4d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab195b4211e38a6b8a8e91f79de728a4d">&#9670;&nbsp;</a></span>m_tmap</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;<a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a>*, <a class="el" href="classGEventHandler.html">GEventHandler</a> *&gt; GEventBase::m_tmap</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>timer map, key is data address binding to timer, value is timer handler </p>
+
+</div>
+</div>
+<a id="a4acc848f0931dabbe3a6546be3a99cea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4acc848f0931dabbe3a6546be3a99cea">&#9670;&nbsp;</a></span>m_tsig</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int GEventBase::m_tsig = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>signal number for timer on linux </p>
 
 </div>
 </div>

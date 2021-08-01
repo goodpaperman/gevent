@@ -81,8 +81,8 @@ Inheritance diagram for IEventBase:</div>
 <div class="center"><img src="classIEventBase__inherit__graph.png" border="0" usemap="#IEventBase_inherit__map" alt="Inheritance graph"/></div>
 <map name="IEventBase_inherit__map" id="IEventBase_inherit__map">
 <area shape="rect" title="abstract interface for all EventBase" alt="" coords="73,5,203,127"/>
-<area shape="rect" href="classGEventBase.html" title="event base, the core of the gevent" alt="" coords="63,175,213,809"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html" title="event base with auto reconnection support" alt="" coords="5,857,271,1213"/>
+<area shape="rect" href="classGEventBase.html" title="event base, the core of the gevent" alt="" coords="66,175,210,663"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html" title="event base with auto reconnection support" alt="" coords="5,711,271,1067"/>
 </map>
 </div>
 <div class="dynheader">
@@ -104,13 +104,15 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 <tr class="memdesc:a346ec5b87f68a6b460d58b20add6a134"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup timer  <a href="classIEventBase.html#a346ec5b87f68a6b460d58b20add6a134">More...</a><br /></td></tr>
 <tr class="separator:a346ec5b87f68a6b460d58b20add6a134"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8417c1f3f63361c4d269e21ecd2cc75"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIEventBase.html#ab8417c1f3f63361c4d269e21ecd2cc75">cancel_timer</a> (void *tid)=0</td></tr>
-<tr class="memdesc:ab8417c1f3f63361c4d269e21ecd2cc75"><td class="mdescLeft">&#160;</td><td class="mdescRight">cancel existing timer @tid timer-id that @fun timeout returns  <a href="classIEventBase.html#ab8417c1f3f63361c4d269e21ecd2cc75">More...</a><br /></td></tr>
+<tr class="memdesc:ab8417c1f3f63361c4d269e21ecd2cc75"><td class="mdescLeft">&#160;</td><td class="mdescRight">cancel existing timer  <a href="classIEventBase.html#ab8417c1f3f63361c4d269e21ecd2cc75">More...</a><br /></td></tr>
 <tr class="separator:ab8417c1f3f63361c4d269e21ecd2cc75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae3a6fcde4bf11f96b2a7d51c63981679"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIEventBase.html#ae3a6fcde4bf11f96b2a7d51c63981679">post_timer</a> (<a class="el" href="structGEV__PER__TIMER__DATA.html">GEV_PER_TIMER_DATA</a> *gptd)=0</td></tr>
+<tr class="memdesc:ae3a6fcde4bf11f96b2a7d51c63981679"><td class="mdescLeft">&#160;</td><td class="mdescRight">when timer due in underline system timer facility, notify event engine to do timer callbacks  <a href="classIEventBase.html#ae3a6fcde4bf11f96b2a7d51c63981679">More...</a><br /></td></tr>
 <tr class="separator:ae3a6fcde4bf11f96b2a7d51c63981679"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>abstract interface for all EventBase </p>
+<dl class="section note"><dt>Note</dt><dd><a class="el" href="classGEventHandler.html" title="event handler binding to a connection">GEventHandler</a> use this to do some callbacks </dd></dl>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="ab8417c1f3f63361c4d269e21ecd2cc75"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ab8417c1f3f63361c4d269e21ecd2cc75">&#9670;&nbsp;</a></span>cancel_timer()</h2>
@@ -136,8 +138,20 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </table>
 </div><div class="memdoc">
 
-<p>cancel existing timer @tid timer-id that @fun timeout returns </p>
-<dl class="section return"><dt>Returns</dt><dd>true for success; false for failure </dd></dl>
+<p>cancel existing timer </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tid</td><td>timer-id that timeout returns </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- success </td></tr>
+    <tr><td class="paramname">false</td><td>- failure </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classGEventBase.html#ade0710420c3a7407ab49f5cdf336e371">GEventBase</a>.</p>
 
@@ -166,13 +180,21 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>when timer due in underline system timer facility, notify event engine to do timer callbacks </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">gptd</td><td></td></tr>
+    <tr><td class="paramname">gptd</td><td>data binding to due timer </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">true</td><td>- notify ok </td></tr>
+    <tr><td class="paramname">false</td><td>- notify failed </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classGEventBase.html#ab5f27fdd5b2c6fec43967ab2e4e6bfe4">GEventBase</a>.</p>
 
@@ -234,7 +256,13 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>timer-id, nullptr if failed, later user can use this to cancel timer </dd></dl>
+<dl class="retval"><dt>Return values</dt><dd>
+  <table class="retval">
+    <tr><td class="paramname">timer-id,later</td><td>user can use this to cancel timer </td></tr>
+    <tr><td class="paramname">nullptr</td><td>if failed </td></tr>
+  </table>
+  </dd>
+</dl>
 
 <p>Implemented in <a class="el" href="classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d">GEventBase</a>.</p>
 

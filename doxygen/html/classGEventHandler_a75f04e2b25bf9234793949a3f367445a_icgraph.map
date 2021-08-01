@@ -1,5 +1,5 @@
 <map id="GEventHandler::on_timeout" name="GEventHandler::on_timeout">
 <area shape="rect" id="node1" title="timer has due" alt="" coords="513,13,716,39"/>
 <area shape="rect" id="node2" href="$classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218" title="called when timer due" alt="" coords="283,13,465,39"/>
-<area shape="rect" id="node3" href="$classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title="called when timer due" alt="" coords="5,5,235,47"/>
+<area shape="rect" id="node3" href="$classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
 </map>
