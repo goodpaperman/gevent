@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{9294CDA1-215E-3CB9-80D0-95C04117DB6C}</ProjectGuid>
+    <ProjectGuid>{5D7836CE-F964-3D8E-B364-FDF1B4146EC5}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>ZERO_CHECK</ProjectName>
@@ -29,22 +29,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -62,7 +62,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -72,7 +72,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -82,7 +82,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -92,7 +92,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -101,10 +101,10 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="E:\code\gevent\demo\CMakeFiles\dd95d3498462c01035a973973d252b98\generate.stamp.rule">
+    <CustomBuild Include="D:\code\gevent\demo\CMakeFiles\f2704e671dcc3fe1e8f991aa574fd933\generate.stamp.rule">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Checking Build System</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/code/gevent/demo -BE:/code/gevent/demo --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/code/gevent/demo/epoll_svc.sln
+D:\tools\cmake-3.21.1-windows-x86_64\bin\cmake.exe -SD:/code/gevent/demo -BD:/code/gevent/demo --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/code/gevent/demo/epoll_svc.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -112,12 +112,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:/code/gevent/demo/CMakeFiles/dd95d3498462c01035a973973d252b98/generate.stamp.rule;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCXXCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeRCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeSystem.cmake;E:\code\gevent\demo\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeSystem.cmake;D:\code\gevent\demo\CMakeLists.txt;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeRCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Checking Build System</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/code/gevent/demo -BE:/code/gevent/demo --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/code/gevent/demo/epoll_svc.sln
+D:\tools\cmake-3.21.1-windows-x86_64\bin\cmake.exe -SD:/code/gevent/demo -BD:/code/gevent/demo --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/code/gevent/demo/epoll_svc.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -125,12 +125,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:/code/gevent/demo/CMakeFiles/dd95d3498462c01035a973973d252b98/generate.stamp.rule;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCXXCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeRCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeSystem.cmake;E:\code\gevent\demo\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeSystem.cmake;D:\code\gevent\demo\CMakeLists.txt;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeRCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Checking Build System</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/code/gevent/demo -BE:/code/gevent/demo --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/code/gevent/demo/epoll_svc.sln
+D:\tools\cmake-3.21.1-windows-x86_64\bin\cmake.exe -SD:/code/gevent/demo -BD:/code/gevent/demo --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/code/gevent/demo/epoll_svc.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -138,12 +138,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:/code/gevent/demo/CMakeFiles/dd95d3498462c01035a973973d252b98/generate.stamp.rule;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCXXCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeRCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeSystem.cmake;E:\code\gevent\demo\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeSystem.cmake;D:\code\gevent\demo\CMakeLists.txt;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeRCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Checking Build System</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/code/gevent/demo -BE:/code/gevent/demo --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/code/gevent/demo/epoll_svc.sln
+D:\tools\cmake-3.21.1-windows-x86_64\bin\cmake.exe -SD:/code/gevent/demo -BD:/code/gevent/demo --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/code/gevent/demo/epoll_svc.sln
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -151,8 +151,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:/code/gevent/demo/CMakeFiles/dd95d3498462c01035a973973d252b98/generate.stamp.rule;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCXXCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeRCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeSystem.cmake;E:\code\gevent\demo\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeSystem.cmake;D:\code\gevent\demo\CMakeLists.txt;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeRCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>

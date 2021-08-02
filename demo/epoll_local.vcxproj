@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{AA087F46-26DD-348D-A3B2-39F34887A860}</ProjectGuid>
+    <ProjectGuid>{B8CF59B3-0C52-3223-A92F-F92E91D61F60}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <Platform>Win32</Platform>
     <ProjectName>epoll_local</ProjectName>
@@ -29,22 +29,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v120</PlatformToolset>
+    <PlatformToolset>v140</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -55,25 +55,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\gevent\bin\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\code\gevent\bin\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">epoll_local.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">epoll_local</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\gevent\bin\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\code\gevent\bin\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">epoll_local.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">epoll_local</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\code\gevent\bin\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\code\gevent\bin\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">epoll_local.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">epoll_local</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\code\gevent\bin\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\code\gevent\bin\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">epoll_local.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">epoll_local</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">.exe</TargetExt>
@@ -82,10 +82,9 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
-      <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
@@ -94,15 +93,15 @@
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -110,13 +109,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>jsoncpp.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>E:/code/gevent/demo/../lib;E:/code/gevent/demo/../lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/code/gevent/demo/../lib;D:/code/gevent/demo/../lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/code/gevent/bin/Debug/epoll_local.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/code/gevent/bin/Debug/epoll_local.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/code/gevent/bin/Debug/epoll_local.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/code/gevent/bin/Debug/epoll_local.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -125,9 +124,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AssemblerListingLocation>Release/</AssemblerListingLocation>
-      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <Optimization>MaxSpeed</Optimization>
@@ -135,16 +133,17 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -152,13 +151,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>jsoncpp.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>E:/code/gevent/demo/../lib;E:/code/gevent/demo/../lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/code/gevent/demo/../lib;D:/code/gevent/demo/../lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/code/gevent/bin/Release/epoll_local.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/code/gevent/bin/Release/epoll_local.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/code/gevent/bin/Release/epoll_local.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/code/gevent/bin/Release/epoll_local.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -167,9 +166,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
-      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <Optimization>MinSpace</Optimization>
@@ -177,16 +175,17 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
-      <DebugInformationFormat></DebugInformationFormat>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -194,13 +193,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>jsoncpp.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>E:/code/gevent/demo/../lib;E:/code/gevent/demo/../lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/code/gevent/demo/../lib;D:/code/gevent/demo/../lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/code/gevent/bin/MinSizeRel/epoll_local.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/code/gevent/bin/MinSizeRel/epoll_local.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/code/gevent/bin/MinSizeRel/epoll_local.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/code/gevent/bin/MinSizeRel/epoll_local.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -209,9 +208,8 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
-      <CompileAs>CompileAsCpp</CompileAs>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
@@ -220,15 +218,15 @@
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
     </ClCompile>
     <ResourceCompile>
-      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>E:\code\gevent\demo\..\core;E:\code\gevent\demo\..\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -236,13 +234,13 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>jsoncpp.lib;ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>E:/code/gevent/demo/../lib;E:/code/gevent/demo/../lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>ws2_32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:/code/gevent/demo/../lib;D:/code/gevent/demo/../lib/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:X86</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>E:/code/gevent/bin/RelWithDebInfo/epoll_local.lib</ImportLibrary>
-      <ProgramDataBaseFile>E:/code/gevent/bin/RelWithDebInfo/epoll_local.pdb</ProgramDataBaseFile>
+      <ImportLibrary>D:/code/gevent/bin/RelWithDebInfo/epoll_local.lib</ImportLibrary>
+      <ProgramDataBaseFile>D:/code/gevent/bin/RelWithDebInfo/epoll_local.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
     </Link>
     <ProjectReference>
@@ -250,10 +248,10 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="E:\code\gevent\demo\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule E:/code/gevent/demo/CMakeLists.txt</Message>
+    <CustomBuild Include="D:\code\gevent\demo\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Building Custom Rule D:/code/gevent/demo/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/code/gevent/demo -BE:/code/gevent/demo --check-stamp-file E:/code/gevent/demo/CMakeFiles/generate.stamp
+D:\tools\cmake-3.21.1-windows-x86_64\bin\cmake.exe -SD:/code/gevent/demo -BD:/code/gevent/demo --check-stamp-file D:/code/gevent/demo/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -261,12 +259,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:/code/gevent/demo/CMakeLists.txt;E:\code\gevent\demo\CMakeLists.txt;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;E:\code\gevent\demo\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">E:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeRCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">D:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule E:/code/gevent/demo/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Building Custom Rule D:/code/gevent/demo/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/code/gevent/demo -BE:/code/gevent/demo --check-stamp-file E:/code/gevent/demo/CMakeFiles/generate.stamp
+D:\tools\cmake-3.21.1-windows-x86_64\bin\cmake.exe -SD:/code/gevent/demo -BD:/code/gevent/demo --check-stamp-file D:/code/gevent/demo/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -274,12 +272,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:/code/gevent/demo/CMakeLists.txt;E:\code\gevent\demo\CMakeLists.txt;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;E:\code\gevent\demo\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">E:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeRCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">D:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule E:/code/gevent/demo/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">Building Custom Rule D:/code/gevent/demo/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/code/gevent/demo -BE:/code/gevent/demo --check-stamp-file E:/code/gevent/demo/CMakeFiles/generate.stamp
+D:\tools\cmake-3.21.1-windows-x86_64\bin\cmake.exe -SD:/code/gevent/demo -BD:/code/gevent/demo --check-stamp-file D:/code/gevent/demo/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -287,12 +285,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:/code/gevent/demo/CMakeLists.txt;E:\code\gevent\demo\CMakeLists.txt;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;E:\code\gevent\demo\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">E:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeRCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">D:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule E:/code/gevent/demo/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">Building Custom Rule D:/code/gevent/demo/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">setlocal
-"C:\Program Files (x86)\CMake\bin\cmake.exe" -HE:/code/gevent/demo -BE:/code/gevent/demo --check-stamp-file E:/code/gevent/demo/CMakeFiles/generate.stamp
+D:\tools\cmake-3.21.1-windows-x86_64\bin\cmake.exe -SD:/code/gevent/demo -BD:/code/gevent/demo --check-stamp-file D:/code/gevent/demo/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -300,18 +298,23 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:/code/gevent/demo/CMakeLists.txt;E:\code\gevent\demo\CMakeLists.txt;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInitialize.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCCompiler.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeCXXCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeGenericSystem.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\WindowsPaths.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;E:\code\gevent\demo\CMakeFiles\3.10.0-rc4\CMakeRCCompiler.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeRCInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCXXInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeLanguageInformation.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\Platform\Windows-MSVC.cmake;C:\Program Files (x86)\CMake\share\cmake-3.10\Modules\CMakeCommonLanguageInclude.cmake;E:\code\gevent\demo\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">E:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeCXXCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeRCCompiler.cmake;D:\code\gevent\demo\CMakeFiles\3.21.1\CMakeSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCXXInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeCommonLanguageInclude.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeGenericSystem.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeInitializeConfigs.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeLanguageInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeRCInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInformation.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\CMakeSystemSpecificInitialize.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\CMakeCommonCompilerMacros.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Compiler\MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-C.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC-CXX.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows-MSVC.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\Windows.cmake;D:\tools\cmake-3.21.1-windows-x86_64\share\cmake-3.21\Modules\Platform\WindowsPaths.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">D:\code\gevent\demo\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="E:\code\gevent\demo\epoll_local.cpp"  />
+    <ClCompile Include="D:\code\gevent\demo\epoll_local.cpp" />
+    <ClCompile Include="D:\code\gevent\third-party\jsoncpp\json_reader.cpp" />
+    <ClCompile Include="D:\code\gevent\third-party\jsoncpp\json_value.cpp" />
+    <ClCompile Include="D:\code\gevent\third-party\jsoncpp\json_writer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\code\gevent\demo\ZERO_CHECK.vcxproj">
-      <Project>{9294CDA1-215E-3CB9-80D0-95C04117DB6C}</Project>
+    <ProjectReference Include="D:\code\gevent\demo\ZERO_CHECK.vcxproj">
+      <Project>{5D7836CE-F964-3D8E-B364-FDF1B4146EC5}</Project>
       <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
