@@ -1,4 +1,16 @@
 #! /bin/awk -f
+# run following command:
+#   awk -f epoll_gen.awk > demo
+# instead of sh epoll_gen.awk
+# on raspberry, otherwise you will got following errors:
+#
+# epoll_gen.awk: 7: epoll_gen.awk: BEGIN: not found
+# epoll_gen.awk: 8: epoll_gen.awk: WORDNUM: not found
+# epoll_gen.awk: 9: epoll_gen.awk: Syntax error: Bad for loop variable
+#
+# don't know why, amazing...
+
+
 BEGIN {
         WORDNUM = 1000
         for (i = 1; i <= WORDNUM; i++) {
