@@ -572,8 +572,6 @@ bool GEventBase::init(int thr_num, int blksize
 
 bool GEventBase::listen(unsigned short port, unsigned short backup)
 {
-    int ret = 0;
-
     do
     {
 #ifdef WIN32
@@ -1701,7 +1699,7 @@ void GEventBase::exit(int extra_notify)
     if (m_ep != -1)
     {
         // notify all thread to exit
-        if (m_thrnum != m_grp.size())
+        if (m_thrnum != (int)m_grp.size())
         {
             // maybe some thread exit halfway
             writeLog("actual thread num %d != expected %d, using previous one", m_grp.size(), m_thrnum); 

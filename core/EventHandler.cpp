@@ -94,17 +94,22 @@ GEV_PER_IO_DATA::~GEV_PER_IO_DATA()
 #ifdef WIN32
 GEV_PER_TIMER_DATA::GEV_PER_TIMER_DATA(IEventBase *b, int due, int period, void *arg, HANDLE t)
     : GEV_PER_IO_DATA(OP_TIMEOUT, INVALID_SOCKET, 0)
-    , timerque(t)
-    , timer(NULL)
-#else
-GEV_PER_TIMER_DATA::GEV_PER_TIMER_DATA(IEventBase *b, int due, int period, void *arg, timer_t tid)
-    : timer(tid)
-#endif
     , base(b)
     , due_msec(due)
     , period_msec(period)
     , user_arg(arg)
     , cancelled(false)
+    , timerque(t)
+    , timer(NULL)
+#else
+GEV_PER_TIMER_DATA::GEV_PER_TIMER_DATA(IEventBase *b, int due, int period, void *arg, timer_t tid)
+    : base(b)
+    , due_msec(due)
+    , period_msec(period)
+    , user_arg(arg)
+    , cancelled(false)
+    , timer(tid)
+#endif
 {
     //writeLog("gptd %p ctor", this);
 }
@@ -405,7 +410,6 @@ void GJsonEventHandler::reset(GEV_PER_HANDLE_DATA *gphd, GEV_PER_TIMER_DATA *gpt
 
 bool GJsonEventHandler::on_read(GEV_PER_IO_DATA *gpid)
 {
-    int ret = 0;
 #ifdef GEVENT_DUMP
     if (!m_stub.empty())
     {

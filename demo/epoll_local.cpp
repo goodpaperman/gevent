@@ -70,7 +70,6 @@ void* run_proc(void *arg)
             continue; 
         }
 
-        bool readd = true; 
         int fd = eps.data.fd; 
         if (eps.events & EPOLLIN)
         {
@@ -109,6 +108,7 @@ void* run_proc(void *arg)
     }
 
     LG("run proc exit"); 
+    return NULL; 
 }
 
 void do_read (int fd, int total)
@@ -136,7 +136,7 @@ void do_read (int fd, int total)
 
         std::string req = writer.write (root); 
         req = req.substr (0, req.length () - 1); // trim tailing \n
-        if ((ret = send (fd, req.c_str(), req.length(), 0)) != req.length ())
+        if ((ret = send (fd, req.c_str(), req.length(), 0)) != (int)req.length ())
         {
             LG ("send %d failed, errno %d", req.length (), errno); 
             break; 
