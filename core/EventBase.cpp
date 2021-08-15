@@ -33,7 +33,9 @@ GEventBase::~GEventBase()
 // give it a definition to avoid link error : can not find GEventBaseWithAutoReconnect::create_handler
 GEventHandler* GEventBase::create_handler()
 {
-    return nullptr;
+    // GEventHandler has abstract virtual functions, can NOT instantiate...
+    //return new GEventHandler();
+    return nullptr; 
 }
 
 bool GEventBase::post_timer(GEV_PER_TIMER_DATA *gptd)

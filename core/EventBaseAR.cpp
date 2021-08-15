@@ -13,13 +13,16 @@ GEventBaseWithAutoReconnect::GEventBaseWithAutoReconnect(int reconn_min, int rec
     : m_port(0)
     , m_app(nullptr)
     , m_timer(nullptr)
+    , m_htimer(nullptr)
     , m_reconn_min(reconn_min)
     , m_reconn_max(reconn_max)
     , m_reconn_curr(m_reconn_min)
     , m_retry_max(retry_max)
     , m_retry_curr(0)
 {
-    m_htimer = create_handler (); 
+    // delay creation until using due to following warning:
+    //warning: pure virtual ‘virtual GEventHandler* GEventBase::create_handler()’ called from constructor
+    // m_htimer = create_handler (); 
 }
 
 
@@ -107,6 +110,12 @@ void GEventBaseWithAutoReconnect::do_reconnect(void *arg)
     {
         //int ret = cancel_timer(m_timer);
         writeLog("warning, old timer %p still existing", m_timer);
+    }
+
+    if (m_htimer == nullptr)
+    {
+        // to avoid creation everytime
+        m_htimer = create_handler (); 
     }
 
     m_timer = timeout(conntime * 1000, 0, arg, m_htimer);
