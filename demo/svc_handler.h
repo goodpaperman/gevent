@@ -1,5 +1,5 @@
 #include "EventBase.h"
-#include "EventHandler.h"
+#include "JsonEventHandler.h"
 
 class GMyEventBase : public GEventBase
 {

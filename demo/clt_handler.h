@@ -1,5 +1,5 @@
 #include "EventBaseAR.h"
-#include "EventHandler.h"
+#include "JsonEventHandler.h"
 
 class GMyEventBase : public GEventBaseWithAutoReconnect
 {

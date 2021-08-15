@@ -152,7 +152,6 @@ void test_conn (unsigned short port, int per_read, int times)
 #ifdef TEST_READ
 void test_read (unsigned short port, int total)
 {
-    int n = 0; 
     GEventHandler *eh = nullptr; 
 
     do
