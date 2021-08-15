@@ -3,7 +3,6 @@
 
 /**
  * @brief a common handler to process json protocol.
- * @todo just a sample how to use gevent, should move outside of core
  */
 class GJsonEventHandler : public GEventHandler
 {
