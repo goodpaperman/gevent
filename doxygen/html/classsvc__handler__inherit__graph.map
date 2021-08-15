@@ -1,0 +1,5 @@
+<map id="svc_handler" name="svc_handler">
+<area shape="rect" id="node1" title=" " alt="" coords="15,579,151,671"/>
+<area shape="rect" id="node2" href="$classGJsonEventHandler.html" title="a common handler to process json protocol." alt="" coords="10,380,157,531"/>
+<area shape="rect" id="node3" href="$classGEventHandler.html" title="event handler binding to a connection" alt="" coords="5,5,161,332"/>
+</map>

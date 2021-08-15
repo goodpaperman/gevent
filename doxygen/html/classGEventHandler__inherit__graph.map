@@ -1,4 +1,6 @@
 <map id="GEventHandler" name="GEventHandler">
-<area shape="rect" id="node1" title="event handler binding to a connection" alt="" coords="5,5,161,332"/>
-<area shape="rect" id="node2" href="$classGJsonEventHandler.html" title="a common handler to process json protocol." alt="" coords="10,380,157,531"/>
+<area shape="rect" id="node1" title="event handler binding to a connection" alt="" coords="75,5,231,332"/>
+<area shape="rect" id="node2" href="$classGJsonEventHandler.html" title="a common handler to process json protocol." alt="" coords="79,380,226,531"/>
+<area shape="rect" id="node3" href="$classclt__handler.html" title=" " alt="" coords="5,579,140,671"/>
+<area shape="rect" id="node4" href="$classsvc__handler.html" title=" " alt="" coords="165,579,301,671"/>
 </map>

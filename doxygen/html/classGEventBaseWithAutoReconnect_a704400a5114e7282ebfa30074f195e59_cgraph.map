@@ -1,7 +1,7 @@
 <map id="GEventBaseWithAutoReconnect::do_reconnect" name="GEventBaseWithAutoReconnect::do_reconnect">
-<area shape="rect" id="node1" title="doing the dirty work for reconnect" alt="" coords="5,35,235,76"/>
-<area shape="rect" id="node2" href="$classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="283,42,443,69"/>
-<area shape="rect" id="node3" href="$classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="496,5,647,47"/>
+<area shape="rect" id="node1" title="doing the dirty work for reconnect" alt="" coords="5,31,235,72"/>
+<area shape="rect" id="node2" href="$classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="496,5,647,47"/>
+<area shape="rect" id="node3" href="$classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="283,63,443,90"/>
 <area shape="rect" id="node4" href="$classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="491,71,652,98"/>
 <area shape="rect" id="node5" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="700,46,860,73"/>
 <area shape="rect" id="node6" href="$classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="701,97,859,123"/>

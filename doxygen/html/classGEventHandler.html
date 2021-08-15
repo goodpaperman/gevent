@@ -82,8 +82,10 @@ Inheritance diagram for GEventHandler:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventHandler__inherit__graph.png" border="0" usemap="#GEventHandler_inherit__map" alt="Inheritance graph"/></div>
 <map name="GEventHandler_inherit__map" id="GEventHandler_inherit__map">
-<area shape="rect" title="event handler binding to a connection" alt="" coords="5,5,161,332"/>
-<area shape="rect" href="classGJsonEventHandler.html" title="a common handler to process json protocol." alt="" coords="10,380,157,531"/>
+<area shape="rect" title="event handler binding to a connection" alt="" coords="75,5,231,332"/>
+<area shape="rect" href="classGJsonEventHandler.html" title="a common handler to process json protocol." alt="" coords="79,380,226,531"/>
+<area shape="rect" href="classclt__handler.html" title=" " alt="" coords="5,579,140,671"/>
+<area shape="rect" href="classsvc__handler.html" title=" " alt="" coords="165,579,301,671"/>
 </map>
 </div>
 <div class="dynheader">
@@ -1004,10 +1006,11 @@ Here is the caller graph for this function:</div>
 <div class="dyncontent">
 <div class="center"><img src="classGEventHandler_ab54ba39d033eb14702a75b09f6204f91_icgraph.png" border="0" usemap="#classGEventHandler_ab54ba39d033eb14702a75b09f6204f91_icgraph" alt=""/></div>
 <map name="classGEventHandler_ab54ba39d033eb14702a75b09f6204f91_icgraph" id="classGEventHandler_ab54ba39d033eb14702a75b09f6204f91_icgraph">
-<area shape="rect" title="send data with prewrite handling" alt="" coords="483,31,641,57"/>
-<area shape="rect" href="classGEventHandler.html#a60705eb7b1e098f915a617ec4a412c69" title="send data without prewrite handling" alt="" coords="244,31,435,57"/>
-<area shape="rect" href="classGEventHandler.html#aaeadc9fd25d92f4c97f5429f4e4fc955" title="send string with prewrite handling" alt="" coords="21,5,180,32"/>
-<area shape="rect" href="classGEventHandler.html#a65daab22633c1d21c52976a2b6f77fb7" title="send string without prewrite handling" alt="" coords="5,56,196,83"/>
+<area shape="rect" title="send data with prewrite handling" alt="" coords="487,31,645,57"/>
+<area shape="rect" href="classsvc__handler.html#ab034c8b5540ef383d160c22605d403ce" title=" " alt="" coords="244,5,439,32"/>
+<area shape="rect" href="classGEventHandler.html#a60705eb7b1e098f915a617ec4a412c69" title="send data without prewrite handling" alt="" coords="246,56,437,83"/>
+<area shape="rect" href="classGEventHandler.html#aaeadc9fd25d92f4c97f5429f4e4fc955" title="send string with prewrite handling" alt="" coords="21,31,180,57"/>
+<area shape="rect" href="classGEventHandler.html#a65daab22633c1d21c52976a2b6f77fb7" title="send string without prewrite handling" alt="" coords="5,81,196,108"/>
 </map>
 </div>
 
@@ -1266,10 +1269,10 @@ Here is the call graph for this function:</div>
 <li>/home/yunh/code/gevent/core/EventHandler.cpp</li>
 </ul>
 </div><!-- contents -->
-<div class="ttc" id="aclassGEventHandler_html_ab54ba39d033eb14702a75b09f6204f91"><div class="ttname"><a href="classGEventHandler.html#ab54ba39d033eb14702a75b09f6204f91">GEventHandler::send</a></div><div class="ttdeci">int send(char const *buf, int len)</div><div class="ttdoc">send data with prewrite handling</div><div class="ttdef"><b>Definition:</b> EventHandler.cpp:333</div></div>
-<div class="ttc" id="aclassGEventHandler_html_a86c7010d3863fc37ff256e56c3a6073d"><div class="ttname"><a href="classGEventHandler.html#a86c7010d3863fc37ff256e56c3a6073d">GEventHandler::pre_write</a></div><div class="ttdeci">virtual std::string pre_write(char const *buf, int len)</div><div class="ttdoc">pre-write callbacks</div><div class="ttdef"><b>Definition:</b> EventHandler.cpp:312</div></div>
+<div class="ttc" id="aclassGEventHandler_html_ab54ba39d033eb14702a75b09f6204f91"><div class="ttname"><a href="classGEventHandler.html#ab54ba39d033eb14702a75b09f6204f91">GEventHandler::send</a></div><div class="ttdeci">int send(char const *buf, int len)</div><div class="ttdoc">send data with prewrite handling</div><div class="ttdef"><b>Definition:</b> EventHandler.cpp:338</div></div>
+<div class="ttc" id="aclassGEventHandler_html_a86c7010d3863fc37ff256e56c3a6073d"><div class="ttname"><a href="classGEventHandler.html#a86c7010d3863fc37ff256e56c3a6073d">GEventHandler::pre_write</a></div><div class="ttdeci">virtual std::string pre_write(char const *buf, int len)</div><div class="ttdoc">pre-write callbacks</div><div class="ttdef"><b>Definition:</b> EventHandler.cpp:317</div></div>
 <div class="ttc" id="aclassGEventHandler_html_a425ff88197f72dab091072cb4737d68f"><div class="ttname"><a href="classGEventHandler.html#a425ff88197f72dab091072cb4737d68f">GEventHandler::on_read</a></div><div class="ttdeci">virtual bool on_read(GEV_PER_IO_DATA *gpid)=0</div><div class="ttdoc">connection has data arriving</div></div>
-<div class="ttc" id="aclassGEventHandler_html_ad28ff16d092359ec82a93be86a621452"><div class="ttname"><a href="classGEventHandler.html#ad28ff16d092359ec82a93be86a621452">GEventHandler::pre_read</a></div><div class="ttdeci">virtual std::string pre_read(char const *buf, int len)</div><div class="ttdoc">pre-read callbacks</div><div class="ttdef"><b>Definition:</b> EventHandler.cpp:307</div></div>
+<div class="ttc" id="aclassGEventHandler_html_ad28ff16d092359ec82a93be86a621452"><div class="ttname"><a href="classGEventHandler.html#ad28ff16d092359ec82a93be86a621452">GEventHandler::pre_read</a></div><div class="ttdeci">virtual std::string pre_read(char const *buf, int len)</div><div class="ttdoc">pre-read callbacks</div><div class="ttdef"><b>Definition:</b> EventHandler.cpp:312</div></div>
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
 Generated by &#160;<a href="http://www.doxygen.org/index.html">

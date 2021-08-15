@@ -1,4 +1,6 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$classGEventHandler.html" title="event handler binding to a connection" alt="" coords="5,5,125,32"/>
-<area shape="rect" id="node2" href="$classGJsonEventHandler.html" title="a common handler to process json protocol." alt="" coords="173,5,320,32"/>
+<area shape="rect" id="node1" href="$classGEventHandler.html" title="event handler binding to a connection" alt="" coords="5,31,125,57"/>
+<area shape="rect" id="node2" href="$classGJsonEventHandler.html" title="a common handler to process json protocol." alt="" coords="173,31,320,57"/>
+<area shape="rect" id="node3" href="$classclt__handler.html" title=" " alt="" coords="371,5,465,32"/>
+<area shape="rect" id="node4" href="$classsvc__handler.html" title=" " alt="" coords="368,56,468,83"/>
 </map>

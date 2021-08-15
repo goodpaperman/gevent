@@ -1,22 +1,22 @@
 <map id="GEventBaseWithAutoReconnect::on_timeout" name="GEventBaseWithAutoReconnect::on_timeout">
-<area shape="rect" id="node1" title=" " alt="" coords="5,250,235,291"/>
-<area shape="rect" id="node2" href="$classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,250,512,291"/>
-<area shape="rect" id="node18" href="$classGEventBaseWithAutoReconnect.html#a2b612588e704b8a71758f289dd796098" title="called when reconnect retry reach the limit" alt="" coords="283,315,512,357"/>
-<area shape="rect" id="node19" href="$classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218" title="called when timer due" alt="" coords="583,81,766,108"/>
-<area shape="rect" id="node3" href="$classGEventHandler.html#a462e1f2488d935220f2ec876e5361962" title="remember user provide data in handler" alt="" coords="600,280,749,307"/>
-<area shape="rect" id="node4" href="$classGEventBase.html#aa1d227594c9269194d625584aac2c16e" title="setup connection to remote server" alt="" coords="595,179,755,205"/>
-<area shape="rect" id="node14" href="$classGEventHandler.html#aa46b1b1a237b0d3b45ac9ded13bd2f62" title="tell if we are connected" alt="" coords="577,229,772,256"/>
-<area shape="rect" id="node15" href="$classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="560,331,789,373"/>
-<area shape="rect" id="node17" href="$classGEventBaseWithAutoReconnect.html#ac019fb4a6b410726d6635f56fbe3fe62" title="called when connection established" alt="" coords="560,397,789,438"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,178,235,219"/>
+<area shape="rect" id="node2" href="$classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,178,512,219"/>
+<area shape="rect" id="node18" href="$classGEventBaseWithAutoReconnect.html#a2b612588e704b8a71758f289dd796098" title="called when reconnect retry reach the limit" alt="" coords="283,243,512,285"/>
+<area shape="rect" id="node19" href="$classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218" title="called when timer due" alt="" coords="583,56,766,83"/>
+<area shape="rect" id="node3" href="$classGEventHandler.html#a462e1f2488d935220f2ec876e5361962" title="remember user provide data in handler" alt="" coords="600,157,749,184"/>
+<area shape="rect" id="node4" href="$classGEventBase.html#aa1d227594c9269194d625584aac2c16e" title="setup connection to remote server" alt="" coords="595,208,755,235"/>
+<area shape="rect" id="node14" href="$classGEventHandler.html#aa46b1b1a237b0d3b45ac9ded13bd2f62" title="tell if we are connected" alt="" coords="577,107,772,133"/>
+<area shape="rect" id="node15" href="$classGEventBaseWithAutoReconnect.html#a704400a5114e7282ebfa30074f195e59" title="doing the dirty work for reconnect" alt="" coords="560,353,789,394"/>
+<area shape="rect" id="node17" href="$classGEventBaseWithAutoReconnect.html#ac019fb4a6b410726d6635f56fbe3fe62" title="called when connection established" alt="" coords="560,259,789,301"/>
 <area shape="rect" id="node5" href="$classGEventHandler.html#a5ef79153519c6c98a2e00d3f193ad07d" title="shut down underline facilities" alt="" coords="849,208,1028,235"/>
 <area shape="rect" id="node6" href="$classGEventHandler.html#acadb5910375db04086305562ca5912b1" title="clear data status inside" alt="" coords="859,259,1019,285"/>
-<area shape="rect" id="node7" href="$classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="857,56,1020,83"/>
-<area shape="rect" id="node9" href="$classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="1098,327,1249,369"/>
-<area shape="rect" id="node10" href="$classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="1093,216,1254,243"/>
-<area shape="rect" id="node13" href="$classGEventHandler.html#a316e1484f5e7eae5babf0a31cf4c8662" title="tell EventBase whether enable reuse" alt="" coords="857,107,1021,133"/>
-<area shape="rect" id="node8" href="$structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d" title="cancel this timer" alt="" coords="1088,49,1259,90"/>
-<area shape="rect" id="node11" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="1307,191,1467,217"/>
-<area shape="rect" id="node12" href="$classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="1308,241,1465,268"/>
+<area shape="rect" id="node7" href="$classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="857,107,1020,133"/>
+<area shape="rect" id="node9" href="$classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="1098,353,1249,394"/>
+<area shape="rect" id="node10" href="$classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="1093,233,1254,260"/>
+<area shape="rect" id="node13" href="$classGEventHandler.html#a316e1484f5e7eae5babf0a31cf4c8662" title="tell EventBase whether enable reuse" alt="" coords="857,56,1021,83"/>
+<area shape="rect" id="node8" href="$structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d" title="cancel this timer" alt="" coords="1088,99,1259,141"/>
+<area shape="rect" id="node11" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="1307,208,1467,235"/>
+<area shape="rect" id="node12" href="$classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="1308,259,1465,285"/>
 <area shape="rect" id="node16" href="$classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d" title="setup timer for once or periodic" alt="" coords="859,360,1019,387"/>
 <area shape="rect" id="node20" href="$classGEventHandler.html#a75f04e2b25bf9234793949a3f367445a" title="timer has due" alt="" coords="837,5,1040,32"/>
 </map>

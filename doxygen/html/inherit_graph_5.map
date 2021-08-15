@@ -2,4 +2,5 @@
 <area shape="rect" id="node1" href="$classIEventBase.html" title="abstract interface for all EventBase" alt="" coords="5,5,100,32"/>
 <area shape="rect" id="node2" href="$classGEventBase.html" title="event base, the core of the gevent" alt="" coords="148,5,249,32"/>
 <area shape="rect" id="node3" href="$classGEventBaseWithAutoReconnect.html" title="event base with auto reconnection support" alt="" coords="297,5,527,32"/>
+<area shape="rect" id="node4" href="$classGMyEventBase.html" title=" " alt="" coords="575,5,696,32"/>
 </map>
