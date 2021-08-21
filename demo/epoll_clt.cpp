@@ -55,7 +55,7 @@ void do_read (GEventHandler *eh, int total)
         if ((ret = eh->send (req)) <= 0)
         {
             err = 1; 
-            printf ("send %d failed, errno %d\n", req.length (), errno); 
+            printf ("send %lu failed, errno %d\n", req.length (), errno); 
             break; 
         }
         else 
@@ -194,7 +194,7 @@ int main (int argc, char *argv[])
     }
 #endif
 
-    if (g_base.init (2) < 0)
+    if (!g_base.init (2))
         return -1; 
 
     printf ("init ok\n"); 

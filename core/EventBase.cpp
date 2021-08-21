@@ -1,8 +1,7 @@
 #include "EventBase.h"
 #include "log.h" 
 
-#ifdef WIN32
-#else
+#ifndef WIN32
 #  include <fcntl.h>
 #  include <signal.h>
 #  include <sstream>
@@ -252,10 +251,17 @@ static conn_key_t get_key_from_fd (int fd, bool verbose)
     return conn_key_t (fd, ntohs(local.sin_port), ntohs(remote.sin_port)); 
 }
 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+int GEventBase::kqfd () const
+{
+    return m_kq; 
+}
+#  else
 int GEventBase::epfd () const
 {
     return m_ep; 
 }
+#  endif
 
 bool GEventBase::init_pipe()
 {
@@ -268,10 +274,15 @@ bool GEventBase::init_pipe()
     else 
         writeLog("create pipe, in %d, out %d", m_pp[0], m_pp[1]); 
 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+    struct kevent ev = { m_pp[0], EVFILT_READ, EV_ADD, 0, 0, NULL };
+    if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
+#  else
     struct epoll_event ev; 
     ev.events = EPOLLIN; // no EPOLLET
     ev.data.fd = m_pp[0]; 
     if (epoll_ctl (m_ep, EPOLL_CTL_ADD, m_pp[0], &ev) < 0)
+#endif
     {
         writeLog("add notify pipe into epoll failed, errno %d", errno); 
         return false; 
@@ -506,7 +517,16 @@ bool GEventBase::init(int thr_num, int blksize
         // not fatal as we can use default timer queue...
     }
 
-#else // WIN32
+#elif defined (__APPLE__) || defined (__Free_BSD__)
+    m_kq = kqueue (); 
+    if (m_kq < 0)
+    {
+        writeLog("create kqueue instance failed, errno %d", errno); 
+        return false; 
+    }
+    else 
+        writeLog("create kqueue fd %d", m_kq); 
+#else
     m_ep = epoll_create (1/*just a hint*/); 
     if (m_ep < 0)
     {
@@ -515,6 +535,7 @@ bool GEventBase::init(int thr_num, int blksize
     }
     else 
         writeLog("create epoll fd %d", m_ep); 
+#endif
 
     if (!init_pipe())
         return false; 
@@ -658,6 +679,15 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
         }
 
         writeLog("prepare %d acceptors for listener", n); 
+#elif defined (__APPLE__) || defined (__FreeBSD__)
+        struct kevent ev = { m_listener, EVFILT_READ, EV_ADD, 0, 0, NULL };
+        if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
+        {
+            writeLog("kevent %d failed, errno %d", m_listener, errno); 
+            break; 
+        }
+
+        writeLog("associate listener to kqueue ok"); 
 #else
         struct epoll_event ev; 
         ev.events = EPOLLIN; 
@@ -790,12 +820,22 @@ GEventHandler* GEventBase::connect(unsigned short port, char const* host /* "127
 #else
         setnonblocking (fd); 
 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+        struct kevent ev = { fd, EVFILT_READ, EV_ADD, 0, 0, NULL };
+        if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
+        {
+            writeLog("kevent %d failed, errno %d", fd, errno); 
+            break; 
+        }
+
+        writeLog("bind newly connected socket %d to kqueue ok", fd);
+#  else
         // reuse this event, we don't use it later..
         struct epoll_event ev; 
         ev.events = EPOLLIN; 
-#  ifdef HAS_ET
+#    ifdef HAS_ET
         ev.events |= EPOLLET; 
-#  endif
+#    endif
         ev.data.fd = fd; 
         if (epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &ev) < 0)
         {
@@ -804,6 +844,8 @@ GEventHandler* GEventBase::connect(unsigned short port, char const* host /* "127
         }
 
         writeLog("bind newly connected socket %d to epoll ok", fd);
+#  endif
+
         std::lock_guard<std::recursive_mutex> guard(m_mutex);
 #endif 
 
@@ -953,11 +995,21 @@ bool GEventBase::do_accept(int listener)
         setnonblocking (fd); 
         gphd = new GEV_PER_HANDLE_DATA(fd, ret == 0 ? &local : 0, &remote);
 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+        struct kevent ev = { fd, EVFILT_READ, EV_ADD, 0, 0, NULL };
+        if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
+        {
+            writeLog("kevent %d failed, errno %d", fd, errno); 
+            break; 
+        }
+
+        writeLog("associate fd %d to kqueue ok", fd); 
+#  else
         struct epoll_event ev; 
         ev.events = EPOLLIN; 
-#  ifdef HAS_ET
+#    ifdef HAS_ET
         ev.events |= EPOLLET; 
-#  endif
+#    endif
         ev.data.fd = fd; 
         // add lock before fd added into epoll to prevent 
         // io event arrives earlier than we insert handler into map
@@ -968,7 +1020,8 @@ bool GEventBase::do_accept(int listener)
             break; 
         }
 
-        writeLog("associate fd to epoll ok"); 
+        writeLog("associate fd %d to epoll ok", fd); 
+#  endif
         if (!on_accept(gphd))
             break;
 
@@ -1506,6 +1559,15 @@ void GEventBase::run()
             break;
         }
 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+        struct kevent ev;  // same name with epoll, for easier following coding..
+        ret = kevent (m_kq, NULL, 0, &ev, 1, NULL);
+        if (ret < 0)
+        {
+            writeLog("kevent failed with %d", errno); 
+            continue; 
+        }
+#  else
         struct epoll_event eps; 
         // can handle only one request a time 
         // -1: all timer goes into pipe, no timeout here! 
@@ -1516,7 +1578,7 @@ void GEventBase::run()
             writeLog("epoll_wait failed with %d", errno); 
             continue; 
         }
-
+#  endif
 
         // always 1 or 0 events
         //writeLog("%d events detected", ret); 
@@ -1528,8 +1590,22 @@ void GEventBase::run()
         }
 
         bool readd = true; 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+        int fd = ev.ident; 
+        // remove fd temporaryly from epoll to prevent duplicate notify
+        //EV_SET(&ev, fd, EVFILT_READ, EV_DELETE, 0, 0, NULL);
+        ev.flags = EV_DELETE; 
+        if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
+        {
+            writeLog("remove %d from kqueue failed, errno %d", fd, errno); 
+        }
+#    ifdef GEVENT_DUMP
+        else 
+            writeLog("del %d from kqueue temporary", fd); 
+#    endif
+#  else
         int fd = eps.data.fd; 
-#  ifndef HAS_ET
+#    ifndef HAS_ET
         // remove fd temporaryly from epoll to prevent duplicate notify
         eps.events = EPOLLIN; 
         eps.data.fd = fd; 
@@ -1538,9 +1614,10 @@ void GEventBase::run()
         {
             writeLog("remove %d from epoll failed, errno %d", fd, errno); 
         }
-#    ifdef GEVENT_DUMP
+#      ifdef GEVENT_DUMP
         else 
             writeLog("del %d from epoll temporary", fd); 
+#      endif
 #    endif
 #  endif
 
@@ -1548,19 +1625,33 @@ void GEventBase::run()
         guard.unlock (); 
         if (fd == m_listener)
         {
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+            if (ev.filter & EVFILT_READ)
+#  else
             if (eps.events & EPOLLIN)
+#  endif
             {
                 // new client arrives
                 do_accept (fd); 
             }
             else 
+            {
+#  if defined (__APPLE__) || defined (__FreeBSD__)
                 writeLog("unexpect events 0x%08x on listener", eps.events); 
+#  else
+                writeLog("unexpect events 0x%08x on listener", ev.filter); 
+#  endif
+            }
         }
         else if (fd == m_pp[0])
         {
             // notify message
             bool reinit = false;
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+            if (ev.filter & EVFILT_READ)
+#  else
             if (eps.events & EPOLLIN)
+#  endif
             {
                 // clear trigger flag
                 char ch = 0; 
@@ -1586,6 +1677,19 @@ void GEventBase::run()
                             else 
                             {
                                 // before doing work, add pipe handle into epoll to receive next timer...
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+                                // struct kevent ev = { fd, EVFILT_READ, EV_ADD, 0, 0, NULL };
+                                // ev.ident = fd; 
+                                ev.filter = EVFILT_READ; 
+                                ev.flags = EV_ADD; 
+                                ret = kevent (m_kq, &ev, 1, NULL, 0, NULL); 
+                                if (ret < 0)
+                                    writeLog("re-add %d to kqueue failed, errno %d, fatal error", fd, errno); 
+#    ifdef GEVENT_DUMP
+                                else 
+                                    writeLog("re-add %d to kqueue ok", fd); 
+#    endif
+#  else
                                 eps.events = EPOLLIN; 
                                 eps.data.fd = fd; 
                                 ret = epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &eps); 
@@ -1595,6 +1699,7 @@ void GEventBase::run()
                                 else 
                                     writeLog("re-add %d to epoll ok", fd); 
 #    endif
+#  endif
                                 readd = false; 
                                 do_timeout ((GEV_PER_TIMER_DATA *)ptr); 
                             }
@@ -1606,11 +1711,19 @@ void GEventBase::run()
                 }
             }
             
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+            if (ev.flags & EV_ERROR)
+                reinit = true; 
+
+            if (ev.filter & ~EVFILT_READ)
+                writeLog("unexpect filter 0x%08x on pipe", ev.filter); 
+#  else
             if (eps.events & EPOLLERR || eps.events & EPOLLHUP)
                 reinit = true; 
 
             if (eps.events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
                 writeLog("unexpect events 0x%08x on pipe", eps.events); 
+#  endif
 
             if (reinit)
             {
@@ -1624,14 +1737,22 @@ void GEventBase::run()
         {
             // common connection
             conn_key_t key = get_key_from_fd (fd, false); 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+            if (ev.filter & EVFILT_READ)
+#  else
             if (eps.events & EPOLLIN)
+#  endif
             {
                 // data arrive on connections
                 // if recv failled, not added it to epoll anymore
                 readd = do_recv (key); 
             }
 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+            if (ev.flags & EV_ERROR)
+#  else
             if (eps.events & EPOLLERR || eps.events & EPOLLHUP)
+#  endif
             {
                 // exception on connections
                 do_error (key); 
@@ -1639,11 +1760,29 @@ void GEventBase::run()
             }
 
             // to see any other flag left?
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+            if (ev.filter & ~EVFILT_READ)
+                writeLog("unexpect filter 0x%08x on pipe", ev.filter); 
+#  else
             if (eps.events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
                 writeLog("unexpect events flag 0x%08x, fd = %d", eps.events, fd); 
+#  endif
         }
 
-#  ifndef HAS_ET
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+        if (readd && m_running)
+        {
+            ev.filter = EVFILT_READ; 
+            ev.flags = EV_ADD; 
+            ret = kevent (m_kq, &ev, 1, NULL, 0, NULL); 
+            if (ret < 0)
+                writeLog("re-add %d to kqueue failed, errno %d, fatal error", fd, errno); 
+#    ifdef GEVENT_DUMP
+            else 
+                writeLog("re-add %d to kqueue ok", fd); 
+#    endif
+        }
+#  elif !defined (HAS_ET)
         if (readd && m_running)
         {
             eps.events = EPOLLIN; 
@@ -1698,7 +1837,11 @@ void GEventBase::exit(int extra_notify)
 
 #else // WIN32
 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+    if (m_kq != -1)
+#  else
     if (m_ep != -1)
+#  endif
     {
         // notify all thread to exit
         if (m_thrnum != (int)m_grp.size())
@@ -1916,11 +2059,19 @@ void GEventBase::fini()
 #  endif
 
     close_pipe (); 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+    if (m_kq != -1)
+    {
+        close (m_kq);
+        m_kq = -1; 
+    }
+#  else
     if (m_ep != -1)
     {
         close (m_ep);
         m_ep = -1; 
     }
+#  endif
 #endif
 
     m_running = false; 

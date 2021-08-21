@@ -15,13 +15,17 @@ int main(int argc, char *argv[])
 #else
 // this demo only support linux
 #include <unistd.h>
-#include <sys/epoll.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
+#if defined (__APPLE__) || defined (__FreeBSD__)
+#  include <sys/event.h>
+#else
+#  include <sys/epoll.h>
+#endif
 
 #include <string>
 #include "json/json.h"
-#define LG(format, args...) do {printf("%lu ", pthread_self ()); printf(format"\n", ##args);} while(0)
+#define LG(format, args...) do {printf("%p ", pthread_self ()); printf(format"\n", ##args);} while(0)
 
 
 int running = 1; 
@@ -49,15 +53,24 @@ void* run_proc(void *arg)
 {
     int ret = 0; 
     int m_ep = *(int*)arg; 
+#if defined (__APPLE__) || defined (__FreeBSD__)
+    struct kevent eps; 
+#else
     struct epoll_event eps; 
+#endif
     while (running)
     {
         // can handle only one request a time 
+#if defined (__APPLE__) || defined (__FreeBSD__)
+        // NULL: all timer goes into pipe, no timeout here! 
+        ret = kevent (m_ep, NULL, 0, &eps, 1, NULL);
+#else
         // -1: all timer goes into pipe, no timeout here! 
         ret = epoll_wait (m_ep, &eps, 1, -1); 
+#endif
         if (ret < 0)
         {
-            LG("epoll_wait failed with %d", errno); 
+            LG("epoll_wait/kevent failed with %d", errno); 
             continue; 
         }
 
@@ -70,8 +83,13 @@ void* run_proc(void *arg)
             continue; 
         }
 
+#if defined (__APPLE__) || defined (__FreeBSD__)
+        int fd = eps.ident; 
+        if (eps.filter & EVFILT_READ)
+#else
         int fd = eps.data.fd; 
         if (eps.events & EPOLLIN)
+#endif
         {
             // data arrive on connections
             // if recv failled, not added it to epoll anymore
@@ -95,7 +113,11 @@ void* run_proc(void *arg)
             LG("receiving %d: %s", fd, buf); 
         }
 
+#if defined (__APPLE__) || defined (__FreeBSD__)
+        if (eps.flags & EV_ERROR)
+#else
         if (eps.events & EPOLLERR || eps.events & EPOLLHUP)
+#endif
         {
             // exception on connections
             //do_error (key); 
@@ -103,8 +125,13 @@ void* run_proc(void *arg)
         }
 
         // to see any other flag left?
+#if defined (__APPLE__) || defined (__FreeBSD__)
+        if (eps.filter & ~EVFILT_READ)
+            LG("unexpect events filter 0x%08x, fd = %d", eps.filter, fd); 
+#else
         if (eps.events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
             LG("unexpect events flag 0x%08x, fd = %d", eps.events, fd); 
+#endif
     }
 
     LG("run proc exit"); 
@@ -138,7 +165,7 @@ void do_read (int fd, int total)
         req = req.substr (0, req.length () - 1); // trim tailing \n
         if ((ret = send (fd, req.c_str(), req.length(), 0)) != (int)req.length ())
         {
-            LG ("send %d failed, errno %d", req.length (), errno); 
+            LG ("send %lu failed, errno %d", req.length (), errno); 
             break; 
         }
         else 
@@ -175,14 +202,18 @@ int main (int argc, char *argv[])
         return -1; 
     }
 
+#if defined (__APPLE__) || defined (__FreeBSD__)
+    int m_ep = kqueue (); 
+#else
     int m_ep = epoll_create (1/*just a hint*/); 
+#endif
     if (m_ep < 0)
     {
-        LG("create epoll instance failed, errno %d", errno); 
+        LG("create epoll/kqueue instance failed, errno %d", errno); 
         return -1; 
     }
     else 
-        LG("create epoll fd %d", m_ep); 
+        LG("create epoll/kqueue fd %d", m_ep); 
 
     // installl SIGPIPE handler to avoid exit on broken pipe/socket
     act.sa_handler = SIG_IGN; 
@@ -254,6 +285,16 @@ int main (int argc, char *argv[])
     LG ("connect ok"); 
 
     // reuse this event, we don't use it later..
+#if defined (__APPLE__) || defined (__FreeBSD__)
+    //struct kevent ev = { fd, EVFILT_READ, EV_ADD, 0, 0, NULL };
+    struct kevent ev; 
+    EV_SET(&ev, fd, EVFILT_READ, EV_ADD, 0, 0, NULL); 
+    if (kevent (m_ep, &ev, 1, NULL, 0, NULL) < 0)
+    {
+        LG("kevent %d failed, errno %d", fd, errno); 
+        return -1; 
+    }
+#else
     struct epoll_event ev; 
     ev.events = EPOLLIN; 
     ev.data.fd = fd; 
@@ -262,8 +303,9 @@ int main (int argc, char *argv[])
         LG("epoll ctl %d failed, errno %d", fd, errno); 
         return -1; 
     }
+#endif
 
-    LG("bind newly connected socket %d to epoll ok", fd);
+    LG("bind newly connected socket %d to epoll/kqueue ok", fd);
 
     int total = 0; 
     do_read (fd, total); 

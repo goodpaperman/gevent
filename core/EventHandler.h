@@ -8,12 +8,16 @@
 #else
 #  include <unistd.h> // for close
 #  include <sys/socket.h>
-#  include <sys/epoll.h>
 #  include <sys/time.h>
 #  include <netinet/in.h> // for struct sockaddr_in
 #  include <arpa/inet.h> // for inet_addr/inet_ntoa
 #  include <string.h> // for memset/memcpy
 #  include <signal.h>
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+#  include <sys/event.h>
+#  else
+#  include <sys/epoll.h>
+#  endif
 #endif
 
 #include <mutex>
@@ -34,6 +38,9 @@ public:
 #ifdef WIN32
     /** @brief get underline IOCP handler on win32 */
     virtual HANDLE iocp () const = 0; 
+#elif defined (__APPLE__) || defined (__FreeBSD__)
+    /** @see IEventBase::kqfd */
+    virtual int kqfd () const = 0; 
 #else
     /** @brief get underline event poll fd on linux */
     virtual int epfd () const = 0; 

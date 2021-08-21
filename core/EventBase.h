@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include "EventHandler.h" 
 #include <string>
 #include <map>
@@ -26,6 +25,9 @@ public:
 #ifdef WIN32
     /** @see IEventBase::iocp */
     virtual HANDLE iocp () const; 
+#elif defined (__APPLE__) || defined (__FreeBSD__)
+    /** @see IEventBase::kqfd */
+    virtual int kqfd () const; 
 #else
     /** @see IEventBase::epfd */
     virtual int epfd () const; 
@@ -234,12 +236,20 @@ protected:
 
     std::map<GEV_PER_HANDLE_DATA*, GEventHandler*> m_map;  /**< handler map, key is data address binding to handler, value is event handler */
 #else
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+    int m_kq = -1;                         /**< kqueue file descriptor on mac */
+#  else
     int m_ep = -1;                         /**< epoll file descriptor on linux */
+#  endif
     int m_pp[2];                           /**< self-notify pipe on linux */
     int m_tsig = 0;                        /**< signal number for timer on linux */
 
     std::mutex m_lock;                     /**< lock to protect epoll */
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+    pthread_t m_leader = NULL;               /**< current leader thread (the one do epoll) */
+#  else
     pthread_t m_leader = -1;               /**< current leader thread (the one do epoll) */
+#  endif
     std::map<conn_key_t, GEventHandler*> m_map;  /**< handler map, key is the combine of fd/lport/rport, data is event handler */
 #  ifdef HAS_SIGTHR
     std::thread *m_sigthr = nullptr;       /**< thread handling signal only */
