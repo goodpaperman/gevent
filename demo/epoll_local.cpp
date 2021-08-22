@@ -54,19 +54,19 @@ void* run_proc(void *arg)
     int ret = 0; 
     int m_ep = *(int*)arg; 
 #if defined (__APPLE__) || defined (__FreeBSD__)
-    struct kevent eps; 
+    struct kevent ev; 
 #else
-    struct epoll_event eps; 
+    struct epoll_event ev; 
 #endif
     while (running)
     {
         // can handle only one request a time 
 #if defined (__APPLE__) || defined (__FreeBSD__)
         // NULL: all timer goes into pipe, no timeout here! 
-        ret = kevent (m_ep, NULL, 0, &eps, 1, NULL);
+        ret = kevent (m_ep, NULL, 0, &ev, 1, NULL);
 #else
         // -1: all timer goes into pipe, no timeout here! 
-        ret = epoll_wait (m_ep, &eps, 1, -1); 
+        ret = epoll_wait (m_ep, &ev, 1, -1); 
 #endif
         if (ret < 0)
         {
@@ -84,11 +84,11 @@ void* run_proc(void *arg)
         }
 
 #if defined (__APPLE__) || defined (__FreeBSD__)
-        int fd = eps.ident; 
-        if (eps.filter & EVFILT_READ)
+        int fd = ev.ident; 
+        if (ev.filter & EVFILT_READ)
 #else
-        int fd = eps.data.fd; 
-        if (eps.events & EPOLLIN)
+        int fd = ev.data.fd; 
+        if (ev.events & EPOLLIN)
 #endif
         {
             // data arrive on connections
@@ -114,9 +114,9 @@ void* run_proc(void *arg)
         }
 
 #if defined (__APPLE__) || defined (__FreeBSD__)
-        if (eps.flags & EV_ERROR)
+        if (ev.flags & EV_ERROR)
 #else
-        if (eps.events & EPOLLERR || eps.events & EPOLLHUP)
+        if (ev.events & EPOLLERR || ev.events & EPOLLHUP)
 #endif
         {
             // exception on connections
@@ -126,11 +126,11 @@ void* run_proc(void *arg)
 
         // to see any other flag left?
 #if defined (__APPLE__) || defined (__FreeBSD__)
-        if (eps.filter & ~EVFILT_READ)
-            LG("unexpect events filter 0x%08x, fd = %d", eps.filter, fd); 
+        if (ev.filter & ~EVFILT_READ)
+            LG("unexpect events filter 0x%08x, fd = %d", ev.filter, fd); 
 #else
-        if (eps.events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
-            LG("unexpect events flag 0x%08x, fd = %d", eps.events, fd); 
+        if (ev.events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
+            LG("unexpect events flag 0x%08x, fd = %d", ev.events, fd); 
 #endif
     }
 

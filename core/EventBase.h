@@ -243,7 +243,7 @@ protected:
 
     std::mutex m_lock;                     /**< lock to protect epoll */
 #  if defined (__APPLE__) || defined (__FreeBSD__)
-    pthread_t m_leader = NULL;               /**< current leader thread (the one do epoll) */
+    pthread_t m_leader = NULL;               /**< current leader thread (the one do kqueue) */
 #  else
     pthread_t m_leader = -1;               /**< current leader thread (the one do epoll) */
 #  endif
