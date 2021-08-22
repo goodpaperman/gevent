@@ -42,7 +42,7 @@ public:
     /** @see IEventBase::kqfd */
     virtual int kqfd () const = 0; 
 #else
-    /** @brief get underline event poll fd on linux */
+    /** @brief get underline event poll fd on unix like */
     virtual int epfd () const = 0; 
 #endif
 
@@ -129,8 +129,8 @@ struct GEV_PER_IO_DATA
     WSABUF wsa;         /**< buffer for win32, wsa.len is the buffer length */
     DWORD bytes;        /**< bytes transfered after read completed on win32 */
 #else
-    char *buf;          /**< data buffer prepared for receiving for linux */
-    int len;            /**< bytes transferred after read completed on linux */
+    char *buf;          /**< data buffer prepared for receiving for unix like */
+    int len;            /**< bytes transferred after read completed on unix like */
 #endif
 
     GEV_PER_IO_DATA(
@@ -155,14 +155,17 @@ struct GEV_PER_TIMER_DATA
 #ifdef WIN32
     HANDLE timerque;    /**< timer queue handler on win32 */
     HANDLE timer;       /**< timer handler on win32 */
-#else
+#elif defined (__APPLE__) || defined (__FreeBSD__)
+#elif defined (__linux__)
     timer_t timer;      /**< timer handler on linux */
 #endif
 
     GEV_PER_TIMER_DATA(IEventBase *base, int due, int period, void *arg
 #ifdef WIN32
             , HANDLE tq);
-#else
+#elif defined (__APPLE__) || defined (__FreeBSD__)
+            , void* ptr); 
+#elif defined (__linux__)
             , timer_t tid); 
 #endif
 

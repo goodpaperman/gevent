@@ -80,7 +80,7 @@ int main (int argc, char *argv[])
 #endif
 
     // to test small message block
-    if (g_base.init (/*8, 10*/) < 0)
+    if (!g_base.init (/*8, 10*/))
         return -1; 
 
     printf ("init ok\n"); 

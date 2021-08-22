@@ -275,7 +275,9 @@ bool GEventBase::init_pipe()
         writeLog("create pipe, in %d, out %d", m_pp[0], m_pp[1]); 
 
 #  if defined (__APPLE__) || defined (__FreeBSD__)
-    struct kevent ev = { m_pp[0], EVFILT_READ, EV_ADD, 0, 0, NULL };
+    struct kevent ev; 
+    // struct kevent ev = { m_pp[0], EVFILT_READ, EV_ADD, 0, 0, NULL };
+    EV_SET(&ev, m_pp[0], EVFILT_READ, EV_ADD, 0, 0, NULL); 
     if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
 #  else
     struct epoll_event ev; 
@@ -390,7 +392,7 @@ void sig_timer (int sig, siginfo_t *si, void *uc)
 #  endif
 }
 
-#  ifdef HAS_SIGTHR
+#  if defined (__linux__) && defined (HAS_SIGTHR)
 void GEventBase::sig_proc()
 {
     int signo = 0; 
@@ -479,7 +481,7 @@ void GEventBase::on_error(GEventHandler *h)
 }
 
 bool GEventBase::init(int thr_num, int blksize
-#ifndef WIN32
+#ifdef __linux__
                                 , int timer_sig
 #endif
                                 )
@@ -541,6 +543,7 @@ bool GEventBase::init(int thr_num, int blksize
         return false; 
 
     struct sigaction act; 
+#if defined (__linux__)
     // install SIGUSR1 handler to do timer callback
     act.sa_sigaction = sig_timer; 
     act.sa_flags = SA_RESTART | SA_SIGINFO; 
@@ -554,6 +557,7 @@ bool GEventBase::init(int thr_num, int blksize
         writeLog("install sig %d for timer ok", timer_sig); 
 
     m_tsig = timer_sig; 
+#endif
 
     // installl SIGPIPE handler to avoid exit on broken pipe/socket
     act.sa_handler = SIG_IGN; 
@@ -567,7 +571,7 @@ bool GEventBase::init(int thr_num, int blksize
     else
         writeLog("ignore SIGPIPE ok"); 
 
-#  ifdef HAS_SIGTHR
+#if defined (__linux__) && defined (HAS_SIGTHR)
     sigset_t mask; 
     // ignore all signal for worker thread
     // note: this step must set before spawning worker threads.
@@ -579,7 +583,6 @@ bool GEventBase::init(int thr_num, int blksize
     }
 
     m_sigthr = new std::thread(&GEventBase::sig_proc, this); 
-#  endif
 #endif
 
     std::thread *thr = nullptr; 
@@ -680,7 +683,9 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
 
         writeLog("prepare %d acceptors for listener", n); 
 #elif defined (__APPLE__) || defined (__FreeBSD__)
-        struct kevent ev = { m_listener, EVFILT_READ, EV_ADD, 0, 0, NULL };
+        struct kevent ev; 
+        // struct kevent ev = { m_listener, EVFILT_READ, EV_ADD, 0, 0, NULL };
+        EV_SET(&ev, m_listener, EVFILT_READ, EV_ADD, 0, 0, NULL); 
         if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
         {
             writeLog("kevent %d failed, errno %d", m_listener, errno); 
@@ -821,7 +826,9 @@ GEventHandler* GEventBase::connect(unsigned short port, char const* host /* "127
         setnonblocking (fd); 
 
 #  if defined (__APPLE__) || defined (__FreeBSD__)
-        struct kevent ev = { fd, EVFILT_READ, EV_ADD, 0, 0, NULL };
+        struct kevent ev; 
+        // struct kevent ev = { fd, EVFILT_READ, EV_ADD, 0, 0, NULL };
+        EV_SET(&ev, fd, EVFILT_READ, EV_ADD, 0, 0, NULL); 
         if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
         {
             writeLog("kevent %d failed, errno %d", fd, errno); 
@@ -996,7 +1003,9 @@ bool GEventBase::do_accept(int listener)
         gphd = new GEV_PER_HANDLE_DATA(fd, ret == 0 ? &local : 0, &remote);
 
 #  if defined (__APPLE__) || defined (__FreeBSD__)
-        struct kevent ev = { fd, EVFILT_READ, EV_ADD, 0, 0, NULL };
+        struct kevent ev; 
+        // struct kevent ev = { fd, EVFILT_READ, EV_ADD, 0, 0, NULL };
+        EV_SET(&ev, fd, EVFILT_READ, EV_ADD, 0, 0, NULL); 
         if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
         {
             writeLog("kevent %d failed, errno %d", fd, errno); 
@@ -1223,7 +1232,6 @@ void GEventBase::do_error(conn_key_t key)
 void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandler *exist_handler)
 {
     // setup timer
-    int ret = 0; 
     if (due_msec == 0 && period_msec == 0)
     {
         writeLog("both timeout can not be zero!"); 
@@ -1231,6 +1239,7 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
     }
 
 #ifdef WIN32
+    int ret = 0; 
     GEV_PER_TIMER_DATA *gptd = new GEV_PER_TIMER_DATA(this, due_msec, period_msec, arg, m_timerque);
     // may lost timer event ?
     std::lock_guard<std::mutex> guard(m_tlock);
@@ -1261,6 +1270,11 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
 
     GEV_PER_TIMER_DATA *gptd = new GEV_PER_TIMER_DATA(this, due_msec, period_msec, arg, NULL); 
 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+    struct kevent ev; 
+	EV_SET(&ev, 1, EVFILT_TIMER, EV_ADD, 0, 5, 0);
+#  endif
+#  if defined (__linux__)
     timer_t timer = NULL; 
     struct sigevent sev; 
     sev.sigev_notify = SIGEV_SIGNAL; 
@@ -1276,6 +1290,7 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
 
 
     gptd->timer = timer; 
+#  endif
     writeLog("create timer %p", gptd); 
 
     GEventHandler *h; 
@@ -1287,6 +1302,8 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
     // lock before timer take effect to avoid handler missing..
     std::lock_guard <std::mutex> guard (m_tlock); 
 
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+#  elif defined (__linux__)
     // start the timer
     struct itimerspec its; 
     its.it_value.tv_sec = due_msec / 1000; 
@@ -1300,6 +1317,7 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
         delete gptd; 
         return nullptr; 
     }
+#  endif
 
     h->reset(nullptr, gptd, this);
     //m_tmap.insert(std::make_pair(gptd, h));
@@ -1637,9 +1655,9 @@ void GEventBase::run()
             else 
             {
 #  if defined (__APPLE__) || defined (__FreeBSD__)
-                writeLog("unexpect events 0x%08x on listener", eps.events); 
-#  else
                 writeLog("unexpect events 0x%08x on listener", ev.filter); 
+#  else
+                writeLog("unexpect events 0x%08x on listener", eps.events); 
 #  endif
             }
         }

@@ -56,7 +56,7 @@ public:
      * @note user must call this method before others
      */
     bool init(int thr_num = -8, int blksize = GEV_MAX_BUF_SIZE
-#ifndef WIN32
+#ifdef __linux__
               , int timer_sig = SIGUSR1
 #endif
               ); 
@@ -238,11 +238,14 @@ protected:
 #else
 #  if defined (__APPLE__) || defined (__FreeBSD__)
     int m_kq = -1;                         /**< kqueue file descriptor on mac */
+    // timer facility in mac & freebsd is integrated into m_kq
 #  else
-    int m_ep = -1;                         /**< epoll file descriptor on linux */
+    int m_ep = -1;                         /**< epoll file descriptor on unix like */
 #  endif
-    int m_pp[2];                           /**< self-notify pipe on linux */
+    int m_pp[2];                           /**< self-notify pipe on unix like */
+#  if defined (__linux__)
     int m_tsig = 0;                        /**< signal number for timer on linux */
+#  endif
 
     std::mutex m_lock;                     /**< lock to protect epoll */
 #  if defined (__APPLE__) || defined (__FreeBSD__)

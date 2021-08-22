@@ -101,7 +101,14 @@ GEV_PER_TIMER_DATA::GEV_PER_TIMER_DATA(IEventBase *b, int due, int period, void 
     , cancelled(false)
     , timerque(t)
     , timer(NULL)
-#else
+#elif defined (__APPLE__) || defined (__FreeBSD__)
+GEV_PER_TIMER_DATA::GEV_PER_TIMER_DATA(IEventBase *b, int due, int period, void *arg, void* ptr)
+    : base(b)
+    , due_msec(due)
+    , period_msec(period)
+    , user_arg(arg)
+    , cancelled(false)
+#elif defined (__linux__)
 GEV_PER_TIMER_DATA::GEV_PER_TIMER_DATA(IEventBase *b, int due, int period, void *arg, timer_t tid)
     : base(b)
     , due_msec(due)
@@ -147,7 +154,8 @@ void GEV_PER_TIMER_DATA::cancel ()
         writeLog("timer %p with invalid key %p, que %p", this, timer, timerque); 
 
     timerque = NULL; 
-#else
+#elif defined (__APPLE__) || defined (__FreeBSD__)
+#elif defined (__linux__)
     if (timer != NULL)
     {
         if (timer_delete (timer) < 0)
