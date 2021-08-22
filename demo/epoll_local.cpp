@@ -14,6 +14,7 @@ int main(int argc, char *argv[])
 
 #else
 // this demo only support linux
+
 #include <unistd.h>
 #include <sys/socket.h>
 #include <arpa/inet.h>
@@ -25,6 +26,8 @@ int main(int argc, char *argv[])
 
 #include <string>
 #include "json/json.h"
+#include "../include/platform.h"
+
 #define LG(format, args...) do {printf("%p ", pthread_self ()); printf(format"\n", ##args);} while(0)
 
 
@@ -85,11 +88,10 @@ void* run_proc(void *arg)
 
 #if defined (__APPLE__) || defined (__FreeBSD__)
         int fd = ev.ident; 
-        if (ev.filter & EVFILT_READ)
 #else
         int fd = ev.data.fd; 
-        if (ev.events & EPOLLIN)
 #endif
+        if (IS_EV_READ(ev))
         {
             // data arrive on connections
             // if recv failled, not added it to epoll anymore
@@ -113,11 +115,7 @@ void* run_proc(void *arg)
             LG("receiving %d: %s", fd, buf); 
         }
 
-#if defined (__APPLE__) || defined (__FreeBSD__)
-        if (ev.flags & EV_ERROR)
-#else
-        if (ev.events & EPOLLERR || ev.events & EPOLLHUP)
-#endif
+        if (IS_EV_ERROR(ev))
         {
             // exception on connections
             //do_error (key); 
@@ -125,11 +123,10 @@ void* run_proc(void *arg)
         }
 
         // to see any other flag left?
+        if (IS_EV_UNEXPECT(ev))
 #if defined (__APPLE__) || defined (__FreeBSD__)
-        if (ev.filter & ~EVFILT_READ)
             LG("unexpect events filter 0x%08x, fd = %d", ev.filter, fd); 
 #else
-        if (ev.events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
             LG("unexpect events flag 0x%08x, fd = %d", ev.events, fd); 
 #endif
     }

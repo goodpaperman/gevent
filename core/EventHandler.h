@@ -24,7 +24,6 @@
 #include "json/json.h"
 #include "platform.h"
 
-
 class GEventHandler; 
 struct GEV_PER_TIMER_DATA; 
 /**

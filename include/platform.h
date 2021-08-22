@@ -54,5 +54,20 @@ typedef void* HANDLE;
 typedef void* HMODULE;
 typedef int BOOL; 
 
+// common definitions for unix like multiplexing facilities like epoll & kqueue
+
+// some macro to reduce platform adjugement..
+#  if defined (__APPLE__) || defined (__FreeBSD__)
+// unix like who support kqueue
+#  define IS_EV_READ(ev) ((ev).filter & EVFILT_READ)
+#  define IS_EV_ERROR(ev) ((ev).flags & EV_ERROR)
+#  define IS_EV_UNEXPECT(ev) ((ev).filter & ~EVFILT_READ)
+#  elif !defined (WIN32)
+// other platform who support epoll
+#  define IS_EV_READ(ev) ((ev).events & EPOLLIN)
+#  define IS_EV_ERROR(ev) ((ev).events & EPOLLERR || (ev).events & EPOLLHUP)
+#  define IS_EV_UNEXPECT(ev) ((ev).events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
+#  endif
+
 #endif
 

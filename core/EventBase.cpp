@@ -1622,11 +1622,7 @@ void GEventBase::run()
         {
             // notify message
             bool reinit = false;
-#  if defined (__APPLE__) || defined (__FreeBSD__)
-            if (ev.filter & EVFILT_READ)
-#  else
-            if (ev.events & EPOLLIN)
-#  endif
+            if (IS_EV_READ(ev))
             {
                 // clear trigger flag
                 char ch = 0; 
@@ -1679,17 +1675,13 @@ void GEventBase::run()
                 }
             }
             
-#  if defined (__APPLE__) || defined (__FreeBSD__)
-            if (ev.flags & EV_ERROR)
+            if (IS_EV_ERROR(ev))
                 reinit = true; 
 
-            if (ev.filter & ~EVFILT_READ)
+            if (IS_EV_UNEXPECT(ev))
+#  if defined (__APPLE__) || defined (__FreeBSD__)
                 writeLog("unexpect filter 0x%08x on pipe", ev.filter); 
 #  else
-            if (ev.events & EPOLLERR || ev.events & EPOLLHUP)
-                reinit = true; 
-
-            if (ev.events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
                 writeLog("unexpect events 0x%08x on pipe", ev.events); 
 #  endif
 
@@ -1705,22 +1697,14 @@ void GEventBase::run()
         {
             // common connection
             conn_key_t key = get_key_from_fd (fd, false); 
-#  if defined (__APPLE__) || defined (__FreeBSD__)
-            if (ev.filter & EVFILT_READ)
-#  else
-            if (ev.events & EPOLLIN)
-#  endif
+            if (IS_EV_READ(ev))
             {
                 // data arrive on connections
                 // if recv failled, not added it to epoll anymore
                 readd = do_recv (key); 
             }
 
-#  if defined (__APPLE__) || defined (__FreeBSD__)
-            if (ev.flags & EV_ERROR)
-#  else
-            if (ev.events & EPOLLERR || ev.events & EPOLLHUP)
-#  endif
+            if (IS_EV_ERROR(ev))
             {
                 // exception on connections
                 do_error (key); 
@@ -1728,11 +1712,10 @@ void GEventBase::run()
             }
 
             // to see any other flag left?
+            if (IS_EV_UNEXPECT(ev))
 #  if defined (__APPLE__) || defined (__FreeBSD__)
-            if (ev.filter & ~EVFILT_READ)
                 writeLog("unexpect filter 0x%08x on pipe", ev.filter); 
 #  else
-            if (ev.events & ~(EPOLLIN | EPOLLERR | EPOLLHUP))
                 writeLog("unexpect events flag 0x%08x, fd = %d", ev.events, fd); 
 #  endif
         }
