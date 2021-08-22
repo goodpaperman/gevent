@@ -49,7 +49,7 @@ bool GEventBase::post_timer(GEV_PER_TIMER_DATA *gptd)
 #ifdef WIN32
 HANDLE GEventBase::iocp () const
 {
-    return m_iocp; 
+    return m_mp; 
 }
 
 int GEventBase::init_socket()
@@ -168,7 +168,7 @@ bool GEventBase::issue_read(GEV_PER_HANDLE_DATA *gphd)
 
 bool GEventBase::post_completion(DWORD bytes, ULONG_PTR key, LPOVERLAPPED ol)
 {
-    return PostQueuedCompletionStatus(m_iocp, bytes, key, ol); 
+    return PostQueuedCompletionStatus(m_mp, bytes, key, ol); 
 }
 
 static void CALLBACK timeout_proc(LPVOID param, BOOLEAN unused)
@@ -251,17 +251,10 @@ static conn_key_t get_key_from_fd (int fd, bool verbose)
     return conn_key_t (fd, ntohs(local.sin_port), ntohs(remote.sin_port)); 
 }
 
-#  if defined (__APPLE__) || defined (__FreeBSD__)
-int GEventBase::kqfd () const
+int GEventBase::mpfd () const
 {
-    return m_kq; 
+    return m_mp; 
 }
-#  else
-int GEventBase::epfd () const
-{
-    return m_ep; 
-}
-#  endif
 
 bool GEventBase::init_pipe()
 {
@@ -278,12 +271,12 @@ bool GEventBase::init_pipe()
     struct kevent ev; 
     // struct kevent ev = { m_pp[0], EVFILT_READ, EV_ADD, 0, 0, NULL };
     EV_SET(&ev, m_pp[0], EVFILT_READ, EV_ADD, 0, 0, NULL); 
-    if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
+    if (kevent (m_mp, &ev, 1, NULL, 0, NULL) < 0)
 #  else
     struct epoll_event ev; 
     ev.events = EPOLLIN; // no EPOLLET
     ev.data.fd = m_pp[0]; 
-    if (epoll_ctl (m_ep, EPOLL_CTL_ADD, m_pp[0], &ev) < 0)
+    if (epoll_ctl (m_mp, EPOLL_CTL_ADD, m_pp[0], &ev) < 0)
 #endif
     {
         writeLog("add notify pipe into epoll failed, errno %d", errno); 
@@ -504,8 +497,8 @@ bool GEventBase::init(int thr_num, int blksize
     m_thrnum = thr_num; 
 #ifdef WIN32
     /* for 0, use as many thread as iocp can support */
-    m_iocp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, thr_num);
-    if (m_iocp == NULL)
+    m_mp = CreateIoCompletionPort(INVALID_HANDLE_VALUE, NULL, 0, thr_num);
+    if (m_mp == NULL)
     {
         writeLog("create io completion port failed, errno %d", GetLastError()); 
         return false; 
@@ -520,23 +513,23 @@ bool GEventBase::init(int thr_num, int blksize
     }
 
 #elif defined (__APPLE__) || defined (__Free_BSD__)
-    m_kq = kqueue (); 
-    if (m_kq < 0)
+    m_mp = kqueue (); 
+    if (m_mp < 0)
     {
         writeLog("create kqueue instance failed, errno %d", errno); 
         return false; 
     }
     else 
-        writeLog("create kqueue fd %d", m_kq); 
+        writeLog("create kqueue fd %d", m_mp); 
 #else
-    m_ep = epoll_create (1/*just a hint*/); 
-    if (m_ep < 0)
+    m_mp = epoll_create (1/*just a hint*/); 
+    if (m_mp < 0)
     {
         writeLog("create epoll instance failed, errno %d", errno); 
         return false; 
     }
     else 
-        writeLog("create epoll fd %d", m_ep); 
+        writeLog("create epoll fd %d", m_mp); 
 #endif
 
     if (!init_pipe())
@@ -614,7 +607,7 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
         // Associate SOCKET with IOCP  
         writeLog("create listener %d", m_listener); 
 #ifdef WIN32
-        if (CreateIoCompletionPort((HANDLE)m_listener, m_iocp, 0, 0) == NULL)
+        if (CreateIoCompletionPort((HANDLE)m_listener, m_mp, 0, 0) == NULL)
         {
             writeLog("associate listener to iocp failed, errno %d", GetLastError());
             break; 
@@ -686,7 +679,7 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
         struct kevent ev; 
         // struct kevent ev = { m_listener, EVFILT_READ, EV_ADD, 0, 0, NULL };
         EV_SET(&ev, m_listener, EVFILT_READ, EV_ADD, 0, 0, NULL); 
-        if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
+        if (kevent (m_mp, &ev, 1, NULL, 0, NULL) < 0)
         {
             writeLog("kevent %d failed, errno %d", m_listener, errno); 
             break; 
@@ -700,7 +693,7 @@ bool GEventBase::listen(unsigned short port, unsigned short backup)
         ev.events |= EPOLLET; 
 #  endif
         ev.data.fd = m_listener; 
-        if (epoll_ctl (m_ep, EPOLL_CTL_ADD, m_listener, &ev) < 0)
+        if (epoll_ctl (m_mp, EPOLL_CTL_ADD, m_listener, &ev) < 0)
         {
             writeLog("epoll ctl %d failed, errno %d", m_listener, errno); 
             break; 
@@ -810,7 +803,7 @@ GEventHandler* GEventBase::connect(unsigned short port, char const* host /* "127
         ioctlsocket(fd, FIONBIO, &yes);
 #  endif 
 
-        if (CreateIoCompletionPort((HANDLE)fd, m_iocp, (ULONG_PTR)gphd, 0) == NULL)
+        if (CreateIoCompletionPort((HANDLE)fd, m_mp, (ULONG_PTR)gphd, 0) == NULL)
         {
             writeLog("associate newly connected socket to iocp failed, errno %d", GetLastError());
             break;
@@ -829,7 +822,7 @@ GEventHandler* GEventBase::connect(unsigned short port, char const* host /* "127
         struct kevent ev; 
         // struct kevent ev = { fd, EVFILT_READ, EV_ADD, 0, 0, NULL };
         EV_SET(&ev, fd, EVFILT_READ, EV_ADD, 0, 0, NULL); 
-        if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
+        if (kevent (m_mp, &ev, 1, NULL, 0, NULL) < 0)
         {
             writeLog("kevent %d failed, errno %d", fd, errno); 
             break; 
@@ -844,7 +837,7 @@ GEventHandler* GEventBase::connect(unsigned short port, char const* host /* "127
         ev.events |= EPOLLET; 
 #    endif
         ev.data.fd = fd; 
-        if (epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &ev) < 0)
+        if (epoll_ctl (m_mp, EPOLL_CTL_ADD, fd, &ev) < 0)
         {
             writeLog("epoll ctl %d failed, errno %d", fd, errno); 
             break; 
@@ -938,7 +931,7 @@ bool GEventBase::do_accept(GEV_PER_IO_DATA *gpid)
 
         issue_accept(); // ignore error; 
         gphd = new GEV_PER_HANDLE_DATA(gpid->so, local, remote);
-        if (CreateIoCompletionPort((HANDLE)gpid->so, m_iocp, (ULONG_PTR)gphd, 0) == NULL)
+        if (CreateIoCompletionPort((HANDLE)gpid->so, m_mp, (ULONG_PTR)gphd, 0) == NULL)
         {
             writeLog("associate newly accepted socket to iocp failed, errno %d", GetLastError());
             break; 
@@ -1006,7 +999,7 @@ bool GEventBase::do_accept(int listener)
         struct kevent ev; 
         // struct kevent ev = { fd, EVFILT_READ, EV_ADD, 0, 0, NULL };
         EV_SET(&ev, fd, EVFILT_READ, EV_ADD, 0, 0, NULL); 
-        if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
+        if (kevent (m_mp, &ev, 1, NULL, 0, NULL) < 0)
         {
             writeLog("kevent %d failed, errno %d", fd, errno); 
             break; 
@@ -1023,7 +1016,7 @@ bool GEventBase::do_accept(int listener)
         // add lock before fd added into epoll to prevent 
         // io event arrives earlier than we insert handler into map
         std::lock_guard<std::recursive_mutex> guard(m_mutex);
-        if (epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &ev) < 0)
+        if (epoll_ctl (m_mp, EPOLL_CTL_ADD, fd, &ev) < 0)
         {
             writeLog("epoll ctl %d failed, errno %d", fd, errno); 
             break; 
@@ -1446,7 +1439,7 @@ void GEventBase::run()
         // clear pointers
         gphd = nullptr; 
         ol = nullptr; 
-        if (!GetQueuedCompletionStatus(m_iocp, &bytes, (PULONG_PTR)&gphd, &ol, INFINITE))
+        if (!GetQueuedCompletionStatus(m_mp, &bytes, (PULONG_PTR)&gphd, &ol, INFINITE))
         {
             ret = GetLastError (); 
             gpid = (GEV_PER_IO_DATA*)CONTAINING_RECORD(ol, GEV_PER_IO_DATA, ol);
@@ -1461,7 +1454,7 @@ void GEventBase::run()
             {
                 writeLog("service quiting on error %d...", ret); 
                 // post event back into completion queue to pumping it later.
-                //PostQueuedCompletionStatus(m_iocp, bytes, (ULONG_PTR)gphd, ol); 
+                //PostQueuedCompletionStatus(m_mp, bytes, (ULONG_PTR)gphd, ol); 
                 break; 
             }
 
@@ -1514,7 +1507,7 @@ void GEventBase::run()
         {
             writeLog("service quiting...");
             // post event back into completion queue to pumping it later.
-            //PostQueuedCompletionStatus(m_iocp, bytes, (ULONG_PTR)gphd, ol);
+            //PostQueuedCompletionStatus(m_mp, bytes, (ULONG_PTR)gphd, ol);
 
             // if this is a timer, we will crash in pumping by deleting gptd twice...
             //delete gpid; 
@@ -1579,7 +1572,7 @@ void GEventBase::run()
 
 #  if defined (__APPLE__) || defined (__FreeBSD__)
         struct kevent ev;  // same name with epoll, for easier following coding..
-        ret = kevent (m_kq, NULL, 0, &ev, 1, NULL);
+        ret = kevent (m_mp, NULL, 0, &ev, 1, NULL);
         if (ret < 0)
         {
             writeLog("kevent failed with %d", errno); 
@@ -1589,7 +1582,7 @@ void GEventBase::run()
         struct epoll_event eps; 
         // can handle only one request a time 
         // -1: all timer goes into pipe, no timeout here! 
-        ret = epoll_wait (m_ep, &eps, 1, -1); 
+        ret = epoll_wait (m_mp, &eps, 1, -1); 
         //guard.unlock (); 
         if (ret < 0)
         {
@@ -1613,7 +1606,7 @@ void GEventBase::run()
         // remove fd temporaryly from epoll to prevent duplicate notify
         //EV_SET(&ev, fd, EVFILT_READ, EV_DELETE, 0, 0, NULL);
         ev.flags = EV_DELETE; 
-        if (kevent (m_kq, &ev, 1, NULL, 0, NULL) < 0)
+        if (kevent (m_mp, &ev, 1, NULL, 0, NULL) < 0)
         {
             writeLog("remove %d from kqueue failed, errno %d", fd, errno); 
         }
@@ -1627,7 +1620,7 @@ void GEventBase::run()
         // remove fd temporaryly from epoll to prevent duplicate notify
         eps.events = EPOLLIN; 
         eps.data.fd = fd; 
-        ret = epoll_ctl (m_ep, EPOLL_CTL_DEL, fd, &eps); 
+        ret = epoll_ctl (m_mp, EPOLL_CTL_DEL, fd, &eps); 
         if (ret < 0)
         {
             writeLog("remove %d from epoll failed, errno %d", fd, errno); 
@@ -1643,10 +1636,13 @@ void GEventBase::run()
         guard.unlock (); 
         if (fd == m_listener)
         {
+            int events = 0; 
 #  if defined (__APPLE__) || defined (__FreeBSD__)
-            if (ev.filter & EVFILT_READ)
+            events = ev.filter; 
+            if (events & EVFILT_READ)
 #  else
-            if (eps.events & EPOLLIN)
+            events = eps.events; 
+            if (events & EPOLLIN)
 #  endif
             {
                 // new client arrives
@@ -1654,11 +1650,7 @@ void GEventBase::run()
             }
             else 
             {
-#  if defined (__APPLE__) || defined (__FreeBSD__)
-                writeLog("unexpect events 0x%08x on listener", ev.filter); 
-#  else
-                writeLog("unexpect events 0x%08x on listener", eps.events); 
-#  endif
+                writeLog("unexpect events 0x%08x on listener", events); 
             }
         }
         else if (fd == m_pp[0])
@@ -1700,7 +1692,7 @@ void GEventBase::run()
                                 // ev.ident = fd; 
                                 ev.filter = EVFILT_READ; 
                                 ev.flags = EV_ADD; 
-                                ret = kevent (m_kq, &ev, 1, NULL, 0, NULL); 
+                                ret = kevent (m_mp, &ev, 1, NULL, 0, NULL); 
                                 if (ret < 0)
                                     writeLog("re-add %d to kqueue failed, errno %d, fatal error", fd, errno); 
 #    ifdef GEVENT_DUMP
@@ -1710,7 +1702,7 @@ void GEventBase::run()
 #  else
                                 eps.events = EPOLLIN; 
                                 eps.data.fd = fd; 
-                                ret = epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &eps); 
+                                ret = epoll_ctl (m_mp, EPOLL_CTL_ADD, fd, &eps); 
                                 if (ret < 0)
                                     writeLog("re-add %d to epoll failed, errno %d, fatal error", fd, errno); 
 #    ifdef GEVENT_DUMP
@@ -1792,7 +1784,7 @@ void GEventBase::run()
         {
             ev.filter = EVFILT_READ; 
             ev.flags = EV_ADD; 
-            ret = kevent (m_kq, &ev, 1, NULL, 0, NULL); 
+            ret = kevent (m_mp, &ev, 1, NULL, 0, NULL); 
             if (ret < 0)
                 writeLog("re-add %d to kqueue failed, errno %d, fatal error", fd, errno); 
 #    ifdef GEVENT_DUMP
@@ -1805,7 +1797,7 @@ void GEventBase::run()
         {
             eps.events = EPOLLIN; 
             eps.data.fd = fd; 
-            ret = epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &eps); 
+            ret = epoll_ctl (m_mp, EPOLL_CTL_ADD, fd, &eps); 
             if (ret < 0)
                 writeLog("re-add %d to epoll failed, errno %d, fatal error", fd, errno); 
 #    ifdef GEVENT_DUMP
@@ -1827,7 +1819,7 @@ void GEventBase::exit(int extra_notify)
 
 #ifdef WIN32
 #  if 1
-    if (m_iocp != NULL)
+    if (m_mp != NULL)
     {
         // notify all thread to exit
         if (m_thrnum != m_grp.size())
@@ -1855,11 +1847,7 @@ void GEventBase::exit(int extra_notify)
 
 #else // WIN32
 
-#  if defined (__APPLE__) || defined (__FreeBSD__)
-    if (m_kq != -1)
-#  else
-    if (m_ep != -1)
-#  endif
+    if (m_mp != -1)
     {
         // notify all thread to exit
         if (m_thrnum != (int)m_grp.size())
@@ -2004,7 +1992,7 @@ void GEventBase::fini()
         writeLog("delete timer queue return %d", ret);
     }
 
-    if (m_iocp != NULL)
+    if (m_mp != NULL)
     {
         // pump left events
         DWORD bytes = 0;
@@ -2016,7 +2004,7 @@ void GEventBase::fini()
         //std::set <GEV_PER_HANDLE_DATA *> gphds; 
         while (true)
         {
-            if (!GetQueuedCompletionStatus(m_iocp, &bytes, (PULONG_PTR)&gphd, &ol, 0) && ol == NULL)
+            if (!GetQueuedCompletionStatus(m_mp, &bytes, (PULONG_PTR)&gphd, &ol, 0) && ol == NULL)
             {
                 writeLog("no more event, quiting...");
                 break;
@@ -2057,8 +2045,8 @@ void GEventBase::fini()
 #  endif
         }
 
-        CloseHandle(m_iocp);
-        m_iocp = NULL;
+        CloseHandle(m_mp);
+        m_mp = NULL;
     }
 
 #else // WIN32
@@ -2077,19 +2065,11 @@ void GEventBase::fini()
 #  endif
 
     close_pipe (); 
-#  if defined (__APPLE__) || defined (__FreeBSD__)
-    if (m_kq != -1)
+    if (m_mp != -1)
     {
-        close (m_kq);
-        m_kq = -1; 
+        close (m_mp);
+        m_mp = -1; 
     }
-#  else
-    if (m_ep != -1)
-    {
-        close (m_ep);
-        m_ep = -1; 
-    }
-#  endif
 #endif
 
     m_running = false; 

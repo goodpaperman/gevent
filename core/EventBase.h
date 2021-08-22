@@ -23,14 +23,11 @@ public:
     ~GEventBase();
 
 #ifdef WIN32
-    /** @see IEventBase::iocp */
-    virtual HANDLE iocp () const; 
-#elif defined (__APPLE__) || defined (__FreeBSD__)
-    /** @see IEventBase::kqfd */
-    virtual int kqfd () const; 
+    /** @see IEventBase::mpfd */
+    virtual HANDLE mpfd () const; 
 #else
-    /** @see IEventBase::epfd */
-    virtual int epfd () const; 
+    /** @see IEventBase::mpfd */
+    virtual int mpfd () const; 
 #endif
 
     /** @see IEventBase::post_timer */
@@ -231,20 +228,17 @@ protected:
 #ifdef WIN32
     LPFN_ACCEPTEX m_acceptex = nullptr;    /**< address of AcceptEx on win32 */
     LPFN_GETACCEPTEXSOCKADDRS m_getacceptexsockaddrs = nullptr;  /**< address of GetAcceptExSockAddrs on win32 */
-    HANDLE m_iocp = NULL;                  /**< IO completion port handle on win32 */
+    HANDLE m_mp = NULL;  nn                /**< IO completion port handle on win32 */
     HANDLE m_timerque = NULL;              /**< timer queue handle on win32 */
 
     std::map<GEV_PER_HANDLE_DATA*, GEventHandler*> m_map;  /**< handler map, key is data address binding to handler, value is event handler */
 #else
-#  if defined (__APPLE__) || defined (__FreeBSD__)
-    int m_kq = -1;                         /**< kqueue file descriptor on mac */
-    // timer facility in mac & freebsd is integrated into m_kq
-#  else
-    int m_ep = -1;                         /**< epoll file descriptor on unix like */
-#  endif
+    int m_mp = -1;                         /**< epoll/kqueue file descriptor on unix like */
     int m_pp[2];                           /**< self-notify pipe on unix like */
 #  if defined (__linux__)
     int m_tsig = 0;                        /**< signal number for timer on linux */
+#  else
+    // timer facility in mac & freebsd is integrated into m_mp
 #  endif
 
     std::mutex m_lock;                     /**< lock to protect epoll */

@@ -36,14 +36,15 @@ class IEventBase
 {
 public:
 #ifdef WIN32
-    /** @brief get underline IOCP handler on win32 */
-    virtual HANDLE iocp () const = 0; 
-#elif defined (__APPLE__) || defined (__FreeBSD__)
-    /** @see IEventBase::kqfd */
-    virtual int kqfd () const = 0; 
+    /** @brief multiplexing fd 
+     *
+     * get underline iocp handler on win32 */
+    virtual HANDLE mpfd () const = 0; 
 #else
-    /** @brief get underline event poll fd on unix like */
-    virtual int epfd () const = 0; 
+    /** @brief multiplexing fd
+     *
+     * get underline epoll/kqueue fd on unix like */
+    virtual int mpfd () const = 0; 
 #endif
 
     /**

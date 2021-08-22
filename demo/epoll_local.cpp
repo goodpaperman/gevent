@@ -290,20 +290,16 @@ int main (int argc, char *argv[])
     struct kevent ev; 
     EV_SET(&ev, fd, EVFILT_READ, EV_ADD, 0, 0, NULL); 
     if (kevent (m_ep, &ev, 1, NULL, 0, NULL) < 0)
-    {
-        LG("kevent %d failed, errno %d", fd, errno); 
-        return -1; 
-    }
 #else
     struct epoll_event ev; 
     ev.events = EPOLLIN; 
     ev.data.fd = fd; 
     if (epoll_ctl (m_ep, EPOLL_CTL_ADD, fd, &ev) < 0)
+#endif
     {
-        LG("epoll ctl %d failed, errno %d", fd, errno); 
+        LG("epoll_ctl/kevent %d failed, errno %d", fd, errno); 
         return -1; 
     }
-#endif
 
     LG("bind newly connected socket %d to epoll/kqueue ok", fd);
 
