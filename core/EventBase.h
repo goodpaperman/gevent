@@ -228,7 +228,7 @@ protected:
 #ifdef WIN32
     LPFN_ACCEPTEX m_acceptex = nullptr;    /**< address of AcceptEx on win32 */
     LPFN_GETACCEPTEXSOCKADDRS m_getacceptexsockaddrs = nullptr;  /**< address of GetAcceptExSockAddrs on win32 */
-    HANDLE m_mp = NULL;  nn                /**< IO completion port handle on win32 */
+    HANDLE m_mp = NULL;                    /**< IO completion port handle on win32 */
     HANDLE m_timerque = NULL;              /**< timer queue handle on win32 */
 
     std::map<GEV_PER_HANDLE_DATA*, GEventHandler*> m_map;  /**< handler map, key is data address binding to handler, value is event handler */

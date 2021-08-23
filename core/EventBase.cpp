@@ -47,7 +47,7 @@ bool GEventBase::post_timer(GEV_PER_TIMER_DATA *gptd)
 }
 
 #ifdef WIN32
-HANDLE GEventBase::iocp () const
+HANDLE GEventBase::mpfd () const
 {
     return m_mp; 
 }
@@ -512,11 +512,12 @@ bool GEventBase::init(int thr_num, int blksize
         // not fatal as we can use default timer queue...
     }
 
-#elif defined (__APPLE__) || defined (__Free_BSD__)
-    m_mp = kqueue (); 
 #else
+#  if defined (__APPLE__) || defined (__Free_BSD__)
+    m_mp = kqueue (); 
+#  else
     m_mp = epoll_create (1/*just a hint*/); 
-#endif
+#  endif
     if (m_mp < 0)
     {
         writeLog("create epoll/kqueue instance failed, errno %d", errno); 
@@ -543,7 +544,7 @@ bool GEventBase::init(int thr_num, int blksize
         writeLog("install sig %d for timer ok", timer_sig); 
 
     m_tsig = timer_sig; 
-#endif
+#  endif
 
     // installl SIGPIPE handler to avoid exit on broken pipe/socket
     act.sa_handler = SIG_IGN; 
@@ -557,7 +558,7 @@ bool GEventBase::init(int thr_num, int blksize
     else
         writeLog("ignore SIGPIPE ok"); 
 
-#if defined (__linux__) && defined (HAS_SIGTHR)
+#  if defined (__linux__) && defined (HAS_SIGTHR)
     sigset_t mask; 
     // ignore all signal for worker thread
     // note: this step must set before spawning worker threads.
@@ -569,6 +570,7 @@ bool GEventBase::init(int thr_num, int blksize
     }
 
     m_sigthr = new std::thread(&GEventBase::sig_proc, this); 
+#  endif
 #endif
 
     std::thread *thr = nullptr; 

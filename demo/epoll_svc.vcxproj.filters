@@ -13,6 +13,9 @@
     <ClCompile Include="D:\code\gevent\core\EventHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="D:\code\gevent\ext\JsonEventHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="D:\code\gevent\core\log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

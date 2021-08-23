@@ -62,7 +62,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\ext;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -72,7 +72,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\ext;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -82,7 +82,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\ext;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -92,7 +92,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|Win32'">
     <Midl>
-      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\code\gevent\demo\..\core;D:\code\gevent\demo\..\ext;D:\code\gevent\demo\..\include;D:\code\gevent\demo\..\third-party\jsoncpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
