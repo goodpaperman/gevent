@@ -1244,6 +1244,7 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
 	EV_SET(&ev, 1, EVFILT_TIMER, EV_ADD, 0, 5, 0);
 #  endif
 #  if defined (__linux__)
+    int ret = 0; 
     timer_t timer = NULL; 
     struct sigevent sev; 
     sev.sigev_notify = SIGEV_SIGNAL; 
@@ -1256,7 +1257,6 @@ void* GEventBase::timeout(int due_msec, int period_msec, void *arg, GEventHandle
         delete gptd; 
         return nullptr; 
     }
-
 
     gptd->timer = timer; 
 #  endif
