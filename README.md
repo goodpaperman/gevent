@@ -3,8 +3,10 @@ cross-platform event driven framework (made in cpp)， to get detail: [一个工
 # build
 ## win32
 cd demo
+
 cmake -G "Visual Studio 14 2015" -S .
-# then using VS2015 open epoll_svc.sln and build all
+
+#then using VS2015 open epoll_svc.sln and build all
 ## linux / mac
 mkdir build
 
