@@ -16,4 +16,4 @@ cmake ../demo
 
 make
 # output
-goes into $gevent/bin
+goes into bin
