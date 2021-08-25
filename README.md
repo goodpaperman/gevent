@@ -6,9 +6,12 @@ cd demo
 cmake -G "Visual Studio 14 2015" -S .
 # then using VS2015 open epoll_svc.sln and build all
 ## linux / mac
-mkdir demo/build
-cd demo/build
-cmake ..
+mkdir build
+
+cd build
+
+cmake ../demo
+
 make
 # output
 goes into $gevent/bin
