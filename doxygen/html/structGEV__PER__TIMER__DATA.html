@@ -64,7 +64,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
 <a href="structGEV__PER__TIMER__DATA-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -81,21 +80,11 @@ Collaboration diagram for GEV_PER_TIMER_DATA:</div>
 <div class="dyncontent">
 <div class="center"><img src="structGEV__PER__TIMER__DATA__coll__graph.png" border="0" usemap="#GEV__PER__TIMER__DATA_coll__map" alt="Collaboration graph"/></div>
 <map name="GEV__PER__TIMER__DATA_coll__map" id="GEV__PER__TIMER__DATA_coll__map">
-<area shape="rect" title="data that binding to one timer" alt="" coords="5,189,212,355"/>
-<area shape="rect" href="classIEventBase.html" title="abstract interface for all EventBase" alt="" coords="43,5,174,127"/>
+<area shape="rect" title="data that binding to one timer" alt="" coords="5,189,176,311"/>
+<area shape="rect" href="classIEventBase.html" title="abstract interface for all EventBase" alt="" coords="25,5,156,127"/>
 </map>
 </div>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:ae339614151d5b91523f96561305009a5"><td class="memItemLeft" align="right" valign="top"><a id="ae339614151d5b91523f96561305009a5"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>GEV_PER_TIMER_DATA</b> (<a class="el" href="classIEventBase.html">IEventBase</a> *<a class="el" href="structGEV__PER__TIMER__DATA.html#af95141b0ba8c355fb450a7c22efe964e">base</a>, int due, int period, void *arg, timer_t tid)</td></tr>
-<tr class="separator:ae339614151d5b91523f96561305009a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abf317f88b49d4c87728bcc1dbcf1722d"><td class="memItemLeft" align="right" valign="top"><a id="abf317f88b49d4c87728bcc1dbcf1722d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d">cancel</a> ()</td></tr>
-<tr class="memdesc:abf317f88b49d4c87728bcc1dbcf1722d"><td class="mdescLeft">&#160;</td><td class="mdescRight">cancel this timer <br /></td></tr>
-<tr class="separator:abf317f88b49d4c87728bcc1dbcf1722d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:af95141b0ba8c355fb450a7c22efe964e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIEventBase.html">IEventBase</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGEV__PER__TIMER__DATA.html#af95141b0ba8c355fb450a7c22efe964e">base</a></td></tr>
@@ -108,8 +97,6 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a584308ffb347c00353b668cae0ac953f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af0ad6757cba27a3650a774b4557acbb0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGEV__PER__TIMER__DATA.html#af0ad6757cba27a3650a774b4557acbb0">cancelled</a></td></tr>
 <tr class="separator:af0ad6757cba27a3650a774b4557acbb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a5d5769f86a1fc92b796a8d93ba0cec"><td class="memItemLeft" align="right" valign="top">timer_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structGEV__PER__TIMER__DATA.html#a4a5d5769f86a1fc92b796a8d93ba0cec">timer</a></td></tr>
-<tr class="separator:a4a5d5769f86a1fc92b796a8d93ba0cec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>data that binding to one timer </p>
@@ -174,21 +161,6 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="a4a5d5769f86a1fc92b796a8d93ba0cec"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4a5d5769f86a1fc92b796a8d93ba0cec">&#9670;&nbsp;</a></span>timer</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">timer_t GEV_PER_TIMER_DATA::timer</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>timer handler on linux </p>
-
-</div>
-</div>
 <a id="a584308ffb347c00353b668cae0ac953f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a584308ffb347c00353b668cae0ac953f">&#9670;&nbsp;</a></span>user_arg</h2>
 
@@ -204,9 +176,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<hr/>The documentation for this struct was generated from the following files:<ul>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>/home/yunh/code/gevent/core/<a class="el" href="EventHandler_8h_source.html">EventHandler.h</a></li>
-<li>/home/yunh/code/gevent/core/EventHandler.cpp</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->

@@ -81,9 +81,9 @@ Inheritance diagram for IEventBase:</div>
 <div class="center"><img src="classIEventBase__inherit__graph.png" border="0" usemap="#IEventBase_inherit__map" alt="Inheritance graph"/></div>
 <map name="IEventBase_inherit__map" id="IEventBase_inherit__map">
 <area shape="rect" title="abstract interface for all EventBase" alt="" coords="73,5,203,127"/>
-<area shape="rect" href="classGEventBase.html" title="event base, the core of the gevent" alt="" coords="66,175,210,663"/>
-<area shape="rect" href="classGEventBaseWithAutoReconnect.html" title="event base with auto reconnection support" alt="" coords="5,711,271,1067"/>
-<area shape="rect" href="classGMyEventBase.html" title=" " alt="" coords="66,1115,210,1207"/>
+<area shape="rect" href="classGEventBase.html" title="event base, the core of the gevent" alt="" coords="66,175,210,648"/>
+<area shape="rect" href="classGEventBaseWithAutoReconnect.html" title="event base with auto reconnection support" alt="" coords="5,696,271,1052"/>
+<area shape="rect" href="classGMyEventBase.html" title=" " alt="" coords="66,1100,210,1192"/>
 </map>
 </div>
 <div class="dynheader">
@@ -97,10 +97,9 @@ Collaboration diagram for IEventBase:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a93f708600d53de5ca399463d5c46af42"><td class="memItemLeft" align="right" valign="top"><a id="a93f708600d53de5ca399463d5c46af42"></a>
-virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIEventBase.html#a93f708600d53de5ca399463d5c46af42">epfd</a> () const =0</td></tr>
-<tr class="memdesc:a93f708600d53de5ca399463d5c46af42"><td class="mdescLeft">&#160;</td><td class="mdescRight">get underline event poll fd on linux <br /></td></tr>
-<tr class="separator:a93f708600d53de5ca399463d5c46af42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2085d85a32ed8ac6485412d39d5d34d3"><td class="memItemLeft" align="right" valign="top">virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIEventBase.html#a2085d85a32ed8ac6485412d39d5d34d3">mpfd</a> () const =0</td></tr>
+<tr class="memdesc:a2085d85a32ed8ac6485412d39d5d34d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">multiplexing fd  <a href="classIEventBase.html#a2085d85a32ed8ac6485412d39d5d34d3">More...</a><br /></td></tr>
+<tr class="separator:a2085d85a32ed8ac6485412d39d5d34d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a346ec5b87f68a6b460d58b20add6a134"><td class="memItemLeft" align="right" valign="top">virtual void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIEventBase.html#a346ec5b87f68a6b460d58b20add6a134">timeout</a> (int due_msec, int period_msec, void *arg, <a class="el" href="classGEventHandler.html">GEventHandler</a> *exist_handler)=0</td></tr>
 <tr class="memdesc:a346ec5b87f68a6b460d58b20add6a134"><td class="mdescLeft">&#160;</td><td class="mdescRight">setup timer  <a href="classIEventBase.html#a346ec5b87f68a6b460d58b20add6a134">More...</a><br /></td></tr>
 <tr class="separator:a346ec5b87f68a6b460d58b20add6a134"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -155,6 +154,36 @@ virtual int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hre
 </dl>
 
 <p>Implemented in <a class="el" href="classGEventBase.html#ade0710420c3a7407ab49f5cdf336e371">GEventBase</a>.</p>
+
+</div>
+</div>
+<a id="a2085d85a32ed8ac6485412d39d5d34d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2085d85a32ed8ac6485412d39d5d34d3">&#9670;&nbsp;</a></span>mpfd()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual int IEventBase::mpfd </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>multiplexing fd </p>
+<p>get underline epoll/kqueue fd on unix like </p>
+
+<p>Implemented in <a class="el" href="classGEventBase.html#afee692735cbe38c97f754f2e9bcf6239">GEventBase</a>.</p>
 
 </div>
 </div>

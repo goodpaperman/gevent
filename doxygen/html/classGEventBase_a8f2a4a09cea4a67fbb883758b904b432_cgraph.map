@@ -1,9 +1,7 @@
 <map id="GEventBase::on_error" name="GEventBase::on_error">
-<area shape="rect" id="node1" title="called when detecting error on a conection" alt="" coords="5,89,168,115"/>
-<area shape="rect" id="node2" href="$classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="226,13,389,39"/>
-<area shape="rect" id="node4" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="227,63,387,90"/>
-<area shape="rect" id="node5" href="$classGEventHandler.html#a3f3e88c7a2dbcf5d866acddbbf034fd7" title="connection has break" alt="" coords="216,114,399,141"/>
-<area shape="rect" id="node7" href="$classGEventHandler.html#a316e1484f5e7eae5babf0a31cf4c8662" title="tell EventBase whether enable reuse" alt="" coords="225,165,389,191"/>
-<area shape="rect" id="node3" href="$structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d" title="cancel this timer" alt="" coords="451,5,621,47"/>
-<area shape="rect" id="node6" href="$classGEventHandler.html#a5ef79153519c6c98a2e00d3f193ad07d" title="shut down underline facilities" alt="" coords="447,114,625,141"/>
+<area shape="rect" id="node1" title="called when detecting error on a conection" alt="" coords="5,81,168,108"/>
+<area shape="rect" id="node2" href="$classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="226,5,389,32"/>
+<area shape="rect" id="node3" href="$classGEventHandler.html#a1c512dcd3f7624136efb9bf7a0ecdd4e" title="return data that binding to event handler" alt="" coords="227,56,387,83"/>
+<area shape="rect" id="node4" href="$classGEventHandler.html#aacab07063a83452a46a235b2e1a76dfb" title="connection has break" alt="" coords="216,107,399,133"/>
+<area shape="rect" id="node5" href="$classGEventHandler.html#a7a4ca05c4be06a8eb1d7458576d4a8d6" title="tell EventBase whether enable reuse" alt="" coords="225,157,389,184"/>
 </map>

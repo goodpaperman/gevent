@@ -1,6 +1,6 @@
 <map id="GJsonEventHandler::on_read" name="GJsonEventHandler::on_read">
 <area shape="rect" id="node1" title=" " alt="" coords="5,71,160,112"/>
-<area shape="rect" id="node2" href="$classGEventHandler.html#a2fef525ce68774fbffa2bd591cce2cbc" title="tell framework whether enable pre&#45;read mechanism" alt="" coords="225,5,376,47"/>
+<area shape="rect" id="node2" href="$classGEventHandler.html#affc2cabb4396e80e221d5fb3154157ed" title="tell framework whether enable pre&#45;read mechanism" alt="" coords="225,5,376,47"/>
 <area shape="rect" id="node3" href="$classGJsonEventHandler.html#adb69755e593d6c93a1f276c459fe9a54" title=" " alt="" coords="223,71,378,112"/>
-<area shape="rect" id="node4" href="$classGEventHandler.html#ad28ff16d092359ec82a93be86a621452" title="pre&#45;read callbacks" alt="" coords="208,137,393,163"/>
+<area shape="rect" id="node4" href="$classGEventHandler.html#a046f0543b604c97b0ef9b662bfb2cbaa" title="pre&#45;read callbacks" alt="" coords="208,137,393,163"/>
 </map>

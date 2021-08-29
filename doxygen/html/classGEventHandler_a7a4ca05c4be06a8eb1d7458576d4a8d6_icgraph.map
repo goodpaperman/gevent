@@ -1,0 +1,10 @@
+<map id="GEventHandler::reuse" name="GEventHandler::reuse">
+<area shape="rect" id="node1" title="tell EventBase whether enable reuse" alt="" coords="791,114,955,141"/>
+<area shape="rect" id="node2" href="$classGEventBase.html#aa1d227594c9269194d625584aac2c16e" title="setup connection to remote server" alt="" coords="571,30,731,57"/>
+<area shape="rect" id="node5" href="$classGEventBase.html#a8f2a4a09cea4a67fbb883758b904b432" title="called when detecting error on a conection" alt="" coords="570,114,733,141"/>
+<area shape="rect" id="node8" href="$classGEventBase.html#aada8cffd3ccb8a5048cc8726182ec218" title="called when timer due" alt="" coords="560,169,743,195"/>
+<area shape="rect" id="node3" href="$classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
+<area shape="rect" id="node4" href="$classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,93,235,135"/>
+<area shape="rect" id="node6" href="$classGEventBase.html#a605008413706770a7efd53638b2e16ff" title="traverse the handlers and call func for each handler" alt="" coords="318,71,477,98"/>
+<area shape="rect" id="node7" href="$classGEventBaseWithAutoReconnect.html#a4b3565ff0ea0443ec27e0ae5ed193e65" title=" " alt="" coords="283,123,512,164"/>
+</map>

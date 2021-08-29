@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['timeout_156',['timeout',['../classGEventBase.html#a3bf6f4e3c08abe252c98b8681de7bb0d',1,'GEventBase::timeout()'],['../classIEventBase.html#a346ec5b87f68a6b460d58b20add6a134',1,'IEventBase::timeout()']]]
+  ['send_150',['send',['../classGEventHandler.html#ab54ba39d033eb14702a75b09f6204f91',1,'GEventHandler::send(char const *buf, int len)'],['../classGEventHandler.html#aaeadc9fd25d92f4c97f5429f4e4fc955',1,'GEventHandler::send(std::string const &amp;str)']]],
+  ['send_5fraw_151',['send_raw',['../classGEventHandler.html#a60705eb7b1e098f915a617ec4a412c69',1,'GEventHandler::send_raw(char const *buf, int len)'],['../classGEventHandler.html#a65daab22633c1d21c52976a2b6f77fb7',1,'GEventHandler::send_raw(std::string const &amp;str)']]]
 ];

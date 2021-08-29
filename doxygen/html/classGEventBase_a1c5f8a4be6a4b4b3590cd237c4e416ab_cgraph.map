@@ -2,7 +2,5 @@
 <area shape="rect" id="node1" title="called when accepting a new connection" alt="" coords="5,71,180,98"/>
 <area shape="rect" id="node2" href="$classGEventBase.html#a285c05603d8692bb1989db2c2c37b031" title="return handler for new connection" alt="" coords="260,5,411,47"/>
 <area shape="rect" id="node3" href="$structGEV__PER__HANDLE__DATA.html#ab21b4aef8104b0cfe7859c96f6137be7" title="access key data on win32" alt="" coords="228,71,443,98"/>
-<area shape="rect" id="node4" href="$classGEventHandler.html#a46fdad8f31528d62ddaa9c39e30869d0" title="reset inner data status to initial" alt="" coords="255,122,416,149"/>
-<area shape="rect" id="node5" href="$classGEventHandler.html#aacf4ca9d8f01ec42078e5bfc71f6f481" title="return data that binding to event handler" alt="" coords="491,97,651,123"/>
-<area shape="rect" id="node6" href="$classGEventHandler.html#a2ebca4f4917ed8448d7445f5db213ec0" title="return data that binding to timer handler" alt="" coords="492,147,649,174"/>
+<area shape="rect" id="node4" href="$classGEventHandler.html#a80851cbe287fca36c131ba1a07bec7a9" title="reset inner data status to initial" alt="" coords="255,122,416,149"/>
 </map>

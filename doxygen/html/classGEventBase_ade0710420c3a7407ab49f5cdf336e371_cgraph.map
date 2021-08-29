@@ -1,5 +1,4 @@
 <map id="GEventBase::cancel_timer" name="GEventBase::cancel_timer">
 <area shape="rect" id="node1" title="cancel timer" alt="" coords="5,5,156,47"/>
 <area shape="rect" id="node2" href="$classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="204,13,367,39"/>
-<area shape="rect" id="node3" href="$structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d" title="cancel this timer" alt="" coords="415,5,585,47"/>
 </map>

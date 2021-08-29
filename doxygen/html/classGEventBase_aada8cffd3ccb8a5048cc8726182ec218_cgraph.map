@@ -1,7 +1,6 @@
 <map id="GEventBase::on_timeout" name="GEventBase::on_timeout">
-<area shape="rect" id="node1" title="called when timer due" alt="" coords="5,63,188,90"/>
-<area shape="rect" id="node2" href="$classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="256,13,419,39"/>
-<area shape="rect" id="node4" href="$classGEventHandler.html#a75f04e2b25bf9234793949a3f367445a" title="timer has due" alt="" coords="236,63,439,90"/>
-<area shape="rect" id="node5" href="$classGEventHandler.html#a316e1484f5e7eae5babf0a31cf4c8662" title="tell EventBase whether enable reuse" alt="" coords="255,114,419,141"/>
-<area shape="rect" id="node3" href="$structGEV__PER__TIMER__DATA.html#abf317f88b49d4c87728bcc1dbcf1722d" title="cancel this timer" alt="" coords="487,5,657,47"/>
+<area shape="rect" id="node1" title="called when timer due" alt="" coords="5,56,188,83"/>
+<area shape="rect" id="node2" href="$classGEventHandler.html#a1cb354fe801eb4dec03a407299bf6b06" title="shut down socket connection" alt="" coords="256,5,419,32"/>
+<area shape="rect" id="node3" href="$classGEventHandler.html#a75f04e2b25bf9234793949a3f367445a" title="timer has due" alt="" coords="236,56,439,83"/>
+<area shape="rect" id="node4" href="$classGEventHandler.html#a7a4ca05c4be06a8eb1d7458576d4a8d6" title="tell EventBase whether enable reuse" alt="" coords="255,107,419,133"/>
 </map>

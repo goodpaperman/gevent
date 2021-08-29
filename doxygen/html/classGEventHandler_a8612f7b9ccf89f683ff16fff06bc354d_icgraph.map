@@ -1,0 +1,6 @@
+<map id="GEventHandler::cleanup" name="GEventHandler::cleanup">
+<area shape="rect" id="node1" title="shut down underline facilities" alt="" coords="768,13,947,39"/>
+<area shape="rect" id="node2" href="$classGEventBase.html#aa1d227594c9269194d625584aac2c16e" title="setup connection to remote server" alt="" coords="560,13,720,39"/>
+<area shape="rect" id="node3" href="$classGEventBaseWithAutoReconnect.html#a662c95e76e3a6ad0c7585aebeb7f0234" title="issue the active connection" alt="" coords="283,5,512,47"/>
+<area shape="rect" id="node4" href="$classGEventBaseWithAutoReconnect.html#a6ac1b22f7a2e62e4f71edae8261baf7e" title=" " alt="" coords="5,5,235,47"/>
+</map>

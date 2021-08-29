@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['send_154',['send',['../classGEventHandler.html#ab54ba39d033eb14702a75b09f6204f91',1,'GEventHandler::send(char const *buf, int len)'],['../classGEventHandler.html#aaeadc9fd25d92f4c97f5429f4e4fc955',1,'GEventHandler::send(std::string const &amp;str)']]],
-  ['send_5fraw_155',['send_raw',['../classGEventHandler.html#a60705eb7b1e098f915a617ec4a412c69',1,'GEventHandler::send_raw(char const *buf, int len)'],['../classGEventHandler.html#a65daab22633c1d21c52976a2b6f77fb7',1,'GEventHandler::send_raw(std::string const &amp;str)']]]
+  ['reset_147',['reset',['../classGEventHandler.html#a80851cbe287fca36c131ba1a07bec7a9',1,'GEventHandler::reset()'],['../classGJsonEventHandler.html#ad48e6db8922e62be151b88c46e0580aa',1,'GJsonEventHandler::reset()']]],
+  ['reuse_148',['reuse',['../classGEventHandler.html#a7a4ca05c4be06a8eb1d7458576d4a8d6',1,'GEventHandler']]],
+  ['run_149',['run',['../classGEventBase.html#a667e415dc4420462806fbccf16141e98',1,'GEventBase']]]
 ];
