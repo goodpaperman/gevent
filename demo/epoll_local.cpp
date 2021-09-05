@@ -28,7 +28,11 @@ int main(int argc, char *argv[])
 #include "json/json.h"
 #include "../include/platform.h"
 
-#define LG(format, args...) do {printf("%p ", pthread_self ()); printf(format"\n", ##args);} while(0)
+#if defined (__APPLE__) || defined (__FreeBSD__)
+#  define LG(format, args...) do {printf("%p ", pthread_self ()); printf(format"\n", ##args);} while(0)
+#else
+#  define LG(format, args...) do {printf("%ld ", pthread_self ()); printf(format"\n", ##args);} while(0)
+#endif
 
 
 int running = 1; 

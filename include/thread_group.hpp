@@ -2,7 +2,7 @@
 #include <mutex>
 #include <list>
 #include <algorithm>
-//#include <memory>
+#include <memory>
 
 namespace std
 {
@@ -27,7 +27,7 @@ namespace std
         thread* create_thread(F threadfunc)
         {
             lock_guard<mutex> guard(m);
-            auto_ptr<thread> new_thread(new thread(threadfunc));
+            unique_ptr<thread> new_thread(new thread(threadfunc));
             threads.push_back(new_thread.get());
             return new_thread.release();
         }
