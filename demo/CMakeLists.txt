@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 2.8)
 project(epoll_svc)
 include_directories(../core ../ext ../include ../third-party/jsoncpp/include)
 IF (NOT WIN32)
